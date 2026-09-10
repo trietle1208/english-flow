@@ -1,0 +1,16 @@
+node_modules
+.next
+.git
+.env
+.env.*
+!.env.example
+playwright-report
+test-results
+coverage
+docs
+production-mined.txt
+CLAUDE.md
+README.md
+npm-debug.log*
+*.tsbuildinfo
+.DS_Store

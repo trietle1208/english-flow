@@ -8,16 +8,22 @@ Architecture decisions (read before touching auth/schema/lessons/audio): [docs/p
 
 ## Current Status
 
-**Phase: 01 done, 02 not started.** Next.js app scaffolded, TS strict, Tailwind + shadcn/ui, ESLint/Prettier, feature-oriented directory structure, first commit made. No DB/Docker/auth yet.
+**Phase: 01 done, 02 in progress (Docker now confirmed working, 2 minor checks left), 03 in progress (schema + seed migrated/seeded into the real dev DB, two content gaps remain), 04 done.** Drizzle + `postgres-js` + Zod-validated `src/env.ts`, `docker-compose.yml` (postgres + app + adminer, healthcheck, named `pgdata` volume), multi-stage `Dockerfile` (non-root `nextjs` user), `next.config.ts` `output: "standalone"`, `db:*` scripts. `npx tsc --noEmit` / `npm run lint` / `npm run build` all pass (Node 18 and 22) and `src/env.ts` fails fast with a clear message on a missing var.
+
+**2026-09-10 update**: the user ran `docker compose up -d` themselves on a machine with a working Docker daemon (confirmed via Adminer at `localhost:8080`). This agent's own sandbox still has no `docker` CLI access (`permission denied` on `/var/run/docker.sock`, unchanged), but the containers' published ports are reachable over the host network, so both were verified directly: `postgres:16-alpine` reachable on `5432` (`psql`-equivalent check via the `postgres` npm client instead of `docker compose exec`), and the `app` container itself reachable on `3000` returning real Next.js HTML (`200 OK`, `X-Powered-By: Next.js`) — proving the healthcheck-gated `depends_on` actually works. `drizzle-kit migrate` + `db:seed` were then run twice against that real container (not a simulation): 18 tables, identical row counts both runs (courses 5, lessons 25, vocabularies 134, grammar_topics 10, listening_lessons 5, quizzes 19, placement test 20 questions), zero orphaned FK references. Remaining Phase 02 checks that need the user's own `docker` CLI (this agent still can't run one): `docker compose down && up -d` data-persistence check, and `docker compose logs app` — see [phase-02-docker-database.md](docs/plan/phase-02-docker-database.md#acceptance-criteria).
+
+Two known Phase 03 gaps remain, documented in [phase-03-schema-seed.md](docs/plan/phase-03-schema-seed.md): (1) `npm run db:studio`'s UI itself wasn't visually confirmed (no browser/GUI available to this agent — the user can check via `db:studio` or the already-open Adminer tab); (2) real listening `.mp3` files under `public/audio/listening/` don't exist yet (no TTS binary / no license to real audio available to this agent) — transcripts and comprehension quizzes are real, only the audio files are missing, see [public/audio/README.md](public/audio/README.md).
+
+**Phase 04 (2026-09-10, done)**: better-auth wired up per AD-01 (Drizzle adapter, `usePlural: true`, `sessions`/`accounts`/`verifications` tables added and migrated into the same real dev DB from Phase 03), `emailAndPassword` with an 8-char + letter+number password rule, `requireUser()`/`getCurrentUser()` (`React.cache`), edge `middleware.ts`, Zod-validated register/login forms (`react-hook-form`), and a temporary Logout button. `npx tsc --noEmit` / `npm run lint` / `npm run build` all pass. No browser available to this agent, so the flow was verified for real instead of skipped: built production (`npm start`) against the live Postgres on `localhost:5432` and drove `/api/auth/*` directly with `curl` — real sign-up (scrypt-hashed password, UUID v7 id), duplicate-email and wrong-password both map to the friendly messages the acceptance criteria ask for, the session cookie is `HttpOnly`/`SameSite=Lax`, and sign-out really invalidates the DB session (confirmed `/dashboard` still redirects to `/login` on the old cookie because `requireUser()` re-queries the DB, not just because middleware saw no cookie). Two real bugs only showed up under this live test, not in `tsc`/`build`, and are now fixed — see the "Xác minh" section in [phase-04-auth.md](docs/plan/phase-04-auth.md) for both. Test users created during verification were deleted afterward. `npm run test` still has no script (pre-existing gap from Phase 01-03, not introduced here) — the Playwright-level "click through the actual UI" pass (Google-button tooltip, Skip-for-now button) is unverified beyond reading the code.
 
 > Update this section every time a phase is completed or started. Format:
 > `- [x] Phase 01 — Foundation (done YYYY-MM-DD)`
 > `- [ ] Phase 02 — Docker & Database (in progress)`
 
 - [x] Phase 01 — Foundation (done 2026-09-10)
-- [ ] Phase 02 — Docker & Database Infrastructure
-- [ ] Phase 03 — Schema & Seed
-- [ ] Phase 04 — Authentication
+- [ ] Phase 02 — Docker & Database Infrastructure (in progress — Docker confirmed working, down/up persistence + app logs still need the user's `docker` CLI, see note above)
+- [ ] Phase 03 — Schema & Seed (in progress — schema + seed migrated/seeded into the real dev DB, db:studio UI and real listening audio unverified, see note above)
+- [x] Phase 04 — Authentication (done 2026-09-10)
 - [ ] Phase 05 — App Shell & Design System
 - [ ] Phase 06 — Landing Page
 - [ ] Phase 07 — Courses

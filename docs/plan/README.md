@@ -34,8 +34,8 @@ Nếu phase có đụng schema: thêm `npm run db:generate && npm run db:migrate
 | #   | Phase                                                            | Nội dung chính                                                    | Output kiểm chứng được                            | Status |
 | --- | ---------------------------------------------------------------- | ----------------------------------------------------------------- | ------------------------------------------------- | ------ |
 | 01  | [Foundation](phase-01-foundation.md)                             | Next.js + TS strict + Tailwind + shadcn + cấu trúc thư mục        | `npm run dev` chạy, trang trắng có design tokens  | ☑      |
-| 02  | [Docker & Database Infra](phase-02-docker-database.md)           | docker-compose, Dockerfile, Drizzle, env validation               | `docker compose up -d` → app + postgres healthy   | ☐      |
-| 03  | [Schema & Seed](phase-03-schema-seed.md)                         | Toàn bộ schema Postgres + migration + seed content thật           | `npm run db:seed` → đủ số lượng bản ghi           | ☐      |
+| 02  | [Docker & Database Infra](phase-02-docker-database.md)           | docker-compose, Dockerfile, Drizzle, env validation               | `docker compose up -d` → app + postgres healthy   | ◐      |
+| 03  | [Schema & Seed](phase-03-schema-seed.md)                         | Toàn bộ schema Postgres + migration + seed content thật           | `npm run db:seed` → đủ số lượng bản ghi           | ◐      |
 | 04  | [Authentication](phase-04-auth.md)                               | Register / Login / Logout / protected routes                      | Đăng ký → vào được `/dashboard`, logout → bị chặn | ☐      |
 | 05  | [App Shell & Design System](phase-05-app-shell-design-system.md) | Sidebar, mobile nav, UI kit, theme, loading/error/empty           | Điều hướng đủ 7 mục, dark mode, responsive        | ☐      |
 | 06  | [Landing Page](phase-06-landing.md)                              | Trang `/` public                                                  | Landing hoàn chỉnh, CTA dẫn tới `/register`       | ☐      |
