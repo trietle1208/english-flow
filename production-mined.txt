@@ -1,0 +1,1663 @@
+# Build Phase 1 — Personal English Learning Platform
+
+## 1. Project Overview
+
+Build a modern personal English learning web application.
+
+This is NOT a student project or a demo-only application.
+
+The goal is to build a real product that I will personally use for long-term English learning.
+
+The application should be:
+
+* Production-minded
+* Maintainable
+* Modular
+* Responsive
+* Fast
+* Simple to operate
+* Easy to extend in future phases
+* Self-hostable
+* Designed with data ownership in mind
+
+Phase 1 should focus on the core learning experience.
+
+Future phases may add:
+
+* AI Tutor
+* AI Conversation
+* AI Grammar Correction
+* Speaking evaluation
+* Spaced Repetition
+* Personalized learning recommendations
+
+Do NOT implement those advanced AI features in Phase 1, but design the architecture so they can be added later without major rewrites.
+
+---
+
+# 2. Technology Stack
+
+Use ONLY free/open-source technologies for the application.
+
+## Frontend
+
+* Next.js
+* TypeScript
+* App Router
+* React
+* Tailwind CSS
+* shadcn/ui
+* Lucide Icons
+
+## Backend
+
+Use Next.js as the application backend.
+
+Use:
+
+* Server Components where appropriate
+* Server Actions where appropriate
+* Route Handlers for APIs when needed
+
+Do NOT create a separate Express or NestJS backend for Phase 1.
+
+## Database
+
+* PostgreSQL
+* Drizzle ORM
+* Drizzle Kit for migrations
+
+The application must work with a PostgreSQL database running locally through Docker.
+
+## Development Environment
+
+Use:
+
+* Docker
+* Docker Compose
+
+The goal is to allow the entire development environment to be started easily.
+
+At minimum:
+
+* Next.js application
+* PostgreSQL database
+
+should be supported through Docker Compose.
+
+## Version Control
+
+* Git
+* GitHub
+
+## Deployment
+
+Keep the project compatible with:
+
+* Vercel
+* Any standard Node.js hosting
+* Self-hosted Docker deployment
+
+Do not introduce vendor-specific architecture that makes self-hosting difficult.
+
+---
+
+# 3. Core Product Philosophy
+
+The application should prioritize actual learning.
+
+Avoid:
+
+* Excessive gamification
+* Childish UI
+* Unnecessary animations
+* Excessive gradients
+* Too many badges
+* Cluttered dashboards
+* Complex navigation
+
+The product should feel like a premium modern EdTech product.
+
+Visual references:
+
+* Modern SaaS
+* Notion-like simplicity
+* Duolingo-like learning clarity
+* Linear-like visual polish
+
+However, do NOT copy any existing product's interface.
+
+Create an original design system.
+
+---
+
+# 4. Main Navigation
+
+Desktop sidebar:
+
+* Dashboard
+* Courses
+* Vocabulary
+* Grammar
+* Listening
+* Quiz
+* Progress
+
+Bottom section:
+
+* User profile
+* Settings
+* Logout
+
+Mobile:
+
+* Use a compact header
+* Use bottom navigation or a mobile navigation drawer
+* Maintain easy access to Dashboard, Courses, Vocabulary and Progress
+
+The navigation must be consistent across authenticated pages.
+
+---
+
+# 5. Application Routes
+
+Create the following routes:
+
+```text
+/
+ /login
+ /register
+ /placement-test
+
+ /dashboard
+
+ /courses
+ /courses/[courseId]
+
+ /lessons/[lessonId]
+
+ /vocabulary
+
+ /grammar
+ /grammar/[topicId]
+
+ /listening
+ /listening/[lessonId]
+
+ /quiz/[quizId]
+ /quiz/[quizId]/result
+
+ /progress
+
+ /settings
+```
+
+Use appropriate route groups where useful.
+
+---
+
+# 6. Landing Page
+
+Create a polished landing page.
+
+## Header
+
+Logo:
+"EnglishFlow"
+
+Navigation:
+
+* Features
+* Courses
+* Vocabulary
+* Progress
+
+Actions:
+
+* Sign In
+* Get Started
+
+## Hero
+
+Headline:
+
+"Learn English with a system built around you."
+
+Supporting text:
+
+"Build vocabulary, improve grammar, strengthen listening skills, and make consistent progress every day."
+
+CTA:
+"Start Learning"
+
+Secondary CTA:
+"Explore Courses"
+
+## Feature section
+
+Show:
+
+* Structured lessons
+* Personal vocabulary
+* Listening practice
+* Progress tracking
+
+## How it works
+
+1. Find your level
+2. Follow your learning path
+3. Practice every day
+4. Track your progress
+
+## Final CTA
+
+"Start your English learning journey."
+
+---
+
+# 7. Authentication
+
+Create:
+
+## Register
+
+Fields:
+
+* Name
+* Email
+* Password
+* Confirm Password
+
+Actions:
+
+* Create Account
+* Continue with Google placeholder if authentication provider is later added
+
+## Login
+
+Fields:
+
+* Email
+* Password
+* Remember me
+
+Actions:
+
+* Login
+* Forgot password
+* Create account
+
+Use proper:
+
+* Loading states
+* Validation
+* Error messages
+* Success states
+
+Do not store passwords manually.
+
+Use a secure authentication approach compatible with the selected architecture.
+
+---
+
+# 8. Placement Test
+
+After registration, users can optionally take a placement test.
+
+Show:
+
+* Current question number
+* Total questions
+* Progress indicator
+* Question
+* Multiple choice answers
+* Previous
+* Next
+
+Example:
+
+"What is the correct sentence?"
+
+A. She go to school every day.
+B. She goes to school every day.
+C. She going to school every day.
+D. She gone to school every day.
+
+At completion:
+
+Show:
+
+* Score
+* Estimated CEFR level
+* A1
+* A2
+* B1
+* B2
+* C1
+
+Then:
+
+"Your recommended starting level is B1."
+
+CTA:
+"Start Learning"
+
+Store the result in the database.
+
+---
+
+# 9. Dashboard
+
+The Dashboard is the main page after login.
+
+Header:
+
+"Good morning, [Name] 👋"
+
+## Daily Goal
+
+Show:
+
+* Daily learning goal
+* Current learning time
+* Progress bar
+
+Example:
+
+20 min goal
+
+15 / 20 min
+
+## Learning Streak
+
+Show:
+
+* Current streak
+* Weekly activity
+
+Example:
+
+🔥 7 day streak
+
+## Continue Learning
+
+Large card containing:
+
+* Course
+* Lesson
+* Lesson title
+* Skill
+* Estimated duration
+* Completion percentage
+* Continue button
+
+Example:
+
+Everyday English
+Lesson 12
+Talking About Hobbies
+15 min
+
+## Skill Overview
+
+Four cards:
+
+Vocabulary
+Grammar
+Listening
+Reading
+
+Each card:
+
+* Percentage
+* Progress bar
+* Completed items
+
+## Recent Activity
+
+Show:
+
+* Completed lessons
+* Quiz results
+* Recently saved vocabulary
+
+## Recommended Lessons
+
+Show 3–4 lesson cards.
+
+---
+
+# 10. Courses
+
+Create a course discovery page.
+
+Header:
+
+"Courses"
+
+Controls:
+
+* Search
+* Level filter
+* Category filter
+
+Levels:
+
+* A1 Beginner
+* A2 Elementary
+* B1 Intermediate
+* B2 Upper Intermediate
+* C1 Advanced
+
+Example courses:
+
+* Everyday English
+* English Conversation
+* English for Travel
+* Essential Grammar
+* Academic English
+
+Course card:
+
+* Title
+* Description
+* CEFR level
+* Number of lessons
+* Estimated duration
+* Progress
+* Start / Continue
+
+---
+
+# 11. Course Detail
+
+Show:
+
+* Course title
+* Description
+* Level
+* Number of lessons
+* Estimated learning time
+* Overall progress
+
+Lesson list:
+
+```text
+01 — Introductions
+02 — Daily Routines
+03 — Talking About Hobbies
+04 — Shopping
+05 — Travel
+```
+
+Each lesson:
+
+* Lesson number
+* Title
+* Skill
+* Duration
+* Status
+
+Statuses:
+
+* Completed
+* Current
+* Locked
+
+Use clear visual distinction.
+
+---
+
+# 12. Lesson Experience
+
+The lesson page is one of the most important screens.
+
+Layout:
+
+Top:
+
+* Course name
+* Lesson title
+* Progress
+
+Main content:
+
+* Learning objective
+* Explanation
+* Vocabulary
+* Examples
+* Interactive exercises
+
+Bottom:
+
+* Previous lesson
+* Next lesson
+
+Example:
+
+## Talking About Daily Routines
+
+Learning objective:
+
+"Learn how to describe your daily activities in English."
+
+Vocabulary:
+
+### wake up
+
+/wake ʌp/
+
+"thức dậy"
+
+Example:
+
+"I usually wake up at 7 AM."
+
+Actions:
+
+* Play pronunciation
+* Save vocabulary ⭐
+
+### have breakfast
+
+/hæv ˈbrekfəst/
+
+"ăn sáng"
+
+Example:
+
+"I have breakfast before school."
+
+Actions:
+
+* Play pronunciation
+* Save vocabulary ⭐
+
+---
+
+# 13. Personal Vocabulary — IMPORTANT
+
+This is a core Phase 1 feature.
+
+Users must be able to save vocabulary from:
+
+* Lessons
+* Reading content
+* Vocabulary lists
+
+When the user clicks the Save button, create a record connecting:
+
+User → Vocabulary
+
+Do NOT duplicate the vocabulary itself.
+
+---
+
+# 14. My Vocabulary Page
+
+Route:
+
+```text
+/vocabulary
+```
+
+Header:
+
+"My Vocabulary"
+
+Statistics:
+
+* Total saved
+* Learned
+* Not learned
+
+Search:
+
+"Search vocabulary..."
+
+Filters:
+
+* All
+* Recently Added
+* Learned
+* Not Learned
+
+Sort:
+
+* Recently added
+* Alphabetical
+* Most reviewed
+
+Vocabulary card:
+
+```text
+beautiful
+
+/ˈbjuː.tɪ.fəl/
+
+adjective
+
+đẹp
+
+"She has a beautiful voice."
+
+🔊 Play
+
+✓ Mark as learned
+
+Remove
+```
+
+Saved state:
+
+⭐ Saved
+
+---
+
+# 15. Vocabulary UX
+
+When a user sees a vocabulary word anywhere in the application:
+
+Show:
+
+* Word
+* Pronunciation
+* Meaning
+* Part of speech
+* Example sentence
+* Audio
+* Save button
+
+When saved:
+
+Change button state from:
+
+"Save"
+
+to:
+
+"Saved"
+
+Allow the user to remove it.
+
+Show a small toast:
+
+"Vocabulary saved."
+
+Do not reload the entire page unnecessarily.
+
+---
+
+# 16. Vocabulary Database Design
+
+Create a reusable vocabulary entity.
+
+Suggested structure:
+
+```text
+vocabularies
+
+id
+word
+pronunciation
+phonetic
+part_of_speech
+meaning
+example_sentence
+audio_url
+difficulty
+created_at
+updated_at
+```
+
+User-specific data:
+
+```text
+user_vocabularies
+
+id
+user_id
+vocabulary_id
+saved_at
+is_learned
+learned_at
+last_reviewed_at
+review_count
+next_review_at
+created_at
+updated_at
+```
+
+The review-related fields are included for future Spaced Repetition.
+
+Do NOT implement a full Spaced Repetition algorithm in Phase 1.
+
+---
+
+# 17. Grammar
+
+Create grammar topic page.
+
+Topics:
+
+* Present Simple
+* Present Continuous
+* Past Simple
+* Present Perfect
+* Future
+* Modal Verbs
+* Conditionals
+* Passive Voice
+
+Grammar detail:
+
+* Explanation
+* Rules
+* Examples
+* Common mistakes
+* Mini exercises
+
+Example:
+
+## Present Simple
+
+Use the Present Simple to talk about:
+
+* habits
+* routines
+* facts
+
+Examples:
+
+"I study English every day."
+
+"She works at a hospital."
+
+Include a small quiz at the end.
+
+---
+
+# 18. Listening
+
+Create a listening practice interface.
+
+Show:
+
+* Lesson title
+* Difficulty
+* Duration
+* Audio player
+* Transcript toggle
+* Questions
+
+Audio player:
+
+* Play
+* Pause
+* Seek
+* Volume
+* Playback speed
+
+Questions:
+
+* Multiple choice
+* True / False
+* Fill in the blank
+
+After submission:
+
+Show:
+
+* Correct answer
+* Explanation
+* User answer
+
+---
+
+# 19. Quiz
+
+Create a reusable quiz system.
+
+Question types for Phase 1:
+
+1. Multiple choice
+2. True / False
+3. Fill in the blank
+
+Quiz interface:
+
+Top:
+
+* Quiz title
+* Question number
+* Progress
+* Score
+
+Question:
+
+"What does 'improve' mean?"
+
+Options:
+
+A. Giảm
+B. Cải thiện
+C. Quên
+D. Thay đổi
+
+After answer:
+
+* Selected state
+* Correct state
+* Incorrect state
+* Explanation
+
+Do not immediately reveal the answer if the quiz configuration is designed to reveal answers only after submission.
+
+---
+
+# 20. Quiz Result
+
+Show:
+
+"Great job!"
+
+Statistics:
+
+* Score
+* Correct answers
+* Incorrect answers
+* Accuracy
+* Time spent
+
+Actions:
+
+* Try Again
+* Continue Learning
+* Review Mistakes
+
+Store quiz attempts in the database.
+
+---
+
+# 21. Progress
+
+Create a learning analytics page.
+
+## Overall Progress
+
+Show:
+
+* Lessons completed
+* Learning time
+* Vocabulary saved
+* Vocabulary learned
+* Quiz accuracy
+
+## Skill Performance
+
+Show:
+
+* Vocabulary
+* Grammar
+* Listening
+* Reading
+
+Use clean charts.
+
+## Weekly Activity
+
+Show learning activity for the last 7 days.
+
+## Streak
+
+Show:
+
+* Current streak
+* Longest streak
+* Weekly calendar
+
+## Recent Achievements
+
+Phase 1 achievements can be simple:
+
+* First Lesson
+* 10 Lessons Completed
+* 50 Words Saved
+* 100 Words Saved
+* 7 Day Streak
+
+Gamification should remain secondary to learning.
+
+---
+
+# 22. Settings
+
+Create a simple settings page.
+
+Sections:
+
+## Profile
+
+* Name
+* Email
+
+## Learning
+
+* Current level
+* Daily learning goal
+* Preferred learning time
+
+## Appearance
+
+* Light mode
+* Dark mode
+* System
+
+## Account
+
+* Logout
+
+---
+
+# 23. Database Schema
+
+Design a normalized PostgreSQL schema.
+
+Core entities:
+
+```text
+users
+
+courses
+lessons
+
+vocabularies
+user_vocabularies
+
+grammar_topics
+
+listening_lessons
+
+quizzes
+quiz_questions
+quiz_answers
+quiz_attempts
+
+user_progress
+
+placement_tests
+placement_test_questions
+placement_test_attempts
+```
+
+Relationships:
+
+```text
+User
+ ├── UserVocabulary
+ ├── UserProgress
+ ├── QuizAttempt
+ └── PlacementTestAttempt
+
+Course
+ └── Lesson
+
+Lesson
+ ├── Vocabulary
+ ├── GrammarTopic
+ ├── ListeningLesson
+ └── Quiz
+
+Vocabulary
+ └── UserVocabulary
+```
+
+Use foreign keys and indexes appropriately.
+
+Use timestamps consistently.
+
+Use UUIDs or another robust ID strategy.
+
+Do not over-normalize data that does not need to be normalized.
+
+---
+
+# 24. Database Requirements
+
+Use Drizzle ORM.
+
+Create:
+
+```text
+db/
+├── index.ts
+├── schema/
+│   ├── users.ts
+│   ├── courses.ts
+│   ├── lessons.ts
+│   ├── vocabulary.ts
+│   ├── grammar.ts
+│   ├── listening.ts
+│   ├── quizzes.ts
+│   ├── progress.ts
+│   └── placement-test.ts
+└── seed.ts
+```
+
+Use migrations.
+
+Provide:
+
+```bash
+npm run db:generate
+npm run db:migrate
+npm run db:seed
+```
+
+Seed the database with realistic English learning content.
+
+Do NOT use lorem ipsum.
+
+---
+
+# 25. Docker
+
+Create a production-quality local Docker setup.
+
+At minimum:
+
+```text
+docker-compose.yml
+Dockerfile
+.dockerignore
+```
+
+Docker Compose should provide:
+
+```text
+app
+postgres
+```
+
+PostgreSQL:
+
+```text
+database: english_learning
+user: postgres
+password: postgres
+port: 5432
+```
+
+Persist database data using a Docker volume.
+
+The project should be easy to start:
+
+```bash
+docker compose up -d
+```
+
+Provide clear README instructions.
+
+Support:
+
+```bash
+docker compose down
+docker compose logs
+docker compose restart
+```
+
+Do not delete database data when containers are restarted.
+
+---
+
+# 26. Environment Variables
+
+Create:
+
+```text
+.env.example
+```
+
+Example:
+
+```env
+DATABASE_URL=postgresql://postgres:postgres@db:5432/english_learning
+
+NEXT_PUBLIC_APP_URL=http://localhost:3000
+```
+
+Never commit:
+
+```text
+.env
+.env.local
+secrets
+credentials
+```
+
+to Git.
+
+---
+
+# 27. Local Development
+
+The README must explain:
+
+## Option A — Full Docker
+
+```bash
+docker compose up -d
+```
+
+Then access:
+
+```text
+http://localhost:3000
+```
+
+## Option B — Database in Docker, Next.js locally
+
+```bash
+docker compose up -d postgres
+npm install
+npm run dev
+```
+
+This allows fast frontend development while keeping PostgreSQL containerized.
+
+---
+
+# 28. Seed Data
+
+Provide realistic initial data.
+
+At minimum:
+
+## Courses
+
+5 courses.
+
+## Lessons
+
+At least 5 lessons per course.
+
+## Vocabulary
+
+At least 100 vocabulary entries.
+
+Include:
+
+* Word
+* Pronunciation
+* Meaning
+* Part of speech
+* Example sentence
+* Difficulty
+
+## Grammar
+
+At least 10 grammar topics.
+
+## Listening
+
+At least 5 listening lessons.
+
+## Quizzes
+
+At least 5 quizzes.
+
+The content should be realistic and educational.
+
+---
+
+# 29. UI Design System
+
+Use a clean modern visual system.
+
+Typography:
+
+* Inter or another modern sans-serif font
+
+Components:
+
+* Button
+* Input
+* Select
+* Card
+* Badge
+* Tabs
+* Progress
+* Dialog
+* Dropdown
+* Toast
+* Tooltip
+* Skeleton
+* Empty State
+
+States:
+
+* Default
+* Hover
+* Active
+* Selected
+* Disabled
+* Loading
+* Success
+* Error
+
+Use consistent spacing and border radius.
+
+Avoid excessive shadows.
+
+Avoid excessive colors.
+
+Use color mainly to communicate:
+
+* Primary actions
+* Success
+* Warning
+* Error
+* Learning progress
+
+---
+
+# 30. Responsive Requirements
+
+Design for:
+
+Desktop:
+1440px
+
+Tablet:
+768px
+
+Mobile:
+390px
+
+Desktop:
+
+* Sidebar
+* Multi-column dashboard
+* Large content area
+
+Mobile:
+
+* Single-column layout
+* Compact header
+* Mobile navigation
+* Touch-friendly controls
+* Full-width cards
+* Responsive quiz interface
+* Responsive audio player
+
+No horizontal scrolling.
+
+---
+
+# 31. Accessibility
+
+Implement basic accessibility from the beginning.
+
+Requirements:
+
+* Semantic HTML
+* Keyboard navigation
+* Accessible buttons
+* Labels for inputs
+* Focus states
+* Sufficient contrast
+* ARIA labels where necessary
+* Do not rely only on color to communicate state
+
+Audio controls must be keyboard accessible.
+
+---
+
+# 32. Performance
+
+Prioritize performance.
+
+Use:
+
+* Server Components where appropriate
+* Lazy loading where appropriate
+* Optimized images
+* Proper database indexes
+* Pagination for large vocabulary lists
+* Avoid unnecessary client-side rendering
+* Avoid unnecessary API calls
+
+Do not fetch the entire vocabulary database to the browser.
+
+---
+
+# 33. Error Handling
+
+Every important feature must have:
+
+* Loading state
+* Empty state
+* Error state
+* Success feedback
+
+Examples:
+
+Vocabulary empty:
+
+"You haven't saved any vocabulary yet."
+
+CTA:
+
+"Explore Lessons"
+
+Database/API error:
+
+"Something went wrong. Please try again."
+
+Do not expose raw database errors to users.
+
+---
+
+# 34. Security
+
+Implement basic security best practices.
+
+Requirements:
+
+* Validate all user input
+* Use parameterized database queries through Drizzle
+* Protect authenticated routes
+* Never expose database credentials
+* Never trust client-side user IDs
+* Verify ownership before modifying user data
+* Do not expose private user information
+* Use secure authentication
+* Validate server-side as well as client-side
+
+---
+
+# 35. Future-Proof Architecture
+
+The following features are NOT part of Phase 1:
+
+* AI Tutor
+* AI Chat
+* AI Speaking
+* AI pronunciation evaluation
+* Spaced Repetition algorithm
+* Personalized AI curriculum
+* Social features
+
+However, architecture should allow future modules to be added.
+
+Potential future structure:
+
+```text
+features/
+├── auth/
+├── courses/
+├── lessons/
+├── vocabulary/
+├── grammar/
+├── listening/
+├── quiz/
+├── progress/
+└── future/
+    ├── ai/
+    ├── speaking/
+    └── review/
+```
+
+Do not build unnecessary abstractions just for hypothetical future features.
+
+Keep the code simple.
+
+---
+
+# 36. Code Quality
+
+Requirements:
+
+* TypeScript strict mode
+* No unnecessary `any`
+* Reusable components
+* Reusable server-side functions
+* Clear naming
+* Small focused modules
+* No duplicated business logic
+* No hardcoded user-specific data
+* No massive components
+* No unnecessary dependencies
+
+Use feature-oriented organization where appropriate.
+
+---
+
+# 37. Testing
+
+Phase 1 should include basic tests.
+
+Use:
+
+* Vitest for unit tests
+* Playwright for critical end-to-end flows
+
+Critical flows:
+
+1. Register
+2. Login
+3. Start lesson
+4. Save vocabulary
+5. Remove vocabulary
+6. Mark vocabulary as learned
+7. Complete quiz
+8. View progress
+
+---
+
+# 38. Git
+
+Create:
+
+```text
+.gitignore
+README.md
+.env.example
+```
+
+Recommended commits:
+
+```text
+feat: initialize project
+feat: add authentication
+feat: add courses
+feat: add lessons
+feat: add vocabulary
+feat: add grammar
+feat: add listening
+feat: add quizzes
+feat: add progress tracking
+feat: add docker development environment
+```
+
+---
+
+# 39. README
+
+Create a complete README.
+
+Include:
+
+* Project overview
+* Tech stack
+* Requirements
+* Installation
+* Docker setup
+* Environment variables
+* Database setup
+* Migration
+* Seed data
+* Development
+* Testing
+* Production build
+* Project structure
+
+A new developer should be able to clone the repository and understand how to run it without additional explanation.
+
+---
+
+# 40. Definition of Done
+
+Phase 1 is complete only when:
+
+### Authentication
+
+* [ ] Register works
+* [ ] Login works
+* [ ] Protected routes work
+
+### Learning
+
+* [ ] Courses work
+* [ ] Course detail works
+* [ ] Lessons work
+* [ ] Lesson completion works
+
+### Vocabulary
+
+* [ ] Vocabulary can be saved
+* [ ] Vocabulary can be removed
+* [ ] Vocabulary can be searched
+* [ ] Vocabulary can be filtered
+* [ ] Vocabulary can be marked as learned
+* [ ] Saved vocabulary appears in My Vocabulary
+
+### Grammar
+
+* [ ] Grammar topics work
+* [ ] Grammar exercises work
+
+### Listening
+
+* [ ] Audio player works
+* [ ] Listening questions work
+* [ ] Results are stored
+
+### Quiz
+
+* [ ] Quiz questions work
+* [ ] Answers are evaluated
+* [ ] Results are displayed
+* [ ] Attempts are stored
+
+### Progress
+
+* [ ] Lesson progress works
+* [ ] Vocabulary progress works
+* [ ] Quiz progress works
+* [ ] Streak works
+* [ ] Dashboard reflects real data
+
+### Infrastructure
+
+* [ ] PostgreSQL runs through Docker
+* [ ] Application runs through Docker
+* [ ] Database migrations work
+* [ ] Seed data works
+* [ ] Environment variables are documented
+* [ ] README is complete
+
+### UI
+
+* [ ] Desktop responsive
+* [ ] Tablet responsive
+* [ ] Mobile responsive
+* [ ] Loading states exist
+* [ ] Empty states exist
+* [ ] Error states exist
+* [ ] Accessibility basics are implemented
+
+---
+
+# 41. Important Implementation Rule
+
+Do NOT try to implement everything in one giant step.
+
+Implement the project incrementally.
+
+Recommended order:
+
+```text
+1. Project setup
+2. Docker + PostgreSQL
+3. Drizzle + migrations
+4. Authentication
+5. Database seed
+6. App layout + navigation
+7. Dashboard
+8. Courses
+9. Lessons
+10. Vocabulary
+11. Grammar
+12. Listening
+13. Quiz
+14. Progress
+15. Responsive UI
+16. Testing
+17. README
+18. Production build verification
+```
+
+After each major phase:
+
+* Verify the application runs
+* Verify database migrations
+* Verify TypeScript
+* Verify tests
+* Fix errors before continuing
+
+Do not leave the application in a broken state between phases.
+
+---
+
+# 42. Final UX Goal
+
+The final application should feel like a real personal English learning system.
+
+The core loop should be:
+
+```text
+Dashboard
+    ↓
+Continue Lesson
+    ↓
+Learn
+    ↓
+Save useful vocabulary ⭐
+    ↓
+Complete Exercise
+    ↓
+Complete Quiz
+    ↓
+Progress Updated
+    ↓
+Vocabulary appears in My Vocabulary
+    ↓
+Return to Dashboard
+    ↓
+Continue Learning
+```
+
+The application should make it extremely easy for the user to answer:
+
+1. What should I learn today?
+2. What am I currently learning?
+3. Which words have I saved?
+4. What have I already learned?
+5. Where am I weak?
+6. What should I do next?
+
+Build Phase 1 around these questions.
+
+Do not add unnecessary features that distract from this learning loop.
+

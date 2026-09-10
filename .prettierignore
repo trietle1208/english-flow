@@ -1,0 +1,13 @@
+node_modules
+.next
+out
+build
+coverage
+playwright-report
+next-env.d.ts
+*.tsbuildinfo
+
+# Spec/plan reference docs — not source code, don't reformat.
+docs/
+production-mined.txt
+CLAUDE.md
