@@ -1,25 +1,30 @@
 import type { ReactNode } from "react";
 import { requireUser } from "@/lib/session";
-import { LogoutButton } from "@/features/auth/components/logout-button";
+import { Sidebar } from "@/components/layout/Sidebar";
+import { AppHeader } from "@/components/layout/AppHeader";
+import { MobileNav } from "@/components/layout/MobileNav";
 
 /**
- * Shared layout for every authenticated route. `requireUser()` here is the
- * page-level half of the auth gate — `middleware.ts` bounces obviously
- * signed-out visitors at the edge, this is the real (DB-backed) check.
+ * Shared shell for every authenticated route (spec §4). `requireUser()` here
+ * is the page-level half of the auth gate — `middleware.ts` bounces
+ * obviously signed-out visitors at the edge, this is the real (DB-backed)
+ * check every nested page relies on.
  *
- * This is a Phase 04 placeholder: Phase 05 replaces the header below with
- * the full `AppShell` (sidebar + mobile nav).
+ * Layout: a fixed `Sidebar` from 768px up (icon-only until 1024px, then
+ * icon+label), matched by `md:pl-[72px] lg:pl-64` on `<main>`. Below 768px
+ * the sidebar is hidden in favor of `AppHeader` (compact header + drawer)
+ * and a fixed `MobileNav` bottom tab bar, with `pb-16` on `<main>` so
+ * content never sits under it.
  */
 export default async function AppLayout({ children }: { children: ReactNode }) {
   const user = await requireUser();
 
   return (
     <div className="min-h-screen">
-      <header className="flex items-center justify-between border-b px-6 py-3">
-        <span className="text-sm text-muted-foreground">Signed in as {user.email}</span>
-        <LogoutButton />
-      </header>
-      <main>{children}</main>
+      <Sidebar user={user} />
+      <AppHeader user={user} />
+      <main className="min-h-screen pb-16 md:pb-0 md:pl-[72px] lg:pl-64">{children}</main>
+      <MobileNav />
     </div>
   );
 }

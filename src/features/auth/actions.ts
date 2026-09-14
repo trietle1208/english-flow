@@ -72,7 +72,7 @@ export async function loginAction(input: unknown): Promise<ActionResult> {
   }
 }
 
-/** Ends the current session. Used by the logout button (Phase 05 moves it into the sidebar). */
+/** Ends the current session. Called from the `AppShell`'s `UserMenu`/`AppHeader` (Phase 05). */
 export async function logoutAction(): Promise<ActionResult> {
   try {
     await auth.api.signOut({ headers: await headers() });

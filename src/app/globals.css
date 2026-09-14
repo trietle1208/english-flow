@@ -35,7 +35,7 @@
     --chart-3: oklch(0.439 0 0);
     --chart-4: oklch(0.371 0 0);
     --chart-5: oklch(0.269 0 0);
-    --radius: 0.5rem;
+    --radius: 0.625rem;
     --sidebar: oklch(0.985 0 0);
     --sidebar-foreground: oklch(0.145 0 0);
     --sidebar-primary: oklch(0.205 0 0);
@@ -44,11 +44,14 @@
     --sidebar-accent-foreground: oklch(0.205 0 0);
     --sidebar-border: oklch(0.922 0 0);
     --sidebar-ring: oklch(0.708 0 0);
-    /* Per-skill progress colors (Courses/Vocabulary/Grammar/Listening breakdowns
-       in Phase 07/12). Kept distinct hues, same lightness/chroma family. */
+    /* Per-skill progress colors (Dashboard/Progress "Skill Overview" — spec §10/§28 —
+       and Courses/Vocabulary/Grammar/Listening breakdowns in Phase 07/12). Deliberately
+       kept in the cyan→blue→violet→magenta family, away from the destructive/warning/
+       success hues, so skill identity never reads as a status signal. */
     --skill-vocabulary: oklch(0.62 0.19 265);
     --skill-grammar: oklch(0.62 0.19 320);
     --skill-listening: oklch(0.65 0.17 200);
+    --skill-reading: oklch(0.63 0.18 230);
   }
   .dark {
     --background: oklch(0.145 0 0);
@@ -90,6 +93,7 @@
     --skill-vocabulary: oklch(0.72 0.16 265);
     --skill-grammar: oklch(0.72 0.16 320);
     --skill-listening: oklch(0.74 0.14 200);
+    --skill-reading: oklch(0.73 0.15 230);
   }
 }
 

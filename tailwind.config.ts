@@ -80,6 +80,7 @@ const config: Config = {
           vocabulary: "var(--skill-vocabulary)",
           grammar: "var(--skill-grammar)",
           listening: "var(--skill-listening)",
+          reading: "var(--skill-reading)",
         },
       },
       fontFamily: {

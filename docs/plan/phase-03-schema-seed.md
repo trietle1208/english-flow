@@ -63,7 +63,7 @@ drizzle/            # migration files (commit vào git)
 - [x] `npm run db:seed` chạy 2 lần liên tiếp → số lượng bản ghi không đổi
 - [x] Query kiểm chứng đạt ngưỡng: courses = 5, lessons = 25, vocabularies = 134, grammar_topics = 10, listening_lessons = 5, quizzes = 19
 - [x] Không có bản ghi nào chứa lorem ipsum / placeholder (seed.ts tự kiểm tra bằng `assertNoPlaceholderContent`, cộng rà soát thủ công)
-- [ ] `npm run db:studio` mở được, quan hệ FK hiển thị đúng — **chưa tự xác nhận được** (không có UI trong sandbox), xem Ghi chú
+- [x] `npm run db:studio` mở được, quan hệ FK hiển thị đúng — **xác nhận thật bằng screenshot 2026-09-14**, xem Ghi chú
 
 > **Cách đã xác nhận**:
 >
@@ -71,7 +71,7 @@ drizzle/            # migration files (commit vào git)
 > 2. **Cập nhật 2026-09-10 — trên Postgres thật của người dùng**: người dùng đã tự chạy `docker compose up -d` trên máy có Docker (xác nhận qua Adminer). Container `postgres` publish port `5432:5432` nên **reachable trực tiếp từ agent sandbox qua network host** dù sandbox không gọi được lệnh `docker`. Đã chạy lại `drizzle-kit migrate` + `db:seed` (2 lần) thẳng vào container thật đó — cùng kết quả: 18 bảng, đúng số bản ghi ở trên, 0 bản ghi mồ côi FK, 0 từ trùng lặp. Đây là xác nhận mạnh hơn bước 1 vì chạy trên đúng Postgres mà `docker-compose.yml` định nghĩa, không phải mô phỏng.
 > - `npx tsc --noEmit`, `npm run lint`, `npm run build` đều pass (cả Node 18 lẫn Node 22).
 >
-> **Việc còn lại cho người dùng**: mở `npm run db:studio` (hoặc refresh Adminer đang mở sẵn ở `localhost:8080`, chọn schema `public`) để tự mắt xác nhận UI hiển thị đúng 18 bảng + quan hệ FK — agent sandbox không có trình duyệt/GUI nên chỉ xác nhận được bằng query, chưa xác nhận được phần hiển thị UI.
+> **Cập nhật 2026-09-14 — đã tự xác nhận bằng UI thật**: có Playwright/Chromium thật trong session này, chạy `npm run db:studio` rồi mở `https://local.drizzle.studio` (đây là web app thật của Drizzle Team, không phải localhost — nó gọi ngược về API cục bộ ở `127.0.0.1:4983`). Chromium mới chặn mặc định việc một trang public gọi vào mạng nội bộ (Private Network Access) nên lần đầu trang chỉ hiện thông báo hướng dẫn cấp quyền "Apps on device" — bật cờ Chromium `--disable-features=BlockInsecurePrivateNetworkRequests,...` (chỉ để test tự động hoá, không ảnh hưởng gì tới người dùng thật mở bằng Chrome bình thường — họ chỉ cần bấm "Allow" ở prompt quyền) thì UI load đầy đủ: sidebar liệt kê đúng 18 bảng + đúng số dòng (courses 5, lessons 25, vocabularies 134, grammar_topics 10, listening_lessons 5, quizzes 19, quiz_questions 71, quiz_answers 193, placement_test_questions 20, users 1, accounts 1, sessions 4...), mở bảng `accounts` xem được cột + dữ liệu thật (FK `user_id` đúng giá trị khớp `users.id`). Screenshot lưu tạm trong scratchpad phiên làm việc. Không còn gì "chưa xác nhận" ở Phase 03 ngoài file audio thật (xem Ghi chú bên dưới, việc này không phải giới hạn công cụ mà là thiếu nội dung/license thật).
 
 ## Ghi chú
 

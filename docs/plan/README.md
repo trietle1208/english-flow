@@ -37,8 +37,8 @@ Nếu phase có đụng schema: thêm `npm run db:generate && npm run db:migrate
 | 02  | [Docker & Database Infra](phase-02-docker-database.md)           | docker-compose, Dockerfile, Drizzle, env validation               | `docker compose up -d` → app + postgres healthy   | ◐      |
 | 03  | [Schema & Seed](phase-03-schema-seed.md)                         | Toàn bộ schema Postgres + migration + seed content thật           | `npm run db:seed` → đủ số lượng bản ghi           | ◐      |
 | 04  | [Authentication](phase-04-auth.md)                               | Register / Login / Logout / protected routes                      | Đăng ký → vào được `/dashboard`, logout → bị chặn | ☐      |
-| 05  | [App Shell & Design System](phase-05-app-shell-design-system.md) | Sidebar, mobile nav, UI kit, theme, loading/error/empty           | Điều hướng đủ 7 mục, dark mode, responsive        | ☐      |
-| 06  | [Landing Page](phase-06-landing.md)                              | Trang `/` public                                                  | Landing hoàn chỉnh, CTA dẫn tới `/register`       | ☐      |
+| 05  | [App Shell & Design System](phase-05-app-shell-design-system.md) | Sidebar, mobile nav, UI kit, theme, loading/error/empty           | Điều hướng đủ 7 mục, dark mode, responsive        | ◐      |
+| 06  | [Landing Page](phase-06-landing.md)                              | Trang `/` public                                                  | Landing hoàn chỉnh, CTA dẫn tới `/register`       | ☑      |
 | 07  | [Courses](phase-07-courses.md)                                   | `/courses`, `/courses/[courseId]` + search/filter                 | Duyệt 5 khoá, lọc theo level, thấy tiến độ        | ☐      |
 | 08  | [Lesson Experience](phase-08-lessons.md)                         | `/lessons/[lessonId]` + hoàn thành bài + điều hướng               | Học xong 1 lesson → progress ghi vào DB           | ☐      |
 | 09  | [Personal Vocabulary](phase-09-vocabulary.md)                    | Save/remove/learned + `/vocabulary` + search/filter/sort          | Lưu từ trong lesson → xuất hiện ở My Vocabulary   | ☐      |

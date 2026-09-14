@@ -31,6 +31,9 @@ services:
       DATABASE_URL: postgresql://postgres:postgres@postgres:5432/english_learning
       NEXT_PUBLIC_APP_URL: http://localhost:3000
       BETTER_AUTH_URL: http://localhost:3000
+      # Dev-only value, same spirit as the hardcoded postgres creds above —
+      # not for production use. Generated with: openssl rand -base64 32
+      BETTER_AUTH_SECRET: KyLJzoXpcib4V9Adot6qtRdbzELvb8g09IDopuYmptg=
 
   # Dev-only DB admin UI at http://localhost:8080 (System: PostgreSQL,
   # Server: postgres, User/Pass: postgres, Database: english_learning).
