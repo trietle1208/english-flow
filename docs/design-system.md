@@ -51,7 +51,7 @@ never needs a second pass.
 
 shadcn/ui primitives in `src/components/ui/` (button, input, select, card, badge, tabs, progress,
 dialog, dropdown-menu, sonner (toast), tooltip, skeleton, separator, avatar, sheet, scroll-area,
-label, form, checkbox) cover spec §29's component list. Cross-feature composites live in
+label, form, checkbox, chart) cover spec §29's component list. Cross-feature composites live in
 `src/components/shared/`:
 
 | Component      | Use for                                                              |
@@ -62,6 +62,7 @@ label, form, checkbox) cover spec §29's component list. Cross-feature composite
 | `StatCard`      | Label + value + delta/subtext + optional progress bar                  |
 | `SectionCard`   | Titled card section (Dashboard "Recent Activity", Progress charts)     |
 | `ProgressRing`  | Circular % indicator for skill/CEFR breakdowns                         |
+| `AudioButton`   | Play pronunciation (`audio_url` or Web Speech API fallback, AD-04)     |
 
 ## Theme
 

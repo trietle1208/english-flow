@@ -1,34 +1,39 @@
 import type { Metadata } from "next";
-import Link from "next/link";
-import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { PlacementTestSession } from "@/features/placement-test/components/PlacementTestSession";
+import { getPlacementTestForAttempt } from "@/features/placement-test/queries";
+import { isCefrLevel, type CefrLevel } from "@/config/cefr";
+import { requireUser } from "@/lib/session";
 
 export const metadata: Metadata = {
   title: "Placement test",
 };
 
 /**
- * Phase 04 placeholder, landed on right after registration. The real 20-
- * question CEFR placement test (spec §8) is built in Phase 11 — for now this
- * just gives the "Skip for now" escape hatch the task list asks for so
- * onboarding isn't a dead end.
+ * Optional CEFR placement test after registration (spec §8 / Phase 11).
  */
-export default function PlacementTestPage() {
+export default async function PlacementTestPage() {
+  const user = await requireUser();
+  const test = await getPlacementTestForAttempt();
+
+  if (!test) {
+    return (
+      <div className="mx-auto max-w-lg px-6 py-12 text-center">
+        <h1 className="text-xl font-semibold tracking-tight">Placement test unavailable</h1>
+        <p className="mt-2 text-sm text-muted-foreground">
+          The placement test hasn&apos;t been seeded yet. You can skip and browse courses.
+        </p>
+      </div>
+    );
+  }
+
+  const previousLevel: CefrLevel | null =
+    typeof user.cefrLevel === "string" && isCefrLevel(user.cefrLevel)
+      ? user.cefrLevel
+      : null;
+
   return (
-    <div className="mx-auto flex max-w-lg flex-col items-center px-6 py-12">
-      <Card className="w-full">
-        <CardHeader>
-          <CardTitle>Find your level</CardTitle>
-          <CardDescription>
-            A short placement test to set your starting CEFR level is coming in a later phase.
-          </CardDescription>
-        </CardHeader>
-        <CardContent>
-          <Button asChild variant="outline" className="w-full">
-            <Link href="/dashboard">Skip for now</Link>
-          </Button>
-        </CardContent>
-      </Card>
+    <div className="mx-auto flex w-full max-w-3xl flex-col px-4 py-8 sm:px-6 lg:px-8">
+      <PlacementTestSession test={test} previousLevel={previousLevel} />
     </div>
   );
 }

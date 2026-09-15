@@ -3,6 +3,7 @@
 import { headers } from "next/headers";
 import { APIError } from "better-auth";
 import { auth } from "@/lib/auth";
+import { logger } from "@/lib/logger";
 import { loginSchema, registerSchema } from "./schemas";
 
 type ActionResult = { ok: true } | { ok: false; error: string };
@@ -42,7 +43,7 @@ export async function registerAction(input: unknown): Promise<ActionResult> {
     if (error instanceof APIError && duplicateEmailCodes.includes(error.body?.code ?? "")) {
       return { ok: false, error: "An account with this email already exists." };
     }
-    console.error("registerAction failed:", error);
+    logger.error("registerAction failed", error);
     return { ok: false, error: GENERIC_ERROR };
   }
 }
@@ -67,7 +68,7 @@ export async function loginAction(input: unknown): Promise<ActionResult> {
     if (error instanceof APIError) {
       return { ok: false, error: "Email or password is incorrect." };
     }
-    console.error("loginAction failed:", error);
+    logger.error("loginAction failed", error);
     return { ok: false, error: GENERIC_ERROR };
   }
 }
@@ -78,7 +79,7 @@ export async function logoutAction(): Promise<ActionResult> {
     await auth.api.signOut({ headers: await headers() });
     return { ok: true };
   } catch (error) {
-    console.error("logoutAction failed:", error);
+    logger.error("logoutAction failed", error);
     return { ok: false, error: GENERIC_ERROR };
   }
 }

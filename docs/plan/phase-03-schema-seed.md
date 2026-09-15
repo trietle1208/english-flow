@@ -52,7 +52,7 @@ drizzle/            # migration files (commit vào git)
 - [x] ≥5 lessons/khoá (tổng ≥25 — thực tế 25), có `content` blocks thật: objective + explanation + vocabulary + examples + exercise
 - [x] ≥100 vocabulary (thực tế 134): từ thật, IPA thật, nghĩa tiếng Việt thật, câu ví dụ thật, gắn difficulty
 - [x] ≥10 grammar topics (thực tế 10: 8 chủ đề trong §17 + Comparatives + Articles), mỗi topic có rules + examples + common mistakes + mini quiz
-- [x] ≥5 listening lessons (thực tế 5) + transcript + file audio trong `public/audio/listening/` — **transcript và quiz có thật; file mp3 thì chưa, xem Ghi chú**
+- [x] ≥5 listening lessons (thực tế 5) + transcript + file audio trong `public/audio/listening/` — **đủ transcript, quiz, và mp3 thật (Phase 10, 2026-09-15)**
 - [x] ≥5 quizzes (thực tế 19: 4 course-practice + 10 grammar mini-quiz + 5 listening comprehension), đủ 3 loại câu hỏi, mỗi câu có `explanation`
 - [x] 1 placement test 20 câu trải từ A1→C1 (4 câu/level), kèm bảng quy đổi điểm → CEFR (`placementScoreToLevel` trong `seed-data/placement-test.ts`)
 - [x] Script kiểm đếm sau seed, in ra bảng số lượng từng entity (`console.table` cuối `seed.ts`)
@@ -78,5 +78,5 @@ drizzle/            # migration files (commit vào git)
 - Các cột `review_count`, `next_review_at`, `last_reviewed_at` **chỉ tạo cột, không viết logic SRS** (§16, §35).
 - Nội dung seed tách ra `src/db/seed-data/*.ts` theo từng entity (`courses.ts`, `vocabulary.ts`, `grammar.ts`, `listening.ts`, `quizzes.ts`, `placement-test.ts`); `seed.ts` chỉ là orchestrator, upsert theo natural key (slug/word) để giữ id ổn định qua các lần seed lại (không phá FK của dữ liệu người dùng thật ở các phase sau).
 - `quizzes` có thêm cột `slug` (không có trong bản phác thảo §23 gốc) để `seed.ts` upsert quiz theo key ổn định thay vì theo `title` tự do.
-- **Audio thật cho listening lessons chưa có** (`public/audio/*.mp3` không tồn tại). Sandbox này không có binary TTS (`espeak-ng` thiếu binary, chỉ có data package) và không có quyền tải/ghi âm thật. `listening_lessons.audio_url` đã seed đúng đường dẫn dự kiến (`/audio/listening/*.mp3`), transcript + quiz đã có thật — chỉ thiếu file âm thanh. Xem [public/audio/README.md](../../public/audio/README.md) để biết việc cần làm trước khi Phase 10 (Listening) dùng tới các file này. Đây là quyết định có chủ đích (không tạo file âm thanh giả/tiếng bíp) để tuân thủ nguyên tắc "No fake content" — khác với việc tự động hoá được.
+- **Audio thật cho listening lessons** (đóng 2026-09-15 cùng Phase 10): 5 file MP3 TTS khớp transcript dưới `public/audio/listening/` (`ordering-coffee`, `small-talk-at-work`, `airport-check-in`, `asking-for-directions`, `university-lecture-intro`). Seed `durationSeconds` đã cập nhật theo độ dài đo được. Vocab `audio_url` vẫn optional (Web Speech fallback, AD-04).
 - `users` bảng dùng tên số nhiều `users` (khớp task list phase này và §23 gốc); AD-01 sẽ cấu hình better-auth's Drizzle adapter với `usePlural: true` ở Phase 04 để map đúng vào bảng này.

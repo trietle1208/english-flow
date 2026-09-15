@@ -7,12 +7,8 @@ export type ListeningLessonSeed = {
   difficulty: (typeof difficultyEnum.enumValues)[number];
   durationSeconds: number;
   /**
-   * Intended final path under `public/audio/listening/`. **The file does not
-   * exist yet** — recording/sourcing real audio is outside what this sandbox
-   * can produce (no TTS binary, no network access to license audio; see
-   * phase-03 doc). Flagged the same way Phase 02 flagged its unverified
-   * Docker run, rather than faked with a placeholder tone (CLAUDE.md "No
-   * fake content").
+   * Path under `public/audio/listening/`. Files were generated for Phase 10
+   * to match each transcript (see `public/audio/README.md`).
    */
   audioUrl: string;
   transcript: string;
@@ -26,7 +22,7 @@ export const listeningLessonsSeed: ListeningLessonSeed[] = [
     slug: "ordering-coffee",
     title: "Ordering Coffee",
     difficulty: "easy",
-    durationSeconds: 45,
+    durationSeconds: 32,
     audioUrl: "/audio/listening/ordering-coffee.mp3",
     transcript:
       "Barista: Hi, welcome to Sunrise Café. What can I get you?\n" +
@@ -77,7 +73,7 @@ export const listeningLessonsSeed: ListeningLessonSeed[] = [
     slug: "small-talk-at-work",
     title: "Making Small Talk at Work",
     difficulty: "medium",
-    durationSeconds: 60,
+    durationSeconds: 31,
     audioUrl: "/audio/listening/small-talk-at-work.mp3",
     transcript:
       "Anna: Morning, Tom! How was your weekend?\n" +
@@ -126,7 +122,7 @@ export const listeningLessonsSeed: ListeningLessonSeed[] = [
     slug: "airport-check-in",
     title: "Checking in at the Airport",
     difficulty: "medium",
-    durationSeconds: 55,
+    durationSeconds: 35,
     audioUrl: "/audio/listening/airport-check-in.mp3",
     transcript:
       "Agent: Good morning. Passport and ticket, please.\n" +
@@ -176,7 +172,7 @@ export const listeningLessonsSeed: ListeningLessonSeed[] = [
     slug: "asking-for-directions",
     title: "Asking for Directions",
     difficulty: "easy",
-    durationSeconds: 40,
+    durationSeconds: 27,
     audioUrl: "/audio/listening/asking-for-directions.mp3",
     transcript:
       "Tourist: Excuse me, could you tell me how to get to the train station?\n" +
@@ -226,7 +222,7 @@ export const listeningLessonsSeed: ListeningLessonSeed[] = [
     slug: "university-lecture-intro",
     title: "A University Lecture Introduction",
     difficulty: "hard",
-    durationSeconds: 75,
+    durationSeconds: 40,
     audioUrl: "/audio/listening/university-lecture-intro.mp3",
     transcript:
       "Professor: Good morning, everyone. Today we're going to start looking at climate change and its economic impact. " +

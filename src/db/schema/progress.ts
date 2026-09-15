@@ -22,7 +22,8 @@ export const userProgress = pgTable(
   },
   (table) => [
     unique("user_progress_user_lesson_unique").on(table.userId, table.lessonId),
-    index("user_progress_user_idx").on(table.userId),
+    // Dashboard/progress filters by status often (completed / in_progress).
+    index("user_progress_user_status_idx").on(table.userId, table.status),
   ],
 );
 
@@ -47,8 +48,8 @@ export const userDailyActivity = pgTable(
     ...timestamps,
   },
   (table) => [
+    // Unique (user_id, activity_date) also serves streak/weekly lookups (AD-09).
     unique("user_daily_activity_user_date_unique").on(table.userId, table.activityDate),
-    index("user_daily_activity_user_idx").on(table.userId),
   ],
 );
 

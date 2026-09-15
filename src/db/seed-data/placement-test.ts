@@ -17,17 +17,8 @@ export const placementTestSeed = {
     "20 questions spanning A1 to C1, used to estimate your CEFR level when you first sign up (spec §8).",
 };
 
-/**
- * Score → CEFR conversion (spec §8). `score` is the percentage of points
- * earned (0-100). Read top-to-bottom, first match wins.
- */
-export const placementScoreToLevel: { minScore: number; level: (typeof cefrLevelEnum.enumValues)[number] }[] = [
-  { minScore: 85, level: "C1" },
-  { minScore: 65, level: "B2" },
-  { minScore: 45, level: "B1" },
-  { minScore: 25, level: "A2" },
-  { minScore: 0, level: "A1" },
-];
+/** Re-export so seed scripts keep a single import path. */
+export { placementScoreToLevel } from "@/features/placement-test/thresholds";
 
 export const placementTestQuestionsSeed: PlacementTestQuestionSeed[] = [
   // --- A1 ---

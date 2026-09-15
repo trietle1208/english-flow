@@ -35,18 +35,18 @@ Nếu phase có đụng schema: thêm `npm run db:generate && npm run db:migrate
 | --- | ---------------------------------------------------------------- | ----------------------------------------------------------------- | ------------------------------------------------- | ------ |
 | 01  | [Foundation](phase-01-foundation.md)                             | Next.js + TS strict + Tailwind + shadcn + cấu trúc thư mục        | `npm run dev` chạy, trang trắng có design tokens  | ☑      |
 | 02  | [Docker & Database Infra](phase-02-docker-database.md)           | docker-compose, Dockerfile, Drizzle, env validation               | `docker compose up -d` → app + postgres healthy   | ◐      |
-| 03  | [Schema & Seed](phase-03-schema-seed.md)                         | Toàn bộ schema Postgres + migration + seed content thật           | `npm run db:seed` → đủ số lượng bản ghi           | ◐      |
+| 03  | [Schema & Seed](phase-03-schema-seed.md)                         | Toàn bộ schema Postgres + migration + seed content thật           | `npm run db:seed` → đủ số lượng bản ghi           | ☑      |
 | 04  | [Authentication](phase-04-auth.md)                               | Register / Login / Logout / protected routes                      | Đăng ký → vào được `/dashboard`, logout → bị chặn | ☐      |
 | 05  | [App Shell & Design System](phase-05-app-shell-design-system.md) | Sidebar, mobile nav, UI kit, theme, loading/error/empty           | Điều hướng đủ 7 mục, dark mode, responsive        | ◐      |
 | 06  | [Landing Page](phase-06-landing.md)                              | Trang `/` public                                                  | Landing hoàn chỉnh, CTA dẫn tới `/register`       | ☑      |
-| 07  | [Courses](phase-07-courses.md)                                   | `/courses`, `/courses/[courseId]` + search/filter                 | Duyệt 5 khoá, lọc theo level, thấy tiến độ        | ☐      |
-| 08  | [Lesson Experience](phase-08-lessons.md)                         | `/lessons/[lessonId]` + hoàn thành bài + điều hướng               | Học xong 1 lesson → progress ghi vào DB           | ☐      |
-| 09  | [Personal Vocabulary](phase-09-vocabulary.md)                    | Save/remove/learned + `/vocabulary` + search/filter/sort          | Lưu từ trong lesson → xuất hiện ở My Vocabulary   | ☐      |
-| 10  | [Grammar & Listening](phase-10-grammar-listening.md)             | `/grammar`, `/grammar/[topicId]`, `/listening/*`, audio player    | Làm bài grammar + nghe + trả lời, kết quả lưu DB  | ☐      |
-| 11  | [Quiz & Placement Test](phase-11-quiz-placement.md)              | Quiz engine tái sử dụng, result, placement test → CEFR            | Hoàn thành quiz → result đúng, attempt lưu DB     | ☐      |
-| 12  | [Dashboard & Progress](phase-12-dashboard-progress.md)           | Dashboard dữ liệu thật, streak, `/progress`, charts, achievements | Dashboard phản ánh đúng hoạt động thực tế         | ☐      |
-| 13  | [Settings & Polish](phase-13-settings-polish.md)                 | `/settings`, responsive audit, a11y, performance                  | 390/768/1440px sạch, không scroll ngang           | ☐      |
-| 14  | [Testing & Release](phase-14-testing-release.md)                 | Vitest, Playwright 8 flow, README, production build               | Toàn bộ Definition of Done tick hết               | ☐      |
+| 07  | [Courses](phase-07-courses.md)                                   | `/courses`, `/courses/[courseId]` + search/filter                 | Duyệt 5 khoá, lọc theo level, thấy tiến độ        | ☑      |
+| 08  | [Lesson Experience](phase-08-lessons.md)                         | `/lessons/[lessonId]` + hoàn thành bài + điều hướng               | Học xong 1 lesson → progress ghi vào DB           | ☑      |
+| 09  | [Personal Vocabulary](phase-09-vocabulary.md)                    | Save/remove/learned + `/vocabulary` + search/filter/sort          | Lưu từ trong lesson → xuất hiện ở My Vocabulary   | ☑      |
+| 10  | [Grammar & Listening](phase-10-grammar-listening.md)             | `/grammar`, `/grammar/[topicId]`, `/listening/*`, audio player    | Làm bài grammar + nghe + trả lời, kết quả lưu DB  | ☑      |
+| 11  | [Quiz & Placement Test](phase-11-quiz-placement.md)              | Quiz engine tái sử dụng, result, placement test → CEFR            | Hoàn thành quiz → result đúng, attempt lưu DB     | ☑      |
+| 12  | [Dashboard & Progress](phase-12-dashboard-progress.md)           | Dashboard dữ liệu thật, streak, `/progress`, charts, achievements | Dashboard phản ánh đúng hoạt động thực tế         | ☑      |
+| 13  | [Settings & Polish](phase-13-settings-polish.md)                 | `/settings`, responsive audit, a11y, performance                  | 390/768/1440px sạch, không scroll ngang           | ☑      |
+| 14  | [Testing & Release](phase-14-testing-release.md)                 | Vitest, Playwright 8 flow, README, production build               | Toàn bộ Definition of Done tick hết               | ☑      |
 
 Legend: ☐ chưa làm · ◐ đang làm · ☑ xong
 

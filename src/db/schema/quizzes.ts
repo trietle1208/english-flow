@@ -81,5 +81,8 @@ export const quizAttempts = pgTable(
     completedAt: timestamp("completed_at", { withTimezone: true }).notNull().defaultNow(),
     ...timestamps,
   },
-  (table) => [index("quiz_attempts_user_idx").on(table.userId)],
+  (table) => [
+    // Recent activity + quiz accuracy order/filter by completed_at.
+    index("quiz_attempts_user_completed_idx").on(table.userId, table.completedAt),
+  ],
 );

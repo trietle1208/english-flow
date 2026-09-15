@@ -24,6 +24,9 @@
 .DS_Store
 *.pem
 
+# local tool binaries (ffmpeg static, etc.)
+/.tools/
+
 # debug
 npm-debug.log*
 yarn-debug.log*

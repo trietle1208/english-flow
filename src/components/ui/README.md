@@ -5,3 +5,6 @@ project pins Tailwind v3, so the CLI's own output uses the older `forwardRef` pa
 here is hand-aligned to the `data-slot`-based function-component pattern the Phase 01 primitives
 (`button.tsx`, `card.tsx`, `input.tsx`, ...) already use, so re-running the CLI on an existing
 component means re-applying that same style, not a blind overwrite.
+
+`chart.tsx` (Phase 12, AD-05) wraps Recharts with theme-aware CSS variables; Progress page charts
+use it for skill performance and weekly activity.

@@ -1,25 +1,29 @@
+import { Suspense } from "react";
 import type { Metadata } from "next";
-import { SpellCheck } from "lucide-react";
 import { PageHeader } from "@/components/shared/PageHeader";
-import { EmptyState } from "@/components/shared/EmptyState";
+import { GrammarGridSkeleton } from "@/features/grammar/components/GrammarGridSkeleton";
+import { GrammarTopicList } from "@/features/grammar/components/GrammarTopicList";
+import { requireUser } from "@/lib/session";
 
 export const metadata: Metadata = {
   title: "Grammar",
 };
 
 /**
- * Phase 05 placeholder so the sidebar/mobile nav has no dead link. Phase 10
- * builds the real grammar topic list, explanations and practice exercises.
+ * Grammar catalog (spec §17 / Phase 10): topics grouped by CEFR level.
  */
-export default function GrammarPage() {
+export default async function GrammarPage() {
+  const user = await requireUser();
+
   return (
     <div className="mx-auto flex max-w-5xl flex-col gap-8 px-4 py-8 sm:px-6 lg:px-8">
-      <PageHeader title="Grammar" description="Grammar topics with explanations and practice." />
-      <EmptyState
-        icon={SpellCheck}
-        title="Coming in the next phase"
-        description="Grammar topics, explanations and practice exercises arrive in Phase 10."
+      <PageHeader
+        title="Grammar"
+        description="Learn rules, spot common mistakes, and practice with a short quiz."
       />
+      <Suspense fallback={<GrammarGridSkeleton />}>
+        <GrammarTopicList userId={user.id} />
+      </Suspense>
     </div>
   );
 }

@@ -35,8 +35,9 @@ services:
       # not for production use. Generated with: openssl rand -base64 32
       BETTER_AUTH_SECRET: KyLJzoXpcib4V9Adot6qtRdbzELvb8g09IDopuYmptg=
 
-  # Dev-only DB admin UI at http://localhost:8080 (System: PostgreSQL,
+  # Dev-only DB admin UI at http://localhost:8081 (System: PostgreSQL,
   # Server: postgres, User/Pass: postgres, Database: english_learning).
+  # Host port 8081 avoids clash with other local stacks that bind 8080.
   # Not something a production deploy needs — feel free to drop this
   # service (or run `docker compose up -d` without it via --scale
   # adminer=0) outside local dev.
@@ -47,7 +48,7 @@ services:
       postgres:
         condition: service_healthy
     ports:
-      - "8080:8080"
+      - "8081:8080"
 
 volumes:
   pgdata:

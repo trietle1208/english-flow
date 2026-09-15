@@ -14,8 +14,6 @@ const PROTECTED_PATHS = [
   "/placement-test",
 ];
 
-const AUTH_PATHS = ["/login", "/register"];
-
 /**
  * Redirect-only gate, run at the edge before any of these pages render.
  *
@@ -26,6 +24,13 @@ const AUTH_PATHS = ["/login", "/register"];
  * which every protected page and every Server Action calls itself — per the
  * "never trust the client for identity" convention, this middleware is a UX
  * shortcut, not the security boundary.
+ *
+ * Intentionally does NOT redirect `/login`|/`register` → `/dashboard` when a
+ * cookie is present. A stale/orphaned cookie (expired session, deleted user,
+ * DB reset) still looks signed-in at the edge while `requireUser()` fails —
+ * that pair used to infinite-loop the browser. Logged-in visitors are sent
+ * away from auth pages by the login/register Server Components after a real
+ * `getCurrentUser()` check instead.
  */
 export function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
@@ -38,13 +43,6 @@ export function middleware(request: NextRequest) {
     const loginUrl = new URL("/login", request.url);
     loginUrl.searchParams.set("redirectTo", pathname);
     return NextResponse.redirect(loginUrl);
-  }
-
-  const isAuthPage = AUTH_PATHS.some(
-    (path) => pathname === path || pathname.startsWith(`${path}/`),
-  );
-  if (isAuthPage && hasSession) {
-    return NextResponse.redirect(new URL("/dashboard", request.url));
   }
 
   return NextResponse.next();
@@ -62,7 +60,5 @@ export const config = {
     "/progress/:path*",
     "/settings/:path*",
     "/placement-test/:path*",
-    "/login",
-    "/register",
   ],
 };
