@@ -25,6 +25,10 @@ export type QuizSeed = {
  * reused by that course's lessons as their `exercise` content block.
  * Grammar topics carry their own mini quiz instead (see `grammar.ts`);
  * listening lessons carry their own comprehension quiz (see `listening.ts`).
+ *
+ * `grammarCourseOnlyQuizzes` below keep Essential Grammar course lessons
+ * working after Phase 16 pruned the catalog to 3 topics — those quizzes are
+ * not linked from `/grammar` topics.
  */
 export const coursePracticeQuizzes: QuizSeed[] = [
   {
@@ -209,6 +213,113 @@ export const coursePracticeQuizzes: QuizSeed[] = [
           { content: "temporary", isCorrect: false },
           { content: "impossible to measure", isCorrect: false },
         ],
+      },
+    ],
+  },
+];
+
+/**
+ * Quizzes referenced by Essential Grammar course lessons whose full topics
+ * are not in the Phase 16 MVP catalog (3 topics). Seeded for lesson FKs only.
+ */
+export const grammarCourseOnlyQuizzes: QuizSeed[] = [
+  {
+    slug: "present-continuous-quiz",
+    title: "Present Continuous — Mini Quiz",
+    description: "Actions happening now or around now.",
+    questions: [
+      {
+        type: "multiple_choice",
+        prompt: "Look! It ______ outside.",
+        explanation: "An action happening right now uses the present continuous: \"is raining\".",
+        answers: [
+          { content: "is raining", isCorrect: true },
+          { content: "rains", isCorrect: false },
+          { content: "rained", isCorrect: false },
+          { content: "rain", isCorrect: false },
+        ],
+      },
+      {
+        type: "true_false",
+        prompt: "\"I am wanting a coffee\" is grammatically correct.",
+        explanation:
+          "\"Want\" is a stative verb and isn't normally used in the continuous form. Say \"I want a coffee.\"",
+        answers: [
+          { content: "True", isCorrect: false },
+          { content: "False", isCorrect: true },
+        ],
+      },
+      {
+        type: "fill_blank",
+        prompt: "We ______ (have) dinner right now, can I call you back?",
+        explanation: "An action in progress right now: \"are having\".",
+        answers: [{ content: "are having", isCorrect: true }],
+      },
+    ],
+  },
+  {
+    slug: "comparatives-quiz",
+    title: "Comparatives — Mini Quiz",
+    description: "Comparing people and things.",
+    questions: [
+      {
+        type: "multiple_choice",
+        prompt: "This book is ______ than that one.",
+        explanation: "One-syllable adjectives take -er: \"cheaper\".",
+        answers: [
+          { content: "cheaper", isCorrect: true },
+          { content: "more cheap", isCorrect: false },
+          { content: "cheapest", isCorrect: false },
+          { content: "cheap", isCorrect: false },
+        ],
+      },
+      {
+        type: "fill_blank",
+        prompt: "She is the ______ (tall) student in the class.",
+        explanation: "Superlative of tall: \"tallest\".",
+        answers: [{ content: "tallest", isCorrect: true }],
+      },
+      {
+        type: "true_false",
+        prompt: "\"Gooder\" is the comparative of \"good\".",
+        explanation: "The irregular comparative is \"better\", not \"gooder\".",
+        answers: [
+          { content: "True", isCorrect: false },
+          { content: "False", isCorrect: true },
+        ],
+      },
+    ],
+  },
+  {
+    slug: "modal-verbs-quiz",
+    title: "Modal Verbs — Mini Quiz",
+    description: "should / must / can for advice and obligation.",
+    questions: [
+      {
+        type: "multiple_choice",
+        prompt: "You ______ drink more water.",
+        explanation: "\"Should\" is the usual modal for advice.",
+        answers: [
+          { content: "should", isCorrect: true },
+          { content: "should to", isCorrect: false },
+          { content: "must to", isCorrect: false },
+          { content: "can to", isCorrect: false },
+        ],
+      },
+      {
+        type: "true_false",
+        prompt: "After a modal verb you use \"to\" + verb (\"must to go\").",
+        explanation: "Modals take the base verb with no \"to\": \"must go\".",
+        answers: [
+          { content: "True", isCorrect: false },
+          { content: "False", isCorrect: true },
+        ],
+      },
+      {
+        type: "fill_blank",
+        prompt: "______ I open the window?",
+        explanation: "Asking permission politely: \"Can\" or \"May\". Accepted: \"Can\".",
+        answers: [{ content: "Can", isCorrect: true }],
       },
     ],
   },

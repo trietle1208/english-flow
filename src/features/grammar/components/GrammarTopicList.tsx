@@ -2,24 +2,39 @@ import { SpellCheck } from "lucide-react";
 import { EmptyState } from "@/components/shared/EmptyState";
 import { CEFR_LEVELS, CEFR_LEVEL_LABELS, type CefrLevel } from "@/config/cefr";
 import { listGrammarTopics } from "../queries";
+import type { GrammarListFilters } from "../types";
 import { GrammarTopicCard } from "./GrammarTopicCard";
 
 type GrammarTopicListProps = {
   userId: string;
+  filters?: GrammarListFilters;
 };
 
 /**
- * Grammar catalog grouped by CEFR level (spec §17).
+ * Grammar catalog grouped by CEFR level, honouring URL filters (Phase 15 + Prompt 3).
  */
-export async function GrammarTopicList({ userId }: GrammarTopicListProps) {
-  const topics = await listGrammarTopics(userId);
+export async function GrammarTopicList({
+  userId,
+  filters = {},
+}: GrammarTopicListProps) {
+  const topics = await listGrammarTopics(userId, filters);
+  const hasActiveFilters = Boolean(
+    filters.search?.trim() ||
+      (filters.level && filters.level !== "all") ||
+      (filters.status && filters.status !== "all") ||
+      (filters.category && filters.category !== "all"),
+  );
 
   if (topics.length === 0) {
     return (
       <EmptyState
         icon={SpellCheck}
-        title="No grammar topics yet"
-        description="Grammar topics will appear here once content is seeded."
+        title={hasActiveFilters ? "Không có chủ điểm khớp bộ lọc" : "Chưa có chủ điểm ngữ pháp"}
+        description={
+          hasActiveFilters
+            ? "Thử xóa tìm kiếm, trình độ, nhóm hoặc trạng thái."
+            : "Chủ điểm ngữ pháp sẽ hiện sau khi seed nội dung."
+        }
       />
     );
   }

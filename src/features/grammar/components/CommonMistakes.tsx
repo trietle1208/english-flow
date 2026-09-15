@@ -12,7 +12,7 @@ export function CommonMistakes({ items }: CommonMistakesProps) {
   return (
     <section aria-labelledby="grammar-mistakes-heading" className="space-y-3">
       <h2 id="grammar-mistakes-heading" className="text-sm font-semibold tracking-tight">
-        Common mistakes
+        Lỗi thường gặp
       </h2>
       <ul className="flex flex-col gap-3">
         {items.map((item, index) => {

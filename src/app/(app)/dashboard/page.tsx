@@ -12,10 +12,12 @@ import {
   DashboardSkillsSkeleton,
   DashboardStatSkeleton,
 } from "@/features/dashboard/components/DashboardSkeletons";
+import { GrammarToReview } from "@/features/dashboard/components/GrammarToReview";
 import { RecentActivity } from "@/features/dashboard/components/RecentActivity";
 import { RecommendedLessons } from "@/features/dashboard/components/RecommendedLessons";
 import { SkillOverview } from "@/features/dashboard/components/SkillOverview";
 import { StreakCard } from "@/features/dashboard/components/StreakCard";
+import { listWeakGrammarTopics } from "@/features/grammar/queries";
 import {
   getContinueLearning,
   getDailyGoal,
@@ -113,6 +115,10 @@ async function DashboardBody({
         <ContinueSection userId={userId} />
       </Suspense>
 
+      <Suspense fallback={<DashboardSectionSkeleton />}>
+        <GrammarReviewSection userId={userId} />
+      </Suspense>
+
       <div className="space-y-3">
         <h2 className="text-sm font-medium text-muted-foreground">Skill Overview</h2>
         <Suspense fallback={<DashboardSkillsSkeleton />}>
@@ -162,6 +168,11 @@ async function ContinueSection({ userId }: { userId: string }) {
     return <ContinueLearningEmpty />;
   }
   return <ContinueLearningCard data={data} />;
+}
+
+async function GrammarReviewSection({ userId }: { userId: string }) {
+  const topics = await listWeakGrammarTopics(userId, 3);
+  return <GrammarToReview topics={topics} />;
 }
 
 async function SkillsSection({ userId }: { userId: string }) {

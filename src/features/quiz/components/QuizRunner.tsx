@@ -7,7 +7,7 @@ import { toast } from "sonner";
 import { Button } from "@/components/ui/button";
 import { useStudyHeartbeat } from "@/features/study-time/useStudyHeartbeat";
 import { cn } from "@/lib/utils";
-import { gradeQuestion, submitQuiz } from "../actions";
+import { gradeQuestion, gradePracticeQuestion, submitQuiz } from "../actions";
 import type {
   ImmediateGradeResult,
   QuizAttemptAnswerInput,
@@ -50,16 +50,79 @@ type QuizRunnerProps = {
   enableHeartbeat?: boolean;
   /** Hide the in-runner title when the page already has a PageHeader. */
   hideTitle?: boolean;
+  /**
+   * Practice / drill mode (Phase 15): first N questions, instant feedback,
+   * no `quiz_attempts` row — does not affect Mastered progress.
+   */
+  practiceMode?: boolean;
+  /** Question cap in practice mode (default 2). */
+  practiceQuestionLimit?: number;
+  /**
+   * Shown under incorrect feedback in practice mode (grammar rule + example).
+   */
+  practiceWrongHint?: {
+    relatedRule?: { title: string; pattern?: string; explanation: string };
+    sampleExample?: { sentenceEn: string; sentenceVi: string };
+  };
+  /** Optional UI string overrides (grammar Prompt 3 Vietnamese copy). */
+  labels?: Partial<QuizRunnerLabels>;
   className?: string;
 };
 
-function storageKey(quizId: string) {
-  return `englishflow:quiz-draft:${quizId}`;
+export type QuizRunnerLabels = {
+  checkAnswer: string;
+  next: string;
+  previous: string;
+  finish: string;
+  submit: string;
+  correct: string;
+  incorrect: string;
+  correctAnswer: string;
+  selectAnswer: string;
+  tip: string;
+  checking: string;
+  submitting: string;
+  practiceCompleteTitle: string;
+  practiceTryAgain: string;
+  noQuestions: string;
+  relatedRuleHeading: string;
+  sampleExampleHeading: string;
+  answerEveryQuestion: string;
+  drillCompleteBody: string;
+};
+
+const DEFAULT_LABELS: QuizRunnerLabels = {
+  checkAnswer: "Check answer",
+  next: "Next",
+  previous: "Previous",
+  finish: "Finish drill",
+  submit: "Submit quiz",
+  correct: "Correct",
+  incorrect: "Incorrect",
+  correctAnswer: "Correct answer: ",
+  selectAnswer: "Select or type an answer first.",
+  tip: "Tip: press 1–4 to choose an option, Enter to continue.",
+  checking: "Checking…",
+  submitting: "Submitting…",
+  practiceCompleteTitle: "Drill complete",
+  practiceTryAgain: "Try drills again",
+  noQuestions: "This quiz has no questions yet.",
+  relatedRuleHeading: "Related rule",
+  sampleExampleHeading: "Sample example",
+  answerEveryQuestion: "Please answer every question before submitting.",
+  drillCompleteBody:
+    "This warm-up does not change your Mastered score — take the mini quiz when you are ready.",
+};
+
+function storageKey(quizId: string, practiceMode: boolean) {
+  return practiceMode
+    ? `englishflow:quiz-practice-draft:${quizId}`
+    : `englishflow:quiz-draft:${quizId}`;
 }
 
-function readDraft(quizId: string): DraftState | null {
+function readDraft(quizId: string, practiceMode: boolean): DraftState | null {
   try {
-    const raw = sessionStorage.getItem(storageKey(quizId));
+    const raw = sessionStorage.getItem(storageKey(quizId, practiceMode));
     if (!raw) {
       return null;
     }
@@ -81,17 +144,17 @@ function readDraft(quizId: string): DraftState | null {
   }
 }
 
-function writeDraft(draft: DraftState) {
+function writeDraft(draft: DraftState, practiceMode: boolean) {
   try {
-    sessionStorage.setItem(storageKey(draft.quizId), JSON.stringify(draft));
+    sessionStorage.setItem(storageKey(draft.quizId, practiceMode), JSON.stringify(draft));
   } catch {
     // Ignore quota / private-mode failures — draft is best-effort.
   }
 }
 
-function clearDraft(quizId: string) {
+function clearDraft(quizId: string, practiceMode: boolean) {
   try {
-    sessionStorage.removeItem(storageKey(quizId));
+    sessionStorage.removeItem(storageKey(quizId, practiceMode));
   } catch {
     // ignore
   }
@@ -100,6 +163,7 @@ function clearDraft(quizId: string) {
 /**
  * Shared quiz engine UI (spec §19): one question at a time, keyboard 1–4 + Enter,
  * reveal_mode respect, sessionStorage draft, server-side submit.
+ * Practice mode reuses the same UI without persisting attempts (Phase 15).
  */
 export function QuizRunner({
   quiz,
@@ -109,14 +173,23 @@ export function QuizRunner({
   onComplete,
   enableHeartbeat = true,
   hideTitle = false,
+  practiceMode = false,
+  practiceQuestionLimit = 2,
+  practiceWrongHint,
+  labels: labelsProp,
   className,
 }: QuizRunnerProps) {
-  useStudyHeartbeat(enableHeartbeat);
+  useStudyHeartbeat(enableHeartbeat && !practiceMode);
 
+  const labels = useMemo(
+    () => ({ ...DEFAULT_LABELS, ...labelsProp }),
+    [labelsProp],
+  );
   const router = useRouter();
   const [pending, startTransition] = useTransition();
   const [grading, setGrading] = useState(false);
   const [hydrated, setHydrated] = useState(false);
+  const [practiceDone, setPracticeDone] = useState(false);
 
   const [startedAt, setStartedAt] = useState(() => new Date().toISOString());
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -124,36 +197,57 @@ export function QuizRunner({
   const [grades, setGrades] = useState<Record<string, ImmediateGradeResult>>({});
   const [revealed, setRevealed] = useState(false);
 
+  const [finishedAtMs, setFinishedAtMs] = useState<number | null>(null);
+
+  const questions = useMemo(() => {
+    if (!practiceMode) {
+      return quiz.questions;
+    }
+    const limit = Math.max(1, practiceQuestionLimit);
+    return quiz.questions.slice(0, Math.min(limit, quiz.questions.length));
+  }, [practiceMode, practiceQuestionLimit, quiz.questions]);
+
   // Restore draft after mount so SSR HTML matches the first paint.
   useEffect(() => {
-    const draft = readDraft(quiz.id);
+    const draft = readDraft(quiz.id, practiceMode);
     if (draft) {
       setStartedAt(draft.startedAt);
-      setCurrentIndex(Math.min(draft.currentIndex, Math.max(0, quiz.questions.length - 1)));
+      setCurrentIndex(Math.min(draft.currentIndex, Math.max(0, questions.length - 1)));
       setAnswers(draft.answers);
       setGrades(draft.grades);
     }
     setHydrated(true);
-  }, [quiz.id, quiz.questions.length]);
+  }, [practiceMode, quiz.id, questions.length]);
 
-  const questions = quiz.questions;
   const total = questions.length;
   const question = questions[currentIndex];
   const isLast = currentIndex >= total - 1;
-  const isImmediate = quiz.revealMode === "immediate";
+  const isImmediate = practiceMode || quiz.revealMode === "immediate";
 
   useEffect(() => {
-    if (!hydrated) {
+    if (!hydrated || practiceDone) {
       return;
     }
-    writeDraft({
-      quizId: quiz.id,
-      startedAt,
-      currentIndex,
-      answers,
-      grades,
-    });
-  }, [quiz.id, startedAt, currentIndex, answers, grades, hydrated]);
+    writeDraft(
+      {
+        quizId: quiz.id,
+        startedAt,
+        currentIndex,
+        answers,
+        grades,
+      },
+      practiceMode,
+    );
+  }, [
+    quiz.id,
+    startedAt,
+    currentIndex,
+    answers,
+    grades,
+    hydrated,
+    practiceMode,
+    practiceDone,
+  ]);
 
   useEffect(() => {
     setRevealed(Boolean(question && grades[question.id]));
@@ -188,11 +282,37 @@ export function QuizRunner({
     return `${Math.round((earned / max) * 100)}%`;
   }, [grades, isImmediate, questions]);
 
+  const practiceSummary = useMemo(() => {
+    let correct = 0;
+    for (const q of questions) {
+      if (grades[q.id]?.isCorrect) {
+        correct += 1;
+      }
+    }
+    const endMs = finishedAtMs ?? Date.now();
+    const elapsedSeconds = Math.max(
+      0,
+      Math.round((endMs - new Date(startedAt).getTime()) / 1000),
+    );
+    return { correct, total: questions.length, elapsedSeconds };
+  }, [finishedAtMs, grades, questions, startedAt]);
+
   const hasAnswer = Boolean(
     currentDraft &&
       ((currentDraft.kind === "choice" && currentDraft.answerId) ||
         (currentDraft.kind === "text" && currentDraft.text.trim())),
   );
+
+  const resetPractice = useCallback(() => {
+    clearDraft(quiz.id, true);
+    setPracticeDone(false);
+    setFinishedAtMs(null);
+    setStartedAt(new Date().toISOString());
+    setCurrentIndex(0);
+    setAnswers({});
+    setGrades({});
+    setRevealed(false);
+  }, [quiz.id]);
 
   const selectChoice = useCallback(
     (answerId: string) => {
@@ -243,9 +363,16 @@ export function QuizRunner({
   }, [answers, questions]);
 
   const doSubmit = useCallback(() => {
+    if (practiceMode) {
+      clearDraft(quiz.id, true);
+      setFinishedAtMs(Date.now());
+      setPracticeDone(true);
+      return;
+    }
+
     const payload = buildSubmitPayload();
     if (!payload) {
-      toast.error("Please answer every question before submitting.");
+      toast.error(labels.answerEveryQuestion);
       return;
     }
 
@@ -270,7 +397,7 @@ export function QuizRunner({
         return;
       }
 
-      clearDraft(quiz.id);
+      clearDraft(quiz.id, false);
 
       const from = returnTo ? `&from=${encodeURIComponent(returnTo)}` : "";
       if (redirectOnComplete) {
@@ -281,7 +408,9 @@ export function QuizRunner({
     });
   }, [
     buildSubmitPayload,
+    labels.answerEveryQuestion,
     onComplete,
+    practiceMode,
     quiz.id,
     redirectOnComplete,
     revalidatePaths,
@@ -297,10 +426,10 @@ export function QuizRunner({
     if (grades[question.id]) {
       return true;
     }
-    if (!hasAnswer || !currentDraft) {
-      toast.error("Select or type an answer first.");
-      return false;
-    }
+      if (!hasAnswer || !currentDraft) {
+      toast.error(labels.selectAnswer);
+        return false;
+      }
 
     setGrading(true);
     try {
@@ -317,7 +446,9 @@ export function QuizRunner({
               selectedAnswerIds: [currentDraft.answerId],
             };
 
-      const response = await gradeQuestion(input);
+      const response = practiceMode
+        ? await gradePracticeQuestion(input)
+        : await gradeQuestion(input);
       if (!response.ok) {
         toast.error(response.error);
         return false;
@@ -326,10 +457,23 @@ export function QuizRunner({
       setGrades((prev) => ({ ...prev, [question.id]: response.data }));
       setRevealed(true);
       return true;
+    } catch {
+      // Keep the draft answer so the learner can retry after a network blip.
+      toast.error("Network error. Your answer is saved — please try again.");
+      return false;
     } finally {
       setGrading(false);
     }
-  }, [currentDraft, grades, hasAnswer, isImmediate, question, quiz.id]);
+  }, [
+    currentDraft,
+    grades,
+    hasAnswer,
+    isImmediate,
+    labels,
+    practiceMode,
+    question,
+    quiz.id,
+  ]);
 
   const goNext = useCallback(async () => {
     if (!question) {
@@ -346,7 +490,7 @@ export function QuizRunner({
     }
 
     if (!hasAnswer) {
-      toast.error("Select or type an answer first.");
+      toast.error(labels.selectAnswer);
       return;
     }
 
@@ -363,6 +507,7 @@ export function QuizRunner({
     hasAnswer,
     isImmediate,
     isLast,
+    labels.selectAnswer,
     question,
     total,
   ]);
@@ -375,6 +520,10 @@ export function QuizRunner({
   goNextRef.current = goNext;
 
   useEffect(() => {
+    if (practiceDone) {
+      return;
+    }
+
     const onKeyDown = (event: KeyboardEvent) => {
       const target = event.target as HTMLElement | null;
       const tag = target?.tagName?.toLowerCase();
@@ -414,13 +563,39 @@ export function QuizRunner({
 
     window.addEventListener("keydown", onKeyDown);
     return () => window.removeEventListener("keydown", onKeyDown);
-  }, [question, revealed, selectChoice]);
+  }, [practiceDone, question, revealed, selectChoice]);
 
-  if (total === 0 || !question) {
+  if (total === 0 || (!question && !practiceDone)) {
+    return <p className="text-sm text-muted-foreground">{labels.noQuestions}</p>;
+  }
+
+  if (practiceMode && practiceDone) {
+    const minutes = Math.floor(practiceSummary.elapsedSeconds / 60);
+    const seconds = practiceSummary.elapsedSeconds % 60;
+    const timeLabel =
+      minutes > 0 ? `${minutes} phút ${seconds} giây` : `${seconds} giây`;
+
     return (
-      <p className="text-sm text-muted-foreground">This quiz has no questions yet.</p>
+      <div className={cn("space-y-4", className)}>
+        <div
+          className="rounded-lg border border-emerald-500/40 bg-emerald-500/5 px-4 py-4 text-sm"
+          role="status"
+        >
+          <p className="font-medium">{labels.practiceCompleteTitle}</p>
+          <p className="mt-1 text-muted-foreground">
+            Bạn đúng {practiceSummary.correct}/{practiceSummary.total} câu · Thời gian:{" "}
+            {timeLabel}.
+          </p>
+          <p className="mt-1 text-muted-foreground">{labels.drillCompleteBody}</p>
+        </div>
+        <Button type="button" variant="outline" className="min-h-11" onClick={resetPractice}>
+          {labels.practiceTryAgain}
+        </Button>
+      </div>
     );
   }
+
+  const activeQuestion = question!;
 
   const optionState = (answerId: string): AnswerVisualState => {
     if (currentGrade) {
@@ -448,12 +623,12 @@ export function QuizRunner({
 
   const primaryLabel = (() => {
     if (isImmediate && !currentGrade) {
-      return "Check answer";
+      return labels.checkAnswer;
     }
     if (isLast) {
-      return "Submit quiz";
+      return practiceMode ? labels.finish : labels.submit;
     }
-    return "Next";
+    return labels.next;
   })();
 
   return (
@@ -474,20 +649,20 @@ export function QuizRunner({
       />
 
       <div className="space-y-4">
-        {question.type === "fill_blank" ? (
+        {activeQuestion.type === "fill_blank" ? (
           <QuestionFillBlank
-            questionId={question.id}
-            prompt={question.prompt}
+            questionId={activeQuestion.id}
+            prompt={activeQuestion.prompt}
             value={currentDraft?.kind === "text" ? currentDraft.text : ""}
             state={fillState}
             disabled={revealed || pending}
             onChange={setText}
           />
-        ) : question.type === "true_false" ? (
+        ) : activeQuestion.type === "true_false" ? (
           <QuestionTrueFalse
-            questionId={question.id}
-            prompt={question.prompt}
-            answers={question.answers}
+            questionId={activeQuestion.id}
+            prompt={activeQuestion.prompt}
+            answers={activeQuestion.answers}
             selectedId={currentDraft?.kind === "choice" ? currentDraft.answerId : null}
             optionState={optionState}
             disabled={revealed || pending}
@@ -495,9 +670,9 @@ export function QuizRunner({
           />
         ) : (
           <QuestionMultipleChoice
-            questionId={question.id}
-            prompt={question.prompt}
-            answers={question.answers}
+            questionId={activeQuestion.id}
+            prompt={activeQuestion.prompt}
+            answers={activeQuestion.answers}
             selectedId={currentDraft?.kind === "choice" ? currentDraft.answerId : null}
             optionState={optionState}
             disabled={revealed || pending}
@@ -516,23 +691,50 @@ export function QuizRunner({
             role="status"
           >
             <p className="font-medium">
-              {currentGrade.isCorrect ? "Correct" : "Incorrect"}
+              {currentGrade.isCorrect ? labels.correct : labels.incorrect}
             </p>
             {!currentGrade.isCorrect ? (
               <p className="mt-1">
-                <span className="text-muted-foreground">Correct answer: </span>
+                <span className="text-muted-foreground">{labels.correctAnswer}</span>
                 {currentGrade.correctAnswerLabel}
               </p>
             ) : null}
             <p className="mt-1 text-muted-foreground">{currentGrade.explanation}</p>
+
+            {!currentGrade.isCorrect && practiceWrongHint?.relatedRule ? (
+              <div className="mt-3 space-y-1 border-t pt-3">
+                <p className="font-medium">{labels.relatedRuleHeading}</p>
+                <p>
+                  {practiceWrongHint.relatedRule.title}
+                  {practiceWrongHint.relatedRule.pattern ? (
+                    <span className="ml-2 font-normal text-muted-foreground">
+                      ({practiceWrongHint.relatedRule.pattern})
+                    </span>
+                  ) : null}
+                </p>
+                <p className="text-muted-foreground">
+                  {practiceWrongHint.relatedRule.explanation}
+                </p>
+              </div>
+            ) : null}
+
+            {!currentGrade.isCorrect && practiceWrongHint?.sampleExample ? (
+              <div className="mt-3 space-y-1 border-t pt-3">
+                <p className="font-medium">{labels.sampleExampleHeading}</p>
+                <p className="font-medium">
+                  {practiceWrongHint.sampleExample.sentenceEn}
+                </p>
+                <p className="text-muted-foreground">
+                  {practiceWrongHint.sampleExample.sentenceVi}
+                </p>
+              </div>
+            ) : null}
           </div>
         ) : null}
       </div>
 
       <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
-        <p className="text-xs text-muted-foreground">
-          Tip: press 1–4 to choose an option, Enter to continue.
-        </p>
+        <p className="text-xs text-muted-foreground">{labels.tip}</p>
         <div className="flex gap-2">
           <Button
             type="button"
@@ -541,7 +743,7 @@ export function QuizRunner({
             disabled={currentIndex === 0 || pending || grading}
             onClick={goPrev}
           >
-            Previous
+            {labels.previous}
           </Button>
           <Button
             type="button"
@@ -552,7 +754,7 @@ export function QuizRunner({
             {pending || grading ? (
               <>
                 <Loader2 className="size-4 animate-spin" aria-hidden="true" />
-                {grading ? "Checking…" : "Submitting…"}
+                {grading ? labels.checking : labels.submitting}
               </>
             ) : (
               primaryLabel

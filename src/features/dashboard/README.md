@@ -12,5 +12,6 @@ Dashboard presentation components (spec §9). Data comes from
 | `SkillOverview` | Vocabulary / Grammar / Listening / Reading cards |
 | `RecentActivity` | Merged lesson / quiz / vocab feed (max 8) |
 | `RecommendedLessons` | CEFR + weakest-skill suggestions |
+| `GrammarToReview` | Weak grammar topics (best score &lt; 60%) or Browse CTA |
 | `DashboardOnboarding` | Brand-new user CTAs (placement / first course) |
 | `DashboardSkeletons` | Suspense fallbacks per block |

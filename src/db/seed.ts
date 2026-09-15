@@ -17,8 +17,15 @@
  */
 import { sql } from "drizzle-orm";
 import { db } from "@/db";
+import { and, eq, notInArray } from "drizzle-orm";
 import {
+  contentSources,
   courses,
+  grammarExamples,
+  grammarLessons,
+  grammarMistakes,
+  grammarRules,
+  grammarTopicRelations,
   grammarTopics,
   lessons,
   lessonVocabularies,
@@ -32,10 +39,15 @@ import {
 } from "@/db/schema";
 import { lessonContentSchema, type LessonBlock } from "@/db/schema/lesson-content";
 import { coursesSeed } from "@/db/seed-data/courses";
-import { grammarTopicsSeed } from "@/db/seed-data/grammar";
+import {
+  ENGLISHFLOW_ORIGINAL_SOURCE,
+  grammarExampleHash,
+  grammarTopicRelationsSeed,
+  grammarTopicsSeed,
+} from "@/db/seed-data/grammar";
 import { listeningLessonsSeed } from "@/db/seed-data/listening";
 import { placementTestQuestionsSeed, placementTestSeed } from "@/db/seed-data/placement-test";
-import { coursePracticeQuizzes, type QuizSeed } from "@/db/seed-data/quizzes";
+import { coursePracticeQuizzes, grammarCourseOnlyQuizzes, type QuizSeed } from "@/db/seed-data/quizzes";
 import { vocabularySeed } from "@/db/seed-data/vocabulary";
 
 /** `INSERT ... RETURNING` always returns a row here (we just upserted it) — this just satisfies strict TS. */
@@ -142,38 +154,257 @@ async function seedVocabulary(): Promise<Map<string, string>> {
   return new Map(rows.map((row) => [row.word, row.id]));
 }
 
-/** Upserts every grammar topic + its mini quiz. Returns the quiz slug → id map so lessons can reuse the same quizzes as exercises. */
+/**
+ * Upserts normalized grammar catalog (topics, lessons, rules, examples,
+ * mistakes, relations) + shared mini quizzes. Returns quiz slug → id so
+ * course lessons can reuse the same quizzes as exercises.
+ */
 async function seedGrammarTopics(): Promise<Map<string, string>> {
   const quizSlugToId = new Map<string, string>();
+  const topicSlugToId = new Map<string, string>();
+  const ruleKeyToId = new Map<string, string>();
+
+  const [existingSource] = await db
+    .select({ id: contentSources.id })
+    .from(contentSources)
+    .where(eq(contentSources.name, ENGLISHFLOW_ORIGINAL_SOURCE.name))
+    .limit(1);
+
+  let sourceId = existingSource?.id;
+  if (sourceId) {
+    await db
+      .update(contentSources)
+      .set({
+        url: ENGLISHFLOW_ORIGINAL_SOURCE.url,
+        licenseCode: ENGLISHFLOW_ORIGINAL_SOURCE.licenseCode,
+        attributionText: ENGLISHFLOW_ORIGINAL_SOURCE.attributionText,
+        sourceVersion: ENGLISHFLOW_ORIGINAL_SOURCE.sourceVersion,
+        updatedAt: new Date(),
+      })
+      .where(eq(contentSources.id, sourceId));
+  } else {
+    const inserted = await db
+      .insert(contentSources)
+      .values({
+        name: ENGLISHFLOW_ORIGINAL_SOURCE.name,
+        url: ENGLISHFLOW_ORIGINAL_SOURCE.url,
+        licenseCode: ENGLISHFLOW_ORIGINAL_SOURCE.licenseCode,
+        attributionText: ENGLISHFLOW_ORIGINAL_SOURCE.attributionText,
+        sourceVersion: ENGLISHFLOW_ORIGINAL_SOURCE.sourceVersion,
+      })
+      .returning({ id: contentSources.id });
+    sourceId = firstOrThrow(inserted, "content source EnglishFlow original").id;
+  }
 
   for (const topic of grammarTopicsSeed) {
     const quizId = await seedQuiz(topic.quiz);
     quizSlugToId.set(topic.quiz.slug, quizId);
 
-    await db
+    const topicRows = await db
       .insert(grammarTopics)
       .values({
         slug: topic.slug,
-        title: topic.title,
+        titleEn: topic.titleEn,
+        titleVi: topic.titleVi,
         level: topic.level,
-        summary: topic.summary,
-        content: topic.content,
+        category: topic.category,
+        orderIndex: topic.orderIndex,
+        summaryVi: topic.summaryVi,
+        status: "published",
         quizId,
-        sortOrder: topic.sortOrder,
+        deletedAt: null,
       })
       .onConflictDoUpdate({
         target: grammarTopics.slug,
         set: {
-          title: sql`excluded.title`,
+          titleEn: sql`excluded.title_en`,
+          titleVi: sql`excluded.title_vi`,
           level: sql`excluded.level`,
-          summary: sql`excluded.summary`,
-          content: sql`excluded.content`,
+          category: sql`excluded.category`,
+          orderIndex: sql`excluded.order_index`,
+          summaryVi: sql`excluded.summary_vi`,
+          status: sql`excluded.status`,
           quizId: sql`excluded.quiz_id`,
-          sortOrder: sql`excluded.sort_order`,
+          deletedAt: null,
+          updatedAt: new Date(),
+        },
+      })
+      .returning({ id: grammarTopics.id });
+
+    const topicId = firstOrThrow(topicRows, `grammar topic "${topic.slug}"`).id;
+    topicSlugToId.set(topic.slug, topicId);
+
+    await db
+      .insert(grammarLessons)
+      .values({
+        topicId,
+        version: 1,
+        body: topic.lesson,
+        status: "published",
+        publishedAt: new Date(),
+      })
+      .onConflictDoUpdate({
+        target: [grammarLessons.topicId, grammarLessons.version],
+        set: {
+          body: sql`excluded.body`,
+          status: sql`excluded.status`,
+          publishedAt: sql`excluded.published_at`,
           updatedAt: new Date(),
         },
       });
+
+    for (const rule of topic.rules) {
+      const [existingRule] = await db
+        .select({ id: grammarRules.id })
+        .from(grammarRules)
+        .where(
+          and(eq(grammarRules.topicId, topicId), eq(grammarRules.orderIndex, rule.orderIndex)),
+        )
+        .limit(1);
+
+      let ruleId = existingRule?.id;
+      if (ruleId) {
+        await db
+          .update(grammarRules)
+          .set({
+            titleEn: rule.titleEn,
+            titleVi: rule.titleVi,
+            pattern: rule.pattern,
+            explanationVi: rule.explanationVi,
+            updatedAt: new Date(),
+          })
+          .where(eq(grammarRules.id, ruleId));
+      } else {
+        const inserted = await db
+          .insert(grammarRules)
+          .values({
+            topicId,
+            titleEn: rule.titleEn,
+            titleVi: rule.titleVi,
+            pattern: rule.pattern,
+            explanationVi: rule.explanationVi,
+            orderIndex: rule.orderIndex,
+          })
+          .returning({ id: grammarRules.id });
+        ruleId = firstOrThrow(inserted, `grammar rule "${topic.slug}/${rule.key}"`).id;
+      }
+      ruleKeyToId.set(`${topic.slug}:${rule.key}`, ruleId);
+    }
+
+    for (const example of topic.examples) {
+      const hash = grammarExampleHash(example.sentenceEn);
+      const ruleId = example.ruleKey
+        ? ruleKeyToId.get(`${topic.slug}:${example.ruleKey}`) ?? null
+        : null;
+
+      const [existingExample] = await db
+        .select({ id: grammarExamples.id })
+        .from(grammarExamples)
+        .where(
+          and(eq(grammarExamples.topicId, topicId), eq(grammarExamples.normalizedHash, hash)),
+        )
+        .limit(1);
+
+      if (existingExample) {
+        await db
+          .update(grammarExamples)
+          .set({
+            ruleId,
+            sentenceEn: example.sentenceEn,
+            sentenceVi: example.sentenceVi,
+            highlights: example.highlights,
+            level: example.level,
+            difficulty: example.difficulty,
+            sourceId,
+            updatedAt: new Date(),
+          })
+          .where(eq(grammarExamples.id, existingExample.id));
+      } else {
+        await db.insert(grammarExamples).values({
+          topicId,
+          ruleId,
+          sentenceEn: example.sentenceEn,
+          sentenceVi: example.sentenceVi,
+          highlights: example.highlights,
+          level: example.level,
+          difficulty: example.difficulty,
+          sourceId,
+          normalizedHash: hash,
+        });
+      }
+    }
+
+    for (const mistake of topic.mistakes) {
+      const [existingMistake] = await db
+        .select({ id: grammarMistakes.id })
+        .from(grammarMistakes)
+        .where(
+          and(
+            eq(grammarMistakes.topicId, topicId),
+            eq(grammarMistakes.incorrectSentence, mistake.incorrectSentence),
+          ),
+        )
+        .limit(1);
+
+      if (existingMistake) {
+        await db
+          .update(grammarMistakes)
+          .set({
+            correctSentence: mistake.correctSentence,
+            errorType: mistake.errorType,
+            explanationVi: mistake.explanationVi,
+            severity: mistake.severity,
+            level: mistake.level,
+            updatedAt: new Date(),
+          })
+          .where(eq(grammarMistakes.id, existingMistake.id));
+      } else {
+        await db.insert(grammarMistakes).values({
+          topicId,
+          incorrectSentence: mistake.incorrectSentence,
+          correctSentence: mistake.correctSentence,
+          errorType: mistake.errorType,
+          explanationVi: mistake.explanationVi,
+          severity: mistake.severity,
+          level: mistake.level,
+        });
+      }
+    }
   }
+
+  for (const relation of grammarTopicRelationsSeed) {
+    const fromTopicId = topicSlugToId.get(relation.fromSlug);
+    const toTopicId = topicSlugToId.get(relation.toSlug);
+    if (!fromTopicId || !toTopicId) {
+      throw new Error(
+        `Missing topic for relation ${relation.fromSlug} → ${relation.toSlug}`,
+      );
+    }
+
+    const [existingRelation] = await db
+      .select({ id: grammarTopicRelations.id })
+      .from(grammarTopicRelations)
+      .where(
+        and(
+          eq(grammarTopicRelations.fromTopicId, fromTopicId),
+          eq(grammarTopicRelations.toTopicId, toTopicId),
+          eq(grammarTopicRelations.relationType, relation.relationType),
+        ),
+      )
+      .limit(1);
+
+    if (!existingRelation) {
+      await db.insert(grammarTopicRelations).values({
+        fromTopicId,
+        toTopicId,
+        relationType: relation.relationType,
+      });
+    }
+  }
+
+  // Phase 16 cutover: drop catalog rows no longer in seed (cascade children).
+  const keepSlugs = grammarTopicsSeed.map((topic) => topic.slug);
+  await db.delete(grammarTopics).where(notInArray(grammarTopics.slug, keepSlugs));
 
   return quizSlugToId;
 }
@@ -426,6 +657,9 @@ async function printSummary() {
     ["lessons", lessons],
     ["vocabularies", vocabularies],
     ["grammar_topics", grammarTopics],
+    ["grammar_rules", grammarRules],
+    ["grammar_examples", grammarExamples],
+    ["grammar_mistakes", grammarMistakes],
     ["listening_lessons", listeningLessons],
     ["quizzes", quizzes],
     ["placement_tests", placementTests],
@@ -450,6 +684,11 @@ async function main() {
 
   console.log("Seeding course-practice quizzes...");
   for (const quiz of coursePracticeQuizzes) {
+    quizSlugToId.set(quiz.slug, await seedQuiz(quiz));
+  }
+
+  console.log("Seeding grammar course-only quizzes...");
+  for (const quiz of grammarCourseOnlyQuizzes) {
     quizSlugToId.set(quiz.slug, await seedQuiz(quiz));
   }
 

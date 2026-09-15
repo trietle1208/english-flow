@@ -47,6 +47,8 @@ Nếu phase có đụng schema: thêm `npm run db:generate && npm run db:migrate
 | 12  | [Dashboard & Progress](phase-12-dashboard-progress.md)           | Dashboard dữ liệu thật, streak, `/progress`, charts, achievements | Dashboard phản ánh đúng hoạt động thực tế         | ☑      |
 | 13  | [Settings & Polish](phase-13-settings-polish.md)                 | `/settings`, responsive audit, a11y, performance                  | 390/768/1440px sạch, không scroll ngang           | ☑      |
 | 14  | [Testing & Release](phase-14-testing-release.md)                 | Vitest, Playwright 8 flow, README, production build               | Toàn bộ Definition of Done tick hết               | ☑      |
+| 15  | [Grammar Practice+](phase-15-grammar-practice.md)                | +10 grammar topics, progress badges, filters, dashboard review    | Seed 20 topics; Weak/Mastered + dashboard gợi ý   | ☑      |
+| 16  | [Grammar Schema v3](phase-16-grammar-schema-v3.md)               | Normalize grammar + learner-safe data layer (Server Actions)      | P1–P2 done; UI next                               | ☑ P1–P2 |
 
 Legend: ☐ chưa làm · ◐ đang làm · ☑ xong
 

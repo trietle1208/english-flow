@@ -10,6 +10,11 @@ import {
   quizzes,
   userDailyActivity,
 } from "@/db/schema";
+import {
+  isGrammarLinkedQuiz,
+  recordGrammarProgressForQuizAttempt,
+} from "@/features/grammar/progress";
+import { allowGrammarAttempt } from "@/features/grammar/rate-limit";
 import { evaluateAchievements } from "@/features/progress/actions";
 import { activityDateInTimezone } from "@/lib/activity-date";
 import { generateId } from "@/lib/id";
@@ -97,17 +102,36 @@ export async function submitQuizAttempt(
       correctAnswerLabel: g.correctAnswerLabel,
     }));
 
-    await db.insert(quizAttempts).values({
-      id: attemptId,
-      userId: user.id,
-      quizId,
-      score: result.score,
-      totalQuestions: questions.length,
-      correctCount: result.correctCount,
-      timeSpentSeconds,
-      answers: snapshot,
-      startedAt: Number.isNaN(started.getTime()) ? completedAt : started,
-      completedAt,
+    const grammarLinked = await isGrammarLinkedQuiz(db, quizId);
+    if (grammarLinked && !allowGrammarAttempt(user.id)) {
+      return {
+        ok: false,
+        error: "Too many attempts. Please wait a moment and try again.",
+      };
+    }
+
+    await db.transaction(async (tx) => {
+      await tx.insert(quizAttempts).values({
+        id: attemptId,
+        userId: user.id,
+        quizId,
+        score: result.score,
+        totalQuestions: questions.length,
+        correctCount: result.correctCount,
+        timeSpentSeconds,
+        answers: snapshot,
+        startedAt: Number.isNaN(started.getTime()) ? completedAt : started,
+        completedAt,
+      });
+
+      if (grammarLinked) {
+        await recordGrammarProgressForQuizAttempt(tx as unknown as typeof db, {
+          userId: user.id,
+          quizId,
+          correctCount: result.correctCount,
+          completedAt,
+        });
+      }
     });
 
     await incrementDailyQuizzesCompleted(user.id, user.timezone ?? "Asia/Ho_Chi_Minh");
@@ -120,6 +144,9 @@ export async function submitQuizAttempt(
     revalidatePath("/quiz");
     revalidatePath("/dashboard");
     revalidatePath("/progress");
+    if (grammarLinked) {
+      revalidatePath("/grammar");
+    }
 
     return {
       ok: true,
@@ -149,14 +176,20 @@ export async function submitQuiz(
   return submitQuizAttempt(input, options);
 }
 
-/**
- * Immediate-mode only: grade a single question so the runner can show
- * correct/incorrect + explanation without exposing the full answer key.
- * Rejected when the quiz uses `after_submit`.
- */
-export async function gradeQuestion(
+type GradeOptions = {
+  /**
+   * When true (default for graded quizzes), reject unless `reveal_mode` is
+   * `immediate`. Practice drills skip this so after_submit quizzes can still
+   * show per-question feedback without persisting an attempt.
+   */
+  requireImmediateReveal?: boolean;
+};
+
+async function gradeQuestionCore(
   input: unknown,
+  options: GradeOptions = {},
 ): Promise<ActionResult<ImmediateGradeResult>> {
+  const requireImmediateReveal = options.requireImmediateReveal ?? true;
   const user = await requireUser();
   void user;
 
@@ -178,7 +211,7 @@ export async function gradeQuestion(
       return { ok: false, error: "Quiz not found." };
     }
 
-    if (quiz.revealMode !== "immediate") {
+    if (requireImmediateReveal && quiz.revealMode !== "immediate") {
       return { ok: false, error: "Answers are revealed after you submit this quiz." };
     }
 
@@ -246,6 +279,27 @@ export async function gradeQuestion(
     logger.error("gradeQuestion failed:", error);
     return { ok: false, error: GENERIC_ERROR };
   }
+}
+
+/**
+ * Immediate-mode only: grade a single question so the runner can show
+ * correct/incorrect + explanation without exposing the full answer key.
+ * Rejected when the quiz uses `after_submit`.
+ */
+export async function gradeQuestion(
+  input: unknown,
+): Promise<ActionResult<ImmediateGradeResult>> {
+  return gradeQuestionCore(input, { requireImmediateReveal: true });
+}
+
+/**
+ * Practice / drill grading: same feedback as `gradeQuestion`, but allowed for
+ * `after_submit` quizzes and never writes `quiz_attempts` (Phase 15 drills).
+ */
+export async function gradePracticeQuestion(
+  input: unknown,
+): Promise<ActionResult<ImmediateGradeResult>> {
+  return gradeQuestionCore(input, { requireImmediateReveal: false });
 }
 
 async function loadAndScore(

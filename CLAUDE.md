@@ -36,6 +36,10 @@ The Phase 03 listening-audio gap closed in Phase 10 (2026-09-15): real TTS MP3s 
 
 **Phase 14 (2026-09-15, done)**: Vitest (24 tests: quiz engine, streak, Zod schemas) + Playwright 8 critical flows on `english_learning_test` (chromium + 390px mobile = 12 runs). Full README (§39), [docs/definition-of-done.md](docs/definition-of-done.md), CI workflow. Scripts: `npm run test`, `test:e2e:prepare`, `test:e2e`. Tag `v1.0.0-phase1` after the phase commit. Full detail in [phase-14-testing-release.md](docs/plan/phase-14-testing-release.md#xác-minh-2026-09-15).
 
+**Phase 16 (2026-09-15, Prompt 1–3 done)**: Grammar schema v3 + learner-safe data
+layer + UI tabs / practice route. Exercises stay on shared `QuizRunner`. Detail:
+[phase-16-grammar-schema-v3.md](docs/plan/phase-16-grammar-schema-v3.md).
+
 > Update this section every time a phase is completed or started. Format:
 > `- [x] Phase 01 — Foundation (done YYYY-MM-DD)`
 > `- [ ] Phase 02 — Docker & Database (in progress)`
@@ -54,6 +58,8 @@ The Phase 03 listening-audio gap closed in Phase 10 (2026-09-15): real TTS MP3s 
 - [x] Phase 12 — Dashboard & Progress (done 2026-09-15)
 - [x] Phase 13 — Settings & Polish (done 2026-09-15)
 - [x] Phase 14 — Testing & Release (done 2026-09-15)
+- [x] Phase 15 — Grammar Practice+ (done 2026-09-15)
+- [x] Phase 16 — Grammar Schema v3 Prompt 1–3 (done 2026-09-15)
 
 Before starting a phase, read its file in `docs/plan/phase-NN-*.md`. Before ending a phase, run its **Exit Gate** (see `docs/plan/README.md`) and tick its checkboxes in that phase file, then update this section.
 

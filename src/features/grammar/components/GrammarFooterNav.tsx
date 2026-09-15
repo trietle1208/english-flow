@@ -3,41 +3,38 @@ import { ArrowLeft, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 type GrammarFooterNavProps = {
-  previousTopicId: string | null;
-  nextTopicId: string | null;
+  previousSlug: string | null;
+  nextSlug: string | null;
 };
 
-export function GrammarFooterNav({
-  previousTopicId,
-  nextTopicId,
-}: GrammarFooterNavProps) {
+export function GrammarFooterNav({ previousSlug, nextSlug }: GrammarFooterNavProps) {
   return (
     <footer className="flex flex-col gap-3 border-t pt-6 sm:flex-row sm:items-center sm:justify-between">
-      {previousTopicId ? (
-        <Button asChild variant="outline" className="w-full sm:w-auto">
-          <Link href={`/grammar/${previousTopicId}`}>
+      {previousSlug ? (
+        <Button asChild variant="outline" className="min-h-11 w-full sm:w-auto">
+          <Link href={`/grammar/${previousSlug}`}>
             <ArrowLeft className="size-4" aria-hidden="true" />
-            Previous topic
+            Chủ điểm trước
           </Link>
         </Button>
       ) : (
-        <Button variant="outline" disabled className="w-full sm:w-auto">
+        <Button variant="outline" disabled className="min-h-11 w-full sm:w-auto">
           <ArrowLeft className="size-4" aria-hidden="true" />
-          Previous topic
+          Chủ điểm trước
         </Button>
       )}
 
-      {nextTopicId ? (
-        <Button asChild variant="outline" className="w-full sm:w-auto">
-          <Link href={`/grammar/${nextTopicId}`}>
-            Next topic
+      {nextSlug ? (
+        <Button asChild variant="outline" className="min-h-11 w-full sm:w-auto">
+          <Link href={`/grammar/${nextSlug}`}>
+            Chủ điểm tiếp
             <ArrowRight className="size-4" aria-hidden="true" />
           </Link>
         </Button>
       ) : (
-        <Button asChild variant="outline" className="w-full sm:w-auto">
+        <Button asChild variant="outline" className="min-h-11 w-full sm:w-auto">
           <Link href="/grammar">
-            Back to grammar
+            Về danh sách
             <ArrowRight className="size-4" aria-hidden="true" />
           </Link>
         </Button>
