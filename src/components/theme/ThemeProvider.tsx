@@ -3,10 +3,10 @@
 import { ThemeProvider as NextThemesProvider, type ThemeProviderProps } from "next-themes";
 
 /**
- * Wraps `next-themes` so the app can toggle Light / Dark / System (spec §29,
- * reused by the `/settings` theme control in Phase 13). `attribute="class"`
- * matches `tailwind.config.ts`'s `darkMode: "class"` and the `.dark`
- * selector in `globals.css`.
+ * Wraps `next-themes` for Light / Dark / System palettes (spec §29,
+ * reused by `/settings` Appearance). `attribute="class"` matches
+ * `tailwind.config.ts` `darkMode: "class"` and `.light` / `.dark` / `.system`
+ * in `globals.css`. `system` here is a fixed warm-green theme — not OS-follow.
  */
 export function ThemeProvider({ children, ...props }: ThemeProviderProps) {
   return <NextThemesProvider {...props}>{children}</NextThemesProvider>;

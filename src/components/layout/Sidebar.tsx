@@ -3,7 +3,6 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { GraduationCap } from "lucide-react";
-import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
 import { UserMenu } from "@/components/layout/UserMenu";
 import { ThemeToggle } from "@/components/theme/ThemeToggle";
 import { isNavItemActive, mainNav } from "@/config/navigation";
@@ -32,31 +31,30 @@ export function Sidebar({ user }: { user: CurrentUser }) {
           const active = isNavItemActive(pathname, item.href);
           const Icon = item.icon;
 
+          // Native `title` on tablet (icon-only) instead of Radix Tooltip around
+          // the Link — TooltipTrigger can swallow the first click / soft-nav.
           return (
-            <Tooltip key={item.href}>
-              <TooltipTrigger asChild>
-                <Link
-                  href={item.href}
-                  aria-current={active ? "page" : undefined}
-                  className={cn(
-                    "relative flex min-h-11 items-center justify-center gap-3 rounded-md px-3 text-sm text-muted-foreground outline-none transition-colors hover:bg-sidebar-accent hover:text-sidebar-accent-foreground focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 lg:justify-start",
-                    active && "bg-sidebar-accent font-semibold text-sidebar-accent-foreground",
-                  )}
-                >
-                  {active && (
-                    <span
-                      aria-hidden="true"
-                      className="absolute left-0 top-1/2 h-5 w-0.5 -translate-y-1/2 rounded-full bg-primary"
-                    />
-                  )}
-                  <Icon className="size-5 shrink-0" aria-hidden="true" />
-                  <span className="hidden truncate lg:inline">{item.label}</span>
-                </Link>
-              </TooltipTrigger>
-              <TooltipContent side="right" className="lg:hidden">
-                {item.label}
-              </TooltipContent>
-            </Tooltip>
+            <Link
+              key={item.href}
+              href={item.href}
+              prefetch={false}
+              title={item.label}
+              aria-label={item.label}
+              aria-current={active ? "page" : undefined}
+              className={cn(
+                "relative flex min-h-11 items-center justify-center gap-3 rounded-md px-3 text-sm text-muted-foreground outline-none transition-colors hover:bg-sidebar-accent hover:text-sidebar-accent-foreground focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 lg:justify-start",
+                active && "bg-sidebar-accent font-semibold text-sidebar-accent-foreground",
+              )}
+            >
+              {active && (
+                <span
+                  aria-hidden="true"
+                  className="absolute left-0 top-1/2 h-5 w-0.5 -translate-y-1/2 rounded-full bg-primary"
+                />
+              )}
+              <Icon className="size-5 shrink-0" aria-hidden="true" />
+              <span className="hidden truncate lg:inline">{item.label}</span>
+            </Link>
           );
         })}
       </nav>

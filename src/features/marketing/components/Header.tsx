@@ -12,22 +12,30 @@ import {
 import { siteConfig } from "@/config/site";
 import { getCurrentUser } from "@/lib/session";
 
-const SECTION_NAV = [
+/** Anonymous visitors: in-page anchors (avoid auth bounce). Signed-in: real app routes. */
+const ANON_SECTION_NAV = [
   { href: "#features", label: "Features" },
   { href: "#courses", label: "Courses" },
   { href: "#vocabulary", label: "Vocabulary" },
   { href: "#progress", label: "Progress" },
-];
+] as const;
+
+const AUTH_SECTION_NAV = [
+  { href: "/dashboard", label: "Dashboard" },
+  { href: "/courses", label: "Courses" },
+  { href: "/vocabulary", label: "Vocabulary" },
+  { href: "/progress", label: "Progress" },
+] as const;
 
 /**
- * Public header for `/` — spec §6. In-page anchors (not `/courses` etc.
- * directly) because those routes require auth; an anchored visitor scrolls
- * to the matching feature card in `Features` instead of hitting the
- * login-redirect. Stays a Server Component: `Sheet` (mobile menu) carries
- * its own "use client" boundary internally, so this file needs none.
+ * Public header for `/` — spec §6. Anonymous visitors get in-page anchors
+ * into `Features` (those app routes require auth). Signed-in visitors get
+ * real app links so the menu actually navigates. Stays a Server Component:
+ * `Sheet` (mobile menu) carries its own "use client" boundary internally.
  */
 export async function Header() {
   const user = await getCurrentUser();
+  const sectionNav = user ? AUTH_SECTION_NAV : ANON_SECTION_NAV;
 
   return (
     <header className="sticky top-0 z-30 border-b bg-background/95 backdrop-blur">
@@ -38,15 +46,25 @@ export async function Header() {
         </Link>
 
         <nav className="hidden items-center gap-6 md:flex" aria-label="Sections">
-          {SECTION_NAV.map((item) => (
-            <a
-              key={item.href}
-              href={item.href}
-              className="text-sm font-medium text-muted-foreground outline-none transition-colors hover:text-foreground focus-visible:text-foreground"
-            >
-              {item.label}
-            </a>
-          ))}
+          {sectionNav.map((item) =>
+            item.href.startsWith("#") ? (
+              <a
+                key={item.href}
+                href={item.href}
+                className="text-sm font-medium text-muted-foreground outline-none transition-colors hover:text-foreground focus-visible:text-foreground"
+              >
+                {item.label}
+              </a>
+            ) : (
+              <Link
+                key={item.href}
+                href={item.href}
+                className="text-sm font-medium text-muted-foreground outline-none transition-colors hover:text-foreground focus-visible:text-foreground"
+              >
+                {item.label}
+              </Link>
+            ),
+          )}
         </nav>
 
         <div className="hidden items-center gap-2 md:flex">
@@ -81,14 +99,23 @@ export async function Header() {
             </SheetHeader>
 
             <nav className="space-y-1 p-3" aria-label="Sections">
-              {SECTION_NAV.map((item) => (
+              {sectionNav.map((item) => (
                 <SheetClose asChild key={item.href}>
-                  <a
-                    href={item.href}
-                    className="flex min-h-11 items-center rounded-md px-3 text-sm text-muted-foreground outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
-                  >
-                    {item.label}
-                  </a>
+                  {item.href.startsWith("#") ? (
+                    <a
+                      href={item.href}
+                      className="flex min-h-11 items-center rounded-md px-3 text-sm text-muted-foreground outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+                    >
+                      {item.label}
+                    </a>
+                  ) : (
+                    <Link
+                      href={item.href}
+                      className="flex min-h-11 items-center rounded-md px-3 text-sm text-muted-foreground outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+                    >
+                      {item.label}
+                    </Link>
+                  )}
                 </SheetClose>
               ))}
             </nav>

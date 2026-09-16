@@ -88,6 +88,7 @@ export function VocabularyCard({ item }: VocabularyCardProps) {
           <Badge variant="outline" className="capitalize">
             {POS_LABEL[item.partOfSpeech]}
           </Badge>
+          {item.isManual && <Badge variant="secondary">Added by you</Badge>}
           {optimisticLearned && (
             <Badge variant="secondary" className="gap-1">
               <Check className="size-3" aria-hidden="true" />
@@ -97,9 +98,11 @@ export function VocabularyCard({ item }: VocabularyCardProps) {
         </div>
         <p className="text-sm text-muted-foreground">{item.pronunciation}</p>
         <p className="text-sm">{item.meaning}</p>
-        <p className="text-sm italic text-muted-foreground">
-          &ldquo;{item.exampleSentence}&rdquo;
-        </p>
+        {item.exampleSentence.trim() ? (
+          <p className="text-sm italic text-muted-foreground">
+            &ldquo;{item.exampleSentence}&rdquo;
+          </p>
+        ) : null}
       </div>
 
       <div className="flex flex-wrap items-center gap-2">
@@ -133,8 +136,10 @@ export function VocabularyCard({ item }: VocabularyCardProps) {
           <DialogHeader>
             <DialogTitle>Remove “{item.word}”?</DialogTitle>
             <DialogDescription>
-              This removes the word from your personal vocabulary. You can save it again later from
-              a lesson.
+              This removes the word from your personal vocabulary
+              {item.isManual
+                ? " and deletes the word you added."
+                : ". You can save it again later from a lesson."}
             </DialogDescription>
           </DialogHeader>
           <DialogFooter>

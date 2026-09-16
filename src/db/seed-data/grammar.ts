@@ -6,7 +6,14 @@ import type {
   GrammarLessonBody,
   GrammarTopicCategory,
 } from "@/db/schema/grammar";
+import type { GrammarContentSourceSeed } from "./grammar-sources";
+import { grammarTopicsExtraSeed } from "./grammar-topics-extra";
 import type { QuizSeed } from "./quizzes";
+
+export {
+  ENGLISHFLOW_ORIGINAL_SOURCE,
+  grammarContentSourcesSeed,
+} from "./grammar-sources";
 
 type CefrLevel = (typeof cefrLevelEnum.enumValues)[number];
 
@@ -28,6 +35,10 @@ export type GrammarExampleSeed = {
   difficulty: 1 | 2 | 3 | 4 | 5;
   /** Optional rule `key` within the same topic. */
   ruleKey?: string;
+  /** Provenance key from `grammarContentSourcesSeed` (default: englishflow). */
+  sourceKey?: GrammarContentSourceSeed["key"];
+  /** Tatoeba sentence id / TALPCo Sentence_ID when attributed. */
+  sourceRecordId?: string;
 };
 
 export type GrammarMistakeSeed = {
@@ -54,15 +65,6 @@ export type GrammarTopicSeed = {
   quiz: QuizSeed;
 };
 
-/** Internal provenance row — original EnglishFlow content, commercial OK. */
-export const ENGLISHFLOW_ORIGINAL_SOURCE = {
-  name: "EnglishFlow original",
-  url: null as string | null,
-  licenseCode: "PRODUCTION_ALLOWED" as const,
-  attributionText: null as string | null,
-  sourceVersion: "phase-16-v3",
-};
-
 /** Deterministic hash for example dedupe (normalized lowercase EN sentence). */
 export function grammarExampleHash(sentenceEn: string): string {
   const normalized = sentenceEn.trim().toLowerCase().replace(/\s+/g, " ");
@@ -70,10 +72,11 @@ export function grammarExampleHash(sentenceEn: string): string {
 }
 
 /**
- * Phase 16 / Prompt 1 MVP: 3 topics, normalized content + shared quiz engine.
+ * Core catalog topics (Phase 16 MVP + Phase 17 curriculum order).
+ * Extra Phase 17 topics live in `grammar-topics-extra.ts` and are merged below.
  * Course lessons still reference `present-simple-quiz` and `past-simple-quiz`.
  */
-export const grammarTopicsSeed: GrammarTopicSeed[] = [
+const grammarTopicsCoreSeed: GrammarTopicSeed[] = [
   {
     slug: "present-simple",
     titleEn: "Present Simple",
@@ -228,7 +231,7 @@ export const grammarTopicsSeed: GrammarTopicSeed[] = [
     titleVi: "Thì quá khứ đơn",
     level: "A2",
     category: "verb_tenses",
-    orderIndex: 2,
+    orderIndex: 4,
     summaryVi:
       "Dùng thì quá khứ đơn để kể sự việc đã xảy ra và kết thúc tại một thời điểm cụ thể trong quá khứ.",
     lesson: {
@@ -360,7 +363,7 @@ export const grammarTopicsSeed: GrammarTopicSeed[] = [
     titleVi: "Thì hiện tại hoàn thành",
     level: "B1",
     category: "verb_tenses",
-    orderIndex: 3,
+    orderIndex: 12,
     summaryVi:
       "Dùng thì hiện tại hoàn thành để nói về trải nghiệm hoặc kết quả vẫn liên quan đến hiện tại, thường không nêu thời điểm cụ thể.",
     lesson: {
@@ -473,7 +476,13 @@ export const grammarTopicsSeed: GrammarTopicSeed[] = [
   },
 ];
 
-/** Topic relation edges (Prompt 1 seed). */
+/** Full published catalog (core + Phase 17 expansion). */
+export const grammarTopicsSeed: GrammarTopicSeed[] = [
+  ...grammarTopicsCoreSeed,
+  ...grammarTopicsExtraSeed,
+];
+
+/** Topic relation edges (curriculum prerequisites + confuse pairs). */
 export const grammarTopicRelationsSeed: Array<{
   fromSlug: string;
   toSlug: string;
@@ -481,8 +490,43 @@ export const grammarTopicRelationsSeed: Array<{
 }> = [
   {
     fromSlug: "present-simple",
+    toSlug: "present-continuous",
+    relationType: "prerequisite",
+  },
+  {
+    fromSlug: "present-simple",
+    toSlug: "articles",
+    relationType: "related",
+  },
+  {
+    fromSlug: "present-simple",
+    toSlug: "past-simple",
+    relationType: "prerequisite",
+  },
+  {
+    fromSlug: "present-simple",
     toSlug: "present-perfect",
     relationType: "prerequisite",
+  },
+  {
+    fromSlug: "present-simple",
+    toSlug: "modals-can-could",
+    relationType: "related",
+  },
+  {
+    fromSlug: "present-continuous",
+    toSlug: "past-continuous",
+    relationType: "related",
+  },
+  {
+    fromSlug: "past-simple",
+    toSlug: "past-continuous",
+    relationType: "prerequisite",
+  },
+  {
+    fromSlug: "past-simple",
+    toSlug: "present-perfect",
+    relationType: "confused_with",
   },
   {
     fromSlug: "present-perfect",
@@ -490,8 +534,58 @@ export const grammarTopicRelationsSeed: Array<{
     relationType: "confused_with",
   },
   {
-    fromSlug: "past-simple",
-    toSlug: "present-perfect",
+    fromSlug: "present-perfect",
+    toSlug: "present-perfect-continuous",
+    relationType: "prerequisite",
+  },
+  {
+    fromSlug: "present-continuous",
+    toSlug: "present-perfect-continuous",
     relationType: "confused_with",
+  },
+  {
+    fromSlug: "past-simple",
+    toSlug: "future-will-going-to",
+    relationType: "related",
+  },
+  {
+    fromSlug: "present-simple",
+    toSlug: "conditionals-zero-first",
+    relationType: "prerequisite",
+  },
+  {
+    fromSlug: "future-will-going-to",
+    toSlug: "conditionals-zero-first",
+    relationType: "related",
+  },
+  {
+    fromSlug: "past-simple",
+    toSlug: "passive-present-past",
+    relationType: "prerequisite",
+  },
+  {
+    fromSlug: "present-simple",
+    toSlug: "relative-clauses",
+    relationType: "prerequisite",
+  },
+  {
+    fromSlug: "present-simple",
+    toSlug: "gerunds-infinitives",
+    relationType: "related",
+  },
+  {
+    fromSlug: "past-simple",
+    toSlug: "reported-speech",
+    relationType: "prerequisite",
+  },
+  {
+    fromSlug: "comparatives-superlatives",
+    toSlug: "quantifiers",
+    relationType: "related",
+  },
+  {
+    fromSlug: "prepositions-time-place",
+    toSlug: "articles",
+    relationType: "related",
   },
 ];

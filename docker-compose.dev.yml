@@ -1,0 +1,30 @@
+# Hot-reload override for the `app` service.
+# Usage:
+#   docker compose -f docker-compose.yml -f docker-compose.dev.yml up --build
+#   # or: npm run dev:docker
+#
+# Production `docker compose up` is unchanged (still uses Dockerfile + standalone).
+
+services:
+  app:
+    # Separate tag so this never silently reuses the production image.
+    image: english-flow-app-dev
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    # Entrypoint from Dockerfile.dev installs deps into the volume if needed.
+    entrypoint: ["dev-entrypoint.sh"]
+    volumes:
+      # Live source from the host
+      - .:/app
+      # Keep Linux node_modules inside the container (don't use the host's)
+      - app_node_modules:/app/node_modules
+      # Keep .next cache in a volume (faster restarts, less host churn)
+      - app_next:/app/.next
+    environment:
+      NEXT_TELEMETRY_DISABLED: "1"
+      # Native FS watchers work on Linux bind mounts; polling made compiles crawl.
+
+volumes:
+  app_node_modules:
+  app_next:

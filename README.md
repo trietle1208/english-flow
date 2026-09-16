@@ -76,15 +76,24 @@ npm run db:migrate && npm run db:seed
 
 ## Development
 
-### Option A — full stack in Docker
+### Option A — full stack in Docker with hot reload
+
+```bash
+npm run dev:docker
+# same as: docker compose -f docker-compose.yml -f docker-compose.dev.yml up
+```
+
+App: [http://localhost:3001](http://localhost:3001). Source is bind-mounted; Next.js Fast Refresh works inside the container. First run builds `Dockerfile.dev` and installs deps into a named volume.
+
+Production-style (no hot reload — rebuild after code changes):
 
 ```bash
 docker compose up -d --build
 ```
 
-App: [http://localhost:3000](http://localhost:3000). `DATABASE_URL` for the app service is set in `docker-compose.yml` (host `postgres`).
+`DATABASE_URL` for the app service is set in `docker-compose.yml` (host `postgres`).
 
-### Option B — Postgres in Docker, Next.js local (faster iteration)
+### Option B — Postgres in Docker, Next.js local (fastest iteration)
 
 ```bash
 docker compose up -d postgres
@@ -92,7 +101,7 @@ npm run db:migrate && npm run db:seed   # first time
 npm run dev
 ```
 
-`.env` must use `localhost` in `DATABASE_URL` (default in `.env.example`).
+`.env` must use `localhost` in `DATABASE_URL` (default in `.env.example`). App: [http://localhost:3000](http://localhost:3000).
 
 ## Testing
 

@@ -25,12 +25,13 @@ services:
     depends_on:
       postgres:
         condition: service_healthy
+    # Host port 3001 — 3000 is often taken by other local stacks (e.g. onchain-web).
     ports:
-      - "3000:3000"
+      - "3001:3000"
     environment:
       DATABASE_URL: postgresql://postgres:postgres@postgres:5432/english_learning
-      NEXT_PUBLIC_APP_URL: http://localhost:3000
-      BETTER_AUTH_URL: http://localhost:3000
+      NEXT_PUBLIC_APP_URL: http://localhost:3001
+      BETTER_AUTH_URL: http://localhost:3001
       # Dev-only value, same spirit as the hardcoded postgres creds above —
       # not for production use. Generated with: openssl rand -base64 32
       BETTER_AUTH_SECRET: KyLJzoXpcib4V9Adot6qtRdbzELvb8g09IDopuYmptg=

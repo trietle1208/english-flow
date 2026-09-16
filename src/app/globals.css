@@ -3,56 +3,103 @@
 @tailwind utilities;
 
 @layer base {
-  :root {
-    --background: oklch(1 0 0);
-    --foreground: oklch(0.145 0 0);
+  /*
+   * Light  — #F9F7F7 / #DBE2EF / #3F72AF / #112D4E
+   * System — #FFF8CF / #FBE6C2 / #76C457 / #2A7C13  (fixed palette; not OS-follow)
+   * Dark   — original monochrome shadcn tokens
+   */
+  :root,
+  .light {
+    --background: oklch(0.978 0.002 17.2); /* #F9F7F7 */
+    --foreground: oklch(0.295 0.069 254.3); /* #112D4E */
     --card: oklch(1 0 0);
-    --card-foreground: oklch(0.145 0 0);
+    --card-foreground: oklch(0.295 0.069 254.3);
     --popover: oklch(1 0 0);
-    --popover-foreground: oklch(0.145 0 0);
-    --primary: oklch(0.205 0 0);
-    --primary-foreground: oklch(0.985 0 0);
-    --secondary: oklch(0.97 0 0);
-    --secondary-foreground: oklch(0.205 0 0);
-    --muted: oklch(0.97 0 0);
-    --muted-foreground: oklch(0.556 0 0);
-    --accent: oklch(0.97 0 0);
-    --accent-foreground: oklch(0.205 0 0);
+    --popover-foreground: oklch(0.295 0.069 254.3);
+    --primary: oklch(0.545 0.111 254.1); /* #3F72AF */
+    --primary-foreground: oklch(0.978 0.002 17.2); /* #F9F7F7 */
+    --secondary: oklch(0.911 0.019 263.0); /* #DBE2EF */
+    --secondary-foreground: oklch(0.295 0.069 254.3);
+    --muted: oklch(0.911 0.019 263.0); /* #DBE2EF */
+    --muted-foreground: oklch(0.450 0.060 254.0);
+    --accent: oklch(0.911 0.019 263.0); /* #DBE2EF */
+    --accent-foreground: oklch(0.295 0.069 254.3);
     --destructive: oklch(0.577 0.245 27.325);
     --destructive-foreground: oklch(0.985 0 0);
-    /* Success (lesson/quiz completed, streak kept) and warning (goal at risk,
-       attempt near limit) — spec §29 "Use color mainly to communicate ...
-       Success / Warning" in addition to shadcn's default primary/destructive. */
+    /* Success / warning — distinct from brand blue (~254). */
     --success: oklch(0.6 0.15 152);
     --success-foreground: oklch(0.985 0 0);
     --warning: oklch(0.77 0.16 71);
-    --warning-foreground: oklch(0.205 0 0);
-    --border: oklch(0.922 0 0);
-    --input: oklch(0.922 0 0);
-    --ring: oklch(0.708 0 0);
-    --chart-1: oklch(0.87 0 0);
-    --chart-2: oklch(0.556 0 0);
-    --chart-3: oklch(0.439 0 0);
-    --chart-4: oklch(0.371 0 0);
-    --chart-5: oklch(0.269 0 0);
+    --warning-foreground: oklch(0.295 0.069 254.3);
+    --border: oklch(0.860 0.025 263.0);
+    --input: oklch(0.860 0.025 263.0);
+    --ring: oklch(0.545 0.111 254.1); /* #3F72AF */
+    --chart-1: oklch(0.545 0.111 254.1);
+    --chart-2: oklch(0.295 0.069 254.3);
+    --chart-3: oklch(0.911 0.019 263.0);
+    --chart-4: oklch(0.450 0.080 254.0);
+    --chart-5: oklch(0.700 0.060 254.0);
     --radius: 0.625rem;
-    --sidebar: oklch(0.985 0 0);
-    --sidebar-foreground: oklch(0.145 0 0);
-    --sidebar-primary: oklch(0.205 0 0);
-    --sidebar-primary-foreground: oklch(0.985 0 0);
-    --sidebar-accent: oklch(0.97 0 0);
-    --sidebar-accent-foreground: oklch(0.205 0 0);
-    --sidebar-border: oklch(0.922 0 0);
-    --sidebar-ring: oklch(0.708 0 0);
-    /* Per-skill progress colors (Dashboard/Progress "Skill Overview" — spec §10/§28 —
-       and Courses/Vocabulary/Grammar/Listening breakdowns in Phase 07/12). Deliberately
-       kept in the cyan→blue→violet→magenta family, away from the destructive/warning/
-       success hues, so skill identity never reads as a status signal. */
+    --sidebar: oklch(0.978 0.002 17.2); /* #F9F7F7 */
+    --sidebar-foreground: oklch(0.295 0.069 254.3);
+    --sidebar-primary: oklch(0.545 0.111 254.1); /* #3F72AF */
+    --sidebar-primary-foreground: oklch(0.978 0.002 17.2);
+    --sidebar-accent: oklch(0.911 0.019 263.0); /* #DBE2EF */
+    --sidebar-accent-foreground: oklch(0.295 0.069 254.3);
+    --sidebar-border: oklch(0.860 0.025 263.0);
+    --sidebar-ring: oklch(0.545 0.111 254.1);
+    /* Per-skill progress — cyan→blue→violet→magenta, away from status hues. */
     --skill-vocabulary: oklch(0.62 0.19 265);
     --skill-grammar: oklch(0.62 0.19 320);
     --skill-listening: oklch(0.65 0.17 200);
     --skill-reading: oklch(0.63 0.18 230);
   }
+
+  /* System theme = warm green/cream palette (not OS preference). */
+  .system {
+    --background: oklch(0.974 0.054 99.3); /* #FFF8CF */
+    --foreground: oklch(0.320 0.080 140.0);
+    --card: oklch(0.985 0.030 95.0);
+    --card-foreground: oklch(0.320 0.080 140.0);
+    --popover: oklch(0.985 0.030 95.0);
+    --popover-foreground: oklch(0.320 0.080 140.0);
+    --primary: oklch(0.516 0.156 140.2); /* #2A7C13 */
+    --primary-foreground: oklch(0.974 0.054 99.3); /* #FFF8CF */
+    --secondary: oklch(0.933 0.052 81.2); /* #FBE6C2 */
+    --secondary-foreground: oklch(0.320 0.080 140.0);
+    --muted: oklch(0.933 0.052 81.2); /* #FBE6C2 */
+    --muted-foreground: oklch(0.450 0.100 140.0);
+    --accent: oklch(0.746 0.164 137.7); /* #76C457 */
+    --accent-foreground: oklch(0.250 0.080 140.0);
+    --destructive: oklch(0.577 0.245 27.325);
+    --destructive-foreground: oklch(0.985 0 0);
+    /* Emerald success stays distinct from brand green (~140). */
+    --success: oklch(0.55 0.14 160);
+    --success-foreground: oklch(0.985 0 0);
+    --warning: oklch(0.77 0.16 71);
+    --warning-foreground: oklch(0.320 0.080 140.0);
+    --border: oklch(0.880 0.050 90.0);
+    --input: oklch(0.880 0.050 90.0);
+    --ring: oklch(0.516 0.156 140.2); /* #2A7C13 */
+    --chart-1: oklch(0.516 0.156 140.2);
+    --chart-2: oklch(0.746 0.164 137.7);
+    --chart-3: oklch(0.933 0.052 81.2);
+    --chart-4: oklch(0.420 0.120 140.0);
+    --chart-5: oklch(0.650 0.120 100.0);
+    --sidebar: oklch(0.974 0.054 99.3); /* #FFF8CF */
+    --sidebar-foreground: oklch(0.320 0.080 140.0);
+    --sidebar-primary: oklch(0.516 0.156 140.2); /* #2A7C13 */
+    --sidebar-primary-foreground: oklch(0.974 0.054 99.3);
+    --sidebar-accent: oklch(0.933 0.052 81.2); /* #FBE6C2 */
+    --sidebar-accent-foreground: oklch(0.320 0.080 140.0);
+    --sidebar-border: oklch(0.880 0.050 90.0);
+    --sidebar-ring: oklch(0.516 0.156 140.2);
+    --skill-vocabulary: oklch(0.62 0.19 265);
+    --skill-grammar: oklch(0.62 0.19 320);
+    --skill-listening: oklch(0.65 0.17 200);
+    --skill-reading: oklch(0.63 0.18 230);
+  }
+
   .dark {
     --background: oklch(0.145 0 0);
     --foreground: oklch(0.985 0 0);

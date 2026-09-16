@@ -8,6 +8,7 @@ export type SavedVocabularyItem = VocabularySummary & {
   isLearned: boolean;
   learnedAt: Date | null;
   reviewCount: number;
+  isManual: boolean;
 };
 
 export type VocabularyStats = {

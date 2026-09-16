@@ -46,9 +46,11 @@ export function VocabularyItem({ vocabulary, className, actions }: VocabularyIte
         </div>
         <p className="text-sm text-muted-foreground">{vocabulary.pronunciation}</p>
         <p className="text-sm">{vocabulary.meaning}</p>
-        <p className="text-sm italic text-muted-foreground">
-          &ldquo;{vocabulary.exampleSentence}&rdquo;
-        </p>
+        {vocabulary.exampleSentence.trim() ? (
+          <p className="text-sm italic text-muted-foreground">
+            &ldquo;{vocabulary.exampleSentence}&rdquo;
+          </p>
+        ) : null}
       </div>
       <div className="flex shrink-0 items-center gap-2">
         <AudioButton audioUrl={vocabulary.audioUrl} word={vocabulary.word} />

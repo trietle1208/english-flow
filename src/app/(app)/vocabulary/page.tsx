@@ -41,7 +41,7 @@ export default async function VocabularyPage({ searchParams }: VocabularyPagePro
     <div className="mx-auto flex max-w-5xl flex-col gap-8 px-4 py-8 sm:px-6 lg:px-8">
       <PageHeader
         title="My Vocabulary"
-        description="Words you've saved from lessons — search, filter, and mark as learned."
+        description="Words you've saved from lessons or added yourself — search, filter, and mark as learned."
       />
 
       <VocabularyStats stats={stats} />

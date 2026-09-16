@@ -16,14 +16,15 @@ vẫn giữ mini quiz trên engine quiz chung.
 | 1 Schema + migration + seed | ✅ 2026-09-15 |
 | 2 Data layer + Server Actions | ✅ 2026-09-15 |
 | 3 UI tabs / practice route | ✅ 2026-09-15 |
-| 4 Recommendations polish | partial (mastery upsert done in P2) |
+| 4 Recommendations polish | ✅ 2026-09-16 |
 
 ## Không làm ở phase này
 
 - `grammar_exercises` / `grammar_exercise_options` / `user_grammar_attempts` (dùng quizzes)
 - Route Handlers `/api/grammar/*` (dùng Server Actions + `queries.ts`)
 - Guest attempt without login (middleware + `requireUser` — Prompt 3 nếu cần)
-- Dataset license research (track riêng)
+- ~~Dataset license research (track riêng)~~ → done 2026-09-16:
+  [docs/research/grammar-dataset-license-research.md](../research/grammar-dataset-license-research.md)
 
 ## Deliverables
 
@@ -34,8 +35,10 @@ drizzle/0003_grammar_schema_v3.sql
 drizzle/0004_grammar_search_trgm.sql
 src/db/seed-data/grammar.ts
 src/features/grammar/learner.ts | mastery.ts | progress.ts | rate-limit.ts
+src/features/grammar/recommendations.ts
 src/features/grammar/schemas.ts | actions.ts | queries.ts
 src/features/quiz/actions.ts          # transaction + grammar progress upsert
+src/features/grammar/components/GrammarRecommendations.tsx
 ```
 
 ## Acceptance — Prompt 1
@@ -65,6 +68,15 @@ src/features/quiz/actions.ts          # transaction + grammar progress upsert
 - [x] Network retry keeps draft answer (sessionStorage + toast)
 - [x] `npx tsc --noEmit` / `npm run lint` / `npm run test` pass
 
+## Acceptance — Prompt 4 (adapted)
+
+- [x] `user_grammar_progress` upsert + weighted last-10 `mastery_score` (already P2)
+- [x] `listUserGrammarProgress` / `getGrammarProgressAction`
+- [x] `listGrammarRecommendations` / `getGrammarRecommendationsAction` — prereq ≥0.8, CEFR fit, weak first
+- [x] Progress on `/grammar` cards; recommendations section on catalog
+- [x] `next_review_at` left null (no SRS)
+- [x] Unit tests for ranking; `npx tsc --noEmit` / `npm run lint` / `npm run test` pass
+
 ## Xác minh Prompt 2 (2026-09-15)
 
 | Check | Result |
@@ -82,4 +94,15 @@ src/features/quiz/actions.ts          # transaction + grammar progress upsert
 | Tabs | Lý thuyết / Ví dụ / Bài tập |
 | Practice | immediate feedback + rule/example hint + duration summary |
 
-**Stopped after Prompt 3** — next: Prompt 4 recommendations polish.
+## Xác minh Prompt 4 (2026-09-16)
+
+| Check | Result |
+| --- | --- |
+| `rankGrammarRecommendations` unit | unlock / weak / CEFR / limit |
+| `listGrammarRecommendations` + action | Server Actions (no `/api/grammar/*`) |
+| `/grammar` UI | section **Gợi ý học tiếp** above filters |
+| Vitest grammar | pass |
+
+**Stopped after Prompt 4 + license research** — see
+[grammar-dataset-license-research.md](../research/grammar-dataset-license-research.md).
+Next: [phase-17-grammar-content.md](phase-17-grammar-content.md).

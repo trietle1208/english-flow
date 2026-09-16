@@ -8,31 +8,42 @@ import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 
 const OPTIONS = [
-  { value: "light", label: "Light", icon: Sun, description: "Always use light mode" },
-  { value: "dark", label: "Dark", icon: Moon, description: "Always use dark mode" },
+  {
+    value: "light",
+    label: "Light",
+    icon: Sun,
+    description: "Blue & soft gray palette",
+  },
+  {
+    value: "dark",
+    label: "Dark",
+    icon: Moon,
+    description: "Original dark monochrome",
+  },
   {
     value: "system",
     label: "System",
     icon: Monitor,
-    description: "Match your device preference",
+    description: "Warm green & cream palette",
   },
 ] as const;
 
 /**
- * Light / Dark / System picker for Settings (spec §22 Appearance).
+ * Light / Dark / System palette picker for Settings (spec §22 Appearance).
  * Theme is stored client-side by next-themes — not in the database.
+ * `system` is a fixed warm-green theme (not OS preference).
  */
 export function AppearanceSection() {
   const { theme, setTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
   useEffect(() => setMounted(true), []);
 
-  const current = mounted ? (theme ?? "system") : "system";
+  const current = mounted ? (theme ?? "light") : "light";
 
   return (
     <SectionCard
       title="Appearance"
-      description="Choose how EnglishFlow looks on this device."
+      description="Choose a color palette for EnglishFlow on this device."
     >
       <div
         role="radiogroup"

@@ -41,6 +41,7 @@ import { lessonContentSchema, type LessonBlock } from "@/db/schema/lesson-conten
 import { coursesSeed } from "@/db/seed-data/courses";
 import {
   ENGLISHFLOW_ORIGINAL_SOURCE,
+  grammarContentSourcesSeed,
   grammarExampleHash,
   grammarTopicRelationsSeed,
   grammarTopicsSeed,
@@ -133,9 +134,16 @@ async function seedQuiz(quiz: QuizSeed): Promise<string> {
 async function seedVocabulary(): Promise<Map<string, string>> {
   const rows = await db
     .insert(vocabularies)
-    .values(vocabularySeed)
+    .values(
+      vocabularySeed.map((row) => ({
+        ...row,
+        isManual: false as const,
+        createdByUserId: null,
+      })),
+    )
     .onConflictDoUpdate({
       target: vocabularies.word,
+      targetWhere: sql`${vocabularies.isManual} = false`,
       set: {
         pronunciation: sql`excluded.pronunciation`,
         phonetic: sql`excluded.phonetic`,
@@ -143,6 +151,8 @@ async function seedVocabulary(): Promise<Map<string, string>> {
         meaning: sql`excluded.meaning`,
         exampleSentence: sql`excluded.example_sentence`,
         difficulty: sql`excluded.difficulty`,
+        isManual: false,
+        createdByUserId: null,
         updatedAt: new Date(),
         // `audioUrl` is intentionally NOT overwritten here — if a real mp3
         // is added under `public/audio/vocab/` and the DB updated by hand
@@ -163,37 +173,46 @@ async function seedGrammarTopics(): Promise<Map<string, string>> {
   const quizSlugToId = new Map<string, string>();
   const topicSlugToId = new Map<string, string>();
   const ruleKeyToId = new Map<string, string>();
+  const sourceKeyToId = new Map<string, string>();
 
-  const [existingSource] = await db
-    .select({ id: contentSources.id })
-    .from(contentSources)
-    .where(eq(contentSources.name, ENGLISHFLOW_ORIGINAL_SOURCE.name))
-    .limit(1);
+  for (const source of grammarContentSourcesSeed) {
+    const [existingSource] = await db
+      .select({ id: contentSources.id })
+      .from(contentSources)
+      .where(eq(contentSources.name, source.name))
+      .limit(1);
 
-  let sourceId = existingSource?.id;
-  if (sourceId) {
-    await db
-      .update(contentSources)
-      .set({
-        url: ENGLISHFLOW_ORIGINAL_SOURCE.url,
-        licenseCode: ENGLISHFLOW_ORIGINAL_SOURCE.licenseCode,
-        attributionText: ENGLISHFLOW_ORIGINAL_SOURCE.attributionText,
-        sourceVersion: ENGLISHFLOW_ORIGINAL_SOURCE.sourceVersion,
-        updatedAt: new Date(),
-      })
-      .where(eq(contentSources.id, sourceId));
-  } else {
-    const inserted = await db
-      .insert(contentSources)
-      .values({
-        name: ENGLISHFLOW_ORIGINAL_SOURCE.name,
-        url: ENGLISHFLOW_ORIGINAL_SOURCE.url,
-        licenseCode: ENGLISHFLOW_ORIGINAL_SOURCE.licenseCode,
-        attributionText: ENGLISHFLOW_ORIGINAL_SOURCE.attributionText,
-        sourceVersion: ENGLISHFLOW_ORIGINAL_SOURCE.sourceVersion,
-      })
-      .returning({ id: contentSources.id });
-    sourceId = firstOrThrow(inserted, "content source EnglishFlow original").id;
+    let sourceId = existingSource?.id;
+    if (sourceId) {
+      await db
+        .update(contentSources)
+        .set({
+          url: source.url,
+          licenseCode: source.licenseCode,
+          attributionText: source.attributionText,
+          sourceVersion: source.sourceVersion,
+          updatedAt: new Date(),
+        })
+        .where(eq(contentSources.id, sourceId));
+    } else {
+      const inserted = await db
+        .insert(contentSources)
+        .values({
+          name: source.name,
+          url: source.url,
+          licenseCode: source.licenseCode,
+          attributionText: source.attributionText,
+          sourceVersion: source.sourceVersion,
+        })
+        .returning({ id: contentSources.id });
+      sourceId = firstOrThrow(inserted, `content source "${source.name}"`).id;
+    }
+    sourceKeyToId.set(source.key, sourceId);
+  }
+
+  const defaultSourceId = sourceKeyToId.get(ENGLISHFLOW_ORIGINAL_SOURCE.key);
+  if (!defaultSourceId) {
+    throw new Error("Missing EnglishFlow original content source id");
   }
 
   for (const topic of grammarTopicsSeed) {
@@ -296,6 +315,9 @@ async function seedGrammarTopics(): Promise<Map<string, string>> {
       const ruleId = example.ruleKey
         ? ruleKeyToId.get(`${topic.slug}:${example.ruleKey}`) ?? null
         : null;
+      const exampleSourceId =
+        sourceKeyToId.get(example.sourceKey ?? ENGLISHFLOW_ORIGINAL_SOURCE.key) ??
+        defaultSourceId;
 
       const [existingExample] = await db
         .select({ id: grammarExamples.id })
@@ -315,7 +337,8 @@ async function seedGrammarTopics(): Promise<Map<string, string>> {
             highlights: example.highlights,
             level: example.level,
             difficulty: example.difficulty,
-            sourceId,
+            sourceId: exampleSourceId,
+            sourceRecordId: example.sourceRecordId ?? null,
             updatedAt: new Date(),
           })
           .where(eq(grammarExamples.id, existingExample.id));
@@ -328,7 +351,8 @@ async function seedGrammarTopics(): Promise<Map<string, string>> {
           highlights: example.highlights,
           level: example.level,
           difficulty: example.difficulty,
-          sourceId,
+          sourceId: exampleSourceId,
+          sourceRecordId: example.sourceRecordId ?? null,
           normalizedHash: hash,
         });
       }
@@ -402,7 +426,7 @@ async function seedGrammarTopics(): Promise<Map<string, string>> {
     }
   }
 
-  // Phase 16 cutover: drop catalog rows no longer in seed (cascade children).
+  // Drop catalog rows no longer in seed (cascade children).
   const keepSlugs = grammarTopicsSeed.map((topic) => topic.slug);
   await db.delete(grammarTopics).where(notInArray(grammarTopics.slug, keepSlugs));
 

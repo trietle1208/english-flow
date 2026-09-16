@@ -13,6 +13,8 @@ export type VocabularySummary = {
   meaning: string;
   exampleSentence: string;
   audioUrl: string | null;
+  /** True when the learner created this word themselves. */
+  isManual?: boolean;
 };
 
 export type LessonDetail = {

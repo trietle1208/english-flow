@@ -2,6 +2,7 @@ import { and, asc, eq, isNull, sql } from "drizzle-orm";
 import { alias } from "drizzle-orm/pg-core";
 import { db } from "@/db";
 import {
+  contentSources,
   grammarExamples,
   grammarLessons,
   grammarMistakes,
@@ -15,10 +16,15 @@ import {
   grammarLessonBodySchema,
   type GrammarErrorType,
 } from "@/db/schema/grammar";
-import { isCefrLevel } from "@/config/cefr";
+import { isCefrLevel, type CefrLevel } from "@/config/cefr";
 import { getQuizForAttempt } from "@/features/quiz/queries";
 import { logger } from "@/lib/logger";
 import { toLearnerExercise, type ExerciseForLearner } from "./learner";
+import {
+  rankGrammarRecommendations,
+  type GrammarRecommendation,
+  type RecommendableTopic,
+} from "./recommendations";
 import {
   grammarExamplesQuerySchema,
   grammarExercisesQuerySchema,
@@ -37,6 +43,26 @@ import {
 } from "./types";
 
 const relatedTopic = alias(grammarTopics, "related_grammar_topic");
+
+/** Short UI caption for external attributed examples (hide EnglishFlow original). */
+function attributionLabelForSource(
+  sourceName: string | null,
+  sourceLicense: string | null,
+): string | null {
+  if (!sourceName || sourceName === "EnglishFlow original") {
+    return null;
+  }
+  if (sourceLicense === "ATTRIBUTION_REQUIRED") {
+    if (sourceName === "Tatoeba") {
+      return "Nguồn: Tatoeba · CC BY 2.0 FR";
+    }
+    if (sourceName === "TALPCo") {
+      return "Nguồn: TALPCo · CC BY 4.0";
+    }
+    return `Nguồn: ${sourceName}`;
+  }
+  return null;
+}
 
 function bestScoreSql(userId: string) {
   return sql<number | null>`(
@@ -285,8 +311,11 @@ async function loadGrammarTopicDetail(
           sentenceEn: grammarExamples.sentenceEn,
           sentenceVi: grammarExamples.sentenceVi,
           highlights: grammarExamples.highlights,
+          sourceName: contentSources.name,
+          sourceLicense: contentSources.licenseCode,
         })
         .from(grammarExamples)
+        .leftJoin(contentSources, eq(grammarExamples.sourceId, contentSources.id))
         .where(eq(grammarExamples.topicId, topic.id))
         .orderBy(asc(grammarExamples.createdAt)),
       db
@@ -373,7 +402,13 @@ async function loadGrammarTopicDetail(
     summary: topic.summaryVi,
     lesson,
     rules,
-    examples,
+    examples: examples.map((row) => ({
+      id: row.id,
+      sentenceEn: row.sentenceEn,
+      sentenceVi: row.sentenceVi,
+      highlights: row.highlights,
+      attributionLabel: attributionLabelForSource(row.sourceName, row.sourceLicense),
+    })),
     mistakes: mistakes.map((row) => ({
       ...row,
       errorType: row.errorType as GrammarErrorType,
@@ -441,17 +476,28 @@ export async function listGrammarTopicExamples(
   if (!topic) {
     return [];
   }
-  return db
+  const rows = await db
     .select({
       id: grammarExamples.id,
       sentenceEn: grammarExamples.sentenceEn,
       sentenceVi: grammarExamples.sentenceVi,
       highlights: grammarExamples.highlights,
+      sourceName: contentSources.name,
+      sourceLicense: contentSources.licenseCode,
     })
     .from(grammarExamples)
+    .leftJoin(contentSources, eq(grammarExamples.sourceId, contentSources.id))
     .where(eq(grammarExamples.topicId, topic.id))
     .orderBy(asc(grammarExamples.createdAt))
     .limit(limit);
+
+  return rows.map((row) => ({
+    id: row.id,
+    sentenceEn: row.sentenceEn,
+    sentenceVi: row.sentenceVi,
+    highlights: row.highlights,
+    attributionLabel: attributionLabelForSource(row.sourceName, row.sourceLicense),
+  }));
 }
 
 /**
@@ -633,5 +679,75 @@ export async function listUserGrammarProgress(
       bestQuizScore: Number.isFinite(bestScore) ? bestScore : null,
       status,
     };
+  });
+}
+
+/**
+ * Prompt 4: next-topic suggestions — prerequisites mastery ≥ 0.8, CEFR fit,
+ * prioritize weak / not-started. Uses Server Actions / RSC (no `/api/grammar/*`).
+ */
+export async function listGrammarRecommendations(
+  userId: string,
+  userCefrLevel: CefrLevel | null,
+  limit = 4,
+): Promise<GrammarRecommendation[]> {
+  const [topicRows, progressRows, prereqRows] = await Promise.all([
+    db
+      .select({
+        id: grammarTopics.id,
+        slug: grammarTopics.slug,
+        titleEn: grammarTopics.titleEn,
+        titleVi: grammarTopics.titleVi,
+        level: grammarTopics.level,
+        summaryVi: grammarTopics.summaryVi,
+        orderIndex: grammarTopics.orderIndex,
+      })
+      .from(grammarTopics)
+      .where(publishedTopicFilter)
+      .orderBy(asc(grammarTopics.orderIndex)),
+    db
+      .select({
+        topicId: userGrammarProgress.topicId,
+        masteryScore: userGrammarProgress.masteryScore,
+      })
+      .from(userGrammarProgress)
+      .where(eq(userGrammarProgress.userId, userId)),
+    db
+      .select({
+        fromTopicId: grammarTopicRelations.fromTopicId,
+        toTopicId: grammarTopicRelations.toTopicId,
+      })
+      .from(grammarTopicRelations)
+      .where(eq(grammarTopicRelations.relationType, "prerequisite")),
+  ]);
+
+  const masteryByTopicId = new Map(
+    progressRows.map(
+      (row) => [row.topicId, Number(row.masteryScore)] as const,
+    ),
+  );
+
+  const prereqsByTopicId = new Map<string, string[]>();
+  for (const row of prereqRows) {
+    const list = prereqsByTopicId.get(row.toTopicId) ?? [];
+    list.push(row.fromTopicId);
+    prereqsByTopicId.set(row.toTopicId, list);
+  }
+
+  const recommendable: RecommendableTopic[] = topicRows.map((row) => ({
+    id: row.id,
+    slug: row.slug,
+    titleEn: row.titleEn,
+    titleVi: row.titleVi,
+    level: row.level,
+    summaryVi: row.summaryVi,
+    orderIndex: row.orderIndex,
+    masteryScore: masteryByTopicId.get(row.id) ?? 0,
+    prerequisiteIds: prereqsByTopicId.get(row.id) ?? [],
+  }));
+
+  return rankGrammarRecommendations(recommendable, {
+    userCefrLevel,
+    limit,
   });
 }

@@ -36,9 +36,15 @@ The Phase 03 listening-audio gap closed in Phase 10 (2026-09-15): real TTS MP3s 
 
 **Phase 14 (2026-09-15, done)**: Vitest (24 tests: quiz engine, streak, Zod schemas) + Playwright 8 critical flows on `english_learning_test` (chromium + 390px mobile = 12 runs). Full README (§39), [docs/definition-of-done.md](docs/definition-of-done.md), CI workflow. Scripts: `npm run test`, `test:e2e:prepare`, `test:e2e`. Tag `v1.0.0-phase1` after the phase commit. Full detail in [phase-14-testing-release.md](docs/plan/phase-14-testing-release.md#xác-minh-2026-09-15).
 
-**Phase 16 (2026-09-15, Prompt 1–3 done)**: Grammar schema v3 + learner-safe data
-layer + UI tabs / practice route. Exercises stay on shared `QuizRunner`. Detail:
-[phase-16-grammar-schema-v3.md](docs/plan/phase-16-grammar-schema-v3.md).
+**Phase 16 (2026-09-16, Prompt 1–4 + license research done)**: Grammar schema v3 +
+learner-safe data layer + UI tabs / practice + recommendations. Dataset license
+table: [grammar-dataset-license-research.md](docs/research/grammar-dataset-license-research.md).
+Detail: [phase-16-grammar-schema-v3.md](docs/plan/phase-16-grammar-schema-v3.md).
+
+**Phase 17 (2026-09-16, done)**: Grammar catalog expanded to **17** published topics;
+`content_sources` for CEFR-J / Tatoeba / TALPCo; ~76% of new-topic examples attributed;
+Ví dụ tab shows source captions. `db:seed` ×2 idempotent (topics=17 both runs). Detail:
+[phase-17-grammar-content.md](docs/plan/phase-17-grammar-content.md).
 
 > Update this section every time a phase is completed or started. Format:
 > `- [x] Phase 01 — Foundation (done YYYY-MM-DD)`
@@ -59,7 +65,8 @@ layer + UI tabs / practice route. Exercises stay on shared `QuizRunner`. Detail:
 - [x] Phase 13 — Settings & Polish (done 2026-09-15)
 - [x] Phase 14 — Testing & Release (done 2026-09-15)
 - [x] Phase 15 — Grammar Practice+ (done 2026-09-15)
-- [x] Phase 16 — Grammar Schema v3 Prompt 1–3 (done 2026-09-15)
+- [x] Phase 16 — Grammar Schema v3 Prompt 1–4 (done 2026-09-16)
+- [x] Phase 17 — Grammar Content Expansion (done 2026-09-16)
 
 Before starting a phase, read its file in `docs/plan/phase-NN-*.md`. Before ending a phase, run its **Exit Gate** (see `docs/plan/README.md`) and tick its checkboxes in that phase file, then update this section.
 
@@ -143,3 +150,48 @@ npx tsc --noEmit && npm run lint && npm run build && npm run test && docker comp
 ```
 
 Add `npm run db:generate && npm run db:migrate && npm run db:seed` if the phase touched the schema. Do not move to the next phase with a broken build.
+
+<!-- gitnexus:start -->
+# GitNexus — Code Intelligence
+
+This project is indexed by GitNexus as **english-flow** (3166 symbols, 6383 relationships, 226 execution flows).
+
+> Index stale? Run `node .gitnexus/run.cjs analyze --index-only` from the project root — it auto-selects an available runner. No `.gitnexus/run.cjs` yet? Bootstrap with `npx`, `bunx`, or `pnpm dlx` — e.g. `bunx gitnexus@latest analyze` (npm 11 npx crash; #1939).
+
+## Always Do
+
+- **MUST run impact before editing.** Use `impact({target: "symbolName", direction: "upstream"})` or `node .gitnexus/run.cjs impact "symbolName" --direction upstream --repo .`; report callers, processes, and risk. Never substitute grep for graph analysis.
+- **MUST analyze graph changes before committing.** Use `detect_changes({scope: "all"})` (MCP) or `node .gitnexus/run.cjs detect-changes --scope all --repo .` (CLI fallback). `partial: true` or `truncated: true` is not a clean check — a zero means unseen, not unaffected; re-run it. For regression review: `detect_changes({scope: "compare", base_ref: "main"})` or `node .gitnexus/run.cjs detect-changes --scope compare --base-ref "main" --repo .`.
+- MUST warn on HIGH/CRITICAL `risk` pre-edit; never use `riskSharedAxes` to waive a HIGH/CRITICAL `risk` warning. Compare File/symbol: MCP File omits axes; Graph-RAG expands File.
+- **MUST treat `risk: UNKNOWN` as unresolved, not as low.** An empty caller set is not evidence the symbol is unused — it can also mean the callers are not resolvable by the index (plain-object property access, dynamic dispatch, cross-language calls). `impact` pairs `UNKNOWN` with a `riskNote` saying so. Confirm with a text search before treating the symbol as safe to change or delete; do not proceed on the strength of a zero.
+- **MUST use `query({search_query: "concept"})` for concepts/flows, `context({name: "symbolName"})` for a named symbol, or `impact` for blast radius, on read-only callers, dependencies, imports, or execution flow.** Graph first; text search only for empty/`UNKNOWN`/literals.
+- For security review, `explain({target: "fileOrSymbol"})` lists taint findings (source→sink flows; needs `analyze --pdg`).
+
+## Never Do
+
+- NEVER edit a function, class, or method before MCP/CLI impact analysis.
+- NEVER ignore HIGH or CRITICAL risk warnings from impact analysis, and never read `UNKNOWN` as an all-clear — it means the walk could not answer, which is the one verdict that requires confirming by other means.
+- NEVER rename symbols with find-and-replace — use `rename` which understands the call graph.
+- NEVER commit before MCP/CLI graph change analysis.
+
+## Resources
+
+| Resource | Use for |
+| --- | --- |
+| `gitnexus://repo/english-flow/context` | Codebase overview, check index freshness |
+| `gitnexus://repo/english-flow/clusters` | All functional areas |
+| `gitnexus://repo/english-flow/processes` | All execution flows |
+| `gitnexus://repo/english-flow/process/{name}` | Step-by-step execution trace |
+
+## CLI
+
+| Task | Read this skill file |
+| --- | --- |
+| Understand architecture / "How does X work?" | `.claude/skills/gitnexus-exploring/SKILL.md` |
+| Blast radius / "What breaks if I change X?" | `.claude/skills/gitnexus-impact-analysis/SKILL.md` |
+| Trace bugs / "Why is X failing?" | `.claude/skills/gitnexus-debugging/SKILL.md` |
+| Rename / extract / split / refactor | `.claude/skills/gitnexus-refactoring/SKILL.md` |
+| Tools, resources, schema reference | `.claude/skills/gitnexus-guide/SKILL.md` |
+| Index, status, clean, wiki CLI commands | `.claude/skills/gitnexus-cli/SKILL.md` |
+
+<!-- gitnexus:end -->

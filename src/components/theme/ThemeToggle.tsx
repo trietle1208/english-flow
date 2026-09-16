@@ -18,8 +18,8 @@ const OPTIONS = [
 ] as const;
 
 /**
- * Light / Dark / System toggle (spec §29). Lives in `UserMenu` for now and
- * is reused as-is on `/settings` in Phase 13.
+ * Light (blue) / Dark (mono) / System (warm green) toggle.
+ * `system` is a fixed palette class, not OS preference.
  */
 export function ThemeToggle() {
   const { theme, setTheme } = useTheme();
@@ -28,7 +28,7 @@ export function ThemeToggle() {
   const [mounted, setMounted] = useState(false);
   useEffect(() => setMounted(true), []);
 
-  const current = OPTIONS.find((option) => option.value === theme) ?? OPTIONS[2];
+  const current = OPTIONS.find((option) => option.value === theme) ?? OPTIONS[0];
   const CurrentIcon = current.icon;
 
   return (

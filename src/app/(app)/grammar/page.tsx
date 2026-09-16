@@ -5,6 +5,7 @@ import { isCefrLevel } from "@/config/cefr";
 import { isGrammarTopicCategory } from "@/features/grammar/categories";
 import { GrammarFilters } from "@/features/grammar/components/GrammarFilters";
 import { GrammarGridSkeleton } from "@/features/grammar/components/GrammarGridSkeleton";
+import { GrammarRecommendations } from "@/features/grammar/components/GrammarRecommendations";
 import { GrammarTopicList } from "@/features/grammar/components/GrammarTopicList";
 import {
   isGrammarStatusFilter,
@@ -61,6 +62,14 @@ export default async function GrammarPage({ searchParams }: GrammarPageProps) {
         title="Ngữ pháp"
         description="Học quy tắc, xem ví dụ và luyện tập từng câu — tiến độ lưu theo từng chủ điểm."
       />
+
+      <Suspense
+        fallback={
+          <div className="h-40 animate-pulse rounded-lg bg-muted" aria-hidden="true" />
+        }
+      >
+        <GrammarRecommendations userId={user.id} userCefrLevel={user.cefrLevel} />
+      </Suspense>
 
       <Suspense
         fallback={

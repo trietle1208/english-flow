@@ -63,6 +63,9 @@ export function GrammarExamples({ items }: GrammarExamplesProps) {
             ) : (
               <p className="mt-1 text-sm italic text-muted-foreground/70">Nghĩa đã ẩn</p>
             )}
+            {item.attributionLabel ? (
+              <p className="mt-2 text-xs text-muted-foreground/80">{item.attributionLabel}</p>
+            ) : null}
           </li>
         ))}
       </ul>

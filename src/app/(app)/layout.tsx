@@ -3,6 +3,7 @@ import { requireUser } from "@/lib/session";
 import { Sidebar } from "@/components/layout/Sidebar";
 import { AppHeader } from "@/components/layout/AppHeader";
 import { MobileNav } from "@/components/layout/MobileNav";
+import { AddVocabularyFab } from "@/features/vocabulary/components/AddVocabularyFab";
 
 /**
  * Shared shell for every authenticated route (spec §4). `requireUser()` here
@@ -25,6 +26,7 @@ export default async function AppLayout({ children }: { children: ReactNode }) {
       <AppHeader user={user} />
       <main className="min-h-screen pb-16 md:pb-0 md:pl-[72px] lg:pl-64">{children}</main>
       <MobileNav />
+      <AddVocabularyFab />
     </div>
   );
 }

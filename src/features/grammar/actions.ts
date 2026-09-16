@@ -1,9 +1,11 @@
 "use server";
 
+import { isCefrLevel } from "@/config/cefr";
 import { requireUser } from "@/lib/session";
 import {
   getGrammarTopicDetailBySlug,
   getGrammarTopicExercisesForLearner,
+  listGrammarRecommendations,
   listGrammarTopicExamples,
   listGrammarTopicsPage,
   listUserGrammarProgress,
@@ -12,6 +14,7 @@ import {
   type GrammarSearchHit,
 } from "./queries";
 import { learnerPayloadContainsAnswerLeak, type ExerciseForLearner } from "./learner";
+import type { GrammarRecommendation } from "./recommendations";
 import type { GrammarExampleView, GrammarTopicDetail, GrammarTopicListItem } from "./types";
 
 type ActionResult<T> = { ok: true; data: T } | { ok: false; error: string };
@@ -103,6 +106,23 @@ export async function getGrammarProgressAction(): Promise<
   try {
     const user = await requireUser();
     const data = await listUserGrammarProgress(user.id);
+    return { ok: true, data };
+  } catch {
+    return { ok: false, error: GENERIC_ERROR };
+  }
+}
+
+/** Prompt 4 — next topics by prerequisite mastery + CEFR + weak priority. */
+export async function getGrammarRecommendationsAction(
+  limit = 4,
+): Promise<ActionResult<GrammarRecommendation[]>> {
+  try {
+    const user = await requireUser();
+    const cefrLevel =
+      typeof user.cefrLevel === "string" && isCefrLevel(user.cefrLevel)
+        ? user.cefrLevel
+        : null;
+    const data = await listGrammarRecommendations(user.id, cefrLevel, limit);
     return { ok: true, data };
   } catch {
     return { ok: false, error: GENERIC_ERROR };

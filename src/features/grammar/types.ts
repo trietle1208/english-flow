@@ -40,6 +40,8 @@ export type GrammarExampleView = {
   sentenceEn: string;
   sentenceVi: string;
   highlights: GrammarExampleHighlight[];
+  /** Short caption when example is from an attributed external source. */
+  attributionLabel: string | null;
 };
 
 export type GrammarMistakeView = {
