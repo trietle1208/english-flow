@@ -37,7 +37,7 @@ export default async function GrammarTopicPage({ params }: GrammarTopicPageProps
   }
 
   return (
-    <div className="mx-auto flex max-w-3xl flex-col gap-8 px-4 py-8 sm:px-6 lg:px-8">
+    <div className="flex w-full flex-col gap-8 px-4 py-8 sm:px-6 lg:px-8">
       <div className="space-y-3">
         <PageHeader title={topic.titleVi} description={topic.summary} />
         <p className="text-sm text-muted-foreground">{topic.titleEn}</p>

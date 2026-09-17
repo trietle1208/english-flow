@@ -44,7 +44,7 @@ export default async function ListeningLessonPage({ params }: ListeningLessonPag
   }
 
   return (
-    <div className="mx-auto flex w-full max-w-3xl flex-col gap-8 px-4 py-8 sm:px-6 lg:px-8">
+    <div className="flex w-full flex-col gap-8 px-4 py-8 sm:px-6 lg:px-8">
       <div className="space-y-3">
         <PageHeader title={lesson.title} />
         <div className="flex flex-wrap items-center gap-2">

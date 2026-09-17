@@ -36,7 +36,7 @@ export default async function SettingsPage() {
   };
 
   return (
-    <div className="mx-auto flex max-w-5xl flex-col gap-8 px-4 py-8 sm:px-6 lg:px-8">
+    <div className="flex w-full flex-col gap-8 px-4 py-8 sm:px-6 lg:px-8">
       <PageHeader
         title="Settings"
         description="Update your profile, learning goals, and how EnglishFlow looks."

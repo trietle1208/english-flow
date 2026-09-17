@@ -1,12 +1,16 @@
 import { Suspense } from "react";
 import type { Metadata } from "next";
+import Link from "next/link";
+import { Briefcase, Layers } from "lucide-react";
 import { PageHeader } from "@/components/shared/PageHeader";
+import { Button } from "@/components/ui/button";
 import { requireUser } from "@/lib/session";
 import { VocabularyFilters } from "@/features/vocabulary/components/VocabularyFilters";
 import { VocabularyGridSkeleton } from "@/features/vocabulary/components/VocabularyGridSkeleton";
 import { VocabularyList } from "@/features/vocabulary/components/VocabularyList";
 import { VocabularyStats } from "@/features/vocabulary/components/VocabularyStats";
-import { getVocabularyStats } from "@/features/vocabulary/queries";
+import { formatReviewDueLabel } from "@/features/vocabulary/schedule";
+import { getFlashcardDueInfo, getVocabularyStats } from "@/features/vocabulary/queries";
 
 export const metadata: Metadata = {
   title: "My Vocabulary",
@@ -16,6 +20,7 @@ type VocabularyPageProps = {
   searchParams: Promise<{
     search?: string;
     filter?: string;
+    pos?: string;
     sort?: string;
     page?: string;
   }>;
@@ -28,20 +33,56 @@ type VocabularyPageProps = {
 export default async function VocabularyPage({ searchParams }: VocabularyPageProps) {
   const user = await requireUser();
   const params = await searchParams;
-  const stats = await getVocabularyStats(user.id);
+  const [stats, dueInfo] = await Promise.all([
+    getVocabularyStats(user.id),
+    getFlashcardDueInfo(user.id),
+  ]);
 
   const suspenseKey = [
     params.search ?? "",
     params.filter ?? "all",
+    params.pos ?? "all",
     params.sort ?? "recent",
     params.page ?? "1",
   ].join("|");
 
+  const flashcardAction =
+    dueInfo.totalSaved === 0 ? null : dueInfo.dueCount > 0 ? (
+      <Button asChild>
+        <Link href="/vocabulary/review">
+          <Layers className="size-4" aria-hidden="true" />
+          Study flashcards ({dueInfo.dueCount} due)
+        </Link>
+      </Button>
+    ) : (
+      <Button asChild variant="outline">
+        <Link href="/vocabulary/review">
+          <Layers className="size-4" aria-hidden="true" />
+          {dueInfo.nextReviewAt
+            ? `Caught up · ${formatReviewDueLabel(dueInfo.nextReviewAt)}`
+            : "Caught up"}
+        </Link>
+      </Button>
+    );
+
+  const headerActions = (
+    <div className="flex flex-wrap items-center gap-2">
+      <Button asChild variant="outline">
+        <Link href="/vocabulary/toeic">
+          <Briefcase className="size-4" aria-hidden="true" />
+          Từ vựng TOEIC
+        </Link>
+      </Button>
+      {flashcardAction}
+    </div>
+  );
+
   return (
-    <div className="mx-auto flex max-w-5xl flex-col gap-8 px-4 py-8 sm:px-6 lg:px-8">
+    <div className="flex w-full flex-col gap-8 px-4 py-8 sm:px-6 lg:px-8">
       <PageHeader
         title="My Vocabulary"
         description="Words you've saved from lessons or added yourself — search, filter, and mark as learned."
+        actions={headerActions}
       />
 
       <VocabularyStats stats={stats} />
@@ -62,6 +103,7 @@ export default async function VocabularyPage({ searchParams }: VocabularyPagePro
           userId={user.id}
           search={params.search}
           filter={params.filter}
+          pos={params.pos}
           sort={params.sort}
           page={params.page}
         />

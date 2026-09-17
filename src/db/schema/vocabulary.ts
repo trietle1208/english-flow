@@ -39,6 +39,16 @@ export const vocabularies = pgTable(
     /** Static file in `public/audio/vocab/*.mp3`; null falls back to the Web Speech API client-side (AD-04). */
     audioUrl: text("audio_url"),
     difficulty: difficultyEnum("difficulty").notNull(),
+    /**
+     * Curated catalog tag for browseable lists (e.g. `"toeic"`).
+     * Null = general lesson/catalog vocabulary. Manual rows stay null.
+     */
+    catalogSource: text("catalog_source"),
+    /**
+     * Topic slug within a curated catalog (e.g. TOEIC `"office"` / `"hr"`).
+     * Null for general / manual vocabulary.
+     */
+    topic: text("topic"),
     /** True when the learner created this row via the global Add Word UI. */
     isManual: boolean("is_manual").notNull().default(false),
     /** Owner of a manual row; null for catalog/seed vocabulary. */
@@ -49,6 +59,8 @@ export const vocabularies = pgTable(
   },
   (table) => [
     index("vocabularies_word_idx").on(table.word),
+    index("vocabularies_catalog_source_idx").on(table.catalogSource),
+    index("vocabularies_catalog_source_topic_idx").on(table.catalogSource, table.topic),
     uniqueIndex("vocabularies_catalog_word_unique")
       .on(table.word)
       .where(sql`${table.isManual} = false`),
@@ -82,7 +94,7 @@ export const lessonVocabularies = pgTable(
   ],
 );
 
-/** A user's personal relationship to one word: saved, learned, and (columns only, no logic yet — AD-02/§16/§35) spaced-repetition bookkeeping. */
+/** A user's personal relationship to one word: saved, learned, and spaced-repetition bookkeeping (light SRS via flashcards). */
 export const userVocabularies = pgTable(
   "user_vocabularies",
   {
@@ -95,9 +107,11 @@ export const userVocabularies = pgTable(
       .references(() => vocabularies.id, { onDelete: "cascade" }),
     savedAt: timestamp("saved_at", { withTimezone: true }).notNull().defaultNow(),
     isLearned: boolean("is_learned").notNull().default(false),
+    /** Learner-starred priority words for quick filtering. */
+    isPinned: boolean("is_pinned").notNull().default(false),
     learnedAt: timestamp("learned_at", { withTimezone: true }),
     lastReviewedAt: timestamp("last_reviewed_at", { withTimezone: true }),
-    // Reserved for a future Spaced Repetition feature — no SRS logic in Phase 1 (spec §16, §35).
+    // Reserved for spaced repetition — filled by flashcard `rateFlashcard` (v2 light SRS).
     reviewCount: integer("review_count").notNull().default(0),
     nextReviewAt: timestamp("next_review_at", { withTimezone: true }),
     ...timestamps,
@@ -105,5 +119,6 @@ export const userVocabularies = pgTable(
   (table) => [
     unique("user_vocabularies_user_vocab_unique").on(table.userId, table.vocabularyId),
     index("user_vocabularies_user_learned_idx").on(table.userId, table.isLearned),
+    index("user_vocabularies_user_pinned_idx").on(table.userId, table.isPinned),
   ],
 );

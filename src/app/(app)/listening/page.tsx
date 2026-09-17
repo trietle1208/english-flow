@@ -16,7 +16,7 @@ export default async function ListeningPage() {
   const user = await requireUser();
 
   return (
-    <div className="mx-auto flex max-w-5xl flex-col gap-8 px-4 py-8 sm:px-6 lg:px-8">
+    <div className="flex w-full flex-col gap-8 px-4 py-8 sm:px-6 lg:px-8">
       <PageHeader
         title="Listening"
         description="Practice real conversations with audio, transcripts, and comprehension checks."

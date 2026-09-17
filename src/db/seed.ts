@@ -50,6 +50,12 @@ import { listeningLessonsSeed } from "@/db/seed-data/listening";
 import { placementTestQuestionsSeed, placementTestSeed } from "@/db/seed-data/placement-test";
 import { coursePracticeQuizzes, grammarCourseOnlyQuizzes, type QuizSeed } from "@/db/seed-data/quizzes";
 import { vocabularySeed } from "@/db/seed-data/vocabulary";
+import {
+  TOEIC_CATALOG_SOURCE,
+  TOEIC_TSL_ATTRIBUTION,
+  toeicVocabularySeed,
+} from "@/db/seed-data/toeic-vocabulary";
+import { toeicVocabularyExtraSeed } from "@/db/seed-data/toeic-vocabulary-extra";
 
 /** `INSERT ... RETURNING` always returns a row here (we just upserted it) — this just satisfies strict TS. */
 function firstOrThrow<T>(rows: T[], context: string): T {
@@ -157,11 +163,88 @@ async function seedVocabulary(): Promise<Map<string, string>> {
         // `audioUrl` is intentionally NOT overwritten here — if a real mp3
         // is added under `public/audio/vocab/` and the DB updated by hand
         // later, reseeding must not wipe it back to null.
+        // `catalogSource` is left alone so TOEIC tags from a later seed
+        // pass are not cleared when general vocab reseeds.
       },
     })
     .returning({ id: vocabularies.id, word: vocabularies.word });
 
-  return new Map(rows.map((row) => [row.word, row.id]));
+  const wordToId = new Map(rows.map((row) => [row.word, row.id]));
+
+  await seedToeicVocabulary(wordToId);
+  return wordToId;
+}
+
+/** Upserts the curated TOEIC catalog subset and records TSL provenance. */
+async function seedToeicVocabulary(wordToId: Map<string, string>): Promise<void> {
+  const [existingSource] = await db
+    .select({ id: contentSources.id })
+    .from(contentSources)
+    .where(eq(contentSources.name, TOEIC_TSL_ATTRIBUTION.name))
+    .limit(1);
+
+  if (existingSource) {
+    await db
+      .update(contentSources)
+      .set({
+        url: TOEIC_TSL_ATTRIBUTION.url,
+        licenseCode: TOEIC_TSL_ATTRIBUTION.licenseCode,
+        attributionText: TOEIC_TSL_ATTRIBUTION.attributionText,
+        sourceVersion: TOEIC_TSL_ATTRIBUTION.sourceVersion,
+        updatedAt: new Date(),
+      })
+      .where(eq(contentSources.id, existingSource.id));
+  } else {
+    await db.insert(contentSources).values({
+      name: TOEIC_TSL_ATTRIBUTION.name,
+      url: TOEIC_TSL_ATTRIBUTION.url,
+      licenseCode: TOEIC_TSL_ATTRIBUTION.licenseCode,
+      attributionText: TOEIC_TSL_ATTRIBUTION.attributionText,
+      sourceVersion: TOEIC_TSL_ATTRIBUTION.sourceVersion,
+    });
+  }
+
+  const existingCatalogWords = new Set(wordToId.keys());
+  const toeicRows = [...toeicVocabularySeed, ...toeicVocabularyExtraSeed].filter(
+    (row) => !existingCatalogWords.has(row.word),
+  );
+
+  if (toeicRows.length === 0) {
+    return;
+  }
+
+  const inserted = await db
+    .insert(vocabularies)
+    .values(
+      toeicRows.map((row) => ({
+        ...row,
+        catalogSource: TOEIC_CATALOG_SOURCE,
+        isManual: false as const,
+        createdByUserId: null,
+      })),
+    )
+    .onConflictDoUpdate({
+      target: vocabularies.word,
+      targetWhere: sql`${vocabularies.isManual} = false`,
+      set: {
+        pronunciation: sql`excluded.pronunciation`,
+        phonetic: sql`excluded.phonetic`,
+        partOfSpeech: sql`excluded.part_of_speech`,
+        meaning: sql`excluded.meaning`,
+        exampleSentence: sql`excluded.example_sentence`,
+        difficulty: sql`excluded.difficulty`,
+        catalogSource: TOEIC_CATALOG_SOURCE,
+        topic: sql`excluded.topic`,
+        isManual: false,
+        createdByUserId: null,
+        updatedAt: new Date(),
+      },
+    })
+    .returning({ id: vocabularies.id, word: vocabularies.word });
+
+  for (const row of inserted) {
+    wordToId.set(row.word, row.id);
+  }
 }
 
 /**
@@ -701,7 +784,7 @@ async function printSummary() {
 }
 
 async function main() {
-  console.log("Seeding vocabulary...");
+  console.log("Seeding vocabulary (+ TOEIC catalog)...");
   const wordToVocabId = await seedVocabulary();
 
   const quizSlugToId = new Map<string, string>();

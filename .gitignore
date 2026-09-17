@@ -41,6 +41,9 @@ yarn-error.log*
 .env.local
 .env.*.local
 
+# local seed-generation cache
+scripts/.toeic-extra-cache.json
+
 # vercel
 .vercel
 

@@ -56,7 +56,7 @@ export default async function LessonPage({ params }: LessonPageProps) {
   const isCompleted = lesson.progressStatus === "completed";
 
   return (
-    <div className="mx-auto flex max-w-3xl flex-col gap-8 px-4 py-8 sm:px-6 lg:px-8">
+    <div className="flex w-full flex-col gap-8 px-4 py-8 sm:px-6 lg:px-8">
       <LessonHeader
         courseId={lesson.courseId}
         courseTitle={lesson.courseTitle}

@@ -32,7 +32,7 @@ export default async function PlacementTestPage() {
       : null;
 
   return (
-    <div className="mx-auto flex w-full max-w-3xl flex-col px-4 py-8 sm:px-6 lg:px-8">
+    <div className="flex w-full flex-col px-4 py-8 sm:px-6 lg:px-8">
       <PlacementTestSession test={test} previousLevel={previousLevel} />
     </div>
   );

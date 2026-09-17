@@ -46,7 +46,7 @@ export default async function CourseDetailPage({ params }: CourseDetailPageProps
     course.lessonCount > 0 && course.completedLessons >= course.lessonCount;
 
   return (
-    <div className="mx-auto flex max-w-3xl flex-col gap-8 px-4 py-8 sm:px-6 lg:px-8">
+    <div className="flex w-full flex-col gap-8 px-4 py-8 sm:px-6 lg:px-8">
       <div className="space-y-4">
         <PageHeader
           title={course.title}

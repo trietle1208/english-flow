@@ -37,7 +37,7 @@ export default async function QuizResultPage({ params, searchParams }: QuizResul
     from && from.startsWith("/") && !from.startsWith("//") ? from : "/courses";
 
   return (
-    <div className="mx-auto flex w-full max-w-3xl flex-col gap-8 px-4 py-8 sm:px-6 lg:px-8">
+    <div className="flex w-full flex-col gap-8 px-4 py-8 sm:px-6 lg:px-8">
       <QuizResultSummary
         score={detail.score}
         correctCount={detail.correctCount}

@@ -20,7 +20,7 @@ export default async function QuizIndexPage() {
   const quizzes = await listQuizzes();
 
   return (
-    <div className="mx-auto flex max-w-5xl flex-col gap-8 px-4 py-8 sm:px-6 lg:px-8">
+    <div className="flex w-full flex-col gap-8 px-4 py-8 sm:px-6 lg:px-8">
       <PageHeader
         title="Quiz"
         description="Practice with multiple choice, true/false, and fill-in-the-blank."

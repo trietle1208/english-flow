@@ -57,7 +57,7 @@ export default async function GrammarPage({ searchParams }: GrammarPageProps) {
   ].join("|");
 
   return (
-    <div className="mx-auto flex max-w-5xl flex-col gap-8 px-4 py-8 sm:px-6 lg:px-8">
+    <div className="flex w-full flex-col gap-8 px-4 py-8 sm:px-6 lg:px-8">
       <PageHeader
         title="Ngữ pháp"
         description="Học quy tắc, xem ví dụ và luyện tập từng câu — tiến độ lưu theo từng chủ điểm."

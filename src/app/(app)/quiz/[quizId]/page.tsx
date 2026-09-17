@@ -33,7 +33,7 @@ export default async function QuizPage({ params, searchParams }: QuizPageProps) 
     from && from.startsWith("/") && !from.startsWith("//") ? from : undefined;
 
   return (
-    <div className="mx-auto flex w-full max-w-3xl flex-col gap-8 px-4 py-8 sm:px-6 lg:px-8">
+    <div className="flex w-full flex-col gap-8 px-4 py-8 sm:px-6 lg:px-8">
       <PageHeader title={quiz.title} description={quiz.description} />
       <QuizRunner quiz={quiz} returnTo={returnTo} hideTitle />
     </div>

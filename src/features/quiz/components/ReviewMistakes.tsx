@@ -57,12 +57,25 @@ export function ReviewMistakes({ answers, mistakesOnly = true }: ReviewMistakesP
               </p>
               <p className="text-sm">
                 <span className="text-muted-foreground">Your answer: </span>
-                {item.userAnswerLabel || "—"}
+                <span
+                  className={cn(
+                    "rounded px-1.5 py-0.5 font-medium",
+                    item.isCorrect
+                      ? "bg-emerald-500/15 text-emerald-700 dark:text-emerald-400"
+                      : "bg-destructive/15 text-destructive line-through decoration-destructive/60",
+                  )}
+                >
+                  {item.userAnswerLabel || "—"}
+                </span>
               </p>
-              <p className="text-sm">
-                <span className="text-muted-foreground">Correct answer: </span>
-                {item.correctAnswerLabel || "—"}
-              </p>
+              {!item.isCorrect ? (
+                <p className="text-sm">
+                  <span className="text-muted-foreground">Correct answer: </span>
+                  <span className="rounded bg-emerald-500/15 px-1.5 py-0.5 font-medium text-emerald-700 dark:text-emerald-400">
+                    {item.correctAnswerLabel || "—"}
+                  </span>
+                </p>
+              ) : null}
               {item.explanation ? (
                 <p className="text-sm text-muted-foreground">{item.explanation}</p>
               ) : null}

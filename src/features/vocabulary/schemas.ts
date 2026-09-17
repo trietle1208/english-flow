@@ -17,13 +17,51 @@ export const vocabularyIdSchema = z.object({
   vocabularyId: z.string().uuid(),
 });
 
+export const flashcardRatingSchema = z.object({
+  vocabularyId: z.string().uuid(),
+  rating: z.enum(["again", "good"]),
+});
+
 export const toggleLearnedSchema = z.object({
   vocabularyId: z.string().uuid(),
   isLearned: z.boolean(),
 });
 
-export const vocabularyFilterSchema = z.enum(["all", "recent", "learned", "not_learned"]);
-export const vocabularySortSchema = z.enum(["recent", "alphabetical", "most_reviewed"]);
+export const togglePinnedSchema = z.object({
+  vocabularyId: z.string().uuid(),
+  isPinned: z.boolean(),
+});
+
+export const vocabularyFilterSchema = z.enum([
+  "all",
+  "recent",
+  "learned",
+  "not_learned",
+  "manual",
+  "pinned",
+]);
+
+export const vocabularyPosSchema = z.enum([
+  "all",
+  "noun",
+  "verb",
+  "adjective",
+  "adverb",
+  "pronoun",
+  "preposition",
+  "conjunction",
+  "interjection",
+  "phrase",
+  "phrasal_verb",
+]);
+
+export const vocabularySortSchema = z.enum([
+  "recent",
+  "alphabetical",
+  "most_reviewed",
+  "difficulty",
+  "difficulty_desc",
+]);
 
 export const createManualVocabularySchema = z.object({
   word: z
@@ -57,3 +95,9 @@ export const createManualVocabularySchema = z.object({
 });
 
 export type CreateManualVocabularyInput = z.infer<typeof createManualVocabularySchema>;
+
+export const updateManualVocabularySchema = createManualVocabularySchema.extend({
+  vocabularyId: z.string().uuid(),
+});
+
+export type UpdateManualVocabularyInput = z.infer<typeof updateManualVocabularySchema>;

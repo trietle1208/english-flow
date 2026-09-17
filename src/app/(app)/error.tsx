@@ -20,7 +20,7 @@ export default function AppError({
   }, [error]);
 
   return (
-    <div className="mx-auto flex max-w-5xl items-center justify-center px-4 py-24 sm:px-6 lg:px-8">
+    <div className="flex w-full items-center justify-center px-4 py-24 sm:px-6 lg:px-8">
       <ErrorState reset={reset} />
     </div>
   );

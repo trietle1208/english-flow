@@ -19,7 +19,7 @@ export default function LessonError({
   }, [error]);
 
   return (
-    <div className="mx-auto flex max-w-3xl items-center justify-center px-4 py-24 sm:px-6 lg:px-8">
+    <div className="flex w-full items-center justify-center px-4 py-24 sm:px-6 lg:px-8">
       <ErrorState
         reset={reset}
         title="Something went wrong loading this lesson. Please try again."

@@ -1,6 +1,6 @@
 "use server";
 
-import { and, eq, sql } from "drizzle-orm";
+import { and, eq, ne, sql } from "drizzle-orm";
 import { revalidatePath } from "next/cache";
 import { db } from "@/db";
 import { userDailyActivity, userVocabularies, vocabularies } from "@/db/schema";
@@ -11,10 +11,16 @@ import { requireUser } from "@/lib/session";
 import { logger } from "@/lib/logger";
 import {
   createManualVocabularySchema,
+  flashcardRatingSchema,
   toggleLearnedSchema,
+  togglePinnedSchema,
+  updateManualVocabularySchema,
   vocabularyIdSchema,
   type CreateManualVocabularyInput,
+  type UpdateManualVocabularyInput,
 } from "./schemas";
+import type { FlashcardRating } from "./types";
+import { scheduleNextReview } from "./schedule";
 
 type ActionResult<T = void> =
   | (T extends void ? { ok: true } : { ok: true; data: T })
@@ -147,6 +153,86 @@ export async function createManualVocabulary(
 }
 
 /**
+ * Update a learner-owned vocabulary row. Catalog (lesson) words are rejected.
+ * Ownership: `is_manual` + `created_by_user_id === user.id`.
+ */
+export async function updateManualVocabulary(
+  input: UpdateManualVocabularyInput,
+): Promise<ActionResult> {
+  const user = await requireUser();
+  const parsed = updateManualVocabularySchema.safeParse(input);
+  if (!parsed.success) {
+    return { ok: false, error: parsed.error.issues[0]?.message ?? GENERIC_ERROR };
+  }
+
+  const word = parsed.data.word.trim();
+  const meaning = parsed.data.meaning.trim();
+  const phonetic = parsed.data.phonetic.trim();
+  const pronunciation =
+    parsed.data.pronunciation?.trim() || phonetic.replace(/^\/|\/$/g, "");
+  const exampleSentence = parsed.data.exampleSentence?.trim() || "";
+
+  try {
+    const [owned] = await db
+      .select({ id: vocabularies.id })
+      .from(vocabularies)
+      .where(
+        and(
+          eq(vocabularies.id, parsed.data.vocabularyId),
+          eq(vocabularies.isManual, true),
+          eq(vocabularies.createdByUserId, user.id),
+        ),
+      )
+      .limit(1);
+
+    if (!owned) {
+      return { ok: false, error: "You can only edit words you added yourself." };
+    }
+
+    const [conflict] = await db
+      .select({ id: vocabularies.id })
+      .from(vocabularies)
+      .where(
+        and(
+          eq(vocabularies.word, word),
+          eq(vocabularies.isManual, true),
+          eq(vocabularies.createdByUserId, user.id),
+          ne(vocabularies.id, parsed.data.vocabularyId),
+        ),
+      )
+      .limit(1);
+
+    if (conflict) {
+      return {
+        ok: false,
+        error: "You've already added another word with this spelling.",
+      };
+    }
+
+    await db
+      .update(vocabularies)
+      .set({
+        word,
+        pronunciation,
+        phonetic,
+        partOfSpeech: parsed.data.partOfSpeech,
+        meaning,
+        exampleSentence,
+        updatedAt: new Date(),
+      })
+      .where(eq(vocabularies.id, parsed.data.vocabularyId));
+
+    revalidatePath("/vocabulary");
+    revalidatePath("/dashboard");
+    revalidatePath("/progress");
+    return { ok: true };
+  } catch (error) {
+    logger.error("updateManualVocabulary failed:", error);
+    return { ok: false, error: GENERIC_ERROR };
+  }
+}
+
+/**
  * Remove a word from the user's personal list. Ownership is enforced by
  * scoping the delete to `user.id` (spec §34) — another user's save is a no-op
  * rejection, not a cross-user delete.
@@ -201,6 +287,46 @@ export async function removeVocabulary(vocabularyId: string): Promise<ActionResu
     return { ok: true };
   } catch (error) {
     logger.error("removeVocabulary failed:", error);
+    return { ok: false, error: GENERIC_ERROR };
+  }
+}
+
+/**
+ * Pin / unpin a saved word for priority filtering. Ownership-scoped.
+ */
+export async function togglePinned(
+  vocabularyId: string,
+  isPinned: boolean,
+): Promise<ActionResult> {
+  const user = await requireUser();
+  const parsed = togglePinnedSchema.safeParse({ vocabularyId, isPinned });
+  if (!parsed.success) {
+    return { ok: false, error: parsed.error.issues[0]?.message ?? GENERIC_ERROR };
+  }
+
+  try {
+    const updated = await db
+      .update(userVocabularies)
+      .set({
+        isPinned: parsed.data.isPinned,
+        updatedAt: new Date(),
+      })
+      .where(
+        and(
+          eq(userVocabularies.userId, user.id),
+          eq(userVocabularies.vocabularyId, parsed.data.vocabularyId),
+        ),
+      )
+      .returning({ id: userVocabularies.id });
+
+    if (updated.length === 0) {
+      return { ok: false, error: "Vocabulary not found in your list." };
+    }
+
+    revalidatePath("/vocabulary");
+    return { ok: true };
+  } catch (error) {
+    logger.error("togglePinned failed:", error);
     return { ok: false, error: GENERIC_ERROR };
   }
 }
@@ -287,6 +413,80 @@ export async function recordVocabularyReview(vocabularyId: string): Promise<Acti
     return { ok: true };
   } catch (error) {
     logger.error("recordVocabularyReview failed:", error);
+    return { ok: false, error: GENERIC_ERROR };
+  }
+}
+
+/**
+ * Self-grade a flashcard during `/vocabulary/review` (v2 light SRS).
+ * Bumps review counters, sets `next_review_at` (Again → now; Good → 1/3/7d),
+ * marks learned on Good / not learned on Again. Ownership-scoped.
+ */
+export async function rateFlashcard(
+  vocabularyId: string,
+  rating: FlashcardRating,
+): Promise<ActionResult<{ nextReviewAt: string; intervalDays: number }>> {
+  const user = await requireUser();
+  const parsed = flashcardRatingSchema.safeParse({ vocabularyId, rating });
+  if (!parsed.success) {
+    return { ok: false, error: parsed.error.issues[0]?.message ?? GENERIC_ERROR };
+  }
+
+  const now = new Date();
+  const knewIt = parsed.data.rating === "good";
+
+  try {
+    const [existing] = await db
+      .select({
+        id: userVocabularies.id,
+        nextReviewAt: userVocabularies.nextReviewAt,
+        lastReviewedAt: userVocabularies.lastReviewedAt,
+      })
+      .from(userVocabularies)
+      .where(
+        and(
+          eq(userVocabularies.userId, user.id),
+          eq(userVocabularies.vocabularyId, parsed.data.vocabularyId),
+        ),
+      )
+      .limit(1);
+
+    if (!existing) {
+      return { ok: false, error: "Vocabulary not found in your list." };
+    }
+
+    const schedule = scheduleNextReview({
+      rating: parsed.data.rating,
+      now,
+      previousNextReviewAt: existing.nextReviewAt,
+      previousLastReviewedAt: existing.lastReviewedAt,
+    });
+
+    await db
+      .update(userVocabularies)
+      .set({
+        reviewCount: sql`${userVocabularies.reviewCount} + 1`,
+        lastReviewedAt: now,
+        nextReviewAt: schedule.nextReviewAt,
+        updatedAt: now,
+        isLearned: knewIt,
+        learnedAt: knewIt ? now : null,
+      })
+      .where(eq(userVocabularies.id, existing.id));
+
+    revalidatePath("/vocabulary");
+    revalidatePath("/vocabulary/review");
+    revalidatePath("/dashboard");
+    revalidatePath("/progress");
+    return {
+      ok: true,
+      data: {
+        nextReviewAt: schedule.nextReviewAt.toISOString(),
+        intervalDays: schedule.intervalDays,
+      },
+    };
+  } catch (error) {
+    logger.error("rateFlashcard failed:", error);
     return { ok: false, error: GENERIC_ERROR };
   }
 }

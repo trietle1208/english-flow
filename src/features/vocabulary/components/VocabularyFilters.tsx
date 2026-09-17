@@ -13,26 +13,44 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import type { VocabularyFilter, VocabularySort } from "../types";
+import type { VocabularyFilter, VocabularyPosFilter, VocabularySort } from "../types";
 
 const SEARCH_DEBOUNCE_MS = 300;
 
 const FILTER_TABS: { value: VocabularyFilter; label: string }[] = [
   { value: "all", label: "All" },
   { value: "recent", label: "Recently Added" },
+  { value: "pinned", label: "Pinned" },
+  { value: "manual", label: "Added by you" },
   { value: "learned", label: "Learned" },
   { value: "not_learned", label: "Not Learned" },
+];
+
+const POS_CHIPS: { value: VocabularyPosFilter; label: string }[] = [
+  { value: "all", label: "All POS" },
+  { value: "noun", label: "Noun" },
+  { value: "verb", label: "Verb" },
+  { value: "adjective", label: "Adjective" },
+  { value: "adverb", label: "Adverb" },
+  { value: "pronoun", label: "Pronoun" },
+  { value: "preposition", label: "Preposition" },
+  { value: "conjunction", label: "Conjunction" },
+  { value: "interjection", label: "Interjection" },
+  { value: "phrase", label: "Phrase" },
+  { value: "phrasal_verb", label: "Phrasal verb" },
 ];
 
 const SORT_OPTIONS: { value: VocabularySort; label: string }[] = [
   { value: "recent", label: "Recently added" },
   { value: "alphabetical", label: "Alphabetical" },
   { value: "most_reviewed", label: "Most reviewed" },
+  { value: "difficulty", label: "Difficulty (easy first)" },
+  { value: "difficulty_desc", label: "Difficulty (hard first)" },
 ];
 
 /**
- * Search + filter tabs + sort. Writes to URL searchParams so the list stays
- * a Server Component and F5 preserves the view (same pattern as courses).
+ * Search + filter tabs + POS chips + sort. Writes to URL searchParams so the
+ * list stays a Server Component and F5 preserves the view.
  */
 export function VocabularyFilters() {
   const router = useRouter();
@@ -42,6 +60,7 @@ export function VocabularyFilters() {
 
   const urlSearch = searchParams.get("search") ?? "";
   const urlFilter = (searchParams.get("filter") as VocabularyFilter | null) ?? "all";
+  const urlPos = (searchParams.get("pos") as VocabularyPosFilter | null) ?? "all";
   const urlSort = (searchParams.get("sort") as VocabularySort | null) ?? "recent";
 
   const [search, setSearch] = useState(urlSearch);
@@ -82,6 +101,7 @@ export function VocabularyFilters() {
         value === null ||
         value === "" ||
         (key === "filter" && value === "all") ||
+        (key === "pos" && value === "all") ||
         (key === "sort" && value === "recent")
       ) {
         next.delete(key);
@@ -97,6 +117,7 @@ export function VocabularyFilters() {
   }
 
   const activeFilter = FILTER_TABS.some((tab) => tab.value === urlFilter) ? urlFilter : "all";
+  const activePos = POS_CHIPS.some((chip) => chip.value === urlPos) ? urlPos : "all";
   const activeSort = SORT_OPTIONS.some((opt) => opt.value === urlSort) ? urlSort : "recent";
 
   return (
@@ -134,7 +155,7 @@ export function VocabularyFilters() {
               })
             }
           >
-            <SelectTrigger id="vocabulary-sort" className="w-full sm:w-[200px]">
+            <SelectTrigger id="vocabulary-sort" className="w-full sm:w-[220px]">
               <SelectValue placeholder="Sort" />
             </SelectTrigger>
             <SelectContent>
@@ -165,6 +186,27 @@ export function VocabularyFilters() {
           ))}
         </TabsList>
       </Tabs>
+
+      <div className="flex flex-col gap-2">
+        <p className="text-xs font-medium text-muted-foreground">Part of speech</p>
+        <Tabs
+          value={activePos}
+          onValueChange={(value) =>
+            updateParams({
+              pos: value,
+              page: null,
+            })
+          }
+        >
+          <TabsList className="h-auto w-full flex-wrap justify-start gap-1">
+            {POS_CHIPS.map((chip) => (
+              <TabsTrigger key={chip.value} value={chip.value} className="px-3">
+                {chip.label}
+              </TabsTrigger>
+            ))}
+          </TabsList>
+        </Tabs>
+      </div>
     </div>
   );
 }

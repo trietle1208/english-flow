@@ -33,7 +33,7 @@ export default async function GrammarPracticePage({ params }: GrammarPracticePag
   }
 
   return (
-    <div className="mx-auto flex max-w-2xl flex-col gap-6 px-4 py-8 sm:px-6 lg:px-8">
+    <div className="flex w-full flex-col gap-6 px-4 py-8 sm:px-6 lg:px-8">
       <PageHeader
         title={`Luyện tập: ${topic.titleVi}`}
         description={topic.titleEn}
