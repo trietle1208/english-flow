@@ -4,7 +4,7 @@ import type { ToeicVocabularySeed } from "@/db/seed-data/toeic-vocabulary";
 export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   {
     word: "mister",
-    pronunciation: "MꞮSTɝ",
+    pronunciation: "MIS-ter",
     phonetic: "/ˈmɪstɝ/",
     partOfSpeech: "noun",
     meaning: "một hình thức địa chỉ cho một người đàn ông",
@@ -14,7 +14,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "vacation",
-    pronunciation: "VEꞮ-keɪʃən",
+    pronunciation: "vay-KAY-shuhn",
     phonetic: "/veɪˈkeɪʃən/",
     partOfSpeech: "noun",
     meaning: "một kỳ nghỉ hoặc nghỉ giải lao khỏi công việc",
@@ -24,7 +24,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "airport",
-    pronunciation: "ƐƏ-pɔ-t",
+    pronunciation: "AIR-port",
     phonetic: "/ˈɛə.pɔːt/",
     partOfSpeech: "noun",
     meaning: "nơi bạn đến để lên máy bay",
@@ -34,7 +34,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "logical",
-    pronunciation: "ⱢⱭDƷꞮKƏⱢ",
+    pronunciation: "log-IC-al",
     phonetic: "/ˈɫɑdʒɪkəɫ/",
     partOfSpeech: "adjective",
     meaning: "liên quan đến lý do",
@@ -44,7 +44,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "fax",
-    pronunciation: "FÆKS",
+    pronunciation: "FAX",
     phonetic: "/ˈfæks/",
     partOfSpeech: "noun",
     meaning: "để gửi bằng máy fax",
@@ -54,7 +54,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "o'clock",
-    pronunciation: "Ə-kɫɑk",
+    pronunciation: "OC-lock",
     phonetic: "/əˈkɫɑk/",
     partOfSpeech: "noun",
     meaning: "giờ trong ngày",
@@ -74,7 +74,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "sometime",
-    pronunciation: "SƏM-taɪm",
+    pronunciation: "som-ET-im-e",
     phonetic: "/ˈsəmˌtaɪm/",
     partOfSpeech: "noun",
     meaning: "tại một thời điểm không xác định",
@@ -84,7 +84,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "supervisor",
-    pronunciation: "SUPɝ-vaɪzɝ",
+    pronunciation: "sup-ER-vis-or",
     phonetic: "/ˈsupɝˌvaɪzɝ/",
     partOfSpeech: "noun",
     meaning: "người phụ trách",
@@ -94,7 +94,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "goods",
-    pronunciation: "ꞬƱDZ",
+    pronunciation: "GOOD-s",
     phonetic: "/ˈɡʊdz/",
     partOfSpeech: "noun",
     meaning: "tài nguyên hoặc những thứ được mua hoặc bán",
@@ -104,7 +104,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "workshop",
-    pronunciation: "WɝK-ʃɑp",
+    pronunciation: "WOR-kshop",
     phonetic: "/ˈwɝkˌʃɑp/",
     partOfSpeech: "noun",
     meaning: "một tòa nhà hoặc phòng nơi mọi thứ được tạo ra hoặc sửa chữa",
@@ -114,7 +114,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "downtown",
-    pronunciation: "DAƱN-taʊn",
+    pronunciation: "dow-NTOW-n",
     phonetic: "/ˈdaʊnˈtaʊn/",
     partOfSpeech: "noun",
     meaning: "doanh nghiệp hoặc khu vực trung tâm của một thành phố hoặc thị trấn",
@@ -124,7 +124,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "brochure",
-    pronunciation: "BɹOƱ-ʃʊɹ",
+    pronunciation: "broc-HUR-e",
     phonetic: "/bɹoʊˈʃʊɹ/",
     partOfSpeech: "noun",
     meaning: "một cuốn sách giấy nhỏ cung cấp thông tin về một sản phẩm hoặc dịch vụ",
@@ -134,7 +134,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "noon",
-    pronunciation: "NUN",
+    pronunciation: "NOON",
     phonetic: "/ˈnun/",
     partOfSpeech: "noun",
     meaning: "Giữa ban ngày à?",
@@ -144,7 +144,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "clerk",
-    pronunciation: "KⱢɝK",
+    pronunciation: "CLER-k",
     phonetic: "/ˈkɫɝk/",
     partOfSpeech: "noun",
     meaning: "một người làm việc tại quầy",
@@ -154,7 +154,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "lobby",
-    pronunciation: "ⱢⱭBI",
+    pronunciation: "LOB-by",
     phonetic: "/ˈɫɑbi/",
     partOfSpeech: "noun",
     meaning: "khu vực chính của một khách sạn ngay bên trong lối vào",
@@ -164,7 +164,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "publish",
-    pronunciation: "PƏBⱢꞮƩ",
+    pronunciation: "pub-LIS-h",
     phonetic: "/ˈpəbɫɪʃ/",
     partOfSpeech: "noun",
     meaning: "để in và phân phối",
@@ -174,7 +174,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "enclose",
-    pronunciation: "ꞮN-kɫoʊz",
+    pronunciation: "en-CLOS-e",
     phonetic: "/ɪnˈkɫoʊz/",
     partOfSpeech: "noun",
     meaning: "để bao quanh toàn bộ",
@@ -184,7 +184,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "seminar",
-    pronunciation: "SƐMƏ-nɑɹ",
+    pronunciation: "sem-IN-ar",
     phonetic: "/ˈsɛməˌnɑɹ/",
     partOfSpeech: "noun",
     meaning: "một buổi thảo luận hoặc lớp học do giáo viên hoặc chuyên gia dẫn dắt",
@@ -194,7 +194,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "technician",
-    pronunciation: "TƐK-nɪʃən",
+    pronunciation: "tec-HNIC-ian",
     phonetic: "/tɛkˈnɪʃən/",
     partOfSpeech: "noun",
     meaning: "một người được đào tạo các kỹ năng đặc biệt để làm công việc thực tế",
@@ -204,7 +204,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "cloth",
-    pronunciation: "KⱢƆΘ",
+    pronunciation: "CLOT-h",
     phonetic: "/ˈkɫɔθ/",
     partOfSpeech: "noun",
     meaning: "một miếng vật liệu mỏng",
@@ -214,7 +214,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "traveler",
-    pronunciation: "TɹÆVƏⱢɝ",
+    pronunciation: "trav-EL-er",
     phonetic: "/ˈtɹævəɫɝ/",
     partOfSpeech: "noun",
     meaning: "một khách du lịch hoặc nhà thám hiểm đến thăm nhiều quốc gia",
@@ -224,7 +224,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "caller",
-    pronunciation: "KƆⱢɝ",
+    pronunciation: "CAL-ler",
     phonetic: "/ˈkɔɫɝ/",
     partOfSpeech: "noun",
     meaning: "người đang gọi điện cho bạn",
@@ -234,7 +234,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "subway",
-    pronunciation: "SƏB-weɪ",
+    pronunciation: "SUB-way",
     phonetic: "/ˈsəbˌweɪ/",
     partOfSpeech: "noun",
     meaning: "một đường hầm dưới lòng đường để mọi người đi bộ qua",
@@ -244,7 +244,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "infer",
-    pronunciation: "ꞮN-fɝ",
+    pronunciation: "IN-fer",
     phonetic: "/ˌɪnˈfɝ/",
     partOfSpeech: "noun",
     meaning: "đoán một cái gì đó với thông tin nhất định",
@@ -254,7 +254,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "waiter",
-    pronunciation: "WEꞮTɝ",
+    pronunciation: "WAIT-er",
     phonetic: "/ˈweɪtɝ/",
     partOfSpeech: "noun",
     meaning: "một người đàn ông có nhiệm vụ mang bữa ăn đến bàn của bạn trong nhà hàng hoặc quán cà phê",
@@ -264,7 +264,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "rental",
-    pronunciation: "ɹƐNTƏⱢ",
+    pronunciation: "REN-tal",
     phonetic: "/ˈɹɛntəɫ/",
     partOfSpeech: "adjective",
     meaning: "hành động trả tiền cho việc sử dụng một cái gì đó (như một căn hộ hoặc nhà hoặc xe hơi)",
@@ -274,7 +274,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "cafeteria",
-    pronunciation: "KÆFƏ-tɪɹiə",
+    pronunciation: "caf-ET-er-ia",
     phonetic: "/ˌkæfəˈtɪɹiə/",
     partOfSpeech: "noun",
     meaning: "một nhà hàng nơi bạn tự phục vụ và trả tiền cho nhân viên thu ngân",
@@ -284,7 +284,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "chef",
-    pronunciation: "ƩƐF",
+    pronunciation: "CHEF",
     phonetic: "/ˈʃɛf/",
     partOfSpeech: "noun",
     meaning: "một người nấu ăn để kiếm sống",
@@ -294,7 +294,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "elevator",
-    pronunciation: "ƐⱢƏ-veɪtɝ",
+    pronunciation: "el-EV-at-or",
     phonetic: "/ˈɛɫəˌveɪtɝ/",
     partOfSpeech: "noun",
     meaning: "một cỗ máy đưa mọi người đến các tầng khác nhau trong một tòa nhà",
@@ -304,7 +304,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "reception",
-    pronunciation: "ɹI-sɛpʃən",
+    pronunciation: "rec-EP-tion",
     phonetic: "/ɹiˈsɛpʃən/",
     partOfSpeech: "noun",
     meaning: "hành động chào hỏi mọi người",
@@ -314,7 +314,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "correctly",
-    pronunciation: "Kɝ-ɛktɫi",
+    pronunciation: "cor-REC-tly",
     phonetic: "/kɝˈɛktɫi/",
     partOfSpeech: "adverb",
     meaning: "làm điều gì đó đúng cách",
@@ -324,7 +324,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "lease",
-    pronunciation: "ⱢIS",
+    pronunciation: "LEAS-e",
     phonetic: "/ˈɫis/",
     partOfSpeech: "noun",
     meaning: "cho thuê",
@@ -334,7 +334,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "bicycle",
-    pronunciation: "BAꞮSꞮKƏⱢ",
+    pronunciation: "bic-YC-le",
     phonetic: "/ˈbaɪsɪkəɫ/",
     partOfSpeech: "noun",
     meaning: "một chiếc xe có hai bánh và bàn đạp",
@@ -344,7 +344,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "preview",
-    pronunciation: "PɹIV-ju",
+    pronunciation: "PREV-iew",
     phonetic: "/ˈpɹivˌju/",
     partOfSpeech: "noun",
     meaning: "một cơ hội để xem một cái gì đó trước khi nó trở nên phổ biến",
@@ -354,7 +354,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "attendant",
-    pronunciation: "Ə-tɛndənt",
+    pronunciation: "at-TEN-dan-t",
     phonetic: "/əˈtɛndənt/",
     partOfSpeech: "adjective",
     meaning: "một người chờ đợi hoặc có xu hướng đáp ứng nhu cầu của người khác",
@@ -364,7 +364,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "subscription",
-    pronunciation: "SƏBS-kɹɪpʃən",
+    pronunciation: "sub-SCRIP-tion",
     phonetic: "/səbsˈkɹɪpʃən/",
     partOfSpeech: "noun",
     meaning: "số tiền mà bạn phải trả để nhận dịch vụ hoặc sản phẩm thường xuyên",
@@ -374,7 +374,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "manual",
-    pronunciation: "MÆNJUƏⱢ",
+    pronunciation: "MAN-ual",
     phonetic: "/ˈmænjuəɫ/",
     partOfSpeech: "adjective",
     meaning: "một cuốn sách giải thích cách làm điều gì đó",
@@ -384,7 +384,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "clue",
-    pronunciation: "KⱢU",
+    pronunciation: "CLUE",
     phonetic: "/ˈkɫu/",
     partOfSpeech: "noun",
     meaning: "một gợi ý, một mẹo",
@@ -394,7 +394,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "garage",
-    pronunciation: "Ɡɝ-ɑʒ",
+    pronunciation: "gar-AG-e",
     phonetic: "/ɡɝˈɑʒ/",
     partOfSpeech: "noun",
     meaning: "nơi bạn cất xe",
@@ -404,7 +404,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "obtain",
-    pronunciation: "ƏB-teɪn",
+    pronunciation: "OB-tain",
     phonetic: "/əbˈteɪn/",
     partOfSpeech: "verb",
     meaning: "để có được",
@@ -414,7 +414,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "oval",
-    pronunciation: "OƱVƏⱢ",
+    pronunciation: "OV-al",
     phonetic: "/ˈoʊvəɫ/",
     partOfSpeech: "adjective",
     meaning: "Một hình dạng trông giống như một quả trứng",
@@ -424,7 +424,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "outdoor",
-    pronunciation: "AƱT-dɔɹ",
+    pronunciation: "OUT-door",
     phonetic: "/ˈaʊtˌdɔɹ/",
     partOfSpeech: "noun",
     meaning: "bên ngoài trong không khí thoáng đãng",
@@ -434,7 +434,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "suitcase",
-    pronunciation: "SUT-keɪs",
+    pronunciation: "suit-CAS-e",
     phonetic: "/ˈsutˌkeɪs/",
     partOfSpeech: "noun",
     meaning: "Một chiếc túi lớn như hộp đựng để đựng quần áo khi đi du lịch",
@@ -444,7 +444,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "destination",
-    pronunciation: "DƐSTƏ-neɪʃən",
+    pronunciation: "des-TIN-at-ion",
     phonetic: "/ˌdɛstəˈneɪʃən/",
     partOfSpeech: "noun",
     meaning: "nơi bạn muốn đến vào cuối cuộc hành trình",
@@ -454,7 +454,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "occupation",
-    pronunciation: "ⱭKJƏ-peɪʃən",
+    pronunciation: "oc-CUP-at-ion",
     phonetic: "/ˌɑkjəˈpeɪʃən/",
     partOfSpeech: "noun",
     meaning: "nghề nghiệp hoặc công việc",
@@ -464,7 +464,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "umbrella",
-    pronunciation: "ƏM-bɹɛɫə",
+    pronunciation: "um-BREL-la",
     phonetic: "/ˈəmˌbɹɛɫə/",
     partOfSpeech: "noun",
     meaning: "một cái gì đó, giống như một tổ chức, bao gồm một phạm vi tương tự",
@@ -474,7 +474,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "inference",
-    pronunciation: "ꞮNFɝƏNS",
+    pronunciation: "in-FER-en-ce",
     phonetic: "/ˈɪnfɝəns/",
     partOfSpeech: "noun",
     meaning: "hành động đoán một cái gì đó với thông tin nhất định",
@@ -484,7 +484,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "cellphone",
-    pronunciation: "SƐⱢFOƱN",
+    pronunciation: "cel-LPHON-e",
     phonetic: "/ˈsɛɫfoʊn/",
     partOfSpeech: "noun",
     meaning: "điện thoại kết nối với hệ thống bằng radio để bạn có thể sử dụng nó ở bất cứ đâu",
@@ -494,7 +494,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "compact",
-    pronunciation: "KⱭMPÆKT",
+    pronunciation: "com-PAC-t",
     phonetic: "/ˈkɑmpækt/",
     partOfSpeech: "noun",
     meaning: "được đóng gói chặt chẽ với kích thước nhỏ",
@@ -504,7 +504,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "receptionist",
-    pronunciation: "ɹI-sɛpʃənɪst",
+    pronunciation: "rec-EP-tion-is-t",
     phonetic: "/ɹiˈsɛpʃənɪst/",
     partOfSpeech: "noun",
     meaning: "một người làm việc tại quầy lễ tân, ví dụ như thư ký",
@@ -514,7 +514,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "dentist",
-    pronunciation: "DƐNꞮST",
+    pronunciation: "den-TIS-t",
     phonetic: "/ˈdɛnɪst/",
     partOfSpeech: "noun",
     meaning: "một người chăm sóc răng của bạn để kiếm sống",
@@ -524,7 +524,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "identification",
-    pronunciation: "AꞮ-dɛntəfə-keɪʃən",
+    pronunciation: "id-EN-tif-ic-at-ion",
     phonetic: "/aɪˌdɛntəfəˈkeɪʃən/",
     partOfSpeech: "noun",
     meaning: "một tài liệu cho biết một người là ai, ví dụ: hộ chiếu, bằng lái xe",
@@ -534,7 +534,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "coupon",
-    pronunciation: "KJU-pɔn",
+    pronunciation: "COUP-on",
     phonetic: "/ˈkjuˌpɔn/",
     partOfSpeech: "noun",
     meaning: "một mảnh giấy mà bạn có thể sử dụng để mua hàng hóa hoặc để có được chúng với giá giảm",
@@ -544,17 +544,17 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "depart",
-    pronunciation: "DꞮ-pɑɹt",
+    pronunciation: "dih-PART",
     phonetic: "/dɪˈpɑɹt/",
     partOfSpeech: "noun",
-    meaning: "Bỏ đi.",
-    exampleSentence: "Please check the depart before the meeting.",
+    meaning: "khởi hành, rời đi",
+    exampleSentence: "The flight will depart at noon.",
     difficulty: "easy",
     topic: "core",
   },
   {
     word: "reschedule",
-    pronunciation: "ɹI-skɛdʒuɫ",
+    pronunciation: "res-CHED-ul-e",
     phonetic: "/ɹiˈskɛdʒuɫ/",
     partOfSpeech: "noun",
     meaning: "để thiết lập một thời gian mới cho một cái gì đó",
@@ -564,7 +564,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "tactic",
-    pronunciation: "TÆKTꞮK",
+    pronunciation: "TAC-tic",
     phonetic: "/ˈtæktɪk/",
     partOfSpeech: "noun",
     meaning: "như một kế hoạch hoặc kế hoạch",
@@ -574,7 +574,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "renovation",
-    pronunciation: "ɹƐNƏ-veɪʃən",
+    pronunciation: "ren-OV-at-ion",
     phonetic: "/ˌɹɛnəˈveɪʃən/",
     partOfSpeech: "noun",
     meaning: "quá trình khôi phục lại tình trạng trước đó hoặc tốt hơn",
@@ -584,7 +584,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "upgrade",
-    pronunciation: "ƏP-ɡɹeɪd",
+    pronunciation: "up-GRAD-e",
     phonetic: "/ˈəpˈɡɹeɪd/",
     partOfSpeech: "noun",
     meaning: "để cải thiện những gì đã cũ hoặc lỗi thời",
@@ -594,7 +594,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "precede",
-    pronunciation: "PɹꞮ-sid",
+    pronunciation: "prec-ED-e",
     phonetic: "/pɹɪˈsid/",
     partOfSpeech: "noun",
     meaning: "xảy ra trước khi có điều gì khác",
@@ -604,7 +604,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "replacement",
-    pronunciation: "ɹꞮ-pɫeɪsmənt",
+    pronunciation: "rep-LAC-em-en-t",
     phonetic: "/ɹɪˈpɫeɪsmənt/",
     partOfSpeech: "noun",
     meaning: "đặt cái gì/ai đó vào vị trí của cái gì/ai đó khác",
@@ -614,7 +614,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "dine",
-    pronunciation: "DAꞮN",
+    pronunciation: "DIN-e",
     phonetic: "/ˈdaɪn/",
     partOfSpeech: "noun",
     meaning: "ăn tối; ăn tối",
@@ -624,7 +624,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "passport",
-    pronunciation: "PÆS-pɔɹt",
+    pronunciation: "pas-SPOR-t",
     phonetic: "/ˈpæsˌpɔɹt/",
     partOfSpeech: "noun",
     meaning: "giấy tờ chính thức có chứa thông tin về bạn, cho phép bạn nhập cảnh vào các quốc gia khác",
@@ -634,7 +634,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "coworker",
-    pronunciation: "KOƱ-wɝkɝ",
+    pronunciation: "cow-OR-ker",
     phonetic: "/ˈkoʊˈwɝkɝ/",
     partOfSpeech: "noun",
     meaning: "một người làm việc với bạn tại cùng một nơi làm việc",
@@ -644,7 +644,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "upcoming",
-    pronunciation: "ƏP-kəmɪŋ",
+    pronunciation: "up-COM-ing",
     phonetic: "/ˈəpˌkəmɪŋ/",
     partOfSpeech: "verb",
     meaning: "sẽ sớm diễn ra",
@@ -654,7 +654,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "cabinet",
-    pronunciation: "KÆBƏNƏT",
+    pronunciation: "cab-IN-et",
     phonetic: "/ˈkæbənət/",
     partOfSpeech: "noun",
     meaning: "một món đồ nội thất có kệ để cất đồ",
@@ -664,7 +664,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "explanatory",
-    pronunciation: "ꞮKS-pɫænə-tɔɹi",
+    pronunciation: "ex-PLAN-at-or-y",
     phonetic: "/ɪksˈpɫænəˌtɔɹi/",
     partOfSpeech: "noun",
     meaning: "để giải thích hoặc làm rõ",
@@ -674,7 +674,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "instructor",
-    pronunciation: "ꞮN-stɹəktɝ",
+    pronunciation: "in-STRUC-tor",
     phonetic: "/ˌɪnˈstɹəktɝ/",
     partOfSpeech: "noun",
     meaning: "một số người dạy để kiếm sống",
@@ -684,7 +684,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "keyboard",
-    pronunciation: "KI-bɔɹd",
+    pronunciation: "keyb-OAR-d",
     phonetic: "/ˈkiˌbɔɹd/",
     partOfSpeech: "noun",
     meaning: "phần máy tính mà bạn nhập vào",
@@ -694,7 +694,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "media",
-    pronunciation: "MIDIƏ",
+    pronunciation: "MED-ia",
     phonetic: "/ˈmidiə/",
     partOfSpeech: "noun",
     meaning: "liên quan đến các hình thức giao tiếp khác nhau, ví dụ: đài phát thanh, TV, báo chí, v.v.",
@@ -704,7 +704,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "supermarket",
-    pronunciation: "SUPɝ-mɑɹkɪt",
+    pronunciation: "sup-ER-mar-ket",
     phonetic: "/ˈsupɝˌmɑɹkɪt/",
     partOfSpeech: "noun",
     meaning: "một cửa hàng tự phục vụ lớn bán thực phẩm và đồ gia dụng",
@@ -714,7 +714,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "valid",
-    pronunciation: "VÆⱢꞮD",
+    pronunciation: "VAL-id",
     phonetic: "/ˈvæɫɪd/",
     partOfSpeech: "noun",
     meaning: "just, fair, right",
@@ -724,7 +724,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "admission",
-    pronunciation: "ÆD-mɪʃən",
+    pronunciation: "ad-MIS-sion",
     phonetic: "/ædˈmɪʃən/",
     partOfSpeech: "noun",
     meaning: "bước vào một cái gì đó",
@@ -734,7 +734,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "laptop",
-    pronunciation: "ⱢÆP-tɑp",
+    pronunciation: "LAP-top",
     phonetic: "/ˈɫæpˌtɑp/",
     partOfSpeech: "noun",
     meaning: "một chiếc máy tính đủ nhỏ để mang theo và sử dụng trong lòng bạn",
@@ -744,7 +744,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "underline",
-    pronunciation: "ƏNDɝ-ɫaɪn",
+    pronunciation: "un-DER-lin-e",
     phonetic: "/ˈəndɝˌɫaɪn/",
     partOfSpeech: "noun",
     meaning: "để kêu gọi sự chú ý đến",
@@ -754,7 +754,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "electrical",
-    pronunciation: "Ɪ-ɫɛktɹɪkəɫ",
+    pronunciation: "el-EC-tric-al",
     phonetic: "/ɪˈɫɛktɹɪkəɫ/",
     partOfSpeech: "adjective",
     meaning: "liên quan đến điện",
@@ -764,7 +764,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "airplane",
-    pronunciation: "Ɛɹ-pɫeɪn",
+    pronunciation: "air-PLAN-e",
     phonetic: "/ˈɛɹˌpɫeɪn/",
     partOfSpeech: "noun",
     meaning: "một chiếc xe chạy bằng điện bay qua không trung đến đích của nó",
@@ -774,7 +774,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "assignment",
-    pronunciation: "Ə-saɪnmənt",
+    pronunciation: "as-SIG-nmen-t",
     phonetic: "/əˈsaɪnmənt/",
     partOfSpeech: "noun",
     meaning: "một dự án hoặc nhiệm vụ",
@@ -784,17 +784,17 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "exit",
-    pronunciation: "ƐꞬZꞮT",
+    pronunciation: "EG-zit",
     phonetic: "/ˈɛɡzɪt/",
     partOfSpeech: "noun",
-    meaning: "Bỏ đi.",
-    exampleSentence: "Please check the exit before the meeting.",
+    meaning: "lối ra; rời khỏi",
+    exampleSentence: "Please use the emergency exit on the left.",
     difficulty: "easy",
     topic: "core",
   },
   {
     word: "attendee",
-    pronunciation: "Ə-tɛn-di",
+    pronunciation: "at-TEN-dee",
     phonetic: "/əˈtɛnˈdi/",
     partOfSpeech: "noun",
     meaning: "ai đó có mặt (tại một cuộc họp hoặc sự kiện)",
@@ -804,7 +804,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "cruise",
-    pronunciation: "KɹUZ",
+    pronunciation: "CRUIS-e",
     phonetic: "/ˈkɹuz/",
     partOfSpeech: "verb",
     meaning: "một kỳ nghỉ dài, thư giãn trên tàu",
@@ -814,7 +814,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "birthday",
-    pronunciation: "BɝΘ-deɪ",
+    pronunciation: "BIR-thday",
     phonetic: "/ˈbɝθˌdeɪ/",
     partOfSpeech: "noun",
     meaning: "ngày trong năm mà một người được sinh ra",
@@ -824,7 +824,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "comprehension",
-    pronunciation: "KⱭMPɹI-hɛnʃən",
+    pronunciation: "com-PREH-en-sion",
     phonetic: "/ˌkɑmpɹiˈhɛnʃən/",
     partOfSpeech: "noun",
     meaning: "hành động hiểu biết",
@@ -834,7 +834,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "mall",
-    pronunciation: "MƆⱢ",
+    pronunciation: "MAL-l",
     phonetic: "/ˈmɔɫ/",
     partOfSpeech: "noun",
     meaning: "tòa nhà rất lớn có rất nhiều cửa hàng và nhà hàng",
@@ -844,7 +844,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "medication",
-    pronunciation: "MƐDƏ-keɪʃən",
+    pronunciation: "med-IC-at-ion",
     phonetic: "/ˌmɛdəˈkeɪʃən/",
     partOfSpeech: "noun",
     meaning: "một chất được sử dụng để làm cho một căn bệnh hoặc tình trạng trở nên tốt hơn",
@@ -854,7 +854,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "recycle",
-    pronunciation: "ɹI-saɪkəɫ",
+    pronunciation: "rec-YC-le",
     phonetic: "/ɹiˈsaɪkəɫ/",
     partOfSpeech: "noun",
     meaning: "để tìm một cách sử dụng khác cho thứ gì đó sẽ bị bỏ vào thùng rác",
@@ -864,7 +864,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "renew",
-    pronunciation: "ɹꞮ-nu",
+    pronunciation: "REN-ew",
     phonetic: "/ɹɪˈnu/",
     partOfSpeech: "noun",
     meaning: "để làm lại một cái gì đó mới",
@@ -874,7 +874,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "tenant",
-    pronunciation: "TƐNƏNT",
+    pronunciation: "ten-AN-t",
     phonetic: "/ˈtɛnənt/",
     partOfSpeech: "adjective",
     meaning: "người trả tiền thuê nhà để sử dụng tài sản như đất đai hoặc phòng",
@@ -884,7 +884,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "sandwich",
-    pronunciation: "SÆMWꞮTƩ",
+    pronunciation: "san-DWIC-h",
     phonetic: "/ˈsæmwɪtʃ/",
     partOfSpeech: "noun",
     meaning: "hai miếng bánh mì có nhân bên trong, ví dụ: thịt hoặc mứt",
@@ -894,7 +894,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "mini",
-    pronunciation: "MꞮNI",
+    pronunciation: "MIN-i",
     phonetic: "/ˈmɪni/",
     partOfSpeech: "noun",
     meaning: "nhỏ hơn bình thường đối với một loại vật cụ thể",
@@ -904,7 +904,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "fitness",
-    pronunciation: "FꞮTNƏS",
+    pronunciation: "fit-NES-s",
     phonetic: "/ˈfɪtnəs/",
     partOfSpeech: "noun",
     meaning: "tình trạng sức khỏe",
@@ -914,7 +914,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "inconvenience",
-    pronunciation: "ꞮNKƏN-vinjəns",
+    pronunciation: "in-CON-ven-ien-ce",
     phonetic: "/ˌɪnkənˈvinjəns/",
     partOfSpeech: "noun",
     meaning: "một cái gì đó gây rắc rối hoặc khó chịu",
@@ -924,7 +924,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "banquet",
-    pronunciation: "BÆŊKWƏT",
+    pronunciation: "BAN-quet",
     phonetic: "/ˈbæŋkwət/",
     partOfSpeech: "noun",
     meaning: "một bữa ăn trang trọng dành cho rất nhiều người",
@@ -934,7 +934,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "closet",
-    pronunciation: "KⱢⱭZƏT",
+    pronunciation: "CLOS-et",
     phonetic: "/ˈkɫɑzət/",
     partOfSpeech: "noun",
     meaning: "một cái tủ nhỏ",
@@ -944,7 +944,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "unreal",
-    pronunciation: "ƏN-ɹiɫ",
+    pronunciation: "UN-real",
     phonetic: "/ənˈɹiɫ/",
     partOfSpeech: "adjective",
     meaning: "không đúng với cuộc sống",
@@ -954,7 +954,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "distractor",
-    pronunciation: "DISTRACTOR",
+    pronunciation: "dis-TRAC-tor",
     phonetic: "/distractor/",
     partOfSpeech: "noun",
     meaning: "một lựa chọn không chính xác được cung cấp trong một câu hỏi trắc nghiệm",
@@ -964,7 +964,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "expire",
-    pronunciation: "ꞮK-spaɪɹ",
+    pronunciation: "ex-PIR-e",
     phonetic: "/ɪkˈspaɪɹ/",
     partOfSpeech: "noun",
     meaning: "Come to an end Phải một lần kết thúc",
@@ -974,7 +974,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "folder",
-    pronunciation: "FOƱⱢDɝ",
+    pronunciation: "FOL-der",
     phonetic: "/ˈfoʊɫdɝ/",
     partOfSpeech: "noun",
     meaning: "một tập tin hoặc bìa để giữ giấy tờ trong",
@@ -984,7 +984,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "photocopy",
-    pronunciation: "FOƱTOƱ-kɑpi",
+    pronunciation: "phot-OC-op-y",
     phonetic: "/ˈfoʊtoʊˌkɑpi/",
     partOfSpeech: "noun",
     meaning: "một bản sao chính xác của một tài liệu được làm bằng máy chụp ảnh",
@@ -994,7 +994,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "renovate",
-    pronunciation: "ɹƐNƏ-veɪt",
+    pronunciation: "ren-OV-at-e",
     phonetic: "/ˈɹɛnəˌveɪt/",
     partOfSpeech: "verb",
     meaning: "khôi phục lại tình trạng trước đó hoặc tốt hơn.",
@@ -1004,7 +1004,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "sunny",
-    pronunciation: "SƏNI",
+    pronunciation: "SUN-ny",
     phonetic: "/ˈsəni/",
     partOfSpeech: "noun",
     meaning: "một ngày không có mây hoặc mưa chỉ có ánh nắng mặt trời",
@@ -1014,7 +1014,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "calendar",
-    pronunciation: "KÆⱢƏNDɝ",
+    pronunciation: "cal-EN-dar",
     phonetic: "/ˈkæɫəndɝ/",
     partOfSpeech: "noun",
     meaning: "một cái gì đó bạn treo trên tường có các tháng trong năm trên đó",
@@ -1024,7 +1024,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "donation",
-    pronunciation: "DOƱ-neɪʃən",
+    pronunciation: "don-AT-ion",
     phonetic: "/doʊˈneɪʃən/",
     partOfSpeech: "noun",
     meaning: "số tiền được trao cho một mục đích hoặc tổ chức từ thiện",
@@ -1034,7 +1034,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "feedback",
-    pronunciation: "FID-bæk",
+    pronunciation: "FEED-back",
     phonetic: "/ˈfidˌbæk/",
     partOfSpeech: "noun",
     meaning: "thông tin được cung cấp cho nhà cung cấp về mức độ tốt hay xấu của hàng hóa hoặc dịch vụ",
@@ -1044,7 +1044,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "shortly",
-    pronunciation: "ƩƆɹTⱢI",
+    pronunciation: "SHOR-tly",
     phonetic: "/ˈʃɔɹtɫi/",
     partOfSpeech: "adverb",
     meaning: "- Vậy, mong sớm gặp lại chàng",
@@ -1054,7 +1054,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "snack",
-    pronunciation: "SNÆK",
+    pronunciation: "SNACK",
     phonetic: "/ˈsnæk/",
     partOfSpeech: "noun",
     meaning: "Một lượng nhỏ thức ăn ăn giữa các bữa ăn",
@@ -1064,7 +1064,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "copier",
-    pronunciation: "KⱭPIɝ",
+    pronunciation: "COP-ier",
     phonetic: "/ˈkɑpiɝ/",
     partOfSpeech: "noun",
     meaning: "một cỗ máy tạo ra các bản sao giấy",
@@ -1074,7 +1074,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "provider",
-    pronunciation: "PɹƏ-vaɪdɝ",
+    pronunciation: "prov-ID-er",
     phonetic: "/pɹəˈvaɪdɝ/",
     partOfSpeech: "noun",
     meaning: "một người chăm sóc người khác bằng tiền bạc, thức ăn, nhà cửa",
@@ -1084,7 +1084,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "hungry",
-    pronunciation: "HƏŊꞬɹI",
+    pronunciation: "HUNG-ry",
     phonetic: "/ˈhəŋɡɹi/",
     partOfSpeech: "noun",
     meaning: "cần thức ăn, cần ăn",
@@ -1094,7 +1094,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "inspection",
-    pronunciation: "ꞮN-spɛkʃən",
+    pronunciation: "in-SPEC-tion",
     phonetic: "/ˌɪnˈspɛkʃən/",
     partOfSpeech: "noun",
     meaning: "một cuộc kiểm tra chính thức hoặc chính thức về một cái gì đó",
@@ -1104,7 +1104,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "recipient",
-    pronunciation: "ɹƏ-sɪpiənt",
+    pronunciation: "rec-IP-ien-t",
     phonetic: "/ɹəˈsɪpiənt/",
     partOfSpeech: "adjective",
     meaning: "người nhận được một cái gì đó",
@@ -1114,7 +1114,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "aisle",
-    pronunciation: "AꞮƏⱢ",
+    pronunciation: "AIS-le",
     phonetic: "/ˈaɪəɫ/",
     partOfSpeech: "noun",
     meaning: "khu vực hẹp dài để đi bộ giữa các hàng của một cái gì đó",
@@ -1124,7 +1124,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "inspect",
-    pronunciation: "ꞮN-spɛkt",
+    pronunciation: "in-SPEC-t",
     phonetic: "/ˌɪnˈspɛkt/",
     partOfSpeech: "noun",
     meaning: "xem qua cẩn thận",
@@ -1134,7 +1134,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "mechanic",
-    pronunciation: "MƏ-kænɪk",
+    pronunciation: "mec-HAN-ic",
     phonetic: "/məˈkænɪk/",
     partOfSpeech: "noun",
     meaning: "một người sửa chữa máy móc để kiếm sống",
@@ -1144,7 +1144,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "merger",
-    pronunciation: "MɝDƷɝ",
+    pronunciation: "MER-ger",
     phonetic: "/ˈmɝdʒɝ/",
     partOfSpeech: "noun",
     meaning: "khi một công ty mua một công ty khác để tạo ra một công ty lớn",
@@ -1154,7 +1154,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "soccer",
-    pronunciation: "SⱭKɝ",
+    pronunciation: "SOC-cer",
     phonetic: "/ˈsɑkɝ/",
     partOfSpeech: "noun",
     meaning: "trò chơi bóng được chơi bởi hai đội cố gắng ghi bàn mà không cần xử lý bóng",
@@ -1164,7 +1164,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "sweater",
-    pronunciation: "SWƐTɝ",
+    pronunciation: "SWEAT-er",
     phonetic: "/ˈswɛtɝ/",
     partOfSpeech: "noun",
     meaning: "một bộ quần áo ấm được mặc trên cánh tay và phần trên cơ thể, làm bằng len,",
@@ -1174,7 +1174,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "rewrite",
-    pronunciation: "ɹI-ɹaɪt",
+    pronunciation: "rew-RIT-e",
     phonetic: "/ˈɹiˌɹaɪt/",
     partOfSpeech: "noun",
     meaning: "để viết lại theo cách khác",
@@ -1184,7 +1184,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "workplace",
-    pronunciation: "WɝK-pɫeɪs",
+    pronunciation: "wor-KPLAC-e",
     phonetic: "/ˈwɝkˌpɫeɪs/",
     partOfSpeech: "noun",
     meaning: "địa điểm nơi bạn thực hiện công việc của mình",
@@ -1194,7 +1194,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "architect",
-    pronunciation: "ⱭɹKƏ-tɛkt",
+    pronunciation: "ar-CHIT-ec-t",
     phonetic: "/ˈɑɹkəˌtɛkt/",
     partOfSpeech: "noun",
     meaning: "người thiết kế các tòa nhà",
@@ -1204,7 +1204,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "convenience",
-    pronunciation: "KƏN-vinjəns",
+    pronunciation: "con-VEN-ien-ce",
     phonetic: "/kənˈvinjəns/",
     partOfSpeech: "noun",
     meaning: "trạng thái dễ dàng",
@@ -1214,7 +1214,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "eligible",
-    pronunciation: "ƐⱢƏDƷƏBƏⱢ",
+    pronunciation: "el-IG-ib-le",
     phonetic: "/ˈɛɫədʒəbəɫ/",
     partOfSpeech: "adjective",
     meaning: "có thể được chọn",
@@ -1224,7 +1224,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "indoor",
-    pronunciation: "ꞮN-dɔɹ",
+    pronunciation: "IN-door",
     phonetic: "/ˈɪnˌdɔɹ/",
     partOfSpeech: "noun",
     meaning: "bên trong một ngôi nhà hoặc tòa nhà",
@@ -1234,7 +1234,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "baggage",
-    pronunciation: "BÆꞬƏDƷ",
+    pronunciation: "bag-GAG-e",
     phonetic: "/ˈbæɡədʒ/",
     partOfSpeech: "noun",
     meaning: "túi du lịch",
@@ -1244,7 +1244,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "dial",
-    pronunciation: "DAꞮƏⱢ",
+    pronunciation: "DIAL",
     phonetic: "/ˈdaɪəɫ/",
     partOfSpeech: "adjective",
     meaning: "để thực hiện cuộc gọi điện thoại bằng cách nhấn các nút",
@@ -1254,7 +1254,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "container",
-    pronunciation: "KƏN-teɪnɝ",
+    pronunciation: "con-TAIN-er",
     phonetic: "/kənˈteɪnɝ/",
     partOfSpeech: "noun",
     meaning: "một cái gì đó giữ mọi thứ",
@@ -1264,7 +1264,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "drawer",
-    pronunciation: "DɹƆɹ",
+    pronunciation: "DRAW-er",
     phonetic: "/ˈdɹɔɹ/",
     partOfSpeech: "noun",
     meaning: "một ngăn trượt mà bạn giữ đồ đạc trong đó",
@@ -1274,7 +1274,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "lab",
-    pronunciation: "ⱢÆB",
+    pronunciation: "LAB",
     phonetic: "/ˈɫæb/",
     partOfSpeech: "noun",
     meaning: "nơi bạn thực hiện các thí nghiệm",
@@ -1284,7 +1284,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "submission",
-    pronunciation: "SƏB-mɪʃən",
+    pronunciation: "sub-MIS-sion",
     phonetic: "/səbˈmɪʃən/",
     partOfSpeech: "noun",
     meaning: "hành động chính thức cung cấp một tài liệu, để đưa ra quyết định về nó",
@@ -1294,7 +1294,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "bulletin",
-    pronunciation: "BƱⱢꞮTƏN",
+    pronunciation: "bul-LET-in",
     phonetic: "/ˈbʊɫɪtən/",
     partOfSpeech: "noun",
     meaning: "một báo cáo tin tức ngắn",
@@ -1304,7 +1304,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "certificate",
-    pronunciation: "Sɝ-tɪfɪkət",
+    pronunciation: "cer-TIF-ic-at-e",
     phonetic: "/sɝˈtɪfɪkət/",
     partOfSpeech: "verb",
     meaning: "một mảnh giấy nói rằng bạn đã làm điều gì đó",
@@ -1314,7 +1314,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "gym",
-    pronunciation: "DƷꞮM",
+    pronunciation: "GYM",
     phonetic: "/ˈdʒɪm/",
     partOfSpeech: "noun",
     meaning: "xây dựng với thiết bị bạn có thể sử dụng để tập thể dục cơ thể của bạn",
@@ -1324,7 +1324,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "highway",
-    pronunciation: "HAꞮ-weɪ",
+    pronunciation: "HIG-hway",
     phonetic: "/ˈhaɪˌweɪ/",
     partOfSpeech: "noun",
     meaning: "một con đường chính kết nối các thành phố",
@@ -1334,7 +1334,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "respondent",
-    pronunciation: "ɹꞮ-spɑndənt",
+    pronunciation: "res-PON-den-t",
     phonetic: "/ɹɪˈspɑndənt/",
     partOfSpeech: "adjective",
     meaning: "người trả lời câu hỏi nào đó",
@@ -1344,7 +1344,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "jewelry",
-    pronunciation: "DƷUƏⱢɹI",
+    pronunciation: "jew-EL-ry",
     phonetic: "/ˈdʒuəɫɹi/",
     partOfSpeech: "noun",
     meaning: "vàng, bạc, đá, v.v. bạn đeo để trang trí, ví dụ như vòng cổ",
@@ -1354,7 +1354,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "battery",
-    pronunciation: "BÆTɝI",
+    pronunciation: "bat-TER-y",
     phonetic: "/ˈbætɝi/",
     partOfSpeech: "noun",
     meaning: "một cái gì đó tạo ra năng lượng điện",
@@ -1364,7 +1364,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "donate",
-    pronunciation: "DOƱ-neɪt",
+    pronunciation: "don-AT-e",
     phonetic: "/ˈdoʊˌneɪt/",
     partOfSpeech: "verb",
     meaning: "để quyên góp tiền cho một mục đích hoặc tổ chức từ thiện",
@@ -1374,7 +1374,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "outstanding",
-    pronunciation: "AƱT-stændɪŋ",
+    pronunciation: "out-STAN-ding",
     phonetic: "/ˌaʊtˈstændɪŋ/",
     partOfSpeech: "verb",
     meaning: "Chưa hoàn thành",
@@ -1384,7 +1384,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "skim",
-    pronunciation: "SKꞮM",
+    pronunciation: "SKIM",
     phonetic: "/ˈskɪm/",
     partOfSpeech: "noun",
     meaning: "di chuyển nhanh trên bề mặt mà không cần chạm vào nó",
@@ -1394,7 +1394,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "briefcase",
-    pronunciation: "BɹIF-keɪs",
+    pronunciation: "brief-CAS-e",
     phonetic: "/ˈbɹifˌkeɪs/",
     partOfSpeech: "noun",
     meaning: "một hộp nhỏ có tay cầm thường được sử dụng để đựng giấy tờ kinh doanh",
@@ -1404,7 +1404,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "dessert",
-    pronunciation: "DꞮ-zɝt",
+    pronunciation: "des-SER-t",
     phonetic: "/dɪˈzɝt/",
     partOfSpeech: "noun",
     meaning: "thức ăn ngọt bạn ăn sau bữa ăn chính",
@@ -1414,7 +1414,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "impact",
-    pronunciation: "ꞮMPÆKT",
+    pronunciation: "im-PAC-t",
     phonetic: "/ˈɪmpækt/",
     partOfSpeech: "noun",
     meaning: "ảnh hưởng mà một thứ tạo ra đối với một thứ khác",
@@ -1424,7 +1424,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "innovative",
-    pronunciation: "ꞮNƏ-veɪtɪv",
+    pronunciation: "in-NOV-at-iv-e",
     phonetic: "/ˈɪnəˌveɪtɪv/",
     partOfSpeech: "adjective",
     meaning: "sáng tạo và đưa ra những ý tưởng mới",
@@ -1434,7 +1434,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "inquire",
-    pronunciation: "ꞮN-kwaɪɹ",
+    pronunciation: "in-QUIR-e",
     phonetic: "/ˌɪnˈkwaɪɹ/",
     partOfSpeech: "noun",
     meaning: "để hỏi về",
@@ -1444,7 +1444,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "overnight",
-    pronunciation: "OƱVɝ-naɪt",
+    pronunciation: "ov-ER-nig-ht",
     phonetic: "/ˈoʊvɝˈnaɪt/",
     partOfSpeech: "noun",
     meaning: "từ ngày này sang ngày khác",
@@ -1454,7 +1454,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "venue",
-    pronunciation: "VƐNJU",
+    pronunciation: "VEN-ue",
     phonetic: "/ˈvɛnju/",
     partOfSpeech: "noun",
     meaning: "nơi diễn ra sự kiện",
@@ -1464,7 +1464,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "commuter",
-    pronunciation: "KƏM-jutɝ",
+    pronunciation: "com-MUT-er",
     phonetic: "/kəmˈjutɝ/",
     partOfSpeech: "noun",
     meaning: "một người đi một chặng đường dài để làm việc và trở lại",
@@ -1474,7 +1474,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "logo",
-    pronunciation: "ⱢOƱꞬOƱ",
+    pronunciation: "LOG-o",
     phonetic: "/ˈɫoʊɡoʊ/",
     partOfSpeech: "noun",
     meaning: "một thiết kế nhỏ được một công ty sử dụng làm biểu tượng",
@@ -1484,7 +1484,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "newsletter",
-    pronunciation: "NUZ-ɫɛtɝ",
+    pronunciation: "new-SLET-ter",
     phonetic: "/ˈnuzˌɫɛtɝ/",
     partOfSpeech: "noun",
     meaning: "báo cáo hoặc thư ngỏ cung cấp thông tin quan tâm cho một nhóm đặc biệt",
@@ -1494,7 +1494,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "advisor",
-    pronunciation: "ÆD-vaɪzɝ",
+    pronunciation: "ad-VIS-or",
     phonetic: "/ædˈvaɪzɝ/",
     partOfSpeech: "noun",
     meaning: "một người đưa ra ý kiến về những việc cần làm",
@@ -1504,7 +1504,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "cartridge",
-    pronunciation: "KⱭɹTɹƏDƷ",
+    pronunciation: "car-TRID-ge",
     phonetic: "/ˈkɑɹtɹədʒ/",
     partOfSpeech: "noun",
     meaning: "một bộ phận của thiết bị là một bộ phận kín, và có thể được lấy ra và thay thế",
@@ -1514,7 +1514,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "cloudy",
-    pronunciation: "KⱢAƱDI",
+    pronunciation: "CLOUD-y",
     phonetic: "/ˈkɫaʊdi/",
     partOfSpeech: "noun",
     meaning: "thời tiết nơi bầu trời đầy mây",
@@ -1524,7 +1524,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "photographer",
-    pronunciation: "FƏ-tɑɡɹəfɝ",
+    pronunciation: "phot-OG-rap-her",
     phonetic: "/fəˈtɑɡɹəfɝ/",
     partOfSpeech: "noun",
     meaning: "một người chụp ảnh để kiếm sống",
@@ -1534,7 +1534,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "shopper",
-    pronunciation: "ƩⱭPɝ",
+    pronunciation: "SHOP-per",
     phonetic: "/ˈʃɑpɝ/",
     partOfSpeech: "noun",
     meaning: "người mua đồ trong cửa hàng",
@@ -1544,17 +1544,17 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "tag",
-    pronunciation: "TÆꞬ",
+    pronunciation: "TAG",
     phonetic: "/ˈtæɡ/",
     partOfSpeech: "noun",
-    meaning: "nhãn",
-    exampleSentence: "Please check the tag before the meeting.",
+    meaning: "nhãn, thẻ gắn",
+    exampleSentence: "Please attach a name tag to your luggage.",
     difficulty: "easy",
     topic: "core",
   },
   {
     word: "announcer",
-    pronunciation: "Ə-naʊnsɝ",
+    pronunciation: "an-NOUN-cer",
     phonetic: "/əˈnaʊnsɝ/",
     partOfSpeech: "noun",
     meaning: "một người đưa ra thông điệp công khai",
@@ -1564,7 +1564,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "aspect",
-    pronunciation: "ÆS-pɛkt",
+    pronunciation: "as-PEC-t",
     phonetic: "/ˈæsˌpɛkt/",
     partOfSpeech: "noun",
     meaning: "một phần hoặc một tính năng",
@@ -1574,7 +1574,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "audit",
-    pronunciation: "ƆDꞮT",
+    pronunciation: "AUD-it",
     phonetic: "/ˈɔdɪt/",
     partOfSpeech: "noun",
     meaning: "để kiểm tra một cái gì đó là chính xác, thường liên quan đến các tài khoản trong kinh doanh",
@@ -1584,7 +1584,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "contractor",
-    pronunciation: "KⱭN-tɹæktɝ",
+    pronunciation: "con-TRAC-tor",
     phonetic: "/ˈkɑnˌtɹæktɝ/",
     partOfSpeech: "noun",
     meaning: "Một người xây dựng.",
@@ -1594,7 +1594,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "download",
-    pronunciation: "DAƱN-ɫoʊd",
+    pronunciation: "DOW-nload",
     phonetic: "/ˈdaʊnˌɫoʊd/",
     partOfSpeech: "noun",
     meaning: "chuyển một tập tin hoặc chương trình vào máy tính của bạn",
@@ -1604,7 +1604,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "password",
-    pronunciation: "PÆS-wɝd",
+    pronunciation: "pas-SWOR-d",
     phonetic: "/ˈpæsˌwɝd/",
     partOfSpeech: "noun",
     meaning: "một từ hoặc cụm từ bí mật cần thiết để chứng minh bạn là ai",
@@ -1614,7 +1614,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "prohibit",
-    pronunciation: "PɹOƱ-hɪbət",
+    pronunciation: "proh-IB-it",
     phonetic: "/pɹoʊˈhɪbət/",
     partOfSpeech: "noun",
     meaning: "không cho phép",
@@ -1624,7 +1624,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "stadium",
-    pronunciation: "STEꞮDIƏM",
+    pronunciation: "STAD-ium",
     phonetic: "/ˈsteɪdiəm/",
     partOfSpeech: "noun",
     meaning: "sân thể thao được bao quanh bởi các hàng ghế, nơi mọi người đến xem các sự kiện",
@@ -1634,7 +1634,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "terminal",
-    pronunciation: "TɝMƏNƏⱢ",
+    pronunciation: "ter-MIN-al",
     phonetic: "/ˈtɝmənəɫ/",
     partOfSpeech: "adjective",
     meaning: "nơi một tuyến giao thông kết thúc, giống như nhà ga xe lửa cuối cùng trên tuyến",
@@ -1644,7 +1644,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "weekday",
-    pronunciation: "WIK-deɪ",
+    pronunciation: "WEEK-day",
     phonetic: "/ˈwikˌdeɪ/",
     partOfSpeech: "noun",
     meaning: "Tất cả các ngày làm việc trong một tuần, thường là từ thứ Hai đến thứ Sáu",
@@ -1654,7 +1654,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "bonus",
-    pronunciation: "BOƱNƏS",
+    pronunciation: "BON-us",
     phonetic: "/ˈboʊnəs/",
     partOfSpeech: "noun",
     meaning: "thêm, thường ở dạng tiền",
@@ -1664,7 +1664,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "cart",
-    pronunciation: "KⱭɹT",
+    pronunciation: "CAR-t",
     phonetic: "/ˈkɑɹt/",
     partOfSpeech: "noun",
     meaning: "một toa xe hoặc xe tải được sử dụng để vận chuyển",
@@ -1674,7 +1674,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "ink",
-    pronunciation: "ꞮŊK",
+    pronunciation: "IN-k",
     phonetic: "/ˈɪŋk/",
     partOfSpeech: "noun",
     meaning: "chất lỏng được tìm thấy trong bút",
@@ -1684,7 +1684,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "waitress",
-    pronunciation: "WEꞮTɹƏS",
+    pronunciation: "wait-RES-s",
     phonetic: "/ˈweɪtɹəs/",
     partOfSpeech: "noun",
     meaning: "một người phụ nữ có công việc là mang bữa ăn đến bàn của bạn trong nhà hàng hoặc quán cà phê",
@@ -1694,7 +1694,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "cleaner",
-    pronunciation: "KⱢINɝ",
+    pronunciation: "CLEAN-er",
     phonetic: "/ˈkɫinɝ/",
     partOfSpeech: "noun",
     meaning: "một người dọn dẹp để kiếm sống",
@@ -1704,7 +1704,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "developer",
-    pronunciation: "DꞮ-vɛɫəpɝ",
+    pronunciation: "dev-EL-op-er",
     phonetic: "/dɪˈvɛɫəpɝ/",
     partOfSpeech: "noun",
     meaning: "người thiết kế và xây dựng tài sản",
@@ -1714,7 +1714,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "headquarter",
-    pronunciation: "HƐD-kɔɹtɝ",
+    pronunciation: "head-QUAR-ter",
     phonetic: "/ˈhɛdˌkɔɹtɝ/",
     partOfSpeech: "noun",
     meaning: "văn phòng chính của một tổ chức",
@@ -1724,7 +1724,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "shuttle",
-    pronunciation: "ƩƏTƏⱢ",
+    pronunciation: "SHUT-tle",
     phonetic: "/ˈʃətəɫ/",
     partOfSpeech: "noun",
     meaning: "di chuyển qua lại giữa hai điểm",
@@ -1734,7 +1734,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "stationery",
-    pronunciation: "STEꞮƩƏ-nɛɹi",
+    pronunciation: "stat-ION-er-y",
     phonetic: "/ˈsteɪʃəˌnɛɹi/",
     partOfSpeech: "noun",
     meaning: "bất kỳ tài liệu nào cần thiết cho việc viết và in",
@@ -1744,7 +1744,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "subscribe",
-    pronunciation: "SƏBS-kɹaɪb",
+    pronunciation: "sub-SCRIB-e",
     phonetic: "/səbsˈkɹaɪb/",
     partOfSpeech: "noun",
     meaning: "trả tiền để nhận dịch vụ hoặc sản phẩm thường xuyên",
@@ -1754,7 +1754,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "alike",
-    pronunciation: "Ə-ɫaɪk",
+    pronunciation: "al-IK-e",
     phonetic: "/əˈɫaɪk/",
     partOfSpeech: "noun",
     meaning: "tương tự, gần như giống nhau",
@@ -1764,7 +1764,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "picnic",
-    pronunciation: "PꞮK-nɪk",
+    pronunciation: "PIC-nic",
     phonetic: "/ˈpɪkˌnɪk/",
     partOfSpeech: "noun",
     meaning: "một bữa ăn được đóng gói để mang theo bạn và ăn ngoài trời",
@@ -1774,7 +1774,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "refreshment",
-    pronunciation: "ɹƏ-fɹɛʃmənt",
+    pronunciation: "ref-RES-hmen-t",
     phonetic: "/ɹəˈfɹɛʃmənt/",
     partOfSpeech: "noun",
     meaning: "một lượng nhỏ thức ăn và đồ uống được dùng như một bữa ăn nhẹ",
@@ -1784,7 +1784,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "administrative",
-    pronunciation: "ƏD-mɪnə-stɹeɪtɪv",
+    pronunciation: "ad-MIN-is-trat-iv-e",
     phonetic: "/ədˈmɪnəˌstɹeɪtɪv/",
     partOfSpeech: "adjective",
     meaning: "liên quan đến việc quản lý một văn phòng",
@@ -1794,7 +1794,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "commonly",
-    pronunciation: "KⱭMƏNⱢI",
+    pronunciation: "com-MON-ly",
     phonetic: "/ˈkɑmənɫi/",
     partOfSpeech: "adverb",
     meaning: "thường xuyên, thường là",
@@ -1804,7 +1804,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "distribution",
-    pronunciation: "DꞮSTɹƏB-juʃən",
+    pronunciation: "dis-TRIB-ut-ion",
     phonetic: "/ˌdɪstɹəbˈjuʃən/",
     partOfSpeech: "noun",
     meaning: "hành động lưu thông mọi thứ trong một khu vực rộng lớn",
@@ -1814,7 +1814,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "sofa",
-    pronunciation: "SOƱFƏ",
+    pronunciation: "SOF-a",
     phonetic: "/ˈsoʊfə/",
     partOfSpeech: "noun",
     meaning: "một chiếc ghế mềm dài có lưng, đủ lớn để ít nhất hai người ngồi lên",
@@ -1824,7 +1824,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "accommodate",
-    pronunciation: "Ə-kɑmə-deɪt",
+    pronunciation: "ac-COM-mod-at-e",
     phonetic: "/əˈkɑməˌdeɪt/",
     partOfSpeech: "verb",
     meaning: "để cho đi thứ gì đó cần thiết",
@@ -1834,7 +1834,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "affordable",
-    pronunciation: "Ə-fɔɹdəbəɫ",
+    pronunciation: "af-FOR-dab-le",
     phonetic: "/əˈfɔɹdəbəɫ/",
     partOfSpeech: "adjective",
     meaning: "không đắt, người ta có thể thanh toán dễ dàng",
@@ -1844,7 +1844,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "annoy",
-    pronunciation: "Ə-nɔɪ",
+    pronunciation: "AN-noy",
     phonetic: "/əˈnɔɪ/",
     partOfSpeech: "noun",
     meaning: "làm phiền hoặc gây khó chịu",
@@ -1854,7 +1854,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "coordinate",
-    pronunciation: "KOƱ-ɔɹdə-neɪt",
+    pronunciation: "coor-DIN-at-e",
     phonetic: "/koʊˈɔɹdəˌneɪt/",
     partOfSpeech: "verb",
     meaning: "để tổ chức hoặc quản lý",
@@ -1864,7 +1864,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "paperwork",
-    pronunciation: "PEꞮPɝ-wɝk",
+    pronunciation: "pap-ER-wor-k",
     phonetic: "/ˈpeɪpɝˌwɝk/",
     partOfSpeech: "noun",
     meaning: "công việc bằng văn bản liên quan đến bất kỳ công việc cụ thể nào",
@@ -1874,7 +1874,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "quit",
-    pronunciation: "KWꞮT",
+    pronunciation: "QUIT",
     phonetic: "/ˈkwɪt/",
     partOfSpeech: "noun",
     meaning: "ngừng lại việc gì; thôi làm việc gì",
@@ -1884,7 +1884,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "authority",
-    pronunciation: "Ə-θɔɹəti",
+    pronunciation: "aut-HOR-it-y",
     phonetic: "/əˈθɔɹəti/",
     partOfSpeech: "noun",
     meaning: "quyền ra lệnh và ra quyết định",
@@ -1894,7 +1894,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "flu",
-    pronunciation: "FⱢU",
+    pronunciation: "FLU",
     phonetic: "/ˈfɫu/",
     partOfSpeech: "noun",
     meaning: "bệnh mà bạn mắc phải từ người khác, khiến bạn bị sốt trong vài ngày",
@@ -1904,7 +1904,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "captain",
-    pronunciation: "KÆPTƏN",
+    pronunciation: "CAP-tain",
     phonetic: "/ˈkæptən/",
     partOfSpeech: "noun",
     meaning: "người phụ trách một con tàu hoặc máy bay",
@@ -1914,7 +1914,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "installation",
-    pronunciation: "ꞮNSTƏ-ɫeɪʃən",
+    pronunciation: "in-STAL-lat-ion",
     phonetic: "/ˌɪnstəˈɫeɪʃən/",
     partOfSpeech: "noun",
     meaning: "hành động kết nối hoặc nhập một cái gì đó",
@@ -1924,7 +1924,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "trainer",
-    pronunciation: "TɹEꞮNɝ",
+    pronunciation: "TRAIN-er",
     phonetic: "/ˈtɹeɪnɝ/",
     partOfSpeech: "noun",
     meaning: "một người dạy một người hoặc động vật làm điều gì đó",
@@ -1934,7 +1934,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "availability",
-    pronunciation: "Ə-veɪɫə-bɪɫəti",
+    pronunciation: "av-AIL-ab-il-it-y",
     phonetic: "/əˌveɪɫəˈbɪɫəti/",
     partOfSpeech: "noun",
     meaning: "Có mặt và có thể được sử dụng",
@@ -1944,7 +1944,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "complimentary",
-    pronunciation: "KⱭMPⱢƏ-mɛntɝi",
+    pronunciation: "com-PLIM-en-tar-y",
     phonetic: "/ˌkɑmpɫəˈmɛntɝi/",
     partOfSpeech: "noun",
     meaning: "nó không tốn bất cứ thứ gì, nó miễn phí",
@@ -1954,7 +1954,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "hike",
-    pronunciation: "HAꞮK",
+    pronunciation: "HIK-e",
     phonetic: "/ˈhaɪk/",
     partOfSpeech: "noun",
     meaning: "đi bộ một quãng đường dài",
@@ -1964,7 +1964,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "midnight",
-    pronunciation: "MꞮD-naɪt",
+    pronunciation: "mid-NIG-ht",
     phonetic: "/ˈmɪdˌnaɪt/",
     partOfSpeech: "noun",
     meaning: "12 giờ đêm",
@@ -1974,7 +1974,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "productivity",
-    pronunciation: "PɹOƱDƏK-tɪvəti",
+    pronunciation: "prod-UC-tiv-it-y",
     phonetic: "/ˌpɹoʊdəkˈtɪvəti/",
     partOfSpeech: "noun",
     meaning: "khối lượng công việc đã thực hiện",
@@ -1984,7 +1984,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "rainy",
-    pronunciation: "ɹEꞮNI",
+    pronunciation: "RAIN-y",
     phonetic: "/ˈɹeɪni/",
     partOfSpeech: "noun",
     meaning: "nước từ những đám mây, ẩm ướt hoặc mưa rào",
@@ -1994,7 +1994,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "relocate",
-    pronunciation: "ɹI-ɫoʊkeɪt",
+    pronunciation: "rel-OC-at-e",
     phonetic: "/ˌɹiˈɫoʊkeɪt/",
     partOfSpeech: "verb",
     meaning: "để di chuyển đến một địa điểm mới",
@@ -2004,7 +2004,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "transaction",
-    pronunciation: "TɹÆN-zækʃən",
+    pronunciation: "tran-SAC-tion",
     phonetic: "/tɹænˈzækʃən/",
     partOfSpeech: "noun",
     meaning: "một cuộc trao đổi giữa hai người",
@@ -2014,7 +2014,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "unhappy",
-    pronunciation: "ƏN-hæpi",
+    pronunciation: "un-HAP-py",
     phonetic: "/ənˈhæpi/",
     partOfSpeech: "noun",
     meaning: "cảm thấy ít hoặc không có niềm vui",
@@ -2024,7 +2024,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "verify",
-    pronunciation: "VƐɹƏ-faɪ",
+    pronunciation: "ver-IF-y",
     phonetic: "/ˈvɛɹəˌfaɪ/",
     partOfSpeech: "verb",
     meaning: "xác nhận sự thật về",
@@ -2034,7 +2034,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "automobile",
-    pronunciation: "ƆTƏMOƱ-biɫ",
+    pronunciation: "aut-OM-ob-il-e",
     phonetic: "/ˈɔtəmoʊˌbiɫ/",
     partOfSpeech: "noun",
     meaning: "tên dài cho 'xe hơi'",
@@ -2044,7 +2044,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "courier",
-    pronunciation: "KɝIɝ",
+    pronunciation: "COUR-ier",
     phonetic: "/ˈkɝiɝ/",
     partOfSpeech: "noun",
     meaning: "Người được trả tiền để mang và giao tài liệu",
@@ -2054,7 +2054,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "incomplete",
-    pronunciation: "ꞮNKƏM-pɫit",
+    pronunciation: "in-COM-plet-e",
     phonetic: "/ˌɪnkəmˈpɫit/",
     partOfSpeech: "noun",
     meaning: "chưa hoàn thành",
@@ -2064,7 +2064,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "questionnaire",
-    pronunciation: "KWƐSTƩƏ-nɛɹ",
+    pronunciation: "ques-TION-nair-e",
     phonetic: "/ˌkwɛstʃəˈnɛɹ/",
     partOfSpeech: "noun",
     meaning: "một bộ câu hỏi để tìm hiểu suy nghĩ của mọi người về điều gì đó",
@@ -2074,7 +2074,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "baseball",
-    pronunciation: "BEꞮS-bɔɫ",
+    pronunciation: "bas-EB-al-l",
     phonetic: "/ˈbeɪsˈbɔɫ/",
     partOfSpeech: "noun",
     meaning: "một trò chơi thể thao với gậy và bóng",
@@ -2084,7 +2084,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "dock",
-    pronunciation: "DⱭK",
+    pronunciation: "DOCK",
     phonetic: "/ˈdɑk/",
     partOfSpeech: "noun",
     meaning: "nơi thuyền bị trói",
@@ -2094,7 +2094,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "lamp",
-    pronunciation: "ⱢÆMP",
+    pronunciation: "LAM-p",
     phonetic: "/ˈɫæmp/",
     partOfSpeech: "noun",
     meaning: "một nguồn sáng nhân tạo",
@@ -2104,7 +2104,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "lately",
-    pronunciation: "ⱢEꞮTⱢI",
+    pronunciation: "lat-EL-y",
     phonetic: "/ˈɫeɪtɫi/",
     partOfSpeech: "adverb",
     meaning: "gần đây, mới đây",
@@ -2114,7 +2114,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "machinery",
-    pronunciation: "MƏ-ʃinɝi",
+    pronunciation: "mac-HIN-er-y",
     phonetic: "/məˈʃinɝi/",
     partOfSpeech: "noun",
     meaning: "Công cụ dụng cụ khác",
@@ -2124,7 +2124,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "presenter",
-    pronunciation: "PɹƐZƏNTɝ",
+    pronunciation: "pres-EN-ter",
     phonetic: "/ˈpɹɛzəntɝ/",
     partOfSpeech: "noun",
     meaning: "một người thể hiện và giải thích điều gì đó cho khán giả",
@@ -2134,7 +2134,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "seldom",
-    pronunciation: "SƐⱢDƏM",
+    pronunciation: "SEL-dom",
     phonetic: "/ˈsɛɫdəm/",
     partOfSpeech: "noun",
     meaning: "Không thường xuyên lắm",
@@ -2144,7 +2144,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "signature",
-    pronunciation: "SꞮꞬNƏTƩɝ",
+    pronunciation: "sig-NAT-ur-e",
     phonetic: "/ˈsɪɡnətʃɝ/",
     partOfSpeech: "noun",
     meaning: "tên của bạn được viết bằng chữ viết tay của chính bạn",
@@ -2154,7 +2154,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "worldwide",
-    pronunciation: "WɝⱢD-waɪd",
+    pronunciation: "wor-LDWID-e",
     phonetic: "/ˈwɝɫdˈwaɪd/",
     partOfSpeech: "noun",
     meaning: "Trải dài hoặc vươn ra khắp trái đất",
@@ -2164,7 +2164,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "carrier",
-    pronunciation: "KÆɹIɝ",
+    pronunciation: "CAR-rier",
     phonetic: "/ˈkæɹiɝ/",
     partOfSpeech: "noun",
     meaning: "một người hoặc vật mang theo thứ gì đó",
@@ -2174,7 +2174,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "designate",
-    pronunciation: "DƐZƏꞬ-neɪt",
+    pronunciation: "des-IG-nat-e",
     phonetic: "/ˈdɛzəɡˌneɪt/",
     partOfSpeech: "verb",
     meaning: "để đặt tên hoặc chọn ai đó cho một cái gì đó",
@@ -2184,7 +2184,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "exclusive",
-    pronunciation: "ꞮK-skɫusɪv",
+    pronunciation: "ex-CLUS-iv-e",
     phonetic: "/ɪkˈskɫusɪv/",
     partOfSpeech: "adjective",
     meaning: "chỉ dành cho một nhóm nhất định",
@@ -2194,7 +2194,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "homework",
-    pronunciation: "HOƱM-wɝk",
+    pronunciation: "hom-EW-or-k",
     phonetic: "/ˈhoʊmˌwɝk/",
     partOfSpeech: "noun",
     meaning: "công việc mà giáo viên giao cho học sinh thực hiện bên ngoài trường học",
@@ -2204,7 +2204,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "memorandum",
-    pronunciation: "MƐMɝ-ændəm",
+    pronunciation: "mem-OR-an-dum",
     phonetic: "/ˌmɛmɝˈændəm/",
     partOfSpeech: "noun",
     meaning: "Một ghi chú hoặc tin nhắn bằng văn bản để nhắc bạn hoặc người khác làm điều gì đó",
@@ -2214,7 +2214,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "photocopier",
-    pronunciation: "FOƱTOƱ-kɑpiɝ",
+    pronunciation: "phot-OC-op-ier",
     phonetic: "/ˈfoʊtoʊˌkɑpiɝ/",
     partOfSpeech: "noun",
     meaning: "một máy tạo bản sao chính xác của tài liệu",
@@ -2224,7 +2224,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "suite",
-    pronunciation: "SWIT",
+    pronunciation: "SUIT-e",
     phonetic: "/ˈswit/",
     partOfSpeech: "noun",
     meaning: "một tập hợp các phòng thông nhau, thường là trong một khách sạn",
@@ -2234,7 +2234,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "thorough",
-    pronunciation: "ΘɝOƱ",
+    pronunciation: "thor-OUG-h",
     phonetic: "/ˈθɝoʊ/",
     partOfSpeech: "noun",
     meaning: "phải được thực hiện cẩn thận và đầy đủ, ví dụ: tìm kiếm kỹ lưỡng",
@@ -2244,7 +2244,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "bookstore",
-    pronunciation: "BƱK-stɔɹ",
+    pronunciation: "book-STOR-e",
     phonetic: "/ˈbʊkˌstɔɹ/",
     partOfSpeech: "noun",
     meaning: "Nơi bạn đến để mua sách",
@@ -2254,7 +2254,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "cater",
-    pronunciation: "KEꞮTɝ",
+    pronunciation: "CAT-er",
     phonetic: "/ˈkeɪtɝ/",
     partOfSpeech: "noun",
     meaning: "để chế biến và giao đồ ăn",
@@ -2264,7 +2264,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "dental",
-    pronunciation: "DƐNƏⱢ",
+    pronunciation: "DEN-tal",
     phonetic: "/ˈdɛnəɫ/",
     partOfSpeech: "adjective",
     meaning: "liên quan đến răng",
@@ -2274,7 +2274,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "duration",
-    pronunciation: "DƱ-ɹeɪʃən",
+    pronunciation: "dur-AT-ion",
     phonetic: "/ˈdʊˈɹeɪʃən/",
     partOfSpeech: "noun",
     meaning: "mất bao lâu để hoàn thành một việc",
@@ -2284,7 +2284,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "lounge",
-    pronunciation: "ⱢAƱNDƷ",
+    pronunciation: "LOUNG-e",
     phonetic: "/ˈɫaʊndʒ/",
     partOfSpeech: "noun",
     meaning: "một nơi để thư giãn",
@@ -2294,7 +2294,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "painter",
-    pronunciation: "PEꞮNTɝ",
+    pronunciation: "PAIN-ter",
     phonetic: "/ˈpeɪntɝ/",
     partOfSpeech: "noun",
     meaning: "một nghệ sĩ vẽ tranh",
@@ -2304,7 +2304,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "patron",
-    pronunciation: "PEꞮTɹƏN",
+    pronunciation: "PAT-ron",
     phonetic: "/ˈpeɪtɹən/",
     partOfSpeech: "noun",
     meaning: "người hỗ trợ bằng thời gian, tiền bạc hoặc nỗ lực",
@@ -2314,7 +2314,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "prescription",
-    pronunciation: "PɹƏS-kɹɪpʃən",
+    pronunciation: "pres-CRIP-tion",
     phonetic: "/pɹəsˈkɹɪpʃən/",
     partOfSpeech: "noun",
     meaning: "đơn đặt thuốc bằng văn bản của bác sĩ",
@@ -2324,7 +2324,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "productive",
-    pronunciation: "Pɝ-dəktɪv",
+    pronunciation: "prod-UC-tiv-e",
     phonetic: "/pɝˈdəktɪv/",
     partOfSpeech: "adjective",
     meaning: "hữu ích hoặc đáng giá, ví dụ: một cuộc họp hiệu quả",
@@ -2334,7 +2334,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "salad",
-    pronunciation: "SÆⱢƏD",
+    pronunciation: "SAL-ad",
     phonetic: "/ˈsæɫəd/",
     partOfSpeech: "noun",
     meaning: "thực phẩm làm từ chủ yếu là lá hoặc rau diếp và rau",
@@ -2344,7 +2344,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "stack",
-    pronunciation: "STÆK",
+    pronunciation: "STACK",
     phonetic: "/ˈstæk/",
     partOfSpeech: "noun",
     meaning: "một đống đồ vật được đặt chồng lên nhau",
@@ -2354,7 +2354,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "delegate",
-    pronunciation: "DƐⱢƏ-ɡeɪt",
+    pronunciation: "del-EG-at-e",
     phonetic: "/ˈdɛɫəˌɡeɪt/",
     partOfSpeech: "verb",
     meaning: "giao nhiệm vụ cho người khác làm",
@@ -2364,7 +2364,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "salesperson",
-    pronunciation: "SEꞮⱢZ-pɝsən",
+    pronunciation: "sal-ES-per-son",
     phonetic: "/ˈseɪɫzˌpɝsən/",
     partOfSpeech: "noun",
     meaning: "một người đàn ông hoặc phụ nữ có công việc là khiến mọi người mua đồ từ công ty của họ",
@@ -2374,7 +2374,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "calculator",
-    pronunciation: "KÆⱢKJƏ-ɫeɪtɝ",
+    pronunciation: "cal-CUL-at-or",
     phonetic: "/ˈkæɫkjəˌɫeɪtɝ/",
     partOfSpeech: "noun",
     meaning: "một thiết bị làm toán cho bạn",
@@ -2384,7 +2384,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "completion",
-    pronunciation: "KƏM-pɫiʃən",
+    pronunciation: "com-PLET-ion",
     phonetic: "/kəmˈpɫiʃən/",
     partOfSpeech: "noun",
     meaning: "kết thúc, điểm kết thúc",
@@ -2394,7 +2394,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "defect",
-    pronunciation: "DIFƐKT",
+    pronunciation: "def-EC-t",
     phonetic: "/ˈdifɛkt/",
     partOfSpeech: "noun",
     meaning: "một cái gì đó bị lỗi",
@@ -2404,7 +2404,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "garbage",
-    pronunciation: "ꞬⱭɹBꞮDƷ",
+    pronunciation: "gar-BAG-e",
     phonetic: "/ˈɡɑɹbɪdʒ/",
     partOfSpeech: "noun",
     meaning: "rác; một cái gì đó vô giá trị",
@@ -2414,7 +2414,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "omit",
-    pronunciation: "OƱ-mɪt",
+    pronunciation: "OM-it",
     phonetic: "/oʊˈmɪt/",
     partOfSpeech: "noun",
     meaning: "bỏ đi hoặc không nói",
@@ -2424,7 +2424,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "spite",
-    pronunciation: "SPAꞮT",
+    pronunciation: "SPIT-e",
     phonetic: "/ˈspaɪt/",
     partOfSpeech: "noun",
     meaning: "mong muốn hướng cảm giác xấu về ai đó",
@@ -2434,7 +2434,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "bathroom",
-    pronunciation: "BÆ-θɹum",
+    pronunciation: "BAT-hroom",
     phonetic: "/ˈbæˌθɹum/",
     partOfSpeech: "noun",
     meaning: "phòng có bồn tắm và/hoặc vòi sen",
@@ -2444,7 +2444,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "cab",
-    pronunciation: "KÆB",
+    pronunciation: "CAB",
     phonetic: "/ˈkæb/",
     partOfSpeech: "noun",
     meaning: "xe taxi",
@@ -2454,7 +2454,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "correspondence",
-    pronunciation: "KƆɹƏ-spɑndəns",
+    pronunciation: "cor-RES-pon-den-ce",
     phonetic: "/ˌkɔɹəˈspɑndəns/",
     partOfSpeech: "noun",
     meaning: "giao tiếp bằng thư",
@@ -2464,7 +2464,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "ladder",
-    pronunciation: "ⱢÆDɝ",
+    pronunciation: "LAD-der",
     phonetic: "/ˈɫædɝ/",
     partOfSpeech: "noun",
     meaning: "một cái gì đó bạn sử dụng để leo lên cao",
@@ -2474,7 +2474,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "photography",
-    pronunciation: "FƏ-tɑɡɹəfi",
+    pronunciation: "phot-OG-rap-hy",
     phonetic: "/fəˈtɑɡɹəfi/",
     partOfSpeech: "noun",
     meaning: "nghệ thuật chụp ảnh",
@@ -2484,7 +2484,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "sculpture",
-    pronunciation: "SKƏⱢPTƩɝ",
+    pronunciation: "scul-PTUR-e",
     phonetic: "/ˈskəɫptʃɝ/",
     partOfSpeech: "noun",
     meaning: "một hình vẽ hoặc bức tượng",
@@ -2494,7 +2494,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "anniversary",
-    pronunciation: "ÆNƏ-vɝsɝi",
+    pronunciation: "an-NIV-er-sar-y",
     phonetic: "/ˌænəˈvɝsɝi/",
     partOfSpeech: "noun",
     meaning: "một ngày đáng nhớ",
@@ -2504,7 +2504,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "buffet",
-    pronunciation: "BƏFƏT",
+    pronunciation: "BUF-fet",
     phonetic: "/ˈbəfət/",
     partOfSpeech: "noun",
     meaning: "một bữa ăn bao gồm một số món ăn khác nhau mà mọi người tự phục vụ",
@@ -2514,7 +2514,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "defective",
-    pronunciation: "DꞮ-fɛktɪv",
+    pronunciation: "def-EC-tiv-e",
     phonetic: "/dɪˈfɛktɪv/",
     partOfSpeech: "adjective",
     meaning: "khi một cái gì đó không hoạt động",
@@ -2524,7 +2524,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "leak",
-    pronunciation: "ⱢIK",
+    pronunciation: "LEAK",
     phonetic: "/ˈɫik/",
     partOfSpeech: "noun",
     meaning: "để nhỏ giọt nước hoặc chất lỏng khác",
@@ -2534,7 +2534,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "occupancy",
-    pronunciation: "ⱭKJƏPƏNSI",
+    pronunciation: "oc-CUP-an-cy",
     phonetic: "/ˈɑkjəpənsi/",
     partOfSpeech: "noun",
     meaning: "tình trạng sống ở một nơi",
@@ -2544,7 +2544,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "proficiency",
-    pronunciation: "PɹƏ-fɪʃənsi",
+    pronunciation: "prof-IC-ien-cy",
     phonetic: "/pɹəˈfɪʃənsi/",
     partOfSpeech: "noun",
     meaning: "kỹ năng và kinh nghiệm",
@@ -2554,7 +2554,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "renewal",
-    pronunciation: "ɹꞮ-nuəɫ",
+    pronunciation: "ren-EW-al",
     phonetic: "/ɹɪˈnuəɫ/",
     partOfSpeech: "adjective",
     meaning: "hành động làm lại một cái gì đó mới",
@@ -2564,7 +2564,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "urgent",
-    pronunciation: "ɝDƷƏNT",
+    pronunciation: "ur-GEN-t",
     phonetic: "/ˈɝdʒənt/",
     partOfSpeech: "adjective",
     meaning: "rất quan trọng, cần chú ý ngay bây giờ",
@@ -2574,7 +2574,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "annually",
-    pronunciation: "ÆNJUƏⱢI",
+    pronunciation: "an-NUAL-ly",
     phonetic: "/ˈænjuəɫi/",
     partOfSpeech: "adverb",
     meaning: "12 tháng một lần",
@@ -2584,7 +2584,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "basketball",
-    pronunciation: "BÆSKƏT-bɔɫ",
+    pronunciation: "bas-KET-bal-l",
     phonetic: "/ˈbæskətˌbɔɫ/",
     partOfSpeech: "noun",
     meaning: "một trò chơi được chơi bởi hai đội cố gắng ghi bàn bằng cách ném bóng",
@@ -2594,7 +2594,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "delete",
-    pronunciation: "DꞮ-ɫit",
+    pronunciation: "del-ET-e",
     phonetic: "/dɪˈɫit/",
     partOfSpeech: "noun",
     meaning: "Loại bỏ",
@@ -2604,7 +2604,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "illogical",
-    pronunciation: "Ɪ-ɫɑdʒɪkəɫ",
+    pronunciation: "il-LOG-ic-al",
     phonetic: "/ˌɪˈɫɑdʒɪkəɫ/",
     partOfSpeech: "adjective",
     meaning: "không có ý nghĩa gì, thiếu lý luận",
@@ -2614,7 +2614,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "pet",
-    pronunciation: "PƐT",
+    pronunciation: "PET",
     phonetic: "/ˈpɛt/",
     partOfSpeech: "noun",
     meaning: "một con vật bạn nuôi trong nhà để chơi cùng",
@@ -2624,7 +2624,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "textbook",
-    pronunciation: "TƐKST-bʊk",
+    pronunciation: "TEX-tbook",
     phonetic: "/ˈtɛkstˌbʊk/",
     partOfSpeech: "noun",
     meaning: "một cuốn sách về các sự kiện được sử dụng để nghiên cứu một chủ đề cụ thể",
@@ -2634,7 +2634,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "accurately",
-    pronunciation: "ÆKJɝƏTⱢI",
+    pronunciation: "ac-CUR-at-el-y",
     phonetic: "/ˈækjɝətɫi/",
     partOfSpeech: "adverb",
     meaning: "khi một việc gì đó được thực hiện chính xác",
@@ -2644,7 +2644,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "cabin",
-    pronunciation: "KÆBƏN",
+    pronunciation: "CAB-in",
     phonetic: "/ˈkæbən/",
     partOfSpeech: "noun",
     meaning: "một ngôi nhà nhỏ trong rừng",
@@ -2654,7 +2654,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "conductor",
-    pronunciation: "KƏN-dəktɝ",
+    pronunciation: "con-DUC-tor",
     phonetic: "/kənˈdəktɝ/",
     partOfSpeech: "noun",
     meaning: "một người lãnh đạo",
@@ -2664,7 +2664,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "inspector",
-    pronunciation: "ꞮN-spɛktɝ",
+    pronunciation: "in-SPEC-tor",
     phonetic: "/ˌɪnˈspɛktɝ/",
     partOfSpeech: "noun",
     meaning: "một sĩ quan cảnh sát cấp cao",
@@ -2674,7 +2674,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "intern",
-    pronunciation: "ꞮNTɝN",
+    pronunciation: "in-TER-n",
     phonetic: "/ˈɪntɝn/",
     partOfSpeech: "noun",
     meaning: "một stuent hoặc thực tập sinh đang làm một công việc, thường không được trả lương, để có được kinh nghiệm làm việc",
@@ -2684,7 +2684,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "semester",
-    pronunciation: "SƏ-mɛstɝ",
+    pronunciation: "sem-ES-ter",
     phonetic: "/səˈmɛstɝ/",
     partOfSpeech: "noun",
     meaning: "một trong hai bộ môn của năm học",
@@ -2694,7 +2694,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "confirmation",
-    pronunciation: "KⱭNFɝ-meɪʃən",
+    pronunciation: "con-FIR-mat-ion",
     phonetic: "/ˌkɑnfɝˈmeɪʃən/",
     partOfSpeech: "noun",
     meaning: "một cái gì đó xác minh một cái gì đó là đúng",
@@ -2704,7 +2704,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "congratulation",
-    pronunciation: "KƏN-ɡɹætʃə-ɫeɪʃən",
+    pronunciation: "cong-RAT-ul-at-ion",
     phonetic: "/kənˌɡɹætʃəˈɫeɪʃən/",
     partOfSpeech: "noun",
     meaning: "hành động chúc mừng",
@@ -2714,7 +2714,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "expertise",
-    pronunciation: "ƐKSPɝ-tiz",
+    pronunciation: "ex-PER-tis-e",
     phonetic: "/ˌɛkspɝˈtiz/",
     partOfSpeech: "verb",
     meaning: "kiến thức tuyệt vời về một cái gì đó",
@@ -2724,7 +2724,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "graph",
-    pronunciation: "ꞬɹÆF",
+    pronunciation: "GRAP-h",
     phonetic: "/ˈɡɹæf/",
     partOfSpeech: "noun",
     meaning: "một hình ảnh hiển thị dữ liệu",
@@ -2734,7 +2734,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "taker",
-    pronunciation: "TEꞮKɝ",
+    pronunciation: "TAK-er",
     phonetic: "/ˈteɪkɝ/",
     partOfSpeech: "noun",
     meaning: "một người không cho mà chỉ nhận",
@@ -2744,7 +2744,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "utility",
-    pronunciation: "JU-tɪɫəti",
+    pronunciation: "ut-IL-it-y",
     phonetic: "/juˈtɪɫəti/",
     partOfSpeech: "noun",
     meaning: "tính thực tế",
@@ -2754,7 +2754,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "voucher",
-    pronunciation: "VAƱTƩɝ",
+    pronunciation: "VOUC-her",
     phonetic: "/ˈvaʊtʃɝ/",
     partOfSpeech: "noun",
     meaning: "một mảnh giấy mà bạn có thể sử dụng để mua hàng hóa hoặc để có được chúng với giá giảm",
@@ -2764,7 +2764,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "banker",
-    pronunciation: "BÆŊKɝ",
+    pronunciation: "BAN-ker",
     phonetic: "/ˈbæŋkɝ/",
     partOfSpeech: "noun",
     meaning: "người làm việc cho ngân hàng",
@@ -2774,7 +2774,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "behalf",
-    pronunciation: "BꞮ-hæf",
+    pronunciation: "beh-AL-f",
     phonetic: "/bɪˈhæf/",
     partOfSpeech: "noun",
     meaning: "để nói hoặc làm điều gì đó cho người khác, ví dụ như thay mặt cho…",
@@ -2784,7 +2784,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "minimize",
-    pronunciation: "MꞮNƏ-maɪz",
+    pronunciation: "min-IM-iz-e",
     phonetic: "/ˈmɪnəˌmaɪz/",
     partOfSpeech: "verb",
     meaning: "để làm cho ít quan trọng hơn hoặc nhỏ hơn",
@@ -2794,7 +2794,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "optional",
-    pronunciation: "ⱭPƩƏNƏⱢ",
+    pronunciation: "op-TION-al",
     phonetic: "/ˈɑpʃənəɫ/",
     partOfSpeech: "adjective",
     meaning: "một lựa chọn, một cái gì đó bạn không phải làm",
@@ -2804,7 +2804,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "paycheck",
-    pronunciation: "PEꞮ-tʃɛk",
+    pronunciation: "PAYC-heck",
     phonetic: "/ˈpeɪˌtʃɛk/",
     partOfSpeech: "noun",
     meaning: "tờ giấy cho người lao động biết họ đã kiếm được bao nhiêu",
@@ -2814,7 +2814,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "protective",
-    pronunciation: "PɹƏ-tɛktɪv",
+    pronunciation: "prot-EC-tiv-e",
     phonetic: "/pɹəˈtɛktɪv/",
     partOfSpeech: "adjective",
     meaning: "muốn giữ an toàn",
@@ -2824,7 +2824,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "seller",
-    pronunciation: "SƐⱢɝ",
+    pronunciation: "SEL-ler",
     phonetic: "/ˈsɛɫɝ/",
     partOfSpeech: "noun",
     meaning: "một người quảng bá hoặc trao đổi hàng hóa hoặc dịch vụ để lấy tiền",
@@ -2834,7 +2834,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "sidewalk",
-    pronunciation: "SAꞮD-wɔk",
+    pronunciation: "sid-EW-al-k",
     phonetic: "/ˈsaɪdˌwɔk/",
     partOfSpeech: "noun",
     meaning: "khu vực chạy bên cạnh một con đường cho mọi người đi bộ",
@@ -2844,7 +2844,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "sightsee",
-    pronunciation: "SAꞮT-si",
+    pronunciation: "SIG-htsee",
     phonetic: "/ˈsaɪtˈsi/",
     partOfSpeech: "noun",
     meaning: "đi đến các địa điểm ưa thích",
@@ -2854,7 +2854,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "soup",
-    pronunciation: "SUP",
+    pronunciation: "SOUP",
     phonetic: "/ˈsup/",
     partOfSpeech: "noun",
     meaning: "một bữa ăn lỏng, thường nóng",
@@ -2864,7 +2864,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "transit",
-    pronunciation: "TɹÆNZꞮT",
+    pronunciation: "TRAN-sit",
     phonetic: "/ˈtɹænzɪt/",
     partOfSpeech: "noun",
     meaning: "di chuyển từ nơi này đến nơi khác một cách nhanh chóng và tiết kiệm thời gian",
@@ -2874,7 +2874,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "wallet",
-    pronunciation: "WƆⱢƏT",
+    pronunciation: "WAL-let",
     phonetic: "/ˈwɔɫət/",
     partOfSpeech: "noun",
     meaning: "một chiếc vali nhỏ có thể đựng vừa trong túi, được nam giới sử dụng để giữ tiền và thẻ tín dụng",
@@ -2884,7 +2884,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "cashier",
-    pronunciation: "KÆ-ʃɪɹ",
+    pronunciation: "CAS-hier",
     phonetic: "/kæˈʃɪɹ/",
     partOfSpeech: "noun",
     meaning: "người có công việc là lấy số tiền bạn trả cho hàng hóa hoặc dịch vụ",
@@ -2894,7 +2894,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "casual",
-    pronunciation: "KÆƷƏWƏⱢ",
+    pronunciation: "CAS-ual",
     phonetic: "/ˈkæʒəwəɫ/",
     partOfSpeech: "adjective",
     meaning: "không chắc chắn, không có kế hoạch",
@@ -2904,7 +2904,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "drill",
-    pronunciation: "DɹꞮⱢ",
+    pronunciation: "DRIL-l",
     phonetic: "/ˈdɹɪɫ/",
     partOfSpeech: "noun",
     meaning: "đục một lỗ vào một cái gì đó",
@@ -2914,7 +2914,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "fountain",
-    pronunciation: "FAƱNTƏN",
+    pronunciation: "FOUN-tain",
     phonetic: "/ˈfaʊntən/",
     partOfSpeech: "noun",
     meaning: "một bình xịt nước nhân tạo bắn lên trên",
@@ -2924,7 +2924,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "juice",
-    pronunciation: "DƷUS",
+    pronunciation: "JUIC-e",
     phonetic: "/ˈdʒus/",
     partOfSpeech: "noun",
     meaning: "chất lỏng tự nhiên từ cây hoặc quả",
@@ -2934,7 +2934,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "lane",
-    pronunciation: "ⱢEꞮN",
+    pronunciation: "LAN-e",
     phonetic: "/ˈɫeɪn/",
     partOfSpeech: "noun",
     meaning: "một con đường hẹp",
@@ -2944,7 +2944,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "popularity",
-    pronunciation: "PⱭPJƏ-ɫɛɹəti",
+    pronunciation: "pop-UL-ar-it-y",
     phonetic: "/ˌpɑpjəˈɫɛɹəti/",
     partOfSpeech: "noun",
     meaning: "trạng thái được nhiều người yêu thích",
@@ -2954,7 +2954,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "poster",
-    pronunciation: "POƱSTɝ",
+    pronunciation: "POS-ter",
     phonetic: "/ˈpoʊstɝ/",
     partOfSpeech: "noun",
     meaning: "một bức tranh in lớn hoặc thông báo dán trên tường",
@@ -2964,7 +2964,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "promptly",
-    pronunciation: "PɹⱭMPⱢI",
+    pronunciation: "PROM-ptly",
     phonetic: "/ˈpɹɑmpɫi/",
     partOfSpeech: "adverb",
     meaning: "thực hiện ngay lập tức, ngay lập tức",
@@ -2974,7 +2974,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "retailer",
-    pronunciation: "ɹI-teɪɫɝ",
+    pronunciation: "ret-AIL-er",
     phonetic: "/ˈɹiˌteɪɫɝ/",
     partOfSpeech: "noun",
     meaning: "một cửa hàng bán thứ gì đó",
@@ -2984,7 +2984,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "bench",
-    pronunciation: "BƐNTƩ",
+    pronunciation: "BEN-ch",
     phonetic: "/ˈbɛntʃ/",
     partOfSpeech: "noun",
     meaning: "một chỗ ngồi dài, thường là bằng gỗ, chủ yếu được tìm thấy trong công viên",
@@ -2994,7 +2994,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "cumulative",
-    pronunciation: "KJUMJƏⱢƏTꞮV",
+    pronunciation: "cum-UL-at-iv-e",
     phonetic: "/ˈkjumjəɫətɪv/",
     partOfSpeech: "adjective",
     meaning: "trở nên lớn hơn bằng cách ngày càng được thêm vào",
@@ -3004,7 +3004,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "directory",
-    pronunciation: "DAꞮ-ɹɛktɝi",
+    pronunciation: "dir-EC-tor-y",
     phonetic: "/daɪˈɹɛktɝi/",
     partOfSpeech: "noun",
     meaning: "một danh sách tên và địa chỉ theo thứ tự bảng chữ cái",
@@ -3014,7 +3014,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "disposal",
-    pronunciation: "DꞮ-spoʊzəɫ",
+    pronunciation: "dis-POS-al",
     phonetic: "/dɪˈspoʊzəɫ/",
     partOfSpeech: "adjective",
     meaning: "hành động loại bỏ một cái gì đó",
@@ -3024,7 +3024,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "housekeeper",
-    pronunciation: "HAƱ-skipɝ",
+    pronunciation: "hous-EK-eep-er",
     phonetic: "/ˈhaʊˌskipɝ/",
     partOfSpeech: "noun",
     meaning: "một người có nhiệm vụ chăm sóc và dọn dẹp nhà cửa cho người khác",
@@ -3034,7 +3034,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "internship",
-    pronunciation: "ꞮNTɝN-ʃɪp",
+    pronunciation: "in-TER-nship",
     phonetic: "/ˈɪntɝnˌʃɪp/",
     partOfSpeech: "noun",
     meaning: "một vị trí hoặc vị trí để ai đó học một công việc thông qua công việc, đôi khi không được trả lương",
@@ -3044,7 +3044,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "knowledgeable",
-    pronunciation: "NⱭⱢƏDƷƏBƏⱢ",
+    pronunciation: "know-LED-geab-le",
     phonetic: "/ˈnɑɫədʒəbəɫ/",
     partOfSpeech: "adjective",
     meaning: "để biết nhiều về một chủ đề",
@@ -3054,7 +3054,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "organizer",
-    pronunciation: "ƆɹꞬƏ-naɪzɝ",
+    pronunciation: "or-GAN-iz-er",
     phonetic: "/ˈɔɹɡəˌnaɪzɝ/",
     partOfSpeech: "noun",
     meaning: "một người lên kế hoạch cho mọi thứ để kiếm sống",
@@ -3064,7 +3064,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "overdue",
-    pronunciation: "OƱVɝ-du",
+    pronunciation: "ov-ER-due",
     phonetic: "/ˈoʊvɝˈdu/",
     partOfSpeech: "noun",
     meaning: "quá ngày bạn nên làm điều gì đó; trễ",
@@ -3074,7 +3074,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "prediction",
-    pronunciation: "PɹI-dɪkʃən",
+    pronunciation: "pred-IC-tion",
     phonetic: "/pɹiˈdɪkʃən/",
     partOfSpeech: "noun",
     meaning: "dự đoán về tương lai",
@@ -3084,7 +3084,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "subscriber",
-    pronunciation: "SƏBS-kɹaɪbɝ",
+    pronunciation: "sub-SCRIB-er",
     phonetic: "/səbsˈkɹaɪbɝ/",
     partOfSpeech: "noun",
     meaning: "người trả tiền để nhận dịch vụ hoặc sản phẩm thường xuyên",
@@ -3094,7 +3094,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "booklet",
-    pronunciation: "BƱKⱢꞮT",
+    pronunciation: "BOOK-let",
     phonetic: "/ˈbʊkɫɪt/",
     partOfSpeech: "noun",
     meaning: "một cuốn sách nhỏ, tờ rơi hoặc sách quảng cáo",
@@ -3104,7 +3104,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "conditioner",
-    pronunciation: "KƏN-dɪʃənɝ",
+    pronunciation: "con-DIT-ion-er",
     phonetic: "/kənˈdɪʃənɝ/",
     partOfSpeech: "noun",
     meaning: "chất giống dầu gội đầu được sử dụng sau khi gội đầu",
@@ -3114,7 +3114,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "enroll",
-    pronunciation: "ƐN-ɹoʊɫ",
+    pronunciation: "en-ROL-l",
     phonetic: "/ɛnˈɹoʊɫ/",
     partOfSpeech: "noun",
     meaning: "để đăng ký một cái gì đó",
@@ -3124,7 +3124,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "frustrate",
-    pronunciation: "FɹƏS-tɹeɪt",
+    pronunciation: "frus-TRAT-e",
     phonetic: "/ˈfɹəsˌtɹeɪt/",
     partOfSpeech: "verb",
     meaning: "đánh ng ai",
@@ -3134,7 +3134,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "garment",
-    pronunciation: "ꞬⱭɹMƏNT",
+    pronunciation: "gar-MEN-t",
     phonetic: "/ˈɡɑɹmənt/",
     partOfSpeech: "noun",
     meaning: "một cái gì đó làm bằng vật liệu mà bạn có thể mặc, như quần hoặc váy",
@@ -3144,7 +3144,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "orientation",
-    pronunciation: "ƆɹIƐN-teɪʃən",
+    pronunciation: "or-IEN-tat-ion",
     phonetic: "/ˌɔɹiɛnˈteɪʃən/",
     partOfSpeech: "noun",
     meaning: "điều gì đó khiến bạn quen thuộc với một địa điểm",
@@ -3154,7 +3154,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "outlet",
-    pronunciation: "AƱT-ɫɛt",
+    pronunciation: "OUT-let",
     phonetic: "/ˈaʊtˌɫɛt/",
     partOfSpeech: "noun",
     meaning: "một cửa hàng bán đồ giảm giá",
@@ -3164,7 +3164,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "packet",
-    pronunciation: "PÆKƏT",
+    pronunciation: "PACK-et",
     phonetic: "/ˈpækət/",
     partOfSpeech: "noun",
     meaning: "một thùng carton nhỏ hoặc bao bì",
@@ -3174,7 +3174,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "plumber",
-    pronunciation: "PⱢƏMɝ",
+    pronunciation: "PLUM-ber",
     phonetic: "/ˈpɫəmɝ/",
     partOfSpeech: "noun",
     meaning: "ai đó kết nối và sửa chữa đường ống nước để kiếm sống",
@@ -3184,7 +3184,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "specification",
-    pronunciation: "SPƐSꞮFꞮ-keɪʃən",
+    pronunciation: "spec-IF-ic-at-ion",
     phonetic: "/ˌspɛsɪfɪˈkeɪʃən/",
     partOfSpeech: "noun",
     meaning: "một chi tiết đặc biệt hoặc sự cần thiết cho một cái gì đó",
@@ -3194,17 +3194,17 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "auto",
-    pronunciation: "ƆTOƱ",
+    pronunciation: "AW-toh",
     phonetic: "/ˈɔtoʊ/",
     partOfSpeech: "noun",
-    meaning: "xe",
-    exampleSentence: "Please check the auto before the meeting.",
+    meaning: "ô tô, xe hơi (cách nói tắt)",
+    exampleSentence: "We rented an auto for the weekend trip.",
     difficulty: "medium",
     topic: "core",
   },
   {
     word: "decorate",
-    pronunciation: "DƐKɝ-eɪt",
+    pronunciation: "dec-OR-at-e",
     phonetic: "/ˈdɛkɝˌeɪt/",
     partOfSpeech: "verb",
     meaning: "làm cho hấp dẫn hơn bằng cách thêm trang trí, màu sắc, v.v.",
@@ -3214,7 +3214,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "deduction",
-    pronunciation: "DꞮ-dəkʃən",
+    pronunciation: "ded-UC-tion",
     phonetic: "/dɪˈdəkʃən/",
     partOfSpeech: "noun",
     meaning: "hành động lấy đi, thường là tiền",
@@ -3224,7 +3224,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "definite",
-    pronunciation: "DƐFƏNƏT",
+    pronunciation: "def-IN-it-e",
     phonetic: "/ˈdɛfənət/",
     partOfSpeech: "noun",
     meaning: "chắc chắn, chính xác",
@@ -3234,7 +3234,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "economical",
-    pronunciation: "ƐKƏ-nɑmɪkəɫ",
+    pronunciation: "ec-ON-om-ic-al",
     phonetic: "/ˌɛkəˈnɑmɪkəɫ/",
     partOfSpeech: "adjective",
     meaning: "Giá trị tốt",
@@ -3244,7 +3244,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "efficiently",
-    pronunciation: "Ɪ-fɪʃəntɫi",
+    pronunciation: "ef-FIC-ien-tly",
     phonetic: "/ɪˈfɪʃəntɫi/",
     partOfSpeech: "adverb",
     meaning: "làm tốt một việc gì đó trong một khoảng thời gian ngắn",
@@ -3254,7 +3254,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "flyer",
-    pronunciation: "FⱢAꞮɝ",
+    pronunciation: "FLYER",
     phonetic: "/ˈfɫaɪɝ/",
     partOfSpeech: "noun",
     meaning: "tờ rơi, tờ rơi",
@@ -3264,7 +3264,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "franchise",
-    pronunciation: "FɹÆN-tʃaɪz",
+    pronunciation: "fran-CHIS-e",
     phonetic: "/ˈfɹænˌtʃaɪz/",
     partOfSpeech: "verb",
     meaning: "một trong nhiều chi nhánh của một doanh nghiệp bạn mua, ví dụ: KFC",
@@ -3274,7 +3274,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "oven",
-    pronunciation: "ƏVƏN",
+    pronunciation: "OV-en",
     phonetic: "/ˈəvən/",
     partOfSpeech: "verb",
     meaning: "thiết bị nhà bếp được sử dụng để nướng hoặc rang",
@@ -3284,7 +3284,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "pant",
-    pronunciation: "PÆNT",
+    pronunciation: "PAN-t",
     phonetic: "/ˈpænt/",
     partOfSpeech: "adjective",
     meaning: "hít thở sâu qua miệng, ầm ĩ",
@@ -3294,7 +3294,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "profitable",
-    pronunciation: "PɹⱭFƏTƏBƏⱢ",
+    pronunciation: "prof-IT-ab-le",
     phonetic: "/ˈpɹɑfətəbəɫ/",
     partOfSpeech: "adjective",
     meaning: "kiếm tiền",
@@ -3304,7 +3304,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "refrigerator",
-    pronunciation: "ɹƏ-fɹɪdʒɝ-eɪtɝ",
+    pronunciation: "ref-RIG-er-at-or",
     phonetic: "/ɹəˈfɹɪdʒɝˌeɪtɝ/",
     partOfSpeech: "noun",
     meaning: "một hộp điện làm mát thực phẩm",
@@ -3314,7 +3314,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "reimburse",
-    pronunciation: "ɹIꞮM-bɝs",
+    pronunciation: "reim-BUR-se",
     phonetic: "/ˌɹiɪmˈbɝs/",
     partOfSpeech: "noun",
     meaning: "trả lại tiền cho một khoản chi phí đã được thanh toán",
@@ -3324,7 +3324,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "showroom",
-    pronunciation: "ƩOƱ-ɹum",
+    pronunciation: "SHOW-room",
     phonetic: "/ˈʃoʊˌɹum/",
     partOfSpeech: "noun",
     meaning: "một khu vực nơi hàng hóa để bán được đặt ra để mọi người có thể nhìn vào chúng",
@@ -3334,7 +3334,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "vegetarian",
-    pronunciation: "VƐDƷƏ-tɛ-ɹiən",
+    pronunciation: "veg-ET-ar-ian",
     phonetic: "/ˌvɛdʒəˈtɛˌɹiən/",
     partOfSpeech: "noun",
     meaning: "người không ăn thịt hoặc cá",
@@ -3344,7 +3344,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "administrator",
-    pronunciation: "ƏD-mɪnə-stɹeɪtɝ",
+    pronunciation: "ad-MIN-is-trat-or",
     phonetic: "/ədˈmɪnəˌstɹeɪtɝ/",
     partOfSpeech: "noun",
     meaning: "người quản lý một văn phòng",
@@ -3354,7 +3354,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "broker",
-    pronunciation: "BɹOƱKɝ",
+    pronunciation: "BROK-er",
     phonetic: "/ˈbɹoʊkɝ/",
     partOfSpeech: "noun",
     meaning: "một người mua và bán thứ cho một tỷ lệ phần trăm của doanh số bán hàng",
@@ -3364,7 +3364,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "cancellation",
-    pronunciation: "KÆNSƏ-ɫeɪʃən",
+    pronunciation: "can-CEL-lat-ion",
     phonetic: "/ˌkænsəˈɫeɪʃən/",
     partOfSpeech: "noun",
     meaning: "khi một cái gì đó sẽ không xảy ra sau khi tất cả",
@@ -3374,7 +3374,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "confidential",
-    pronunciation: "KⱭNFƏ-dɛnʃəɫ",
+    pronunciation: "con-FID-en-tial",
     phonetic: "/ˌkɑnfəˈdɛnʃəɫ/",
     partOfSpeech: "adjective",
     meaning: "điều gì đó cần được giữ bí mật",
@@ -3384,7 +3384,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "jet",
-    pronunciation: "DƷƐT",
+    pronunciation: "JET",
     phonetic: "/ˈdʒɛt/",
     partOfSpeech: "noun",
     meaning: "máy bay",
@@ -3394,7 +3394,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "realistic",
-    pronunciation: "ɹIƏ-ɫɪstɪk",
+    pronunciation: "real-IS-tic",
     phonetic: "/ˌɹiəˈɫɪstɪk/",
     partOfSpeech: "noun",
     meaning: "hợp lý hoặc gần gũi với cuộc sống thực",
@@ -3404,7 +3404,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "thoroughly",
-    pronunciation: "ΘɝOƱⱢI",
+    pronunciation: "thor-OUG-hly",
     phonetic: "/ˈθɝoʊɫi/",
     partOfSpeech: "adverb",
     meaning: "làm điều gì đó cẩn thận với sự chú ý đến từng chi tiết",
@@ -3414,7 +3414,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "trash",
-    pronunciation: "TɹÆƩ",
+    pronunciation: "TRAS-h",
     phonetic: "/ˈtɹæʃ/",
     partOfSpeech: "noun",
     meaning: "rác hoặc chất thải; một cái gì đó vô giá trị",
@@ -3424,7 +3424,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "usage",
-    pronunciation: "JUSƏDƷ",
+    pronunciation: "us-AG-e",
     phonetic: "/ˈjusədʒ/",
     partOfSpeech: "noun",
     meaning: "cách thông thường hoặc theo thông lệ mà một cái gì đó được sử dụng",
@@ -3434,7 +3434,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "windy",
-    pronunciation: "WAꞮNDI",
+    pronunciation: "WIN-dy",
     phonetic: "/ˈwaɪndi/",
     partOfSpeech: "noun",
     meaning: "thời tiết giông bão hoặc gió mạnh",
@@ -3444,7 +3444,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "automate",
-    pronunciation: "ƆTƏ-meɪt",
+    pronunciation: "aut-OM-at-e",
     phonetic: "/ˈɔtəˌmeɪt/",
     partOfSpeech: "verb",
     meaning: "Để thực hiện một quy trình thực hiện một nhiệm vụ lặp đi lặp lại bằng máy",
@@ -3454,7 +3454,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "ferry",
-    pronunciation: "FƐɹI",
+    pronunciation: "FER-ry",
     phonetic: "/ˈfɛɹi/",
     partOfSpeech: "noun",
     meaning: "một chiếc thuyền lớn chở người và xe hơi",
@@ -3464,7 +3464,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "finalize",
-    pronunciation: "FAꞮNƏ-ɫaɪz",
+    pronunciation: "fin-AL-iz-e",
     phonetic: "/ˈfaɪnəˌɫaɪz/",
     partOfSpeech: "verb",
     meaning: "để đưa ra quyết định cuối cùng",
@@ -3474,7 +3474,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "incur",
-    pronunciation: "ꞮN-kɝ",
+    pronunciation: "IN-cur",
     phonetic: "/ˌɪnˈkɝ/",
     partOfSpeech: "noun",
     meaning: "đặt mình mở ra cho một cái gì đó như là kết quả của hành động của bạn",
@@ -3484,7 +3484,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "instruct",
-    pronunciation: "ꞮN-stɹəkt",
+    pronunciation: "in-STRUC-t",
     phonetic: "/ˌɪnˈstɹəkt/",
     partOfSpeech: "noun",
     meaning: "để giảng dạy",
@@ -3494,7 +3494,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "loyal",
-    pronunciation: "ⱢƆꞮƏⱢ",
+    pronunciation: "LOYAL",
     phonetic: "/ˈɫɔɪəɫ/",
     partOfSpeech: "adjective",
     meaning: "sống chân thật hoặc trung thành",
@@ -3504,7 +3504,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "luncheon",
-    pronunciation: "ⱢƏNTƩƏN",
+    pronunciation: "LUN-cheon",
     phonetic: "/ˈɫəntʃən/",
     partOfSpeech: "noun",
     meaning: "một bữa ăn chính thức được ăn vào giữa ngày",
@@ -3514,7 +3514,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "microphone",
-    pronunciation: "MAꞮKɹƏ-foʊn",
+    pronunciation: "mic-ROP-hon-e",
     phonetic: "/ˈmaɪkɹəˌfoʊn/",
     partOfSpeech: "noun",
     meaning: "thiết bị được ca sĩ và diễn giả công cộng sử dụng để làm cho giọng nói của họ to hơn",
@@ -3524,7 +3524,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "overview",
-    pronunciation: "OƱVɝV-ju",
+    pronunciation: "ov-ER-view",
     phonetic: "/ˈoʊvɝvˌju/",
     partOfSpeech: "noun",
     meaning: "một bản tóm tắt chung về một chủ đề",
@@ -3534,7 +3534,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "projector",
-    pronunciation: "PɹƏ-dʒɛktɝ",
+    pronunciation: "proj-EC-tor",
     phonetic: "/pɹəˈdʒɛktɝ/",
     partOfSpeech: "noun",
     meaning: "một thiết bị quang học chiếu hình ảnh phóng to lên màn hình",
@@ -3544,7 +3544,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "shortage",
-    pronunciation: "ƩƆɹTƏDƷ",
+    pronunciation: "shor-TAG-e",
     phonetic: "/ˈʃɔɹtədʒ/",
     partOfSpeech: "noun",
     meaning: "thiếu một cái gì đó",
@@ -3554,7 +3554,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "spacious",
-    pronunciation: "SPEꞮƩƏS",
+    pronunciation: "SPAC-ious",
     phonetic: "/ˈspeɪʃəs/",
     partOfSpeech: "adjective",
     meaning: "rất nhiều phòng hoặc không gian",
@@ -3564,7 +3564,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "accomplishment",
-    pronunciation: "Ə-kɑmpɫɪʃmənt",
+    pronunciation: "ac-COM-plis-hmen-t",
     phonetic: "/əˈkɑmpɫɪʃmənt/",
     partOfSpeech: "noun",
     meaning: "điều gì đó bạn đạt được",
@@ -3574,7 +3574,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "accustom",
-    pronunciation: "Ə-kəstəm",
+    pronunciation: "ac-CUS-tom",
     phonetic: "/əˈkəstəm/",
     partOfSpeech: "noun",
     meaning: "để làm quen với",
@@ -3584,7 +3584,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "clinic",
-    pronunciation: "KⱢꞮNꞮK",
+    pronunciation: "CLIN-ic",
     phonetic: "/ˈkɫɪnɪk/",
     partOfSpeech: "noun",
     meaning: "một nơi bạn đến khi bị bệnh, giống như một bệnh viện nhỏ",
@@ -3594,7 +3594,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "desktop",
-    pronunciation: "DƐSK-tɑp",
+    pronunciation: "DES-ktop",
     phonetic: "/ˈdɛskˌtɑp/",
     partOfSpeech: "noun",
     meaning: "khu vực làm việc của màn hình máy tính khi không có chương trình nào đang mở",
@@ -3604,7 +3604,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "jog",
-    pronunciation: "DƷⱭꞬ",
+    pronunciation: "JOG",
     phonetic: "/ˈdʒɑɡ/",
     partOfSpeech: "noun",
     meaning: "chạy nhẹ nhàng",
@@ -3614,7 +3614,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "leisure",
-    pronunciation: "ⱢƐƷɝ",
+    pronunciation: "leis-UR-e",
     phonetic: "/ˈɫɛʒɝ/",
     partOfSpeech: "noun",
     meaning: "một cái gì đó để vui chơi hoặc thư giãn",
@@ -3624,7 +3624,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "reinforce",
-    pronunciation: "ɹIꞮN-fɔɹs",
+    pronunciation: "rein-FOR-ce",
     phonetic: "/ˌɹiɪnˈfɔɹs/",
     partOfSpeech: "noun",
     meaning: "để làm cho mạnh hơn",
@@ -3634,7 +3634,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "sender",
-    pronunciation: "SƐNDɝ",
+    pronunciation: "SEN-der",
     phonetic: "/ˈsɛndɝ/",
     partOfSpeech: "noun",
     meaning: "người truyền tải thông điệp",
@@ -3644,7 +3644,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "vacuum",
-    pronunciation: "VÆKJUM",
+    pronunciation: "VAC-uum",
     phonetic: "/ˈvækjum/",
     partOfSpeech: "noun",
     meaning: "không gian trống hoàn toàn",
@@ -3654,7 +3654,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "wireless",
-    pronunciation: "WAꞮɹⱢꞮS",
+    pronunciation: "wir-EL-es-s",
     phonetic: "/ˈwaɪɹɫɪs/",
     partOfSpeech: "adjective",
     meaning: "một phương tiện liên lạc sử dụng sóng vô tuyến thay vì dây dẫn",
@@ -3664,7 +3664,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "yearly",
-    pronunciation: "JꞮɹⱢI",
+    pronunciation: "YEAR-ly",
     phonetic: "/ˈjɪɹɫi/",
     partOfSpeech: "adverb",
     meaning: "xảy ra 12 tháng một lần",
@@ -3674,7 +3674,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "appreciation",
-    pronunciation: "Ə-pɹiʃi-eɪʃən",
+    pronunciation: "ap-PREC-iat-ion",
     phonetic: "/əˌpɹiʃiˈeɪʃən/",
     partOfSpeech: "noun",
     meaning: "để cảm ơn về điều gì đó hoặc ai đó",
@@ -3684,7 +3684,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "cargo",
-    pronunciation: "KⱭɹ-ɡoʊ",
+    pronunciation: "CAR-go",
     phonetic: "/ˈkɑɹˌɡoʊ/",
     partOfSpeech: "noun",
     meaning: "những thứ được mang trong khoang máy bay hoặc trên xe tải",
@@ -3694,7 +3694,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "cooperate",
-    pronunciation: "KWⱭPɝ-eɪt",
+    pronunciation: "coop-ER-at-e",
     phonetic: "/ˈkwɑpɝˌeɪt/",
     partOfSpeech: "verb",
     meaning: "để làm việc cùng nhau một cách độc đáo",
@@ -3704,7 +3704,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "distract",
-    pronunciation: "DꞮ-stɹækt",
+    pronunciation: "dis-TRAC-t",
     phonetic: "/dɪˈstɹækt/",
     partOfSpeech: "noun",
     meaning: "để lấy đi sự tập trung của bạn khỏi một cái gì đó",
@@ -3714,7 +3714,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "dividend",
-    pronunciation: "DꞮVꞮ-dɛnd",
+    pronunciation: "div-ID-en-d",
     phonetic: "/ˈdɪvɪˌdɛnd/",
     partOfSpeech: "noun",
     meaning: "tiền nhận được dưới dạng tiền thưởng",
@@ -3724,7 +3724,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "exemption",
-    pronunciation: "ꞮꞬ-zɛmpʃən",
+    pronunciation: "ex-EM-ption",
     phonetic: "/ɪɡˈzɛmpʃən/",
     partOfSpeech: "noun",
     meaning: "một ngoại lệ cho quy tắc",
@@ -3734,7 +3734,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "furnish",
-    pronunciation: "FɝNꞮƩ",
+    pronunciation: "fur-NIS-h",
     phonetic: "/ˈfɝnɪʃ/",
     partOfSpeech: "noun",
     meaning: "để đặt đồ đạc vào",
@@ -3744,7 +3744,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "hourly",
-    pronunciation: "AƱɹⱢI",
+    pronunciation: "HOUR-ly",
     phonetic: "/ˈaʊɹɫi/",
     partOfSpeech: "adverb",
     meaning: "xảy ra mỗi 60 phút",
@@ -3754,7 +3754,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "laundry",
-    pronunciation: "ⱢƆNDɹI",
+    pronunciation: "LAUN-dry",
     phonetic: "/ˈɫɔndɹi/",
     partOfSpeech: "noun",
     meaning: "quần áo bẩn cần giặt",
@@ -3764,7 +3764,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "mandatory",
-    pronunciation: "MÆNDƏ-tɔɹi",
+    pronunciation: "man-DAT-or-y",
     phonetic: "/ˈmændəˌtɔɹi/",
     partOfSpeech: "noun",
     meaning: "điều gì đó phải được thực hiện",
@@ -3774,7 +3774,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "mechanical",
-    pronunciation: "MƏ-kænɪkəɫ",
+    pronunciation: "mec-HAN-ic-al",
     phonetic: "/məˈkænɪkəɫ/",
     partOfSpeech: "adjective",
     meaning: "liên quan đến máy móc",
@@ -3784,7 +3784,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "pharmacy",
-    pronunciation: "FⱭɹMƏSI",
+    pronunciation: "phar-MAC-y",
     phonetic: "/ˈfɑɹməsi/",
     partOfSpeech: "noun",
     meaning: "một cửa hàng nơi thuốc được chuẩn bị và bán",
@@ -3794,7 +3794,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "promotional",
-    pronunciation: "Pɝ-moʊʃənəɫ",
+    pronunciation: "prom-OT-ion-al",
     phonetic: "/pɝˈmoʊʃənəɫ/",
     partOfSpeech: "adjective",
     meaning: "liên quan đến việc khuyến khích bán hàng",
@@ -3804,7 +3804,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "quarterly",
-    pronunciation: "KWƆɹTɝⱢI",
+    pronunciation: "quar-TER-ly",
     phonetic: "/ˈkwɔɹtɝɫi/",
     partOfSpeech: "adverb",
     meaning: "4 tháng/ lần",
@@ -3814,7 +3814,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "residential",
-    pronunciation: "ɹƐZꞮ-dɛnʃəɫ",
+    pronunciation: "res-ID-en-tial",
     phonetic: "/ˌɹɛzɪˈdɛnʃəɫ/",
     partOfSpeech: "adjective",
     meaning: "một khu vực nơi mọi người sinh sống",
@@ -3824,7 +3824,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "scholarship",
-    pronunciation: "SKⱭⱢɝ-ʃɪp",
+    pronunciation: "schol-AR-ship",
     phonetic: "/ˈskɑɫɝˌʃɪp/",
     partOfSpeech: "noun",
     meaning: "một khoản tiền được trao cho một sinh viên có khả năng để giúp chi trả cho việc học của họ",
@@ -3834,7 +3834,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "seeker",
-    pronunciation: "SIKɝ",
+    pronunciation: "SEEK-er",
     phonetic: "/ˈsikɝ/",
     partOfSpeech: "noun",
     meaning: "ai đó đang tìm kiếm thứ gì đó",
@@ -3844,7 +3844,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "temporarily",
-    pronunciation: "TƐMPɝ-ɛɹəɫi",
+    pronunciation: "tem-POR-ar-il-y",
     phonetic: "/ˌtɛmpɝˈɛɹəɫi/",
     partOfSpeech: "adverb",
     meaning: "không bao giờ, trong một thời gian ngắn",
@@ -3854,7 +3854,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "towel",
-    pronunciation: "TAƱƏⱢ",
+    pronunciation: "TOW-el",
     phonetic: "/ˈtaʊəɫ/",
     partOfSpeech: "noun",
     meaning: "một miếng vải lớn được sử dụng để sấy khô sau khi tắm hoặc bơi",
@@ -3864,7 +3864,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "unattended",
-    pronunciation: "ƏNƏ-tɛndɪd",
+    pronunciation: "un-AT-ten-ded",
     phonetic: "/ənəˈtɛndɪd/",
     partOfSpeech: "verb",
     meaning: "khi ai đó hoặc thứ gì đó không được theo dõi",
@@ -3874,7 +3874,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "accessible",
-    pronunciation: "ÆK-sɛsəbəɫ",
+    pronunciation: "ac-CES-sib-le",
     phonetic: "/ækˈsɛsəbəɫ/",
     partOfSpeech: "adjective",
     meaning: "có sẵn, dễ tiếp cận",
@@ -3884,7 +3884,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "afterward",
-    pronunciation: "ÆFTɝWɝD",
+    pronunciation: "af-TER-war-d",
     phonetic: "/ˈæftɝwɝd/",
     partOfSpeech: "noun",
     meaning: "sau một sự kiện hoặc hành động",
@@ -3894,7 +3894,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "apology",
-    pronunciation: "Ə-pɑɫə-dʒi",
+    pronunciation: "ap-OL-og-y",
     phonetic: "/əˈpɑɫəˌdʒi/",
     partOfSpeech: "noun",
     meaning: "nói rằng bạn xin lỗi về điều gì đó",
@@ -3904,7 +3904,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "automatic",
-    pronunciation: "ƆTƏ-mætɪk",
+    pronunciation: "aut-OM-at-ic",
     phonetic: "/ˌɔtəˈmætɪk/",
     partOfSpeech: "noun",
     meaning: "hoàn thành mà không cần suy nghĩ",
@@ -3914,7 +3914,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "boardroom",
-    pronunciation: "BƆɹ-dɹum",
+    pronunciation: "BOAR-droom",
     phonetic: "/ˈbɔɹˌdɹum/",
     partOfSpeech: "noun",
     meaning: "một căn phòng nơi hội đồng quản trị của một công ty tổ chức các cuộc họp",
@@ -3924,7 +3924,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "carpenter",
-    pronunciation: "KⱭɹPƏNTɝ",
+    pronunciation: "car-PEN-ter",
     phonetic: "/ˈkɑɹpəntɝ/",
     partOfSpeech: "noun",
     meaning: "một người làm và sửa chữa những thứ làm bằng gỗ để kiếm sống",
@@ -3934,7 +3934,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "caterer",
-    pronunciation: "KEꞮTɝɝ",
+    pronunciation: "cat-ER-er",
     phonetic: "/ˈkeɪtɝɝ/",
     partOfSpeech: "noun",
     meaning: "người làm ra thức ăn và cung cấp nó để kiếm sống",
@@ -3944,7 +3944,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "classify",
-    pronunciation: "KⱢÆSƏ-faɪ",
+    pronunciation: "clas-SIF-y",
     phonetic: "/ˈkɫæsəˌfaɪ/",
     partOfSpeech: "verb",
     meaning: "đưa vào một danh mục",
@@ -3954,7 +3954,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "consultation",
-    pronunciation: "KⱭNSƏⱢ-teɪʃən",
+    pronunciation: "con-SUL-tat-ion",
     phonetic: "/ˌkɑnsəɫˈteɪʃən/",
     partOfSpeech: "noun",
     meaning: "một cuộc gặp gỡ giữa hai người",
@@ -3964,7 +3964,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "durable",
-    pronunciation: "DƱɹƏBƏⱢ",
+    pronunciation: "dur-AB-le",
     phonetic: "/ˈdʊɹəbəɫ/",
     partOfSpeech: "adjective",
     meaning: "rất lâu",
@@ -3974,7 +3974,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "glove",
-    pronunciation: "ꞬⱢƏV",
+    pronunciation: "GLOV-e",
     phonetic: "/ˈɡɫəv/",
     partOfSpeech: "noun",
     meaning: "thứ gì đó bạn đeo trên tay để giữ ấm",
@@ -3984,7 +3984,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "hardware",
-    pronunciation: "HⱭɹD-wɛɹ",
+    pronunciation: "har-DWAR-e",
     phonetic: "/ˈhɑɹdˌwɛɹ/",
     partOfSpeech: "noun",
     meaning: "dụng cụ hoặc thiết bị",
@@ -3994,7 +3994,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "malfunction",
-    pronunciation: "MÆⱢ-fəŋkʃən",
+    pronunciation: "mal-FUN-ction",
     phonetic: "/mæɫˈfəŋkʃən/",
     partOfSpeech: "noun",
     meaning: "sự cố hoặc hỏng hóc trong hệ thống",
@@ -4004,7 +4004,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "outdated",
-    pronunciation: "AƱT-deɪtɪd",
+    pronunciation: "out-DAT-ed",
     phonetic: "/ˈaʊtˌdeɪtɪd/",
     partOfSpeech: "verb",
     meaning: "lớn hơn",
@@ -4014,7 +4014,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "patience",
-    pronunciation: "PEꞮƩƏNS",
+    pronunciation: "pat-IEN-ce",
     phonetic: "/ˈpeɪʃəns/",
     partOfSpeech: "noun",
     meaning: "chấp nhận đau khổ mà không tức giận",
@@ -4024,7 +4024,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "postcard",
-    pronunciation: "POƱ-skɑɹd",
+    pronunciation: "pos-TCAR-d",
     phonetic: "/ˈpoʊˌskɑɹd/",
     partOfSpeech: "noun",
     meaning: "một thẻ để gửi tin nhắn qua đường bưu điện mà không có phong bì",
@@ -4034,7 +4034,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "prospective",
-    pronunciation: "PɹƏ-spɛktɪv",
+    pronunciation: "pros-PEC-tiv-e",
     phonetic: "/pɹəˈspɛktɪv/",
     partOfSpeech: "adjective",
     meaning: "có thể trong tương lai, ví dụ: khách hàng tiềm năng",
@@ -4044,7 +4044,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "revision",
-    pronunciation: "ɹI-vɪʒən",
+    pronunciation: "rev-IS-ion",
     phonetic: "/ɹiˈvɪʒən/",
     partOfSpeech: "noun",
     meaning: "để thay đổi hoặc viết lại một cái gì đó",
@@ -4054,7 +4054,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "strictly",
-    pronunciation: "STɹꞮKTⱢI",
+    pronunciation: "STRIC-tly",
     phonetic: "/ˈstɹɪktɫi/",
     partOfSpeech: "adverb",
     meaning: "một cách mạnh mẽ, theo cách tuân thủ các quy tắc",
@@ -4064,7 +4064,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "tomato",
-    pronunciation: "TƏ-mɑ-toʊ",
+    pronunciation: "tom-AT-o",
     phonetic: "/təˈmɑˌtoʊ/",
     partOfSpeech: "noun",
     meaning: "một loại trái cây tròn màu đỏ, thường được coi là một loại rau",
@@ -4074,7 +4074,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "tray",
-    pronunciation: "TɹEꞮ",
+    pronunciation: "TRAY",
     phonetic: "/ˈtɹeɪ/",
     partOfSpeech: "noun",
     meaning: "một chiếc đĩa phẳng dùng để đựng đồ, thường là cà phê hoặc trà",
@@ -4084,7 +4084,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "vendor",
-    pronunciation: "VƐNDɝ",
+    pronunciation: "VEN-dor",
     phonetic: "/ˈvɛndɝ/",
     partOfSpeech: "noun",
     meaning: "người đang bán thứ gì đó",
@@ -4094,7 +4094,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "withdrawal",
-    pronunciation: "WꞮÐ-dɹɔəɫ",
+    pronunciation: "wit-HDRAW-al",
     phonetic: "/wɪðˈdɹɔəɫ/",
     partOfSpeech: "adjective",
     meaning: "hành động lấy đi một cái gì đó hoặc ra khỏi một cái gì đó, ví dụ như rút tiền từ ngân hàng",
@@ -4104,7 +4104,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "anytime",
-    pronunciation: "ƐNI-taɪm",
+    pronunciation: "an-YT-im-e",
     phonetic: "/ˈɛniˌtaɪm/",
     partOfSpeech: "noun",
     meaning: "tại một thời điểm bạn chọn, điều đó không quan trọng khi",
@@ -4114,7 +4114,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "badge",
-    pronunciation: "BÆDƷ",
+    pronunciation: "BAD-ge",
     phonetic: "/ˈbædʒ/",
     partOfSpeech: "noun",
     meaning: "một mảnh vật liệu nhỏ có tên và thông tin chi tiết của bạn mà bạn mặc để cho thấy bạn là ai",
@@ -4124,7 +4124,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "brake",
-    pronunciation: "BɹEꞮK",
+    pronunciation: "BRAK-e",
     phonetic: "/ˈbɹeɪk/",
     partOfSpeech: "noun",
     meaning: "để dừng xe bằng cách nhấn bàn đạp",
@@ -4134,7 +4134,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "calculation",
-    pronunciation: "KÆⱢKJƏ-ɫeɪʃən",
+    pronunciation: "cal-CUL-at-ion",
     phonetic: "/ˌkæɫkjəˈɫeɪʃən/",
     partOfSpeech: "noun",
     meaning: "để cộng, trừ, nhân, chia, v.v.",
@@ -4144,7 +4144,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "coordinator",
-    pronunciation: "KOƱ-ɔɹdə-neɪtɝ",
+    pronunciation: "coor-DIN-at-or",
     phonetic: "/koʊˈɔɹdəˌneɪtɝ/",
     partOfSpeech: "noun",
     meaning: "một người có nhiệm vụ tổ chức mọi thứ",
@@ -4154,7 +4154,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "costly",
-    pronunciation: "KⱭSTⱢI",
+    pronunciation: "COS-tly",
     phonetic: "/ˈkɑstɫi/",
     partOfSpeech: "adverb",
     meaning: "đắt tiền, có giá cao",
@@ -4164,7 +4164,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "equip",
-    pronunciation: "Ɪ-kwɪp",
+    pronunciation: "EQ-uip",
     phonetic: "/ɪˈkwɪp/",
     partOfSpeech: "noun",
     meaning: "cung cấp khả năng hoặc công cụ",
@@ -4174,7 +4174,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "excursion",
-    pronunciation: "ꞮK-skɝʒən",
+    pronunciation: "ex-CUR-sion",
     phonetic: "/ɪkˈskɝʒən/",
     partOfSpeech: "noun",
     meaning: "một cuộc hành trình được thực hiện vì niềm vui",
@@ -4184,7 +4184,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "graphic",
-    pronunciation: "ꞬɹÆFꞮK",
+    pronunciation: "GRAP-hic",
     phonetic: "/ˈɡɹæfɪk/",
     partOfSpeech: "noun",
     meaning: "để làm với một hình ảnh hoặc hình ảnh",
@@ -4194,7 +4194,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "inexperience",
-    pronunciation: "ꞮNꞮK-spɪɹiəns",
+    pronunciation: "in-EX-per-ien-ce",
     phonetic: "/ˌɪnɪkˈspɪɹiəns/",
     partOfSpeech: "noun",
     meaning: "không thực hành nhiều với một cái gì đó",
@@ -4204,7 +4204,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "lengthy",
-    pronunciation: "ⱢƐŊΘI",
+    pronunciation: "LENG-thy",
     phonetic: "/ˈɫɛŋθi/",
     partOfSpeech: "noun",
     meaning: "lâu dài về thời gian hoặc kích thước",
@@ -4214,7 +4214,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "librarian",
-    pronunciation: "ⱢAꞮ-bɹɛ-ɹiən",
+    pronunciation: "lib-RAR-ian",
     phonetic: "/ɫaɪˈbɹɛˌɹiən/",
     partOfSpeech: "noun",
     meaning: "một người làm việc với sách trong thư viện",
@@ -4224,7 +4224,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "meantime",
-    pronunciation: "MIN-taɪm",
+    pronunciation: "mean-TIM-e",
     phonetic: "/ˈminˌtaɪm/",
     partOfSpeech: "noun",
     meaning: "thời gian giữa hai sự kiện",
@@ -4234,7 +4234,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "merge",
-    pronunciation: "MɝDƷ",
+    pronunciation: "MER-ge",
     phonetic: "/ˈmɝdʒ/",
     partOfSpeech: "noun",
     meaning: "kết hợp hai thứ lại với nhau để tạo thành một",
@@ -4244,7 +4244,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "performer",
-    pronunciation: "Pɝ-fɔɹmɝ",
+    pronunciation: "per-FOR-mer",
     phonetic: "/pɝˈfɔɹmɝ/",
     partOfSpeech: "noun",
     meaning: "một nghệ sĩ giải trí như một diễn viên hay một ca sĩ",
@@ -4254,7 +4254,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "pharmacist",
-    pronunciation: "FⱭɹMƏSꞮST",
+    pronunciation: "phar-MAC-is-t",
     phonetic: "/ˈfɑɹməsɪst/",
     partOfSpeech: "noun",
     meaning: "một người có nhiệm vụ chuẩn bị thuốc",
@@ -4264,7 +4264,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "pizza",
-    pronunciation: "PITSƏ",
+    pronunciation: "PIZ-za",
     phonetic: "/ˈpitsə/",
     partOfSpeech: "noun",
     meaning: "một miếng bột nhào nướng tròn, phủ cà chua, phô mai và các thành phần khác",
@@ -4274,7 +4274,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "resignation",
-    pronunciation: "ɹƐZƏꞬ-neɪʃən",
+    pronunciation: "res-IG-nat-ion",
     phonetic: "/ˌɹɛzəɡˈneɪʃən/",
     partOfSpeech: "noun",
     meaning: "bỏ việc",
@@ -4284,7 +4284,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "reviewer",
-    pronunciation: "ɹIV-juɝ",
+    pronunciation: "rev-IEW-er",
     phonetic: "/ɹivˈjuɝ/",
     partOfSpeech: "noun",
     meaning: "người kiểm tra công việc bằng văn bản",
@@ -4294,7 +4294,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "terminate",
-    pronunciation: "TɝMƏ-neɪt",
+    pronunciation: "ter-MIN-at-e",
     phonetic: "/ˈtɝməˌneɪt/",
     partOfSpeech: "verb",
     meaning: "kết thúc",
@@ -4304,7 +4304,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "translation",
-    pronunciation: "TɹÆN-sɫeɪʃən",
+    pronunciation: "tran-SLAT-ion",
     phonetic: "/tɹænˈsɫeɪʃən/",
     partOfSpeech: "noun",
     meaning: "một cái gì đó được thay đổi thành ngôn ngữ khác",
@@ -4314,7 +4314,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "unfamiliar",
-    pronunciation: "ƏNFƏ-mɪɫjɝ",
+    pronunciation: "un-FAM-il-iar",
     phonetic: "/ˌənfəˈmɪɫjɝ/",
     partOfSpeech: "noun",
     meaning: "nồi tiếng",
@@ -4324,7 +4324,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "actress",
-    pronunciation: "ÆKTɹƏS",
+    pronunciation: "ac-TRES-s",
     phonetic: "/ˈæktɹəs/",
     partOfSpeech: "noun",
     meaning: "một nữ diễn viên",
@@ -4334,7 +4334,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "adjacent",
-    pronunciation: "Ə-dʒeɪsənt",
+    pronunciation: "ad-JAC-en-t",
     phonetic: "/əˈdʒeɪsənt/",
     partOfSpeech: "adjective",
     meaning: "bên cạnh, bên cạnh",
@@ -4344,7 +4344,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "alternate",
-    pronunciation: "ƆⱢTɝ-neɪt",
+    pronunciation: "al-TER-nat-e",
     phonetic: "/ˈɔɫtɝˌneɪt/",
     partOfSpeech: "verb",
     meaning: "Thêm tùy chọn khác",
@@ -4354,7 +4354,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "congratulate",
-    pronunciation: "KƏN-ɡɹætʃə-ɫeɪt",
+    pronunciation: "cong-RAT-ul-at-e",
     phonetic: "/kənˈɡɹætʃəˌɫeɪt/",
     partOfSpeech: "verb",
     meaning: "nói với ai đó 'làm tốt lắm' trong một dịp vui",
@@ -4364,7 +4364,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "escort",
-    pronunciation: "ƐSKƆɹT",
+    pronunciation: "es-COR-t",
     phonetic: "/ˈɛskɔɹt/",
     partOfSpeech: "noun",
     meaning: "rủi cho ai, không lợi cho ai",
@@ -4374,7 +4374,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "inexpensive",
-    pronunciation: "ꞮNꞮK-spɛnsɪv",
+    pronunciation: "in-EX-pen-siv-e",
     phonetic: "/ˌɪnɪkˈspɛnsɪv/",
     partOfSpeech: "adjective",
     meaning: "có giá rẻ; giá rẻ",
@@ -4384,7 +4384,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "mask",
-    pronunciation: "MÆSK",
+    pronunciation: "MAS-k",
     phonetic: "/ˈmæsk/",
     partOfSpeech: "noun",
     meaning: "thứ gì đó che mặt bạn",
@@ -4394,7 +4394,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "purchaser",
-    pronunciation: "PɝTƩƏSɝ",
+    pronunciation: "pur-CHAS-er",
     phonetic: "/ˈpɝtʃəsɝ/",
     partOfSpeech: "noun",
     meaning: "ai đó mua đồ; người mua",
@@ -4404,7 +4404,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "purse",
-    pronunciation: "PɝS",
+    pronunciation: "PUR-se",
     phonetic: "/ˈpɝs/",
     partOfSpeech: "noun",
     meaning: "một chiếc túi nhỏ mà phụ nữ sử dụng để mang theo vật dụng cá nhân",
@@ -4414,7 +4414,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "realtor",
-    pronunciation: "ɹIƏⱢTɝ",
+    pronunciation: "REAL-tor",
     phonetic: "/ˈɹiəɫtɝ/",
     partOfSpeech: "noun",
     meaning: "một người bán, cho thuê hoặc quản lý tài sản để kiếm sống",
@@ -4424,7 +4424,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "rearrange",
-    pronunciation: "ɹIɝ-eɪndʒ",
+    pronunciation: "rear-RANG-e",
     phonetic: "/ˌɹiɝˈeɪndʒ/",
     partOfSpeech: "noun",
     meaning: "đưa vào một đơn đặt hàng mới",
@@ -4434,7 +4434,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "reopen",
-    pronunciation: "ɹI-oʊpən",
+    pronunciation: "REOP-en",
     phonetic: "/ɹiˈoʊpən/",
     partOfSpeech: "verb",
     meaning: "để mở lại",
@@ -4444,7 +4444,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "soap",
-    pronunciation: "SOƱP",
+    pronunciation: "SOAP",
     phonetic: "/ˈsoʊp/",
     partOfSpeech: "noun",
     meaning: "một khối vật liệu được sử dụng để giặt hoặc làm sạch",
@@ -4454,7 +4454,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "spokesperson",
-    pronunciation: "SPOƱKSPɝSƏN",
+    pronunciation: "spok-ES-per-son",
     phonetic: "/ˈspoʊkspɝsən/",
     partOfSpeech: "noun",
     meaning: "một người đàn ông hoặc phụ nữ nói chính thức cho phần còn lại của nhóm",
@@ -4464,7 +4464,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "superior",
-    pronunciation: "SU-pɪɹiɝ",
+    pronunciation: "sup-ER-ior",
     phonetic: "/suˈpɪɹiɝ/",
     partOfSpeech: "noun",
     meaning: "người lãnh đạo, một người có cấp bậc cao hơn bạn",
@@ -4474,7 +4474,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "airfare",
-    pronunciation: "Ɛɹ-fɛɹ",
+    pronunciation: "air-FAR-e",
     phonetic: "/ˈɛɹˌfɛɹ/",
     partOfSpeech: "noun",
     meaning: "số tiền phải trả cho việc di chuyển bằng máy bay",
@@ -4484,7 +4484,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "bake",
-    pronunciation: "BEꞮK",
+    pronunciation: "BAK-e",
     phonetic: "/ˈbeɪk/",
     partOfSpeech: "noun",
     meaning: "để nấu những thứ bên trong lò",
@@ -4494,7 +4494,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "businessperson",
-    pronunciation: "BꞮZNƏ-spɝsən",
+    pronunciation: "bus-IN-es-sper-son",
     phonetic: "/ˈbɪznəˈspɝsən/",
     partOfSpeech: "noun",
     meaning: "một người làm việc trong lĩnh vực kinh doanh thương mại hoặc công nghiệp, đặc biệt là chủ sở hữu hoặc người điều hành",
@@ -4504,7 +4504,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "considerably",
-    pronunciation: "KƏN-sɪdɝəbɫi",
+    pronunciation: "con-SID-er-ab-ly",
     phonetic: "/kənˈsɪdɝəbɫi/",
     partOfSpeech: "adverb",
     meaning: "ở một mức độ lớn",
@@ -4514,7 +4514,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "faulty",
-    pronunciation: "FƆⱢTI",
+    pronunciation: "FAUL-ty",
     phonetic: "/ˈfɔɫti/",
     partOfSpeech: "noun",
     meaning: "hỏng, không hoàn hảo",
@@ -4524,7 +4524,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "hobby",
-    pronunciation: "HⱭBI",
+    pronunciation: "HOB-by",
     phonetic: "/ˈhɑbi/",
     partOfSpeech: "noun",
     meaning: "điều gì đó bạn làm trong thời gian rảnh rỗi để giải trí",
@@ -4534,7 +4534,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "informal",
-    pronunciation: "ꞮN-fɔɹməɫ",
+    pronunciation: "in-FOR-mal",
     phonetic: "/ˌɪnˈfɔɹməɫ/",
     partOfSpeech: "adjective",
     meaning: "thoải mái, bình thường - thường được sử dụng để mô tả quần áo hoặc một sự kiện",
@@ -4544,7 +4544,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "kilometer",
-    pronunciation: "KꞮⱢƏ-mitɝ",
+    pronunciation: "kil-OM-et-er",
     phonetic: "/ˈkɪɫəˌmitɝ/",
     partOfSpeech: "noun",
     meaning: "một đơn vị hệ mét có chiều dài bằng 1000 mét",
@@ -4554,7 +4554,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "lawn",
-    pronunciation: "ⱢƆN",
+    pronunciation: "LAW-n",
     phonetic: "/ˈɫɔn/",
     partOfSpeech: "noun",
     meaning: "khu vực có cỏ trong vườn của bạn",
@@ -4564,7 +4564,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "microscope",
-    pronunciation: "MAꞮKɹƏ-skoʊp",
+    pronunciation: "mic-ROS-cop-e",
     phonetic: "/ˈmaɪkɹəˌskoʊp/",
     partOfSpeech: "noun",
     meaning: "một thiết bị làm cho những thứ rất nhỏ trông lớn hơn để bạn có thể nghiên cứu chúng kỹ hơn",
@@ -4574,7 +4574,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "mislead",
-    pronunciation: "MꞮ-sɫid",
+    pronunciation: "MIS-lead",
     phonetic: "/mɪˈsɫid/",
     partOfSpeech: "noun",
     meaning: "dẫn một người nào đó theo hướng sai hoặc cho ai đó hướng sai.",
@@ -4584,7 +4584,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "misplace",
-    pronunciation: "MꞮS-pɫeɪs",
+    pronunciation: "mis-PLAC-e",
     phonetic: "/mɪsˈpɫeɪs/",
     partOfSpeech: "noun",
     meaning: "Bạn quên đã cất ở đâu",
@@ -4594,7 +4594,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "newsstand",
-    pronunciation: "NUZ-stænd",
+    pronunciation: "new-SSTAN-d",
     phonetic: "/ˈnuzˌstænd/",
     partOfSpeech: "noun",
     meaning: "một cấu trúc nhỏ nơi bán báo và tạp chí",
@@ -4604,7 +4604,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "overhead",
-    pronunciation: "OƱVɝ-hɛd",
+    pronunciation: "ov-ER-head",
     phonetic: "/ˈoʊvɝˈhɛd/",
     partOfSpeech: "noun",
     meaning: "chi phí cố định của một doanh nghiệp, ví dụ: tiền thuê nhà",
@@ -4614,7 +4614,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "portfolio",
-    pronunciation: "PƆɹT-foʊɫi-oʊ",
+    pronunciation: "por-TFOL-io",
     phonetic: "/pɔɹtˈfoʊɫiˌoʊ/",
     partOfSpeech: "noun",
     meaning: "một tập hợp các khoản đầu tư mà ai đó sở hữu",
@@ -4624,7 +4624,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "rack",
-    pronunciation: "ɹÆK",
+    pronunciation: "RACK",
     phonetic: "/ˈɹæk/",
     partOfSpeech: "noun",
     meaning: "giá đỡ hoặc kệ để đặt đồ lên",
@@ -4634,7 +4634,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "remodel",
-    pronunciation: "ɹI-mɑdəɫ",
+    pronunciation: "rem-OD-el",
     phonetic: "/ɹiˈmɑdəɫ/",
     partOfSpeech: "noun",
     meaning: "thay đổi hoặc thay đổi gần như mọi thứ để làm cho nó trông khác biệt",
@@ -4644,7 +4644,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "statistics",
-    pronunciation: "STƏ-tɪstɪks",
+    pronunciation: "stat-IS-tic-s",
     phonetic: "/stəˈtɪstɪks/",
     partOfSpeech: "noun",
     meaning: "toán học liên quan đến thu thập dữ liệu",
@@ -4654,7 +4654,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "tunnel",
-    pronunciation: "TƏNƏⱢ",
+    pronunciation: "TUN-nel",
     phonetic: "/ˈtənəɫ/",
     partOfSpeech: "noun",
     meaning: "một cái lỗ mà người ta có thể chui qua",
@@ -4664,7 +4664,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "unlimited",
-    pronunciation: "ƏN-ɫɪmətɪd",
+    pronunciation: "un-LIM-it-ed",
     phonetic: "/ənˈɫɪmətɪd/",
     partOfSpeech: "verb",
     meaning: "không bao giờ hết",
@@ -4674,7 +4674,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "vitamin",
-    pronunciation: "VAꞮTƏMƏN",
+    pronunciation: "vit-AM-in",
     phonetic: "/ˈvaɪtəmən/",
     partOfSpeech: "noun",
     meaning: "một chất tự nhiên có trong thực phẩm và đồ uống mà cơ thể bạn cần phải khỏe mạnh",
@@ -4684,7 +4684,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "zoo",
-    pronunciation: "ZU",
+    pronunciation: "ZOO",
     phonetic: "/ˈzu/",
     partOfSpeech: "noun",
     meaning: "một công viên nơi lưu giữ nhiều loại động vật sống khác nhau",
@@ -4694,7 +4694,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "alert",
-    pronunciation: "Ə-ɫɝt",
+    pronunciation: "al-ER-t",
     phonetic: "/əˈɫɝt/",
     partOfSpeech: "noun",
     meaning: "tỉnh táo, nhận thức được",
@@ -4704,7 +4704,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "auditorium",
-    pronunciation: "ƆDƏ-tɔɹiəm",
+    pronunciation: "aud-IT-or-ium",
     phonetic: "/ˌɔdəˈtɔɹiəm/",
     partOfSpeech: "noun",
     meaning: "khu vực của nhà hát hoặc phòng hòa nhạc nơi khán giả ngồi",
@@ -4724,7 +4724,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "deduct",
-    pronunciation: "DꞮ-dəkt",
+    pronunciation: "ded-UC-t",
     phonetic: "/dɪˈdəkt/",
     partOfSpeech: "noun",
     meaning: "để trừ hoặc lấy đi",
@@ -4734,7 +4734,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "disruption",
-    pronunciation: "DꞮS-ɹəpʃən",
+    pronunciation: "dis-RUP-tion",
     phonetic: "/dɪsˈɹəpʃən/",
     partOfSpeech: "noun",
     meaning: "hành động làm gián đoạn và gây hỗn loạn",
@@ -4744,7 +4744,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "electrician",
-    pronunciation: "ꞮⱢƐK-tɹɪʃən",
+    pronunciation: "el-EC-tric-ian",
     phonetic: "/ɪɫɛkˈtɹɪʃən/",
     partOfSpeech: "noun",
     meaning: "người lắp đặt hoặc sửa chữa đường dây điện hoặc điện thoại",
@@ -4754,7 +4754,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "enthusiastic",
-    pronunciation: "ꞮN-θuzi-æstɪk",
+    pronunciation: "en-THUS-ias-tic",
     phonetic: "/ɪnˌθuziˈæstɪk/",
     partOfSpeech: "noun",
     meaning: "để thể hiện sự phấn khích về điều gì đó",
@@ -4764,7 +4764,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "graduation",
-    pronunciation: "ꞬɹÆDƷƏ-weɪʃən",
+    pronunciation: "grad-UAT-ion",
     phonetic: "/ˌɡɹædʒəˈweɪʃən/",
     partOfSpeech: "noun",
     meaning: "buổi lễ khi hoàn thành bằng cấp hoặc chương trình",
@@ -4774,7 +4774,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "icy",
-    pronunciation: "AꞮSI",
+    pronunciation: "IC-y",
     phonetic: "/ˈaɪsi/",
     partOfSpeech: "noun",
     meaning: "làm bằng đá",
@@ -4784,7 +4784,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "irregular",
-    pronunciation: "Ɪ-ɹɛɡjəɫɝ",
+    pronunciation: "ir-REG-ul-ar",
     phonetic: "/ˌɪˈɹɛɡjəɫɝ/",
     partOfSpeech: "noun",
     meaning: "xảy ra vào những thời điểm bất ngờ",
@@ -4794,7 +4794,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "login",
-    pronunciation: "ⱢƆ-ɡɪn",
+    pronunciation: "LOG-in",
     phonetic: "/ˈɫɔˌɡɪn/",
     partOfSpeech: "noun",
     meaning: "để nhập tài khoản trang web máy tính",
@@ -4804,7 +4804,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "managerial",
-    pronunciation: "MÆNꞮ-dʒɪɹiəɫ",
+    pronunciation: "man-AG-er-ial",
     phonetic: "/ˌmænɪˈdʒɪɹiəɫ/",
     partOfSpeech: "adjective",
     meaning: "liên quan đến quản lý hoặc giám sát",
@@ -4814,7 +4814,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "mineral",
-    pronunciation: "MꞮNɝƏⱢ",
+    pronunciation: "min-ER-al",
     phonetic: "/ˈmɪnɝəɫ/",
     partOfSpeech: "adjective",
     meaning: "một loại chất được tìm thấy trong tự nhiên",
@@ -4824,7 +4824,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "motorcycle",
-    pronunciation: "MOƱTɝ-saɪkəɫ",
+    pronunciation: "mot-OR-cyc-le",
     phonetic: "/ˈmoʊtɝˌsaɪkəɫ/",
     partOfSpeech: "noun",
     meaning: "một chiếc xe cơ giới có hai bánh và khung chắc chắn",
@@ -4834,7 +4834,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "necessity",
-    pronunciation: "NƏ-sɛsəti",
+    pronunciation: "nec-ES-sit-y",
     phonetic: "/nəˈsɛsəti/",
     partOfSpeech: "noun",
     meaning: "một cái gì đó mà bạn cần",
@@ -4844,7 +4844,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "planner",
-    pronunciation: "PⱢÆNɝ",
+    pronunciation: "PLAN-ner",
     phonetic: "/ˈpɫænɝ/",
     partOfSpeech: "noun",
     meaning: "một người lập kế hoạch",
@@ -4854,7 +4854,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "programmer",
-    pronunciation: "PɹOƱ-ɡɹæmɝ",
+    pronunciation: "prog-RAM-mer",
     phonetic: "/ˈpɹoʊˌɡɹæmɝ/",
     partOfSpeech: "noun",
     meaning: "một người thiết kế, viết và kiểm tra các chương trình máy tính",
@@ -4864,7 +4864,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "proofread",
-    pronunciation: "PɹU-fɹid",
+    pronunciation: "PROOF-read",
     phonetic: "/ˈpɹuˌfɹid/",
     partOfSpeech: "noun",
     meaning: "đọc để tìm lỗi",
@@ -4874,7 +4874,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "recruiter",
-    pronunciation: "ɹꞮ-kɹutɝ",
+    pronunciation: "rec-RUIT-er",
     phonetic: "/ɹɪˈkɹutɝ/",
     partOfSpeech: "noun",
     meaning: "một người thuê người cho các doanh nghiệp",
@@ -4884,7 +4884,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "remainder",
-    pronunciation: "ɹI-meɪndɝ",
+    pronunciation: "rem-AIN-der",
     phonetic: "/ɹiˈmeɪndɝ/",
     partOfSpeech: "noun",
     meaning: "những gì còn lại",
@@ -4894,7 +4894,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "statue",
-    pronunciation: "STÆ-tʃu",
+    pronunciation: "STAT-ue",
     phonetic: "/ˈstæˌtʃu/",
     partOfSpeech: "noun",
     meaning: "một tác phẩm nghệ thuật, thường là một mô hình của một người hoặc động vật, được làm từ vật liệu cứng",
@@ -4904,7 +4904,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "steadily",
-    pronunciation: "STƐDƏⱢI",
+    pronunciation: "stead-IL-y",
     phonetic: "/ˈstɛdəɫi/",
     partOfSpeech: "adverb",
     meaning: "một cách chậm rãi và đồng đều",
@@ -4914,7 +4914,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "stockholder",
-    pronunciation: "STⱭK-hoʊɫdɝ",
+    pronunciation: "stock-HOL-der",
     phonetic: "/ˈstɑkˌhoʊɫdɝ/",
     partOfSpeech: "noun",
     meaning: "người nắm giữ cổ phần trong một công ty",
@@ -4924,7 +4924,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "vacant",
-    pronunciation: "VEꞮKƏNT",
+    pronunciation: "vac-AN-t",
     phonetic: "/ˈveɪkənt/",
     partOfSpeech: "adjective",
     meaning: "trống, rỗng; uống, làm cạn",
@@ -4934,7 +4934,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "accessory",
-    pronunciation: "ÆK-sɛsɝi",
+    pronunciation: "ac-CES-sor-y",
     phonetic: "/ækˈsɛsɝi/",
     partOfSpeech: "noun",
     meaning: "đối tác phạm tội",
@@ -4944,7 +4944,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "assembly",
-    pronunciation: "Ə-sɛmbɫi",
+    pronunciation: "as-SEM-bly",
     phonetic: "/əˈsɛmbɫi/",
     partOfSpeech: "adverb",
     meaning: "khi mọi người tụ tập lại với nhau",
@@ -4954,7 +4954,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "basket",
-    pronunciation: "BÆSKƏT",
+    pronunciation: "BAS-ket",
     phonetic: "/ˈbæskət/",
     partOfSpeech: "noun",
     meaning: "một thùng chứa làm bằng những mảnh gỗ",
@@ -4964,7 +4964,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "certification",
-    pronunciation: "SɝTƏFƏ-keɪʃən",
+    pronunciation: "cer-TIF-ic-at-ion",
     phonetic: "/ˌsɝtəfəˈkeɪʃən/",
     partOfSpeech: "noun",
     meaning: "bằng chứng bằng văn bản rằng bạn đã làm điều gì đó hoặc điều gì đó đủ tốt",
@@ -4974,7 +4974,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "closure",
-    pronunciation: "KⱢOƱƷɝ",
+    pronunciation: "clos-UR-e",
     phonetic: "/ˈkɫoʊʒɝ/",
     partOfSpeech: "noun",
     meaning: "khi một cái gì đó được đóng lại vĩnh viễn",
@@ -4984,7 +4984,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "dislike",
-    pronunciation: "DꞮ-sɫaɪk",
+    pronunciation: "dis-LIK-e",
     phonetic: "/dɪˈsɫaɪk/",
     partOfSpeech: "noun",
     meaning: "không thích, ghét",
@@ -4994,7 +4994,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "downstairs",
-    pronunciation: "DAƱN-stɛɹz",
+    pronunciation: "dow-NSTAIR-s",
     phonetic: "/ˈdaʊnˈstɛɹz/",
     partOfSpeech: "noun",
     meaning: "ở tầng dưới của tòa nhà",
@@ -5004,7 +5004,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "expiration",
-    pronunciation: "ƐKSPɝ-eɪʃən",
+    pronunciation: "ex-PIR-at-ion",
     phonetic: "/ˌɛkspɝˈeɪʃən/",
     partOfSpeech: "noun",
     meaning: "kết thúc một khoảng thời gian",
@@ -5014,7 +5014,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "headache",
-    pronunciation: "HƐ-deɪk",
+    pronunciation: "head-AC-he",
     phonetic: "/ˈhɛˌdeɪk/",
     partOfSpeech: "noun",
     meaning: "đau đầu",
@@ -5024,7 +5024,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "jam",
-    pronunciation: "DƷÆM",
+    pronunciation: "JAM",
     phonetic: "/ˈdʒæm/",
     partOfSpeech: "noun",
     meaning: "ấn mạnh xuống",
@@ -5034,7 +5034,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "nail",
-    pronunciation: "NEꞮⱢ",
+    pronunciation: "NAIL",
     phonetic: "/ˈneɪɫ/",
     partOfSpeech: "noun",
     meaning: "một miếng kim loại dài, mỏng được sử dụng để giữ các mảnh gỗ lại với nhau được đập bằng búa",
@@ -5044,7 +5044,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "optimistic",
-    pronunciation: "ⱭPTƏ-mɪstɪk",
+    pronunciation: "op-TIM-is-tic",
     phonetic: "/ˌɑptəˈmɪstɪk/",
     partOfSpeech: "noun",
     meaning: "lạc quan về tương lai",
@@ -5054,7 +5054,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "pedestrian",
-    pronunciation: "PƏ-dɛstɹiən",
+    pronunciation: "ped-ES-trian",
     phonetic: "/pəˈdɛstɹiən/",
     partOfSpeech: "noun",
     meaning: "một người đang đi bộ trên đường phố",
@@ -5064,7 +5064,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "projection",
-    pronunciation: "PɹƏ-dʒɛkʃən",
+    pronunciation: "proj-EC-tion",
     phonetic: "/pɹəˈdʒɛkʃən/",
     partOfSpeech: "noun",
     meaning: "dự đoán về các sự kiện trong tương lai, ví dụ: doanh thu hoặc thu nhập",
@@ -5074,7 +5074,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "sleeve",
-    pronunciation: "SⱢIV",
+    pronunciation: "SLEEV-e",
     phonetic: "/ˈsɫiv/",
     partOfSpeech: "noun",
     meaning: "phần quần áo che một phần hoặc toàn bộ cánh tay",
@@ -5084,7 +5084,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "suburb",
-    pronunciation: "SƏBɝB",
+    pronunciation: "sub-UR-b",
     phonetic: "/ˈsəbɝb/",
     partOfSpeech: "noun",
     meaning: "khu vực sinh sống bên ngoài thành phố",
@@ -5094,7 +5094,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "takeover",
-    pronunciation: "TEꞮ-koʊvɝ",
+    pronunciation: "tak-EOV-er",
     phonetic: "/ˈteɪˌkoʊvɝ/",
     partOfSpeech: "noun",
     meaning: "việc mua lại một công ty bởi một công ty khác",
@@ -5104,7 +5104,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "unsure",
-    pronunciation: "ƏN-ʃʊɹ",
+    pronunciation: "un-SUR-e",
     phonetic: "/ənˈʃʊɹ/",
     partOfSpeech: "noun",
     meaning: "không chắc chắn hoặc không chắc chắn",
@@ -5114,7 +5114,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "upstairs",
-    pronunciation: "ƏP-stɛɹz",
+    pronunciation: "up-STAIR-s",
     phonetic: "/əpˈstɛɹz/",
     partOfSpeech: "noun",
     meaning: "ở tầng cao hơn của tòa nhà",
@@ -5124,7 +5124,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "verbal",
-    pronunciation: "VɝBƏⱢ",
+    pronunciation: "VER-bal",
     phonetic: "/ˈvɝbəɫ/",
     partOfSpeech: "adjective",
     meaning: "được nói",
@@ -5134,7 +5134,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "visa",
-    pronunciation: "VIZƏ",
+    pronunciation: "VIS-a",
     phonetic: "/ˈvizə/",
     partOfSpeech: "noun",
     meaning: "giấy phép du lịch cho phép bạn nhập cảnh vào một quốc gia cụ thể trong một khoảng thời gian",
@@ -5144,7 +5144,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "wildlife",
-    pronunciation: "WAꞮⱢD-ɫaɪf",
+    pronunciation: "wil-DLIF-e",
     phonetic: "/ˈwaɪɫdˌɫaɪf/",
     partOfSpeech: "noun",
     meaning: "động vật và thực vật sống trong thế giới tự nhiên",
@@ -5154,7 +5154,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "workforce",
-    pronunciation: "WɝK-fɔɹs",
+    pronunciation: "wor-KFOR-ce",
     phonetic: "/ˈwɝkˌfɔɹs/",
     partOfSpeech: "noun",
     meaning: "tất cả những người mà một công ty tuyển dụng",
@@ -5164,7 +5164,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "absent",
-    pronunciation: "ÆBSƏNT",
+    pronunciation: "ab-SEN-t",
     phonetic: "/ˈæbsənt/",
     partOfSpeech: "adjective",
     meaning: "mất tích, không có mặt",
@@ -5174,7 +5174,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "accumulate",
-    pronunciation: "ƏK-jumjə-ɫeɪt",
+    pronunciation: "ac-CUM-ul-at-e",
     phonetic: "/əkˈjumjəˌɫeɪt/",
     partOfSpeech: "verb",
     meaning: "để từ từ nhận được nhiều hơn và nhiều hơn nữa của một cái gì đó, ví dụ như sự giàu có",
@@ -5184,7 +5184,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "appraisal",
-    pronunciation: "Ə-pɹeɪzəɫ",
+    pronunciation: "ap-PRAIS-al",
     phonetic: "/əˈpɹeɪzəɫ/",
     partOfSpeech: "adjective",
     meaning: "Đánh Giá",
@@ -5194,7 +5194,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "apprentice",
-    pronunciation: "Ə-pɹɛntəs",
+    pronunciation: "ap-PREN-tic-e",
     phonetic: "/əˈpɹɛntəs/",
     partOfSpeech: "noun",
     meaning: "một người đang học giao dịch bằng cách làm việc với một chuyên gia",
@@ -5204,7 +5204,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "businessman",
-    pronunciation: "BꞮZNƏS-mæn",
+    pronunciation: "bus-IN-es-sman",
     phonetic: "/ˈbɪznəsˌmæn/",
     partOfSpeech: "noun",
     meaning: "một người đàn ông làm việc trong lĩnh vực kinh doanh thương mại hoặc công nghiệp, đặc biệt là chủ sở hữu hoặc giám đốc điều hành",
@@ -5214,7 +5214,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "ceiling",
-    pronunciation: "SIⱢꞮŊ",
+    pronunciation: "CEIL-ing",
     phonetic: "/ˈsiɫɪŋ/",
     partOfSpeech: "verb",
     meaning: "thứ bao phủ căn phòng ở trên cao",
@@ -5224,7 +5224,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "colorful",
-    pronunciation: "KƏⱢɝFƏⱢ",
+    pronunciation: "col-OR-ful",
     phonetic: "/ˈkəɫɝfəɫ/",
     partOfSpeech: "adjective",
     meaning: "có nhiều màu sắc khác nhau",
@@ -5234,7 +5234,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "compensate",
-    pronunciation: "KⱭMPƏN-seɪt",
+    pronunciation: "com-PEN-sat-e",
     phonetic: "/ˈkɑmpənˌseɪt/",
     partOfSpeech: "verb",
     meaning: "để trả tiền cho một dịch vụ",
@@ -5244,7 +5244,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "costume",
-    pronunciation: "KⱭSTUM",
+    pronunciation: "cos-TUM-e",
     phonetic: "/ˈkɑstum/",
     partOfSpeech: "noun",
     meaning: "một cái gì đó bất thường mà bạn ăn mặc, ví dụ như cho Hallowe'en",
@@ -5254,7 +5254,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "editorial",
-    pronunciation: "ƐDƏ-tɔɹiəɫ",
+    pronunciation: "ed-IT-or-ial",
     phonetic: "/ˌɛdəˈtɔɹiəɫ/",
     partOfSpeech: "adjective",
     meaning: "một bài báo do biên tập viên viết",
@@ -5264,7 +5264,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "effectiveness",
-    pronunciation: "IFƐKTꞮVNƏS",
+    pronunciation: "ef-FEC-tiv-en-es-s",
     phonetic: "/ˈifɛktɪvnəs/",
     partOfSpeech: "noun",
     meaning: "trạng thái hoạt động bình thường hoặc như mong đợi",
@@ -5274,7 +5274,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "facilitate",
-    pronunciation: "FƏ-sɪɫə-teɪt",
+    pronunciation: "fac-IL-it-at-e",
     phonetic: "/fəˈsɪɫəˌteɪt/",
     partOfSpeech: "verb",
     meaning: "để giúp đỡ hoặc làm cho dễ dàng hơn",
@@ -5284,7 +5284,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "firefighter",
-    pronunciation: "FAꞮɹ-faɪtɝ",
+    pronunciation: "fir-EF-ig-hter",
     phonetic: "/ˈfaɪɹˌfaɪtɝ/",
     partOfSpeech: "noun",
     meaning: "một người có nhiệm vụ dập lửa hoặc cứu người khỏi những tình huống nguy hiểm",
@@ -5294,7 +5294,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "gasoline",
-    pronunciation: "ꞬÆSƏ-ɫin",
+    pronunciation: "gas-OL-in-e",
     phonetic: "/ˈɡæsəˌɫin/",
     partOfSpeech: "noun",
     meaning: "nhiên liệu được sử dụng trong hầu hết các loại xe có động cơ",
@@ -5304,7 +5304,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "inappropriate",
-    pronunciation: "ꞮNƏ-pɹoʊpɹiɪt",
+    pronunciation: "in-AP-prop-riat-e",
     phonetic: "/ˌɪnəˈpɹoʊpɹiɪt/",
     partOfSpeech: "verb",
     meaning: "không phù hợp để sử dụng trong một tình huống nhất định",
@@ -5314,7 +5314,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "internet",
-    pronunciation: "ꞮNTɝ-nɛt",
+    pronunciation: "in-TER-net",
     phonetic: "/ˈɪntɝˌnɛt/",
     partOfSpeech: "noun",
     meaning: "đường cao tốc thông tin, web trên toàn thế giới",
@@ -5324,7 +5324,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "layout",
-    pronunciation: "ⱢEꞮ-aʊt",
+    pronunciation: "LAYOUT",
     phonetic: "/ˈɫeɪˌaʊt/",
     partOfSpeech: "noun",
     meaning: "kế hoạch về cách nó được đặt ra",
@@ -5334,7 +5334,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "lunchtime",
-    pronunciation: "ⱢƏNTƩ-taɪm",
+    pronunciation: "lun-CHTIM-e",
     phonetic: "/ˈɫəntʃˌtaɪm/",
     partOfSpeech: "noun",
     meaning: "Thời gian thông thường để ăn bữa trưa",
@@ -5344,7 +5344,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "pharmaceutical",
-    pronunciation: "FⱭɹMƏ-sutɪkəɫ",
+    pronunciation: "phar-MAC-eut-ic-al",
     phonetic: "/ˌfɑɹməˈsutɪkəɫ/",
     partOfSpeech: "adjective",
     meaning: "liên quan đến việc chuẩn bị và làm thuốc",
@@ -5354,7 +5354,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "plausible",
-    pronunciation: "PⱢƆZƏBƏⱢ",
+    pronunciation: "plaus-IB-le",
     phonetic: "/ˈpɫɔzəbəɫ/",
     partOfSpeech: "adjective",
     meaning: "có vẻ như điều đó có thể là sự thật",
@@ -5364,7 +5364,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "premium",
-    pronunciation: "PɹIMIƏM",
+    pronunciation: "PREM-ium",
     phonetic: "/ˈpɹimiəm/",
     partOfSpeech: "noun",
     meaning: "một khoản thanh toán bổ sung được thêm vào chi phí",
@@ -5374,7 +5374,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "safely",
-    pronunciation: "SEꞮFⱢI",
+    pronunciation: "saf-EL-y",
     phonetic: "/ˈseɪfɫi/",
     partOfSpeech: "adverb",
     meaning: "theo cách không nguy hiểm",
@@ -5384,7 +5384,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "simplify",
-    pronunciation: "SꞮMPⱢƏ-faɪ",
+    pronunciation: "sim-PLIF-y",
     phonetic: "/ˈsɪmpɫəˌfaɪ/",
     partOfSpeech: "verb",
     meaning: "làm cho dễ hiểu hơn",
@@ -5394,7 +5394,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "specialty",
-    pronunciation: "SPEꞮƩƏⱢTI",
+    pronunciation: "spec-IAL-ty",
     phonetic: "/ˈspeɪʃəɫti/",
     partOfSpeech: "noun",
     meaning: "điều gì đó mà bạn rất giỏi",
@@ -5404,7 +5404,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "tech",
-    pronunciation: "TƐK",
+    pronunciation: "TEC-h",
     phonetic: "/ˈtɛk/",
     partOfSpeech: "noun",
     meaning: "dạng viết tắt của từ 'công nghệ'",
@@ -5414,7 +5414,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "unexpected",
-    pronunciation: "ƏNꞮK-spɛktɪd",
+    pronunciation: "un-EX-pec-ted",
     phonetic: "/ˌənɪkˈspɛktɪd/",
     partOfSpeech: "verb",
     meaning: "là một bất ngờ",
@@ -5424,7 +5424,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "unspecified",
-    pronunciation: "ƏN-spɛsə-faɪd",
+    pronunciation: "un-SPEC-if-ied",
     phonetic: "/ənˈspɛsəˌfaɪd/",
     partOfSpeech: "verb",
     meaning: "không được đánh dấu rõ ràng hoặc không được biết đến",
@@ -5434,7 +5434,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "adhere",
-    pronunciation: "ƏD-hɪɹ",
+    pronunciation: "ad-HER-e",
     phonetic: "/ədˈhɪɹ/",
     partOfSpeech: "noun",
     meaning: "để tuân thủ hoặc tuân thủ, ví dụ: tuân thủ các quy tắc",
@@ -5444,7 +5444,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "bankrupt",
-    pronunciation: "BÆŊKɹƏPT",
+    pronunciation: "ban-KRUP-t",
     phonetic: "/ˈbæŋkɹəpt/",
     partOfSpeech: "noun",
     meaning: "không còn tiền",
@@ -5454,7 +5454,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "caution",
-    pronunciation: "KⱭƩƏN",
+    pronunciation: "CAUT-ion",
     phonetic: "/ˈkɑʃən/",
     partOfSpeech: "noun",
     meaning: "một lời cảnh báo phải cẩn thận",
@@ -5464,7 +5464,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "clip",
-    pronunciation: "KⱢꞮP",
+    pronunciation: "CLIP",
     phonetic: "/ˈkɫɪp/",
     partOfSpeech: "noun",
     meaning: "để cắt ngắn, cắt",
@@ -5474,7 +5474,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "comply",
-    pronunciation: "KƏM-pɫaɪ",
+    pronunciation: "COM-ply",
     phonetic: "/kəmˈpɫaɪ/",
     partOfSpeech: "adverb",
     meaning: "tuân theo một quy tắc",
@@ -5484,7 +5484,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "diner",
-    pronunciation: "DAꞮNɝ",
+    pronunciation: "DIN-er",
     phonetic: "/ˈdaɪnɝ/",
     partOfSpeech: "noun",
     meaning: "một nhà hàng nhỏ, không trang trọng",
@@ -5494,7 +5494,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "duplicate",
-    pronunciation: "DUPⱢƏ-keɪt",
+    pronunciation: "dup-LIC-at-e",
     phonetic: "/ˈdupɫəˌkeɪt/",
     partOfSpeech: "verb",
     meaning: "tạo một bản sao chính xác",
@@ -5504,7 +5504,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "eager",
-    pronunciation: "IꞬɝ",
+    pronunciation: "EAG-er",
     phonetic: "/ˈiɡɝ/",
     partOfSpeech: "noun",
     meaning: "hào hứng giúp đỡ hoặc làm điều gì đó",
@@ -5514,7 +5514,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "economist",
-    pronunciation: "I-kɑnəmɪst",
+    pronunciation: "ec-ON-om-is-t",
     phonetic: "/iˈkɑnəmɪst/",
     partOfSpeech: "noun",
     meaning: "một chuyên gia về khoa học kinh tế",
@@ -5524,7 +5524,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "embassy",
-    pronunciation: "ƐMBƏSI",
+    pronunciation: "em-BAS-sy",
     phonetic: "/ˈɛmbəsi/",
     partOfSpeech: "noun",
     meaning: "văn phòng của một đại sứ",
@@ -5534,7 +5534,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "fasten",
-    pronunciation: "FÆSƏN",
+    pronunciation: "FAS-ten",
     phonetic: "/ˈfæsən/",
     partOfSpeech: "verb",
     meaning: "cố định chặt chẽ với nhau",
@@ -5544,7 +5544,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "harmful",
-    pronunciation: "HⱭɹMFƏⱢ",
+    pronunciation: "HAR-mful",
     phonetic: "/ˈhɑɹmfəɫ/",
     partOfSpeech: "adjective",
     meaning: "gây hại, tổn thương",
@@ -5554,7 +5554,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "informative",
-    pronunciation: "ꞮN-fɔɹmətɪv",
+    pronunciation: "in-FOR-mat-iv-e",
     phonetic: "/ˌɪnˈfɔɹmətɪv/",
     partOfSpeech: "adjective",
     meaning: "cho bạn biết rất nhiều sự thật hữu ích về một điều gì đó",
@@ -5564,7 +5564,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "institute",
-    pronunciation: "ꞮNSTƏ-tut",
+    pronunciation: "in-STIT-ut-e",
     phonetic: "/ˈɪnstəˌtut/",
     partOfSpeech: "noun",
     meaning: "như trường học hoặc đại học",
@@ -5574,7 +5574,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "kit",
-    pronunciation: "KꞮT",
+    pronunciation: "KIT",
     phonetic: "/ˈkɪt/",
     partOfSpeech: "noun",
     meaning: "một hộp dụng cụ hoặc thiết bị",
@@ -5584,7 +5584,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "locally",
-    pronunciation: "ⱢOƱKƏⱢI",
+    pronunciation: "loc-AL-ly",
     phonetic: "/ˈɫoʊkəɫi/",
     partOfSpeech: "adverb",
     meaning: "trong một khu vực cụ thể",
@@ -5594,7 +5594,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "mentor",
-    pronunciation: "MƐN-tɔɹ",
+    pronunciation: "MEN-tor",
     phonetic: "/ˈmɛnˌtɔɹ/",
     partOfSpeech: "noun",
     meaning: "cố vấn cá nhân hoặc giáo viên",
@@ -5604,7 +5604,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "nominate",
-    pronunciation: "NⱭMƏ-neɪt",
+    pronunciation: "nom-IN-at-e",
     phonetic: "/ˈnɑməˌneɪt/",
     partOfSpeech: "verb",
     meaning: "đề nghị ai đó làm hoặc trở thành một cái gì đó",
@@ -5614,7 +5614,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "opt",
-    pronunciation: "ⱭPT",
+    pronunciation: "OP-t",
     phonetic: "/ˈɑpt/",
     partOfSpeech: "noun",
     meaning: "Chọn đi",
@@ -5624,7 +5624,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "parade",
-    pronunciation: "Pɝ-eɪd",
+    pronunciation: "par-AD-e",
     phonetic: "/pɝˈeɪd/",
     partOfSpeech: "noun",
     meaning: "đi bộ hoặc diễu hành",
@@ -5634,7 +5634,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "physician",
-    pronunciation: "FƏ-zɪʃən",
+    pronunciation: "phys-IC-ian",
     phonetic: "/fəˈzɪʃən/",
     partOfSpeech: "noun",
     meaning: "Doctor of Medicine",
@@ -5644,7 +5644,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "polish",
-    pronunciation: "PⱭⱢꞮƩ",
+    pronunciation: "pol-IS-h",
     phonetic: "/ˈpɑɫɪʃ/",
     partOfSpeech: "noun",
     meaning: "để làm cho một cái gì đó tỏa sáng với một miếng vải",
@@ -5654,7 +5654,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "postage",
-    pronunciation: "POƱSTƏDƷ",
+    pronunciation: "pos-TAG-e",
     phonetic: "/ˈpoʊstədʒ/",
     partOfSpeech: "noun",
     meaning: "phí gửi thư",
@@ -5664,7 +5664,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "recreational",
-    pronunciation: "ɹƐKɹI-eɪʃənəɫ",
+    pronunciation: "rec-REAT-ion-al",
     phonetic: "/ˌɹɛkɹiˈeɪʃənəɫ/",
     partOfSpeech: "adjective",
     meaning: "những gì bạn làm để thư giãn trong thời gian rảnh rỗi",
@@ -5674,7 +5674,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "rehearse",
-    pronunciation: "ɹI-hɝs",
+    pronunciation: "reh-EAR-se",
     phonetic: "/ɹiˈhɝs/",
     partOfSpeech: "noun",
     meaning: "thực hành để bạn làm tốt hơn",
@@ -5684,7 +5684,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "removal",
-    pronunciation: "ɹꞮ-muvəɫ",
+    pronunciation: "rem-OV-al",
     phonetic: "/ɹɪˈmuvəɫ/",
     partOfSpeech: "adjective",
     meaning: "để lấy đi và đặt ở một nơi khác",
@@ -5694,7 +5694,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "satisfactory",
-    pronunciation: "SÆTƏS-fæktɹi",
+    pronunciation: "sat-IS-fac-tor-y",
     phonetic: "/ˌsætəsˈfæktɹi/",
     partOfSpeech: "noun",
     meaning: "có thể chấp nhận",
@@ -5704,7 +5704,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "seasonal",
-    pronunciation: "SIZƏNƏⱢ",
+    pronunciation: "seas-ON-al",
     phonetic: "/ˈsizənəɫ/",
     partOfSpeech: "adjective",
     meaning: "chỉ xảy ra vào một thời điểm nhất định trong năm",
@@ -5714,7 +5714,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "separately",
-    pronunciation: "SƐPɝƏTⱢI",
+    pronunciation: "sep-AR-at-el-y",
     phonetic: "/ˈsɛpɝətɫi/",
     partOfSpeech: "adverb",
     meaning: "để làm từng việc một, không phải cùng nhau",
@@ -5724,7 +5724,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "turnover",
-    pronunciation: "Tɝ-noʊvɝ",
+    pronunciation: "tur-NOV-er",
     phonetic: "/ˈtɝˌnoʊvɝ/",
     partOfSpeech: "noun",
     meaning: "số tiền mà một doanh nghiệp kiếm được trong một khoảng thời gian",
@@ -5734,7 +5734,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "unnecessary",
-    pronunciation: "ƏN-nɛsə-sɛɹi",
+    pronunciation: "un-NEC-es-sar-y",
     phonetic: "/ənˈnɛsəˌsɛɹi/",
     partOfSpeech: "noun",
     meaning: "Không cần thiết",
@@ -5744,7 +5744,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "accordingly",
-    pronunciation: "Ə-kɔɹdɪŋɫi",
+    pronunciation: "ac-COR-ding-ly",
     phonetic: "/əˈkɔɹdɪŋɫi/",
     partOfSpeech: "adverb",
     meaning: "do đó, vì vậy",
@@ -5754,7 +5754,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "apple",
-    pronunciation: "ÆPƏⱢ",
+    pronunciation: "AP-ple",
     phonetic: "/ˈæpəɫ/",
     partOfSpeech: "noun",
     meaning: "một loại trái cây từ cây có màu xanh lá cây, đỏ hoặc vàng",
@@ -5764,7 +5764,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "applicable",
-    pronunciation: "ÆPⱢƏKƏBƏⱢ",
+    pronunciation: "ap-PLIC-ab-le",
     phonetic: "/ˈæpɫəkəbəɫ/",
     partOfSpeech: "adjective",
     meaning: "có liên quan",
@@ -5774,7 +5774,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "auction",
-    pronunciation: "ⱭKƩƏN",
+    pronunciation: "AUC-tion",
     phonetic: "/ˈɑkʃən/",
     partOfSpeech: "noun",
     meaning: "nơi mọi thứ được bán cho người trả tiền cao nhất",
@@ -5784,7 +5784,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "balcony",
-    pronunciation: "BÆⱢKƏNI",
+    pronunciation: "bal-CON-y",
     phonetic: "/ˈbæɫkəni/",
     partOfSpeech: "noun",
     meaning: "một khu vực sàn nhỏ với một bức tường hoặc hàng rào xung quanh nó được nối với bên ngoài của một tòa nhà",
@@ -5794,7 +5794,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "basement",
-    pronunciation: "BEꞮSMƏNT",
+    pronunciation: "bas-EM-en-t",
     phonetic: "/ˈbeɪsmənt/",
     partOfSpeech: "noun",
     meaning: "cao độ dưới tầng trệt",
@@ -5804,7 +5804,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "beforehand",
-    pronunciation: "BꞮ-fɔɹ-hænd",
+    pronunciation: "bef-OR-eh-an-d",
     phonetic: "/bɪˈfɔɹˌhænd/",
     partOfSpeech: "noun",
     meaning: "trước đó trong thời gian",
@@ -5814,7 +5814,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "culinary",
-    pronunciation: "KJUⱢꞮ-nɛɹi",
+    pronunciation: "cul-IN-ar-y",
     phonetic: "/ˈkjuɫɪˌnɛɹi/",
     partOfSpeech: "noun",
     meaning: "liên quan đến nấu ăn",
@@ -5824,7 +5824,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "documentary",
-    pronunciation: "DⱭKJƏ-mɛnɝi",
+    pronunciation: "doc-UM-en-tar-y",
     phonetic: "/ˌdɑkjəˈmɛnɝi/",
     partOfSpeech: "noun",
     meaning: "một bộ phim về một cuộc sống hoặc sự kiện có thật",
@@ -5834,7 +5834,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "downturn",
-    pronunciation: "DAƱN-tɝn",
+    pronunciation: "dow-NTUR-n",
     phonetic: "/ˈdaʊnˌtɝn/",
     partOfSpeech: "noun",
     meaning: "sự sụt giảm thành công của một doanh nghiệp hoặc nền kinh tế",
@@ -5844,7 +5844,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "earthquake",
-    pronunciation: "ɝΘ-kweɪk",
+    pronunciation: "ear-THQUAK-e",
     phonetic: "/ˈɝθˌkweɪk/",
     partOfSpeech: "noun",
     meaning: "khi mặt đất rung chuyển do sự chuyển động tự nhiên của đá dưới lòng đất",
@@ -5854,7 +5854,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "elegant",
-    pronunciation: "ƐⱢƏꞬƏNT",
+    pronunciation: "el-EG-an-t",
     phonetic: "/ˈɛɫəɡənt/",
     partOfSpeech: "adjective",
     meaning: "đẹp hay không đẹp",
@@ -5864,7 +5864,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "excessive",
-    pronunciation: "ꞮK-sɛsɪv",
+    pronunciation: "ex-CES-siv-e",
     phonetic: "/ɪkˈsɛsɪv/",
     partOfSpeech: "adjective",
     meaning: "quá nhiều của một cái gì đó",
@@ -5874,7 +5874,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "generic",
-    pronunciation: "DƷƏ-nɛɹɪk",
+    pronunciation: "gen-ER-ic",
     phonetic: "/dʒəˈnɛɹɪk/",
     partOfSpeech: "noun",
     meaning: "chung chung; tổng",
@@ -5884,7 +5884,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "jazz",
-    pronunciation: "DƷÆZ",
+    pronunciation: "JAZ-z",
     phonetic: "/ˈdʒæz/",
     partOfSpeech: "noun",
     meaning: "Anh thích bản nhạc này?",
@@ -5894,7 +5894,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "lifetime",
-    pronunciation: "ⱢAꞮF-taɪm",
+    pronunciation: "lif-ET-im-e",
     phonetic: "/ˈɫaɪfˌtaɪm/",
     partOfSpeech: "noun",
     meaning: "Thời gian giữa khi một người được sinh ra và khi họ chết",
@@ -5904,7 +5904,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "massage",
-    pronunciation: "MƏ-sɑʒ",
+    pronunciation: "mas-SAG-e",
     phonetic: "/məˈsɑʒ/",
     partOfSpeech: "noun",
     meaning: "xoa bóp cơ thể theo một cách đặc biệt làm cho nó cảm thấy tốt hơn",
@@ -5914,7 +5914,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "maximize",
-    pronunciation: "MÆKSƏ-maɪz",
+    pronunciation: "max-IM-iz-e",
     phonetic: "/ˈmæksəˌmaɪz/",
     partOfSpeech: "verb",
     meaning: "để tận dụng tối đa",
@@ -5924,7 +5924,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "mild",
-    pronunciation: "MAꞮⱢD",
+    pronunciation: "MIL-d",
     phonetic: "/ˈmaɪɫd/",
     partOfSpeech: "noun",
     meaning: "mềm mại, nhẹ nhàng, không mạnh mẽ trong tự nhiên",
@@ -5934,7 +5934,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "ongoing",
-    pronunciation: "ⱭN-ɡoʊɪŋ",
+    pronunciation: "ONG-oing",
     phonetic: "/ˈɑnˌɡoʊɪŋ/",
     partOfSpeech: "verb",
     meaning: "vẫn đang diễn ra",
@@ -5944,7 +5944,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "periodically",
-    pronunciation: "PIɹI-ɑdɪkəɫi",
+    pronunciation: "per-IOD-ic-al-ly",
     phonetic: "/ˌpiɹiˈɑdɪkəɫi/",
     partOfSpeech: "adverb",
     meaning: "thường xuyên, vào những thời điểm thông thường",
@@ -5954,7 +5954,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "pie",
-    pronunciation: "PAꞮ",
+    pronunciation: "PIE",
     phonetic: "/ˈpaɪ/",
     partOfSpeech: "noun",
     meaning: "bánh ngọt tròn, phủ một lớp nhân như anh đào hoặc táo",
@@ -5964,7 +5964,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "plug",
-    pronunciation: "PⱢƏꞬ",
+    pronunciation: "PLUG",
     phonetic: "/ˈpɫəɡ/",
     partOfSpeech: "noun",
     meaning: "để lấp đầy một cái lỗ",
@@ -5974,7 +5974,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "recruitment",
-    pronunciation: "ɹƏ-kɹutmənt",
+    pronunciation: "rec-RUIT-men-t",
     phonetic: "/ɹəˈkɹutmənt/",
     partOfSpeech: "noun",
     meaning: "hành vi thuê người cho doanh nghiệp",
@@ -5984,7 +5984,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "referee",
-    pronunciation: "ɹƐFɝ-i",
+    pronunciation: "ref-ER-ee",
     phonetic: "/ˌɹɛfɝˈi/",
     partOfSpeech: "noun",
     meaning: "người giám sát một cái gì đó để đảm bảo rằng các quy tắc được tuân thủ",
@@ -5994,7 +5994,7 @@ export const toeicVocabularyExtraSeed: ToeicVocabularySeed[] = [
   },
   {
     word: "referral",
-    pronunciation: "ɹꞮ-fɝəɫ",
+    pronunciation: "ref-ER-ral",
     phonetic: "/ɹɪˈfɝəɫ/",
     partOfSpeech: "adjective",
     meaning: "đề xuất của ai đó hoặc một cái gì đó",
