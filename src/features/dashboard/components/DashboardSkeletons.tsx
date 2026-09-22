@@ -1,11 +1,11 @@
 import { Skeleton } from "@/components/ui/skeleton";
 
 export function DashboardStatSkeleton() {
-  return <Skeleton className="h-[140px] w-full rounded-xl" />;
+  return <Skeleton className="h-[220px] w-full rounded-xl" />;
 }
 
 export function DashboardContinueSkeleton() {
-  return <Skeleton className="h-[220px] w-full rounded-xl" />;
+  return <Skeleton className="h-[280px] w-full rounded-xl" />;
 }
 
 export function DashboardSkillsSkeleton() {

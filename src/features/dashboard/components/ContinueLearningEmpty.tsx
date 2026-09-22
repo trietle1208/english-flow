@@ -6,13 +6,13 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 /** When the learner has activity but nothing left to continue. */
 export function ContinueLearningEmpty() {
   return (
-    <Card>
-      <CardHeader>
-        <div className="mb-2 flex size-10 items-center justify-center rounded-full bg-muted">
-          <GraduationCap className="size-5 text-muted-foreground" aria-hidden="true" />
+    <Card className="overflow-hidden border-primary/10 bg-gradient-to-br from-primary/[0.06] via-card to-card">
+      <CardHeader className="pb-3">
+        <div className="mb-2 flex size-11 items-center justify-center rounded-2xl bg-primary/10 text-primary">
+          <GraduationCap className="size-5" aria-hidden="true" />
         </div>
-        <CardTitle className="text-base">You&apos;re all caught up</CardTitle>
-        <CardDescription>
+        <CardTitle className="text-lg">You&apos;re all caught up</CardTitle>
+        <CardDescription className="text-sm leading-relaxed">
           No lesson in progress. Browse courses to start the next one.
         </CardDescription>
       </CardHeader>

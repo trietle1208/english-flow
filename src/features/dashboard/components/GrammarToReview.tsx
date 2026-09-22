@@ -22,12 +22,13 @@ export function GrammarToReview({ topics }: GrammarToReviewProps) {
       <SectionCard
         title="Grammar to review"
         description="Topics under 60% show up here after you take a mini quiz."
+        className="border-skill-grammar/15 bg-gradient-to-r from-skill-grammar/[0.06] to-card"
       >
         <div className="flex flex-col items-start gap-3 sm:flex-row sm:items-center sm:justify-between">
           <p className="text-sm text-muted-foreground">
             No weak topics right now — keep practising to stay sharp.
           </p>
-          <Button asChild variant="outline" size="sm" className="gap-1.5">
+          <Button asChild variant="outline" size="sm" className="gap-1.5 bg-card">
             <Link href="/grammar">
               <SpellCheck className="size-4" aria-hidden="true" />
               Browse grammar
@@ -42,10 +43,14 @@ export function GrammarToReview({ topics }: GrammarToReviewProps) {
     <SectionCard
       title="Grammar to review"
       description="Your weakest topics — practise again to reach Mastered (80%+)."
+      className="border-skill-grammar/15"
     >
       <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
         {topics.map((topic) => (
-          <Card key={topic.id} className="flex flex-col">
+          <Card
+            key={topic.id}
+            className="flex flex-col border-skill-grammar/20 bg-gradient-to-br from-skill-grammar/[0.05] to-card shadow-none"
+          >
             <CardHeader className="space-y-2">
               <div className="flex flex-wrap gap-2">
                 <Badge variant="secondary">{CEFR_LEVEL_LABELS[topic.level]}</Badge>

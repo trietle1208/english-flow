@@ -6,6 +6,7 @@ import { VocabularyItem } from "@/features/vocabulary/components/VocabularyItem"
 import { SaveVocabularyButton } from "@/features/vocabulary/components/SaveVocabularyButton";
 import { listToeicCatalog, VOCABULARY_PAGE_SIZE } from "@/features/vocabulary/queries";
 import {
+  TOEIC_DICT_ATTRIBUTION,
   TOEIC_TSL_ATTRIBUTION,
   isToeicTopicId,
   toeicTopicLabel,
@@ -136,7 +137,7 @@ export async function ToeicVocabularyCatalog({
       <aside className="rounded-lg border bg-muted/40 p-4 text-xs leading-relaxed text-muted-foreground">
         <p className="font-medium text-foreground">Source</p>
         <p className="mt-1">{TOEIC_TSL_ATTRIBUTION.attributionText}</p>
-        <p className="mt-2">
+        <p className="mt-2 flex flex-wrap gap-x-2 gap-y-1">
           <a
             href={TOEIC_TSL_ATTRIBUTION.url}
             className="underline underline-offset-2 hover:text-foreground"
@@ -145,8 +146,17 @@ export async function ToeicVocabularyCatalog({
           >
             {TOEIC_TSL_ATTRIBUTION.name}
           </a>
-          {" · "}
-          CC BY-SA 4.0 · {VOCABULARY_PAGE_SIZE} per page
+          <span aria-hidden>·</span>
+          <a
+            href={TOEIC_DICT_ATTRIBUTION.url}
+            className="underline underline-offset-2 hover:text-foreground"
+            target="_blank"
+            rel="noreferrer"
+          >
+            {TOEIC_DICT_ATTRIBUTION.name}
+          </a>
+          <span aria-hidden>·</span>
+          <span>CC BY-SA 4.0 · {VOCABULARY_PAGE_SIZE} per page</span>
         </p>
       </aside>
     </div>

@@ -11,6 +11,8 @@ import type {
   FlashcardItem,
   SavedVocabularyItem,
   ToeicCatalogItem,
+  ToeicPlayCard,
+  ToeicPlayDeck,
   ToeicTopicFilter,
   VocabularyFilter,
   VocabularyListFilters,
@@ -23,6 +25,15 @@ export const VOCABULARY_PAGE_SIZE = 24;
 
 /** Cards per flashcard study session (v1). */
 export const FLASHCARD_SESSION_SIZE = 20;
+
+/** Rounds per TOEIC Match Play session. */
+export const TOEIC_PLAY_SESSION_SIZE = 10;
+
+/** Options shown per match round (1 correct + 3 distractors). */
+export const TOEIC_PLAY_OPTION_COUNT = 4;
+
+/** Cap for the random pool fetched before sampling a play deck. */
+const TOEIC_PLAY_POOL_CAP = 200;
 
 /** Saved words from the last N days count as "Recently Added". */
 const RECENT_DAYS = 7;
@@ -298,8 +309,7 @@ export async function listToeicCatalog({
     when 'sales' then 3
     when 'logistics' then 4
     when 'meetings' then 5
-    when 'core' then 6
-    else 7
+    else 6
   end`;
 
   const [rows, totalRow] = await Promise.all([
@@ -350,6 +360,159 @@ export async function listToeicCatalog({
     pageSize: VOCABULARY_PAGE_SIZE,
     total: Number(totalRow[0]?.total ?? 0),
   };
+}
+
+/**
+ * Random TOEIC Match Play deck: EN prompts with 4 shuffled VI options each.
+ * Distractors prefer the same topic; widen to the full catalog when needed.
+ */
+export async function listToeicPlayDeck({
+  userId,
+  topic = "all",
+  limit = TOEIC_PLAY_SESSION_SIZE,
+}: {
+  userId: string;
+  topic?: ToeicTopicFilter;
+  limit?: number;
+}): Promise<ToeicPlayDeck> {
+  const sessionSize =
+    Number.isFinite(limit) && limit > 0
+      ? Math.min(Math.floor(limit), TOEIC_PLAY_SESSION_SIZE)
+      : TOEIC_PLAY_SESSION_SIZE;
+  const topicFilter: ToeicTopicId | null =
+    topic !== "all" && isToeicTopicId(topic) ? topic : null;
+
+  const baseClauses = [
+    eq(vocabularies.catalogSource, TOEIC_CATALOG_SOURCE),
+    eq(vocabularies.isManual, false),
+  ];
+
+  const topicClauses =
+    topicFilter != null
+      ? [...baseClauses, eq(vocabularies.topic, topicFilter)]
+      : baseClauses;
+
+  const selectFields = {
+    id: vocabularies.id,
+    word: vocabularies.word,
+    pronunciation: vocabularies.pronunciation,
+    phonetic: vocabularies.phonetic,
+    meaning: vocabularies.meaning,
+    audioUrl: vocabularies.audioUrl,
+    topic: vocabularies.topic,
+    savedId: userVocabularies.id,
+  };
+
+  type PlayPoolRow = {
+    id: string;
+    word: string;
+    pronunciation: string;
+    phonetic: string;
+    meaning: string;
+    audioUrl: string | null;
+    topic: string | null;
+    savedId: string | null;
+  };
+
+  const topicPool: PlayPoolRow[] = await db
+    .select(selectFields)
+    .from(vocabularies)
+    .leftJoin(
+      userVocabularies,
+      and(
+        eq(userVocabularies.vocabularyId, vocabularies.id),
+        eq(userVocabularies.userId, userId),
+      ),
+    )
+    .where(and(...topicClauses))
+    .orderBy(sql`random()`)
+    .limit(TOEIC_PLAY_POOL_CAP);
+
+  const widePool: PlayPoolRow[] =
+    topicFilter != null
+      ? await db
+          .select(selectFields)
+          .from(vocabularies)
+          .leftJoin(
+            userVocabularies,
+            and(
+              eq(userVocabularies.vocabularyId, vocabularies.id),
+              eq(userVocabularies.userId, userId),
+            ),
+          )
+          .where(and(...baseClauses))
+          .orderBy(sql`random()`)
+          .limit(TOEIC_PLAY_POOL_CAP)
+      : [];
+
+  const promptPool = topicPool.length > 0 ? topicPool : widePool;
+  const distractorPool =
+    topicPool.length >= TOEIC_PLAY_OPTION_COUNT
+      ? topicPool
+      : widePool.length > 0
+        ? widePool
+        : topicPool;
+  const widenedDistractors =
+    topicFilter != null && topicPool.length < TOEIC_PLAY_OPTION_COUNT && widePool.length > 0;
+
+  if (promptPool.length === 0) {
+    return {
+      cards: [],
+      topic: topicFilter ?? "all",
+      widenedDistractors: false,
+    };
+  }
+
+  const prompts = promptPool.slice(0, Math.min(sessionSize, promptPool.length));
+  const cards: ToeicPlayCard[] = [];
+
+  for (const prompt of prompts) {
+    const others = distractorPool.filter((row) => row.id !== prompt.id);
+    const distractors = shuffleInPlace([...others])
+      .slice(0, TOEIC_PLAY_OPTION_COUNT - 1)
+      .map((row) => ({
+        id: `opt-${row.id}`,
+        text: row.meaning,
+      }));
+
+    if (distractors.length < TOEIC_PLAY_OPTION_COUNT - 1) {
+      continue;
+    }
+
+    const correctOptionId = `opt-${prompt.id}`;
+    const options = shuffleInPlace([
+      { id: correctOptionId, text: prompt.meaning },
+      ...distractors,
+    ]);
+
+    cards.push({
+      id: prompt.id,
+      word: prompt.word,
+      pronunciation: prompt.pronunciation,
+      phonetic: prompt.phonetic,
+      meaning: prompt.meaning,
+      audioUrl: prompt.audioUrl,
+      isSaved: prompt.savedId != null,
+      correctOptionId,
+      options,
+    });
+  }
+
+  return {
+    cards,
+    topic: topicFilter ?? "all",
+    widenedDistractors,
+  };
+}
+
+function shuffleInPlace<T>(items: T[]): T[] {
+  for (let i = items.length - 1; i > 0; i -= 1) {
+    const j = Math.floor(Math.random() * (i + 1));
+    const tmp = items[i]!;
+    items[i] = items[j]!;
+    items[j] = tmp;
+  }
+  return items;
 }
 
 function buildListWhere(

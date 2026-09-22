@@ -27,6 +27,11 @@
 # local tool binaries (ffmpeg static, etc.)
 /.tools/
 
+# local dictionary / TSL downloads for TOEIC import scripts
+/tmp/dictionary_en_vi.db
+/tmp/tsl_*.txt
+/tmp/
+
 # GitNexus local knowledge-graph index
 .gitnexus/
 

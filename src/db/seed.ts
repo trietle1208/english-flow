@@ -52,10 +52,10 @@ import { coursePracticeQuizzes, grammarCourseOnlyQuizzes, type QuizSeed } from "
 import { vocabularySeed } from "@/db/seed-data/vocabulary";
 import {
   TOEIC_CATALOG_SOURCE,
+  TOEIC_DICT_ATTRIBUTION,
   TOEIC_TSL_ATTRIBUTION,
-  toeicVocabularySeed,
 } from "@/db/seed-data/toeic-vocabulary";
-import { toeicVocabularyExtraSeed } from "@/db/seed-data/toeic-vocabulary-extra";
+import { toeicVocabularySeed } from "@/db/seed-data/toeic-vocabulary-seed";
 
 /** `INSERT ... RETURNING` always returns a row here (we just upserted it) — this just satisfies strict TS. */
 function firstOrThrow<T>(rows: T[], context: string): T {
@@ -175,37 +175,43 @@ async function seedVocabulary(): Promise<Map<string, string>> {
   return wordToId;
 }
 
-/** Upserts the curated TOEIC catalog subset and records TSL provenance. */
+/** Upserts the curated TOEIC catalog subset and records provenance (when seeded). */
 async function seedToeicVocabulary(wordToId: Map<string, string>): Promise<void> {
-  const [existingSource] = await db
-    .select({ id: contentSources.id })
-    .from(contentSources)
-    .where(eq(contentSources.name, TOEIC_TSL_ATTRIBUTION.name))
-    .limit(1);
+  if (toeicVocabularySeed.length === 0) {
+    return;
+  }
 
-  if (existingSource) {
-    await db
-      .update(contentSources)
-      .set({
-        url: TOEIC_TSL_ATTRIBUTION.url,
-        licenseCode: TOEIC_TSL_ATTRIBUTION.licenseCode,
-        attributionText: TOEIC_TSL_ATTRIBUTION.attributionText,
-        sourceVersion: TOEIC_TSL_ATTRIBUTION.sourceVersion,
-        updatedAt: new Date(),
-      })
-      .where(eq(contentSources.id, existingSource.id));
-  } else {
-    await db.insert(contentSources).values({
-      name: TOEIC_TSL_ATTRIBUTION.name,
-      url: TOEIC_TSL_ATTRIBUTION.url,
-      licenseCode: TOEIC_TSL_ATTRIBUTION.licenseCode,
-      attributionText: TOEIC_TSL_ATTRIBUTION.attributionText,
-      sourceVersion: TOEIC_TSL_ATTRIBUTION.sourceVersion,
-    });
+  for (const source of [TOEIC_TSL_ATTRIBUTION, TOEIC_DICT_ATTRIBUTION]) {
+    const [existingSource] = await db
+      .select({ id: contentSources.id })
+      .from(contentSources)
+      .where(eq(contentSources.name, source.name))
+      .limit(1);
+
+    if (existingSource) {
+      await db
+        .update(contentSources)
+        .set({
+          url: source.url,
+          licenseCode: source.licenseCode,
+          attributionText: source.attributionText,
+          sourceVersion: source.sourceVersion,
+          updatedAt: new Date(),
+        })
+        .where(eq(contentSources.id, existingSource.id));
+    } else {
+      await db.insert(contentSources).values({
+        name: source.name,
+        url: source.url,
+        licenseCode: source.licenseCode,
+        attributionText: source.attributionText,
+        sourceVersion: source.sourceVersion,
+      });
+    }
   }
 
   const existingCatalogWords = new Set(wordToId.keys());
-  const toeicRows = [...toeicVocabularySeed, ...toeicVocabularyExtraSeed].filter(
+  const toeicRows = toeicVocabularySeed.filter(
     (row) => !existingCatalogWords.has(row.word),
   );
 

@@ -83,3 +83,29 @@ export type ToeicCatalogItem = VocabularySummary & {
 };
 
 export type ToeicTopicFilter = "all" | ToeicTopicId;
+
+/** One answer choice in a TOEIC Match Play round. */
+export type ToeicPlayOption = {
+  id: string;
+  text: string;
+};
+
+/** One EN→VI match prompt with shuffled options (client grades locally). */
+export type ToeicPlayCard = {
+  id: string;
+  word: string;
+  pronunciation: string;
+  phonetic: string;
+  meaning: string;
+  audioUrl: string | null;
+  isSaved: boolean;
+  correctOptionId: string;
+  options: ToeicPlayOption[];
+};
+
+export type ToeicPlayDeck = {
+  cards: ToeicPlayCard[];
+  topic: ToeicTopicFilter;
+  /** True when distractors were widened beyond the selected topic. */
+  widenedDistractors: boolean;
+};

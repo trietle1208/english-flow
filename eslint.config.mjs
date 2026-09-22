@@ -36,6 +36,8 @@ const eslintConfig = [
       "build/**",
       "next-env.d.ts",
       ".gitnexus/**",
+      // Large generated seed payload — not worth cycle-graph analysis.
+      "src/db/seed-data/toeic-vocabulary-entries.json",
     ],
   },
 ];

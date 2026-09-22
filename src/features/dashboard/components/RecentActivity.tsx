@@ -2,6 +2,7 @@ import Link from "next/link";
 import { BookMarked, CheckCircle2, ClipboardList } from "lucide-react";
 import { SectionCard } from "@/components/shared/SectionCard";
 import { EmptyState } from "@/components/shared/EmptyState";
+import { cn } from "@/lib/utils";
 import type { RecentActivityItem } from "@/features/progress/types";
 
 type RecentActivityProps = {
@@ -24,10 +25,30 @@ function relativeTime(iso: string): string {
   return rtf.format(diffDay, "day");
 }
 
+const KIND_META = {
+  lesson: {
+    Icon: CheckCircle2,
+    wrap: "bg-success/10 text-success",
+  },
+  quiz: {
+    Icon: ClipboardList,
+    wrap: "bg-primary/10 text-primary",
+  },
+  vocabulary: {
+    Icon: BookMarked,
+    wrap: "bg-skill-vocabulary/10 text-skill-vocabulary",
+  },
+} as const;
+
 /** Merged feed: completed lessons, quiz results, saved words (spec §9). */
 export function RecentActivity({ items }: RecentActivityProps) {
   return (
-    <SectionCard title="Recent Activity" description="Your latest learning actions.">
+    <SectionCard
+      title="Recent Activity"
+      description="Your latest learning actions."
+      className="h-full"
+      contentClassName="pt-2"
+    >
       {items.length === 0 ? (
         <EmptyState
           icon={ClipboardList}
@@ -36,14 +57,10 @@ export function RecentActivity({ items }: RecentActivityProps) {
           className="py-10"
         />
       ) : (
-        <ul className="divide-y">
+        <ul className="space-y-1">
           {items.map((item) => {
-            const Icon =
-              item.kind === "lesson"
-                ? CheckCircle2
-                : item.kind === "quiz"
-                  ? ClipboardList
-                  : BookMarked;
+            const meta = KIND_META[item.kind];
+            const Icon = meta.Icon;
             const label =
               item.kind === "lesson"
                 ? `Completed lesson: ${item.title}`
@@ -55,12 +72,16 @@ export function RecentActivity({ items }: RecentActivityProps) {
               <li key={`${item.kind}-${item.id}`}>
                 <Link
                   href={item.href}
-                  className="flex items-start gap-3 py-3 transition-colors hover:bg-muted/40"
+                  className="flex items-start gap-3 rounded-xl px-2 py-2.5 transition-colors hover:bg-muted/60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
                 >
-                  <Icon
-                    className="mt-0.5 size-4 shrink-0 text-muted-foreground"
-                    aria-hidden="true"
-                  />
+                  <span
+                    className={cn(
+                      "mt-0.5 flex size-8 shrink-0 items-center justify-center rounded-lg",
+                      meta.wrap,
+                    )}
+                  >
+                    <Icon className="size-4" aria-hidden="true" />
+                  </span>
                   <div className="min-w-0 flex-1">
                     <p className="truncate text-sm font-medium">{label}</p>
                     <p className="text-xs text-muted-foreground">{relativeTime(item.at)}</p>

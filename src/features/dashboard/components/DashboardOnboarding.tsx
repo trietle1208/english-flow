@@ -10,13 +10,13 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 export function DashboardOnboarding() {
   return (
     <div className="grid gap-4 md:grid-cols-2">
-      <Card>
+      <Card className="overflow-hidden border-primary/15 bg-gradient-to-br from-primary/[0.08] via-card to-card">
         <CardHeader>
-          <div className="mb-2 flex size-10 items-center justify-center rounded-full bg-muted">
-            <Compass className="size-5 text-muted-foreground" aria-hidden="true" />
+          <div className="mb-2 flex size-11 items-center justify-center rounded-2xl bg-primary/10 text-primary">
+            <Compass className="size-5" aria-hidden="true" />
           </div>
-          <CardTitle className="text-base">Take the placement test</CardTitle>
-          <CardDescription>
+          <CardTitle className="text-lg">Take the placement test</CardTitle>
+          <CardDescription className="text-sm leading-relaxed">
             A short quiz estimates your CEFR level so courses and lessons match where you are.
           </CardDescription>
         </CardHeader>
@@ -26,13 +26,13 @@ export function DashboardOnboarding() {
           </Button>
         </CardContent>
       </Card>
-      <Card>
+      <Card className="overflow-hidden border-secondary bg-gradient-to-br from-secondary/70 via-card to-card">
         <CardHeader>
-          <div className="mb-2 flex size-10 items-center justify-center rounded-full bg-muted">
-            <GraduationCap className="size-5 text-muted-foreground" aria-hidden="true" />
+          <div className="mb-2 flex size-11 items-center justify-center rounded-2xl bg-secondary text-foreground">
+            <GraduationCap className="size-5" aria-hidden="true" />
           </div>
-          <CardTitle className="text-base">Start your first course</CardTitle>
-          <CardDescription>
+          <CardTitle className="text-lg">Start your first course</CardTitle>
+          <CardDescription className="text-sm leading-relaxed">
             Browse the catalog and begin Everyday English — or pick any course at your level.
           </CardDescription>
         </CardHeader>

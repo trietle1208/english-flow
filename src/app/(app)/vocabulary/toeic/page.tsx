@@ -5,8 +5,11 @@ import { ArrowLeft } from "lucide-react";
 import { PageHeader } from "@/components/shared/PageHeader";
 import { Button } from "@/components/ui/button";
 import { requireUser } from "@/lib/session";
+import { isToeicTopicId } from "@/db/seed-data/toeic-vocabulary";
+import { ToeicPracticeLauncher } from "@/features/vocabulary/components/ToeicPracticeLauncher";
 import { ToeicVocabularyCatalog } from "@/features/vocabulary/components/ToeicVocabularyCatalog";
 import { ToeicVocabularySearch } from "@/features/vocabulary/components/ToeicVocabularySearch";
+import type { ToeicTopicFilter } from "@/features/vocabulary/types";
 
 export const metadata: Metadata = {
   title: "Từ vựng TOEIC",
@@ -29,6 +32,8 @@ export default async function ToeicVocabularyPage({ searchParams }: ToeicVocabul
   const params = await searchParams;
 
   const suspenseKey = `${params.search ?? ""}|${params.topic ?? "all"}|${params.page ?? "1"}`;
+  const initialPlayTopic: ToeicTopicFilter =
+    params.topic && isToeicTopicId(params.topic) ? params.topic : "all";
 
   return (
     <div className="flex w-full flex-col gap-8 px-4 py-8 sm:px-6 lg:px-8">
@@ -36,12 +41,15 @@ export default async function ToeicVocabularyPage({ searchParams }: ToeicVocabul
         title="Từ vựng TOEIC"
         description="Curated business English lemmas for TOEIC study — browse by topic and save into My Vocabulary."
         actions={
-          <Button asChild variant="outline">
-            <Link href="/vocabulary">
-              <ArrowLeft className="size-4" aria-hidden="true" />
-              My Vocabulary
-            </Link>
-          </Button>
+          <div className="flex flex-wrap items-center gap-2">
+            <ToeicPracticeLauncher initialTopic={initialPlayTopic} />
+            <Button asChild variant="outline">
+              <Link href="/vocabulary">
+                <ArrowLeft className="size-4" aria-hidden="true" />
+                My Vocabulary
+              </Link>
+            </Button>
+          </div>
         }
       />
 
