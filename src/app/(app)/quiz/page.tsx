@@ -1,9 +1,8 @@
 import type { Metadata } from "next";
-import Link from "next/link";
-import { ListChecks } from "lucide-react";
-import { EmptyState } from "@/components/shared/EmptyState";
 import { PageHeader } from "@/components/shared/PageHeader";
-import { Button } from "@/components/ui/button";
+import { isQuizCatalogKind } from "@/features/quiz/catalog";
+import { QuizCatalog } from "@/features/quiz/components/QuizCatalog";
+import { QuizCatalogFilters } from "@/features/quiz/components/QuizCatalogFilters";
 import { listQuizzes } from "@/features/quiz/queries";
 import { requireUser } from "@/lib/session";
 
@@ -11,47 +10,42 @@ export const metadata: Metadata = {
   title: "Quiz",
 };
 
+type QuizIndexPageProps = {
+  searchParams: Promise<{ kind?: string }>;
+};
+
 /**
  * Quiz catalog — standalone entry point into `/quiz/[quizId]` (spec §19).
  * Grammar / listening / lesson exercises also open the same QuizRunner.
  */
-export default async function QuizIndexPage() {
+export default async function QuizIndexPage({ searchParams }: QuizIndexPageProps) {
   await requireUser();
+  const params = await searchParams;
+  const kind =
+    typeof params.kind === "string" && isQuizCatalogKind(params.kind)
+      ? params.kind
+      : "all";
+
   const quizzes = await listQuizzes();
+  const visible = kind === "all" ? quizzes : quizzes.filter((quiz) => quiz.kind === kind);
+
+  const counts = {
+    all: quizzes.length,
+    vocabulary: quizzes.filter((quiz) => quiz.kind === "vocabulary").length,
+    toeic: quizzes.filter((quiz) => quiz.kind === "toeic").length,
+    grammar: quizzes.filter((quiz) => quiz.kind === "grammar").length,
+    listening: quizzes.filter((quiz) => quiz.kind === "listening").length,
+  };
 
   return (
     <div className="flex w-full flex-col gap-8 px-4 py-8 sm:px-6 lg:px-8">
       <PageHeader
         title="Quiz"
-        description="Practice with multiple choice, true/false, and fill-in-the-blank."
+        description={`${counts.all} quizzes grouped by skill — vocabulary, TOEIC, grammar, and listening.`}
       />
 
-      {quizzes.length === 0 ? (
-        <EmptyState
-          icon={ListChecks}
-          title="No quizzes yet"
-          description="Quizzes appear here once content is seeded."
-        />
-      ) : (
-        <ul className="grid gap-4 sm:grid-cols-2">
-          {quizzes.map((quiz) => (
-            <li key={quiz.id}>
-              <article className="flex h-full flex-col gap-3 rounded-lg border p-4">
-                <div className="space-y-1">
-                  <h2 className="text-base font-semibold tracking-tight">{quiz.title}</h2>
-                  <p className="text-sm text-muted-foreground">{quiz.description}</p>
-                </div>
-                <p className="text-xs text-muted-foreground">
-                  {quiz.questionCount} questions · Pass at {quiz.passScore}%
-                </p>
-                <Button asChild className="mt-auto min-h-11 w-full sm:w-auto">
-                  <Link href={`/quiz/${quiz.id}`}>Start quiz</Link>
-                </Button>
-              </article>
-            </li>
-          ))}
-        </ul>
-      )}
+      <QuizCatalogFilters activeKind={kind} counts={counts} />
+      <QuizCatalog quizzes={visible} filtered={kind !== "all"} />
     </div>
   );
 }

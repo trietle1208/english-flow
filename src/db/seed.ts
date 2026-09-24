@@ -49,6 +49,7 @@ import {
 import { listeningLessonsSeed } from "@/db/seed-data/listening";
 import { placementTestQuestionsSeed, placementTestSeed } from "@/db/seed-data/placement-test";
 import { coursePracticeQuizzes, grammarCourseOnlyQuizzes, type QuizSeed } from "@/db/seed-data/quizzes";
+import { generatedVocabQuizzes } from "@/db/seed-data/vocab-quizzes-seed";
 import { vocabularySeed } from "@/db/seed-data/vocabulary";
 import {
   TOEIC_CATALOG_SOURCE,
@@ -802,6 +803,11 @@ async function main() {
 
   console.log("Seeding grammar course-only quizzes...");
   for (const quiz of grammarCourseOnlyQuizzes) {
+    quizSlugToId.set(quiz.slug, await seedQuiz(quiz));
+  }
+
+  console.log("Seeding generated vocabulary quizzes...");
+  for (const quiz of generatedVocabQuizzes) {
     quizSlugToId.set(quiz.slug, await seedQuiz(quiz));
   }
 

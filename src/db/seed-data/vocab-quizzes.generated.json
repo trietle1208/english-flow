@@ -1,0 +1,2005 @@
+{
+  "generatedBy": "scripts/import-vocab-quizzes.py",
+  "generatedAt": "2026-09-24T03:17:27Z",
+  "catalog": "all",
+  "perQuiz": 8,
+  "slugPrefix": "vocab-generated",
+  "note": "Standalone catalog quizzes. Does not replace coursePracticeQuizzes. TOEIC rows require the lemma to appear in the example sentence.",
+  "stats": {
+    "read": 5134,
+    "kept": 4496,
+    "skipped_quality": 638,
+    "groups": 13,
+    "quizzes": 13,
+    "questions": 104
+  },
+  "quizzes": [
+    {
+      "slug": "vocab-generated-academic",
+      "title": "Academic English — Vocabulary Practice",
+      "description": "Practice 8 words from this topic. EnglishFlow original vocabulary seed (human-reviewed). Generated locally; review before treating as final content.",
+      "questions": [
+        {
+          "type": "multiple_choice",
+          "prompt": "Which word means \"bằng chứng\"?",
+          "explanation": "\"evidence\" (noun) means \"bằng chứng\".",
+          "answers": [
+            {
+              "content": "assessment",
+              "isCorrect": false
+            },
+            {
+              "content": "analyze",
+              "isCorrect": false
+            },
+            {
+              "content": "evidence",
+              "isCorrect": true
+            },
+            {
+              "content": "hypothesis",
+              "isCorrect": false
+            }
+          ]
+        },
+        {
+          "type": "multiple_choice",
+          "prompt": "Which word means \"mục tiêu\"?",
+          "explanation": "\"objective\" (noun) means \"mục tiêu\".",
+          "answers": [
+            {
+              "content": "hypothesis",
+              "isCorrect": false
+            },
+            {
+              "content": "objective",
+              "isCorrect": true
+            },
+            {
+              "content": "furthermore",
+              "isCorrect": false
+            },
+            {
+              "content": "emphasize",
+              "isCorrect": false
+            }
+          ]
+        },
+        {
+          "type": "true_false",
+          "prompt": "\"outcome\" means \"kết quả\".",
+          "explanation": "True — \"outcome\" (noun) means \"kết quả\".",
+          "answers": [
+            {
+              "content": "True",
+              "isCorrect": true
+            },
+            {
+              "content": "False",
+              "isCorrect": false
+            }
+          ]
+        },
+        {
+          "type": "fill_blank",
+          "prompt": "The final ______ counts for 40% of the grade.",
+          "explanation": "The missing word is \"assessment\" (noun): \"sự đánh giá\".",
+          "answers": [
+            {
+              "content": "assessment",
+              "isCorrect": true
+            }
+          ]
+        },
+        {
+          "type": "multiple_choice",
+          "prompt": "Which word means \"gây tranh cãi\"?",
+          "explanation": "\"controversial\" (adjective) means \"gây tranh cãi\".",
+          "answers": [
+            {
+              "content": "assessment",
+              "isCorrect": false
+            },
+            {
+              "content": "controversial",
+              "isCorrect": true
+            },
+            {
+              "content": "hypothesis",
+              "isCorrect": false
+            },
+            {
+              "content": "emphasize",
+              "isCorrect": false
+            }
+          ]
+        },
+        {
+          "type": "multiple_choice",
+          "prompt": "Which word means \"tiêu chí\"?",
+          "explanation": "\"criteria\" (noun) means \"tiêu chí\".",
+          "answers": [
+            {
+              "content": "conclude",
+              "isCorrect": false
+            },
+            {
+              "content": "controversial",
+              "isCorrect": false
+            },
+            {
+              "content": "criteria",
+              "isCorrect": true
+            },
+            {
+              "content": "analyze",
+              "isCorrect": false
+            }
+          ]
+        },
+        {
+          "type": "true_false",
+          "prompt": "\"hypothesis\" means \"giả thuyết\".",
+          "explanation": "True — \"hypothesis\" (noun) means \"giả thuyết\".",
+          "answers": [
+            {
+              "content": "True",
+              "isCorrect": true
+            },
+            {
+              "content": "False",
+              "isCorrect": false
+            }
+          ]
+        },
+        {
+          "type": "fill_blank",
+          "prompt": "The paper explains its research ______ in detail.",
+          "explanation": "The missing word is \"methodology\" (noun): \"phương pháp luận\".",
+          "answers": [
+            {
+              "content": "methodology",
+              "isCorrect": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "vocab-generated-connectors",
+      "title": "Essential Grammar · Verbs & connectors — Vocabulary Practice",
+      "description": "Practice 8 words from this topic. EnglishFlow original vocabulary seed (human-reviewed). Generated locally; review before treating as final content.",
+      "questions": [
+        {
+          "type": "multiple_choice",
+          "prompt": "Which word means \"xem xét, cân nhắc\"?",
+          "explanation": "\"consider\" (verb) means \"xem xét, cân nhắc\".",
+          "answers": [
+            {
+              "content": "consider",
+              "isCorrect": true
+            },
+            {
+              "content": "however",
+              "isCorrect": false
+            },
+            {
+              "content": "manage",
+              "isCorrect": false
+            },
+            {
+              "content": "increase",
+              "isCorrect": false
+            }
+          ]
+        },
+        {
+          "type": "multiple_choice",
+          "prompt": "Which word means \"ngăn ngừa\"?",
+          "explanation": "\"prevent\" (verb) means \"ngăn ngừa\".",
+          "answers": [
+            {
+              "content": "prevent",
+              "isCorrect": true
+            },
+            {
+              "content": "increase",
+              "isCorrect": false
+            },
+            {
+              "content": "regularly",
+              "isCorrect": false
+            },
+            {
+              "content": "avoid",
+              "isCorrect": false
+            }
+          ]
+        },
+        {
+          "type": "true_false",
+          "prompt": "\"avoid\" means \"tránh\".",
+          "explanation": "True — \"avoid\" (verb) means \"tránh\".",
+          "answers": [
+            {
+              "content": "True",
+              "isCorrect": true
+            },
+            {
+              "content": "False",
+              "isCorrect": false
+            }
+          ]
+        },
+        {
+          "type": "fill_blank",
+          "prompt": "She wants to ______ her English.",
+          "explanation": "The missing word is \"improve\" (verb): \"cải thiện\".",
+          "answers": [
+            {
+              "content": "improve",
+              "isCorrect": true
+            }
+          ]
+        },
+        {
+          "type": "multiple_choice",
+          "prompt": "Which word means \"tuy nhiên\"?",
+          "explanation": "\"however\" (adverb) means \"tuy nhiên\".",
+          "answers": [
+            {
+              "content": "provide",
+              "isCorrect": false
+            },
+            {
+              "content": "however",
+              "isCorrect": true
+            },
+            {
+              "content": "manage",
+              "isCorrect": false
+            },
+            {
+              "content": "increase",
+              "isCorrect": false
+            }
+          ]
+        },
+        {
+          "type": "multiple_choice",
+          "prompt": "Which word means \"một cách đều đặn\"?",
+          "explanation": "\"regularly\" (adverb) means \"một cách đều đặn\".",
+          "answers": [
+            {
+              "content": "increase",
+              "isCorrect": false
+            },
+            {
+              "content": "manage",
+              "isCorrect": false
+            },
+            {
+              "content": "regularly",
+              "isCorrect": true
+            },
+            {
+              "content": "decrease",
+              "isCorrect": false
+            }
+          ]
+        },
+        {
+          "type": "true_false",
+          "prompt": "\"therefore\" means \"vì vậy\".",
+          "explanation": "True — \"therefore\" (adverb) means \"vì vậy\".",
+          "answers": [
+            {
+              "content": "True",
+              "isCorrect": true
+            },
+            {
+              "content": "False",
+              "isCorrect": false
+            }
+          ]
+        },
+        {
+          "type": "multiple_choice",
+          "prompt": "Which word means \"đạt được\"?",
+          "explanation": "\"achieve\" (verb) means \"đạt được\".",
+          "answers": [
+            {
+              "content": "achieve",
+              "isCorrect": true
+            },
+            {
+              "content": "decrease",
+              "isCorrect": false
+            },
+            {
+              "content": "require",
+              "isCorrect": false
+            },
+            {
+              "content": "regularly",
+              "isCorrect": false
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "vocab-generated-conversation",
+      "title": "English Conversation · Feelings — Vocabulary Practice",
+      "description": "Practice 8 words from this topic. EnglishFlow original vocabulary seed (human-reviewed). Generated locally; review before treating as final content.",
+      "questions": [
+        {
+          "type": "multiple_choice",
+          "prompt": "Which word means \"xin lỗi\"?",
+          "explanation": "\"apologize\" (verb) means \"xin lỗi\".",
+          "answers": [
+            {
+              "content": "apologize",
+              "isCorrect": true
+            },
+            {
+              "content": "frustrated",
+              "isCorrect": false
+            },
+            {
+              "content": "confident",
+              "isCorrect": false
+            },
+            {
+              "content": "opinion",
+              "isCorrect": false
+            }
+          ]
+        },
+        {
+          "type": "multiple_choice",
+          "prompt": "Which word means \"lời khen\"?",
+          "explanation": "\"compliment\" (noun) means \"lời khen\".",
+          "answers": [
+            {
+              "content": "interrupt",
+              "isCorrect": false
+            },
+            {
+              "content": "assume",
+              "isCorrect": false
+            },
+            {
+              "content": "compliment",
+              "isCorrect": true
+            },
+            {
+              "content": "disagree",
+              "isCorrect": false
+            }
+          ]
+        },
+        {
+          "type": "true_false",
+          "prompt": "\"embarrassed\" means \"xấu hổ, ngượng\".",
+          "explanation": "True — \"embarrassed\" (adjective) means \"xấu hổ, ngượng\".",
+          "answers": [
+            {
+              "content": "True",
+              "isCorrect": true
+            },
+            {
+              "content": "False",
+              "isCorrect": false
+            }
+          ]
+        },
+        {
+          "type": "fill_blank",
+          "prompt": "He got ______ when the internet stopped working.",
+          "explanation": "The missing word is \"frustrated\" (adjective): \"bực bội, thất vọng\".",
+          "answers": [
+            {
+              "content": "frustrated",
+              "isCorrect": true
+            }
+          ]
+        },
+        {
+          "type": "multiple_choice",
+          "prompt": "Which word means \"ngắt lời, làm gián đoạn\"?",
+          "explanation": "\"interrupt\" (verb) means \"ngắt lời, làm gián đoạn\".",
+          "answers": [
+            {
+              "content": "confident",
+              "isCorrect": false
+            },
+            {
+              "content": "interrupt",
+              "isCorrect": true
+            },
+            {
+              "content": "compliment",
+              "isCorrect": false
+            },
+            {
+              "content": "relieved",
+              "isCorrect": false
+            }
+          ]
+        },
+        {
+          "type": "multiple_choice",
+          "prompt": "Which word means \"nhẹ nhõm\"?",
+          "explanation": "\"relieved\" (adjective) means \"nhẹ nhõm\".",
+          "answers": [
+            {
+              "content": "apologize",
+              "isCorrect": false
+            },
+            {
+              "content": "relieved",
+              "isCorrect": true
+            },
+            {
+              "content": "compliment",
+              "isCorrect": false
+            },
+            {
+              "content": "assume",
+              "isCorrect": false
+            }
+          ]
+        },
+        {
+          "type": "true_false",
+          "prompt": "\"suggest\" means \"đề nghị, gợi ý\".",
+          "explanation": "True — \"suggest\" (verb) means \"đề nghị, gợi ý\".",
+          "answers": [
+            {
+              "content": "True",
+              "isCorrect": true
+            },
+            {
+              "content": "False",
+              "isCorrect": false
+            }
+          ]
+        },
+        {
+          "type": "fill_blank",
+          "prompt": "I ______ with you completely.",
+          "explanation": "The missing word is \"agree\" (verb): \"đồng ý\".",
+          "answers": [
+            {
+              "content": "agree",
+              "isCorrect": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "vocab-generated-daily-routine",
+      "title": "Everyday English · Daily routine — Vocabulary Practice",
+      "description": "Practice 8 words from this topic. EnglishFlow original vocabulary seed (human-reviewed). Generated locally; review before treating as final content.",
+      "questions": [
+        {
+          "type": "multiple_choice",
+          "prompt": "Which word means \"việc vặt trong nhà\"?",
+          "explanation": "\"chore\" (noun) means \"việc vặt trong nhà\".",
+          "answers": [
+            {
+              "content": "exhausted",
+              "isCorrect": false
+            },
+            {
+              "content": "breakfast",
+              "isCorrect": false
+            },
+            {
+              "content": "chore",
+              "isCorrect": true
+            },
+            {
+              "content": "get up",
+              "isCorrect": false
+            }
+          ]
+        },
+        {
+          "type": "multiple_choice",
+          "prompt": "Which word means \"kiệt sức\"?",
+          "explanation": "\"exhausted\" (adjective) means \"kiệt sức\".",
+          "answers": [
+            {
+              "content": "errand",
+              "isCorrect": false
+            },
+            {
+              "content": "exhausted",
+              "isCorrect": true
+            },
+            {
+              "content": "get up",
+              "isCorrect": false
+            },
+            {
+              "content": "chore",
+              "isCorrect": false
+            }
+          ]
+        },
+        {
+          "type": "true_false",
+          "prompt": "\"schedule\" means \"lịch trình\".",
+          "explanation": "True — \"schedule\" (noun) means \"lịch trình\".",
+          "answers": [
+            {
+              "content": "True",
+              "isCorrect": true
+            },
+            {
+              "content": "False",
+              "isCorrect": false
+            }
+          ]
+        },
+        {
+          "type": "fill_blank",
+          "prompt": "She has ______ at seven.",
+          "explanation": "The missing word is \"breakfast\" (noun): \"bữa sáng\".",
+          "answers": [
+            {
+              "content": "breakfast",
+              "isCorrect": true
+            }
+          ]
+        },
+        {
+          "type": "multiple_choice",
+          "prompt": "Which word means \"giấc ngủ ngắn\"?",
+          "explanation": "\"nap\" (noun) means \"giấc ngủ ngắn\".",
+          "answers": [
+            {
+              "content": "breakfast",
+              "isCorrect": false
+            },
+            {
+              "content": "nap",
+              "isCorrect": true
+            },
+            {
+              "content": "routine",
+              "isCorrect": false
+            },
+            {
+              "content": "commute",
+              "isCorrect": false
+            }
+          ]
+        },
+        {
+          "type": "multiple_choice",
+          "prompt": "Which word means \"thói quen hằng ngày\"?",
+          "explanation": "\"routine\" (noun) means \"thói quen hằng ngày\".",
+          "answers": [
+            {
+              "content": "routine",
+              "isCorrect": true
+            },
+            {
+              "content": "brush",
+              "isCorrect": false
+            },
+            {
+              "content": "chore",
+              "isCorrect": false
+            },
+            {
+              "content": "commute",
+              "isCorrect": false
+            }
+          ]
+        },
+        {
+          "type": "true_false",
+          "prompt": "\"shower\" means \"tắm vòi sen\".",
+          "explanation": "True — \"shower\" (verb) means \"tắm vòi sen\".",
+          "answers": [
+            {
+              "content": "True",
+              "isCorrect": true
+            },
+            {
+              "content": "False",
+              "isCorrect": false
+            }
+          ]
+        },
+        {
+          "type": "fill_blank",
+          "prompt": "I ______ at six every morning.",
+          "explanation": "The missing word is \"wake up\" (phrasal_verb): \"thức dậy\".",
+          "answers": [
+            {
+              "content": "wake up",
+              "isCorrect": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "vocab-generated-everyday-extra",
+      "title": "Everyday English · Extra — Vocabulary Practice",
+      "description": "Practice 8 words from this topic. EnglishFlow original vocabulary seed (human-reviewed). Generated locally; review before treating as final content.",
+      "questions": [
+        {
+          "type": "multiple_choice",
+          "prompt": "Which word means \"chính xác\"?",
+          "explanation": "\"accurate\" (adjective) means \"chính xác\".",
+          "answers": [
+            {
+              "content": "receipt",
+              "isCorrect": false
+            },
+            {
+              "content": "similar",
+              "isCorrect": false
+            },
+            {
+              "content": "rude",
+              "isCorrect": false
+            },
+            {
+              "content": "accurate",
+              "isCorrect": true
+            }
+          ]
+        },
+        {
+          "type": "multiple_choice",
+          "prompt": "Which word means \"lợi thế\"?",
+          "explanation": "\"advantage\" (noun) means \"lợi thế\".",
+          "answers": [
+            {
+              "content": "advantage",
+              "isCorrect": true
+            },
+            {
+              "content": "efficient",
+              "isCorrect": false
+            },
+            {
+              "content": "postpone",
+              "isCorrect": false
+            },
+            {
+              "content": "unique",
+              "isCorrect": false
+            }
+          ]
+        },
+        {
+          "type": "true_false",
+          "prompt": "\"afford\" means \"có đủ khả năng (tiền, thời gian)\".",
+          "explanation": "True — \"afford\" (verb) means \"có đủ khả năng (tiền, thời gian)\".",
+          "answers": [
+            {
+              "content": "True",
+              "isCorrect": true
+            },
+            {
+              "content": "False",
+              "isCorrect": false
+            }
+          ]
+        },
+        {
+          "type": "fill_blank",
+          "prompt": "We need to stick to our ______.",
+          "explanation": "The missing word is \"budget\" (noun): \"ngân sách\".",
+          "answers": [
+            {
+              "content": "budget",
+              "isCorrect": true
+            }
+          ]
+        },
+        {
+          "type": "multiple_choice",
+          "prompt": "Which word means \"xác nhận\"?",
+          "explanation": "\"confirm\" (verb) means \"xác nhận\".",
+          "answers": [
+            {
+              "content": "afford",
+              "isCorrect": false
+            },
+            {
+              "content": "polite",
+              "isCorrect": false
+            },
+            {
+              "content": "confirm",
+              "isCorrect": true
+            },
+            {
+              "content": "postpone",
+              "isCorrect": false
+            }
+          ]
+        },
+        {
+          "type": "multiple_choice",
+          "prompt": "Which word means \"thuận tiện\"?",
+          "explanation": "\"convenient\" (adjective) means \"thuận tiện\".",
+          "answers": [
+            {
+              "content": "convenient",
+              "isCorrect": true
+            },
+            {
+              "content": "discover",
+              "isCorrect": false
+            },
+            {
+              "content": "afford",
+              "isCorrect": false
+            },
+            {
+              "content": "flexible",
+              "isCorrect": false
+            }
+          ]
+        },
+        {
+          "type": "true_false",
+          "prompt": "\"disadvantage\" means \"bất lợi\".",
+          "explanation": "True — \"disadvantage\" (noun) means \"bất lợi\".",
+          "answers": [
+            {
+              "content": "True",
+              "isCorrect": true
+            },
+            {
+              "content": "False",
+              "isCorrect": false
+            }
+          ]
+        },
+        {
+          "type": "fill_blank",
+          "prompt": "Don't let one failure ______ you.",
+          "explanation": "The missing word is \"discourage\" (verb): \"làm nản lòng\".",
+          "answers": [
+            {
+              "content": "discourage",
+              "isCorrect": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "vocab-generated-family-home",
+      "title": "Everyday English · Family & home — Vocabulary Practice",
+      "description": "Practice 8 words from this topic. EnglishFlow original vocabulary seed (human-reviewed). Generated locally; review before treating as final content.",
+      "questions": [
+        {
+          "type": "multiple_choice",
+          "prompt": "Which word means \"thiết bị gia dụng\"?",
+          "explanation": "\"appliance\" (noun) means \"thiết bị gia dụng\".",
+          "answers": [
+            {
+              "content": "landlord",
+              "isCorrect": false
+            },
+            {
+              "content": "neighbor",
+              "isCorrect": false
+            },
+            {
+              "content": "tidy",
+              "isCorrect": false
+            },
+            {
+              "content": "appliance",
+              "isCorrect": true
+            }
+          ]
+        },
+        {
+          "type": "multiple_choice",
+          "prompt": "Which word means \"hộ gia đình\"?",
+          "explanation": "\"household\" (noun) means \"hộ gia đình\".",
+          "answers": [
+            {
+              "content": "spouse",
+              "isCorrect": false
+            },
+            {
+              "content": "household",
+              "isCorrect": true
+            },
+            {
+              "content": "landlord",
+              "isCorrect": false
+            },
+            {
+              "content": "rent",
+              "isCorrect": false
+            }
+          ]
+        },
+        {
+          "type": "true_false",
+          "prompt": "\"landlord\" means \"chủ nhà (cho thuê)\".",
+          "explanation": "True — \"landlord\" (noun) means \"chủ nhà (cho thuê)\".",
+          "answers": [
+            {
+              "content": "True",
+              "isCorrect": true
+            },
+            {
+              "content": "False",
+              "isCorrect": false
+            }
+          ]
+        },
+        {
+          "type": "fill_blank",
+          "prompt": "She introduced me to her ______.",
+          "explanation": "The missing word is \"spouse\" (noun): \"vợ hoặc chồng\".",
+          "answers": [
+            {
+              "content": "spouse",
+              "isCorrect": true
+            }
+          ]
+        },
+        {
+          "type": "multiple_choice",
+          "prompt": "Which word means \"đồ nội thất\"?",
+          "explanation": "\"furniture\" (noun) means \"đồ nội thất\".",
+          "answers": [
+            {
+              "content": "relative",
+              "isCorrect": false
+            },
+            {
+              "content": "furniture",
+              "isCorrect": true
+            },
+            {
+              "content": "sibling",
+              "isCorrect": false
+            },
+            {
+              "content": "neighbor",
+              "isCorrect": false
+            }
+          ]
+        },
+        {
+          "type": "multiple_choice",
+          "prompt": "Which word means \"hàng xóm\"?",
+          "explanation": "\"neighbor\" (noun) means \"hàng xóm\".",
+          "answers": [
+            {
+              "content": "furniture",
+              "isCorrect": false
+            },
+            {
+              "content": "household",
+              "isCorrect": false
+            },
+            {
+              "content": "appliance",
+              "isCorrect": false
+            },
+            {
+              "content": "neighbor",
+              "isCorrect": true
+            }
+          ]
+        },
+        {
+          "type": "true_false",
+          "prompt": "\"rent\" means \"thuê (nhà)\".",
+          "explanation": "True — \"rent\" (verb) means \"thuê (nhà)\".",
+          "answers": [
+            {
+              "content": "True",
+              "isCorrect": true
+            },
+            {
+              "content": "False",
+              "isCorrect": false
+            }
+          ]
+        },
+        {
+          "type": "fill_blank",
+          "prompt": "Please keep your room ______.",
+          "explanation": "The missing word is \"tidy\" (adjective): \"gọn gàng\".",
+          "answers": [
+            {
+              "content": "tidy",
+              "isCorrect": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "vocab-generated-food-drink",
+      "title": "Everyday English · Food & drink — Vocabulary Practice",
+      "description": "Practice 8 words from this topic. EnglishFlow original vocabulary seed (human-reviewed). Generated locally; review before treating as final content.",
+      "questions": [
+        {
+          "type": "multiple_choice",
+          "prompt": "Which word means \"khẩu vị, cảm giác thèm ăn\"?",
+          "explanation": "\"appetite\" (noun) means \"khẩu vị, cảm giác thèm ăn\".",
+          "answers": [
+            {
+              "content": "beverage",
+              "isCorrect": false
+            },
+            {
+              "content": "leftover",
+              "isCorrect": false
+            },
+            {
+              "content": "reservation",
+              "isCorrect": false
+            },
+            {
+              "content": "appetite",
+              "isCorrect": true
+            }
+          ]
+        },
+        {
+          "type": "multiple_choice",
+          "prompt": "Which word means \"nguyên liệu\"?",
+          "explanation": "\"ingredient\" (noun) means \"nguyên liệu\".",
+          "answers": [
+            {
+              "content": "flavor",
+              "isCorrect": false
+            },
+            {
+              "content": "beverage",
+              "isCorrect": false
+            },
+            {
+              "content": "grocery",
+              "isCorrect": false
+            },
+            {
+              "content": "ingredient",
+              "isCorrect": true
+            }
+          ]
+        },
+        {
+          "type": "true_false",
+          "prompt": "\"reservation\" means \"sự đặt chỗ (nhà hàng, khách sạn)\".",
+          "explanation": "True — \"reservation\" (noun) means \"sự đặt chỗ (nhà hàng, khách sạn)\".",
+          "answers": [
+            {
+              "content": "True",
+              "isCorrect": true
+            },
+            {
+              "content": "False",
+              "isCorrect": false
+            }
+          ]
+        },
+        {
+          "type": "fill_blank",
+          "prompt": "This cake is absolutely ______.",
+          "explanation": "The missing word is \"delicious\" (adjective): \"ngon\".",
+          "answers": [
+            {
+              "content": "delicious",
+              "isCorrect": true
+            }
+          ]
+        },
+        {
+          "type": "multiple_choice",
+          "prompt": "Which word means \"hương vị\"?",
+          "explanation": "\"flavor\" (noun) means \"hương vị\".",
+          "answers": [
+            {
+              "content": "reservation",
+              "isCorrect": false
+            },
+            {
+              "content": "appetite",
+              "isCorrect": false
+            },
+            {
+              "content": "beverage",
+              "isCorrect": false
+            },
+            {
+              "content": "flavor",
+              "isCorrect": true
+            }
+          ]
+        },
+        {
+          "type": "multiple_choice",
+          "prompt": "Which word means \"công thức nấu ăn\"?",
+          "explanation": "\"recipe\" (noun) means \"công thức nấu ăn\".",
+          "answers": [
+            {
+              "content": "grocery",
+              "isCorrect": false
+            },
+            {
+              "content": "ingredient",
+              "isCorrect": false
+            },
+            {
+              "content": "recipe",
+              "isCorrect": true
+            },
+            {
+              "content": "leftover",
+              "isCorrect": false
+            }
+          ]
+        },
+        {
+          "type": "true_false",
+          "prompt": "\"beverage\" means \"đồ uống\".",
+          "explanation": "True — \"beverage\" (noun) means \"đồ uống\".",
+          "answers": [
+            {
+              "content": "True",
+              "isCorrect": true
+            },
+            {
+              "content": "False",
+              "isCorrect": false
+            }
+          ]
+        },
+        {
+          "type": "multiple_choice",
+          "prompt": "Which word means \"đồ ăn thừa\"?",
+          "explanation": "\"leftover\" (noun) means \"đồ ăn thừa\".",
+          "answers": [
+            {
+              "content": "reservation",
+              "isCorrect": false
+            },
+            {
+              "content": "leftover",
+              "isCorrect": true
+            },
+            {
+              "content": "grocery",
+              "isCorrect": false
+            },
+            {
+              "content": "beverage",
+              "isCorrect": false
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "vocab-generated-travel",
+      "title": "English for Travel — Vocabulary Practice",
+      "description": "Practice 8 words from this topic. EnglishFlow original vocabulary seed (human-reviewed). Generated locally; review before treating as final content.",
+      "questions": [
+        {
+          "type": "multiple_choice",
+          "prompt": "Which word means \"tiền tệ\"?",
+          "explanation": "\"currency\" (noun) means \"tiền tệ\".",
+          "answers": [
+            {
+              "content": "vacancy",
+              "isCorrect": false
+            },
+            {
+              "content": "arrival",
+              "isCorrect": false
+            },
+            {
+              "content": "fare",
+              "isCorrect": false
+            },
+            {
+              "content": "currency",
+              "isCorrect": true
+            }
+          ]
+        },
+        {
+          "type": "multiple_choice",
+          "prompt": "Which word means \"hải quan\"?",
+          "explanation": "\"customs\" (noun) means \"hải quan\".",
+          "answers": [
+            {
+              "content": "customs",
+              "isCorrect": true
+            },
+            {
+              "content": "fare",
+              "isCorrect": false
+            },
+            {
+              "content": "arrival",
+              "isCorrect": false
+            },
+            {
+              "content": "luggage",
+              "isCorrect": false
+            }
+          ]
+        },
+        {
+          "type": "true_false",
+          "prompt": "\"departure\" means \"sự khởi hành\".",
+          "explanation": "True — \"departure\" (noun) means \"sự khởi hành\".",
+          "answers": [
+            {
+              "content": "True",
+              "isCorrect": true
+            },
+            {
+              "content": "False",
+              "isCorrect": false
+            }
+          ]
+        },
+        {
+          "type": "fill_blank",
+          "prompt": "We took a ______ to avoid traffic.",
+          "explanation": "The missing word is \"detour\" (noun): \"đường vòng\".",
+          "answers": [
+            {
+              "content": "detour",
+              "isCorrect": true
+            }
+          ]
+        },
+        {
+          "type": "multiple_choice",
+          "prompt": "Which word means \"địa danh, mốc nổi tiếng\"?",
+          "explanation": "\"landmark\" (noun) means \"địa danh, mốc nổi tiếng\".",
+          "answers": [
+            {
+              "content": "departure",
+              "isCorrect": false
+            },
+            {
+              "content": "boarding pass",
+              "isCorrect": false
+            },
+            {
+              "content": "vacancy",
+              "isCorrect": false
+            },
+            {
+              "content": "landmark",
+              "isCorrect": true
+            }
+          ]
+        },
+        {
+          "type": "multiple_choice",
+          "prompt": "Which word means \"vé khứ hồi\"?",
+          "explanation": "\"roundtrip\" (noun) means \"vé khứ hồi\".",
+          "answers": [
+            {
+              "content": "roundtrip",
+              "isCorrect": true
+            },
+            {
+              "content": "checkout",
+              "isCorrect": false
+            },
+            {
+              "content": "souvenir",
+              "isCorrect": false
+            },
+            {
+              "content": "detour",
+              "isCorrect": false
+            }
+          ]
+        },
+        {
+          "type": "true_false",
+          "prompt": "\"souvenir\" means \"quà lưu niệm\".",
+          "explanation": "True — \"souvenir\" (noun) means \"quà lưu niệm\".",
+          "answers": [
+            {
+              "content": "True",
+              "isCorrect": true
+            },
+            {
+              "content": "False",
+              "isCorrect": false
+            }
+          ]
+        },
+        {
+          "type": "fill_blank",
+          "prompt": "We booked our ______ online.",
+          "explanation": "The missing word is \"accommodation\" (noun): \"chỗ ở\".",
+          "answers": [
+            {
+              "content": "accommodation",
+              "isCorrect": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "vocab-generated-toeic-hr",
+      "title": "TOEIC · Nhân sự · Hiring & HR — Vocabulary Practice",
+      "description": "Practice 8 words from this topic. Headwords from TOEIC Service List (TSL) 1.1 (Browne & Culligan, 2016) and lexical content from the English–Vietnamese Dictionary (Skypedia / MinhQND), both CC BY-SA 4.0. Generated locally; review before treating as final content.",
+      "questions": [
+        {
+          "type": "multiple_choice",
+          "prompt": "Which word means \"Vắng mặt, đi vắng, nghỉ\"?",
+          "explanation": "\"absent\" (adjective) means \"Vắng mặt, đi vắng, nghỉ\".",
+          "answers": [
+            {
+              "content": "evacuate",
+              "isCorrect": false
+            },
+            {
+              "content": "escort",
+              "isCorrect": false
+            },
+            {
+              "content": "absent",
+              "isCorrect": true
+            },
+            {
+              "content": "coworker",
+              "isCorrect": false
+            }
+          ]
+        },
+        {
+          "type": "multiple_choice",
+          "prompt": "Which word means \"Người xin việc\"?",
+          "explanation": "\"applicant\" (noun) means \"Người xin việc\".",
+          "answers": [
+            {
+              "content": "applicant",
+              "isCorrect": true
+            },
+            {
+              "content": "escort",
+              "isCorrect": false
+            },
+            {
+              "content": "appraisal",
+              "isCorrect": false
+            },
+            {
+              "content": "bathroom",
+              "isCorrect": false
+            }
+          ]
+        },
+        {
+          "type": "true_false",
+          "prompt": "\"appraisal\" means \"Sự đánh giá\".",
+          "explanation": "True — \"appraisal\" (noun) means \"Sự đánh giá\".",
+          "answers": [
+            {
+              "content": "True",
+              "isCorrect": true
+            },
+            {
+              "content": "False",
+              "isCorrect": false
+            }
+          ]
+        },
+        {
+          "type": "fill_blank",
+          "prompt": "The ______ test checked his hearing skills.",
+          "explanation": "The missing word is \"auditive\" (adjective): \"Sự nghe\".",
+          "answers": [
+            {
+              "content": "auditive",
+              "isCorrect": true
+            }
+          ]
+        },
+        {
+          "type": "multiple_choice",
+          "prompt": "Which word means \"quyền lực, cơ quan\"?",
+          "explanation": "\"authority\" (noun) means \"quyền lực, cơ quan\".",
+          "answers": [
+            {
+              "content": "dismissal",
+              "isCorrect": false
+            },
+            {
+              "content": "authority",
+              "isCorrect": true
+            },
+            {
+              "content": "expertise",
+              "isCorrect": false
+            },
+            {
+              "content": "exclusive",
+              "isCorrect": false
+            }
+          ]
+        },
+        {
+          "type": "multiple_choice",
+          "prompt": "Which word means \"Buồng tắm, phòng tắm, nhà vệ sinh\"?",
+          "explanation": "\"bathroom\" (noun) means \"Buồng tắm, phòng tắm, nhà vệ sinh\".",
+          "answers": [
+            {
+              "content": "exclusive",
+              "isCorrect": false
+            },
+            {
+              "content": "colleague",
+              "isCorrect": false
+            },
+            {
+              "content": "elegant",
+              "isCorrect": false
+            },
+            {
+              "content": "bathroom",
+              "isCorrect": true
+            }
+          ]
+        },
+        {
+          "type": "true_false",
+          "prompt": "\"battery\" means \"Khẩu đội (pháo)\".",
+          "explanation": "True — \"battery\" (noun) means \"Khẩu đội (pháo)\".",
+          "answers": [
+            {
+              "content": "True",
+              "isCorrect": true
+            },
+            {
+              "content": "False",
+              "isCorrect": false
+            }
+          ]
+        },
+        {
+          "type": "fill_blank",
+          "prompt": "This new policy provides a great ______ to us.",
+          "explanation": "The missing word is \"benefit\" (noun): \"Lợi, lợi ích\".",
+          "answers": [
+            {
+              "content": "benefit",
+              "isCorrect": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "vocab-generated-toeic-logistics",
+      "title": "TOEIC · Vận hành · Logistics & ops — Vocabulary Practice",
+      "description": "Practice 8 words from this topic. Headwords from TOEIC Service List (TSL) 1.1 (Browne & Culligan, 2016) and lexical content from the English–Vietnamese Dictionary (Skypedia / MinhQND), both CC BY-SA 4.0. Generated locally; review before treating as final content.",
+      "questions": [
+        {
+          "type": "multiple_choice",
+          "prompt": "Which word means \"Dính chặt vào, bám chặt vào\"?",
+          "explanation": "\"adhere\" (verb) means \"Dính chặt vào, bám chặt vào\".",
+          "answers": [
+            {
+              "content": "adhere",
+              "isCorrect": true
+            },
+            {
+              "content": "by-law",
+              "isCorrect": false
+            },
+            {
+              "content": "cartridge",
+              "isCorrect": false
+            },
+            {
+              "content": "defect",
+              "isCorrect": false
+            }
+          ]
+        },
+        {
+          "type": "multiple_choice",
+          "prompt": "Which word means \"Công ty hàng không\"?",
+          "explanation": "\"airline\" (noun) means \"Công ty hàng không\".",
+          "answers": [
+            {
+              "content": "airline",
+              "isCorrect": true
+            },
+            {
+              "content": "bulletin",
+              "isCorrect": false
+            },
+            {
+              "content": "boardroom",
+              "isCorrect": false
+            },
+            {
+              "content": "briefcase",
+              "isCorrect": false
+            }
+          ]
+        },
+        {
+          "type": "true_false",
+          "prompt": "\"airliner\" means \"Máy bay dân dụng loại lớn\".",
+          "explanation": "True — \"airliner\" (noun) means \"Máy bay dân dụng loại lớn\".",
+          "answers": [
+            {
+              "content": "True",
+              "isCorrect": true
+            },
+            {
+              "content": "False",
+              "isCorrect": false
+            }
+          ]
+        },
+        {
+          "type": "fill_blank",
+          "prompt": "The ______ circled above the valley.",
+          "explanation": "The missing word is \"airplane\" (noun): \"Máy bay, tàu bay\".",
+          "answers": [
+            {
+              "content": "airplane",
+              "isCorrect": true
+            }
+          ]
+        },
+        {
+          "type": "multiple_choice",
+          "prompt": "Which word means \"Sân bay, phi trường\"?",
+          "explanation": "\"airport\" (noun) means \"Sân bay, phi trường\".",
+          "answers": [
+            {
+              "content": "airliner",
+              "isCorrect": false
+            },
+            {
+              "content": "blanket",
+              "isCorrect": false
+            },
+            {
+              "content": "airport",
+              "isCorrect": true
+            },
+            {
+              "content": "defect",
+              "isCorrect": false
+            }
+          ]
+        },
+        {
+          "type": "multiple_choice",
+          "prompt": "Which word means \"Tham dự, có mặt\"?",
+          "explanation": "\"attendant\" (adjective) means \"Tham dự, có mặt\".",
+          "answers": [
+            {
+              "content": "ballroom",
+              "isCorrect": false
+            },
+            {
+              "content": "attendant",
+              "isCorrect": true
+            },
+            {
+              "content": "basket",
+              "isCorrect": false
+            },
+            {
+              "content": "defect",
+              "isCorrect": false
+            }
+          ]
+        },
+        {
+          "type": "true_false",
+          "prompt": "\"backpack\" means \"Cái ba lô đeo trên vai\".",
+          "explanation": "True — \"backpack\" (noun) means \"Cái ba lô đeo trên vai\".",
+          "answers": [
+            {
+              "content": "True",
+              "isCorrect": true
+            },
+            {
+              "content": "False",
+              "isCorrect": false
+            }
+          ]
+        },
+        {
+          "type": "fill_blank",
+          "prompt": "______ can grow quickly in warm milk.",
+          "explanation": "The missing word is \"bacteria\" (noun): \"Vi khuẩn\".",
+          "answers": [
+            {
+              "content": "bacteria",
+              "isCorrect": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "vocab-generated-toeic-meetings",
+      "title": "TOEIC · Họp & giao tiếp · Meetings & comms — Vocabulary Practice",
+      "description": "Practice 8 words from this topic. Headwords from TOEIC Service List (TSL) 1.1 (Browne & Culligan, 2016) and lexical content from the English–Vietnamese Dictionary (Skypedia / MinhQND), both CC BY-SA 4.0. Generated locally; review before treating as final content.",
+      "questions": [
+        {
+          "type": "multiple_choice",
+          "prompt": "Which word means \"Nữ diễn viên, đào hát\"?",
+          "explanation": "\"actress\" (noun) means \"Nữ diễn viên, đào hát\".",
+          "answers": [
+            {
+              "content": "actress",
+              "isCorrect": true
+            },
+            {
+              "content": "bookstall",
+              "isCorrect": false
+            },
+            {
+              "content": "attorney",
+              "isCorrect": false
+            },
+            {
+              "content": "bookman",
+              "isCorrect": false
+            }
+          ]
+        },
+        {
+          "type": "multiple_choice",
+          "prompt": "Which word means \"Chương trình nghị sự, nghị trình\"?",
+          "explanation": "\"agenda\" (noun) means \"Chương trình nghị sự, nghị trình\".",
+          "answers": [
+            {
+              "content": "callipers",
+              "isCorrect": false
+            },
+            {
+              "content": "agenda",
+              "isCorrect": true
+            },
+            {
+              "content": "answer",
+              "isCorrect": false
+            },
+            {
+              "content": "briefness",
+              "isCorrect": false
+            }
+          ]
+        },
+        {
+          "type": "true_false",
+          "prompt": "\"allocate\" means \"Chỉ định\".",
+          "explanation": "True — \"allocate\" (verb) means \"Chỉ định\".",
+          "answers": [
+            {
+              "content": "True",
+              "isCorrect": true
+            },
+            {
+              "content": "False",
+              "isCorrect": false
+            }
+          ]
+        },
+        {
+          "type": "fill_blank",
+          "prompt": "They will ______ the new results tomorrow morning.",
+          "explanation": "The missing word is \"announce\" (verb): \"Báo, loan báo, thông tri\".",
+          "answers": [
+            {
+              "content": "announce",
+              "isCorrect": true
+            }
+          ]
+        },
+        {
+          "type": "multiple_choice",
+          "prompt": "Which word means \"Sự trả lời\"?",
+          "explanation": "\"answer\" (noun) means \"Sự trả lời\".",
+          "answers": [
+            {
+              "content": "answerer",
+              "isCorrect": false
+            },
+            {
+              "content": "cafeteria",
+              "isCorrect": false
+            },
+            {
+              "content": "bookman",
+              "isCorrect": false
+            },
+            {
+              "content": "answer",
+              "isCorrect": true
+            }
+          ]
+        },
+        {
+          "type": "multiple_choice",
+          "prompt": "Which word means \"Người trả lời, người đáp lại\"?",
+          "explanation": "\"answerer\" (noun) means \"Người trả lời, người đáp lại\".",
+          "answers": [
+            {
+              "content": "bookman",
+              "isCorrect": false
+            },
+            {
+              "content": "answerer",
+              "isCorrect": true
+            },
+            {
+              "content": "bookcase",
+              "isCorrect": false
+            },
+            {
+              "content": "canceler",
+              "isCorrect": false
+            }
+          ]
+        },
+        {
+          "type": "true_false",
+          "prompt": "\"attend\" means \"Dự, có mặt\".",
+          "explanation": "True — \"attend\" (verb) means \"Dự, có mặt\".",
+          "answers": [
+            {
+              "content": "True",
+              "isCorrect": true
+            },
+            {
+              "content": "False",
+              "isCorrect": false
+            }
+          ]
+        },
+        {
+          "type": "fill_blank",
+          "prompt": "Every ______ received a small note at the door.",
+          "explanation": "The missing word is \"attender\" (noun): \"Người tham dự\".",
+          "answers": [
+            {
+              "content": "attender",
+              "isCorrect": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "vocab-generated-toeic-office",
+      "title": "TOEIC · Văn phòng · Office & admin — Vocabulary Practice",
+      "description": "Practice 8 words from this topic. Headwords from TOEIC Service List (TSL) 1.1 (Browne & Culligan, 2016) and lexical content from the English–Vietnamese Dictionary (Skypedia / MinhQND), both CC BY-SA 4.0. Generated locally; review before treating as final content.",
+      "questions": [
+        {
+          "type": "multiple_choice",
+          "prompt": "Which word means \"Cổ, cổ xưa\"?",
+          "explanation": "\"antique\" (adjective) means \"Cổ, cổ xưa\".",
+          "answers": [
+            {
+              "content": "antique",
+              "isCorrect": true
+            },
+            {
+              "content": "diamond",
+              "isCorrect": false
+            },
+            {
+              "content": "dentist",
+              "isCorrect": false
+            },
+            {
+              "content": "copyright",
+              "isCorrect": false
+            }
+          ]
+        },
+        {
+          "type": "multiple_choice",
+          "prompt": "Which word means \"Bổ, bổ nhiệm\"?",
+          "explanation": "\"appoint\" (verb) means \"Bổ, bổ nhiệm\".",
+          "answers": [
+            {
+              "content": "delete",
+              "isCorrect": false
+            },
+            {
+              "content": "appoint",
+              "isCorrect": true
+            },
+            {
+              "content": "diagnose",
+              "isCorrect": false
+            },
+            {
+              "content": "archives",
+              "isCorrect": false
+            }
+          ]
+        },
+        {
+          "type": "true_false",
+          "prompt": "\"archive\" means \"Kho lưu trữ\".",
+          "explanation": "True — \"archive\" (noun) means \"Kho lưu trữ\".",
+          "answers": [
+            {
+              "content": "True",
+              "isCorrect": true
+            },
+            {
+              "content": "False",
+              "isCorrect": false
+            }
+          ]
+        },
+        {
+          "type": "fill_blank",
+          "prompt": "The ______ held old letters and maps.",
+          "explanation": "The missing word is \"archives\" (noun): \"Văn thư lưu trữ\".",
+          "answers": [
+            {
+              "content": "archives",
+              "isCorrect": true
+            }
+          ]
+        },
+        {
+          "type": "multiple_choice",
+          "prompt": "Which word means \"Tài sản\"?",
+          "explanation": "\"assets\" (noun) means \"Tài sản\".",
+          "answers": [
+            {
+              "content": "decisions",
+              "isCorrect": false
+            },
+            {
+              "content": "detach",
+              "isCorrect": false
+            },
+            {
+              "content": "diagram",
+              "isCorrect": false
+            },
+            {
+              "content": "assets",
+              "isCorrect": true
+            }
+          ]
+        },
+        {
+          "type": "multiple_choice",
+          "prompt": "Which word means \"Người giúp đỡ, người phụ tá\"?",
+          "explanation": "\"assistant\" (noun) means \"Người giúp đỡ, người phụ tá\".",
+          "answers": [
+            {
+              "content": "devastate",
+              "isCorrect": false
+            },
+            {
+              "content": "demolish",
+              "isCorrect": false
+            },
+            {
+              "content": "assistant",
+              "isCorrect": true
+            },
+            {
+              "content": "diagnose",
+              "isCorrect": false
+            }
+          ]
+        },
+        {
+          "type": "true_false",
+          "prompt": "\"authentic\" means \"Thật\".",
+          "explanation": "True — \"authentic\" (adjective) means \"Thật\".",
+          "answers": [
+            {
+              "content": "True",
+              "isCorrect": true
+            },
+            {
+              "content": "False",
+              "isCorrect": false
+            }
+          ]
+        },
+        {
+          "type": "fill_blank",
+          "prompt": "The manager will ______ your request for a vacation.",
+          "explanation": "The missing word is \"authorize\" (verb): \"Cho quyền, uỷ quyền, cho phép\".",
+          "answers": [
+            {
+              "content": "authorize",
+              "isCorrect": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "vocab-generated-toeic-sales",
+      "title": "TOEIC · Kinh doanh · Sales & finance — Vocabulary Practice",
+      "description": "Practice 8 words from this topic. Headwords from TOEIC Service List (TSL) 1.1 (Browne & Culligan, 2016) and lexical content from the English–Vietnamese Dictionary (Skypedia / MinhQND), both CC BY-SA 4.0. Generated locally; review before treating as final content.",
+      "questions": [
+        {
+          "type": "multiple_choice",
+          "prompt": "Which word means \"Hút, hút thu (nước)\"?",
+          "explanation": "\"absorb\" (verb) means \"Hút, hút thu (nước)\".",
+          "answers": [
+            {
+              "content": "accustom",
+              "isCorrect": false
+            },
+            {
+              "content": "absorb",
+              "isCorrect": true
+            },
+            {
+              "content": "billiards",
+              "isCorrect": false
+            },
+            {
+              "content": "bargainer",
+              "isCorrect": false
+            }
+          ]
+        },
+        {
+          "type": "multiple_choice",
+          "prompt": "Which word means \"Trọng âm\"?",
+          "explanation": "\"accent\" (noun) means \"Trọng âm\".",
+          "answers": [
+            {
+              "content": "banksman",
+              "isCorrect": false
+            },
+            {
+              "content": "assemble",
+              "isCorrect": false
+            },
+            {
+              "content": "bargain",
+              "isCorrect": false
+            },
+            {
+              "content": "accent",
+              "isCorrect": true
+            }
+          ]
+        },
+        {
+          "type": "true_false",
+          "prompt": "\"accessory\" means \"Kẻ tòng phạm, kẻ a tòng, kẻ đồng loã\".",
+          "explanation": "True — \"accessory\" (noun) means \"Kẻ tòng phạm, kẻ a tòng, kẻ đồng loã\".",
+          "answers": [
+            {
+              "content": "True",
+              "isCorrect": true
+            },
+            {
+              "content": "False",
+              "isCorrect": false
+            }
+          ]
+        },
+        {
+          "type": "fill_blank",
+          "prompt": "The movie opened to loud ______.",
+          "explanation": "The missing word is \"acclaim\" (noun): \"Tiếng hoan hô\".",
+          "answers": [
+            {
+              "content": "acclaim",
+              "isCorrect": true
+            }
+          ]
+        },
+        {
+          "type": "multiple_choice",
+          "prompt": "Which word means \"Bản kê khai\"?",
+          "explanation": "\"account\" (noun) means \"Bản kê khai\".",
+          "answers": [
+            {
+              "content": "attire",
+              "isCorrect": false
+            },
+            {
+              "content": "billiards",
+              "isCorrect": false
+            },
+            {
+              "content": "account",
+              "isCorrect": true
+            },
+            {
+              "content": "bargain",
+              "isCorrect": false
+            }
+          ]
+        },
+        {
+          "type": "multiple_choice",
+          "prompt": "Which word means \"Sự đúng đắn, sự chính xác\"?",
+          "explanation": "\"accuracy\" (noun) means \"Sự đúng đắn, sự chính xác\".",
+          "answers": [
+            {
+              "content": "attain",
+              "isCorrect": false
+            },
+            {
+              "content": "accuracy",
+              "isCorrect": true
+            },
+            {
+              "content": "acclaim",
+              "isCorrect": false
+            },
+            {
+              "content": "banknote",
+              "isCorrect": false
+            }
+          ]
+        },
+        {
+          "type": "true_false",
+          "prompt": "\"accustom\" means \"Làm cho quen, tập cho quen\".",
+          "explanation": "True — \"accustom\" (verb) means \"Làm cho quen, tập cho quen\".",
+          "answers": [
+            {
+              "content": "True",
+              "isCorrect": true
+            },
+            {
+              "content": "False",
+              "isCorrect": false
+            }
+          ]
+        },
+        {
+          "type": "fill_blank",
+          "prompt": "Press the button to ______ the lamp.",
+          "explanation": "The missing word is \"activate\" (verb): \"Hoạt hoá, làm hoạt động\".",
+          "answers": [
+            {
+              "content": "activate",
+              "isCorrect": true
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

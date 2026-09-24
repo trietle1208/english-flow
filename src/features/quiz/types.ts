@@ -99,6 +99,8 @@ export type ImmediateGradeResult = {
 
 export type GradedAnswerView = GradedAnswer;
 
+export type QuizCatalogKind = "vocabulary" | "toeic" | "grammar" | "listening";
+
 export type QuizListItem = {
   id: string;
   slug: string;
@@ -106,4 +108,5 @@ export type QuizListItem = {
   description: string;
   questionCount: number;
   passScore: number;
+  kind: QuizCatalogKind;
 };

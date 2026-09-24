@@ -1,6 +1,14 @@
-import { and, asc, count, eq, inArray } from "drizzle-orm";
+import { and, asc, count, eq, inArray, isNotNull } from "drizzle-orm";
 import { db } from "@/db";
-import { quizAnswers, quizAttempts, quizQuestions, quizzes } from "@/db/schema";
+import {
+  grammarTopics,
+  listeningLessons,
+  quizAnswers,
+  quizAttempts,
+  quizQuestions,
+  quizzes,
+} from "@/db/schema";
+import { classifyQuizKind } from "./catalog";
 import type {
   QuizAttemptAnswerSnapshot,
   QuizAttemptDetail,
@@ -148,19 +156,36 @@ export async function getQuizAttemptForOwner(
 
 /** Catalog of quizzes for `/quiz` index. */
 export async function listQuizzes(): Promise<QuizListItem[]> {
-  const rows = await db
-    .select({
-      id: quizzes.id,
-      slug: quizzes.slug,
-      title: quizzes.title,
-      description: quizzes.description,
-      passScore: quizzes.passScore,
-      questionCount: count(quizQuestions.id),
-    })
-    .from(quizzes)
-    .leftJoin(quizQuestions, eq(quizQuestions.quizId, quizzes.id))
-    .groupBy(quizzes.id)
-    .orderBy(asc(quizzes.title));
+  const [rows, grammarLinks, listeningLinks] = await Promise.all([
+    db
+      .select({
+        id: quizzes.id,
+        slug: quizzes.slug,
+        title: quizzes.title,
+        description: quizzes.description,
+        passScore: quizzes.passScore,
+        questionCount: count(quizQuestions.id),
+      })
+      .from(quizzes)
+      .leftJoin(quizQuestions, eq(quizQuestions.quizId, quizzes.id))
+      .groupBy(quizzes.id)
+      .orderBy(asc(quizzes.title)),
+    db
+      .select({ quizId: grammarTopics.quizId })
+      .from(grammarTopics)
+      .where(isNotNull(grammarTopics.quizId)),
+    db
+      .select({ quizId: listeningLessons.quizId })
+      .from(listeningLessons)
+      .where(isNotNull(listeningLessons.quizId)),
+  ]);
+
+  const grammarQuizIds = new Set(
+    grammarLinks.flatMap((row) => (row.quizId ? [row.quizId] : [])),
+  );
+  const listeningQuizIds = new Set(
+    listeningLinks.flatMap((row) => (row.quizId ? [row.quizId] : [])),
+  );
 
   return rows.map((row) => ({
     id: row.id,
@@ -169,6 +194,10 @@ export async function listQuizzes(): Promise<QuizListItem[]> {
     description: row.description,
     passScore: row.passScore,
     questionCount: Number(row.questionCount),
+    kind: classifyQuizKind(row.slug, {
+      grammar: grammarQuizIds.has(row.id),
+      listening: listeningQuizIds.has(row.id),
+    }),
   }));
 }
 
