@@ -15,7 +15,7 @@ import {
 } from "@/components/ui/dialog";
 import { cn } from "@/lib/utils";
 import { TOEIC_TOPICS } from "@/db/seed-data/toeic-vocabulary";
-import type { ToeicTopicFilter } from "../../types";
+import type { ToeicTopicFilter } from "../types";
 
 type ToeicPracticeLauncherProps = {
   /** Preselect from the catalog's current topic filter. */
