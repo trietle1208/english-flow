@@ -1,5 +1,7 @@
 import type { QuizCatalogKind, QuizListItem } from "./types";
 
+export type { QuizCatalogKind };
+
 export const QUIZ_CATALOG_KINDS = [
   "vocabulary",
   "toeic",
