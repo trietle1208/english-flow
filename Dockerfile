@@ -35,10 +35,16 @@ COPY --from=builder /app/public ./public
 # actually needs, so the image doesn't carry the full node_modules tree.
 COPY --from=builder --chown=nextjs:nodejs /app/.next/standalone ./
 COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static
+# Migrator is not in the Next server graph — copy SQL + the deploy script
+# and the two packages it imports so the container can migrate on boot.
+COPY --from=builder --chown=nextjs:nodejs /app/drizzle ./drizzle
+COPY --from=builder --chown=nextjs:nodejs /app/scripts/migrate-on-deploy.mjs ./scripts/migrate-on-deploy.mjs
+COPY --from=builder --chown=nextjs:nodejs /app/node_modules/drizzle-orm ./node_modules/drizzle-orm
+COPY --from=builder --chown=nextjs:nodejs /app/node_modules/postgres ./node_modules/postgres
 
 USER nextjs
 EXPOSE 3000
 ENV PORT=3000
 ENV HOSTNAME=0.0.0.0
 
-CMD ["node", "server.js"]
+CMD ["node", "scripts/migrate-on-deploy.mjs", "--and-start"]

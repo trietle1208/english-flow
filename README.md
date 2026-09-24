@@ -125,12 +125,13 @@ PW_CHANNEL=chrome npx playwright test
 
 ```bash
 npm run build
+npm run db:migrate:deploy # wait for Postgres, apply drizzle/*.sql
 npm start                 # serves .next on PORT (default 3000)
 # or
-docker compose up -d --build
+docker compose up -d --build   # app container migrates on boot, then starts
 ```
 
-Ensure `BETTER_AUTH_URL` / `NEXT_PUBLIC_APP_URL` match the URL you open (including port).
+`db:migrate:deploy` is idempotent and does **not** seed. The Docker image runs the same script before `server.js`. Ensure `BETTER_AUTH_URL` / `NEXT_PUBLIC_APP_URL` match the URL you open (including port).
 
 ## Project structure
 
@@ -167,7 +168,7 @@ drizzle/                 # SQL migrations
 
 ```bash
 npm run dev / build / start / lint
-npm run db:generate | db:migrate | db:seed | db:studio
+npm run db:generate | db:migrate | db:migrate:deploy | db:seed | db:studio
 npm run test | test:e2e | test:e2e:prepare
 ```
 

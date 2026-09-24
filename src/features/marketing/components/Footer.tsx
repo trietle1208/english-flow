@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { GraduationCap, Github } from "lucide-react";
 import { siteConfig } from "@/config/site";
 
@@ -16,6 +17,12 @@ export function Footer() {
         </div>
 
         <div className="flex items-center gap-4">
+          <Link
+            href="/feedback"
+            className="outline-none transition-colors hover:text-foreground focus-visible:text-foreground"
+          >
+            Góp Ý
+          </Link>
           <a
             href={siteConfig.githubUrl}
             target="_blank"

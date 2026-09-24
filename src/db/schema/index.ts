@@ -15,3 +15,4 @@ export * from "./grammar";
 export * from "./listening";
 export * from "./progress";
 export * from "./placement-test";
+export * from "./feedback";

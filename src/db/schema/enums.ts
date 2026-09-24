@@ -45,3 +45,21 @@ export const progressStatusEnum = pgEnum("progress_status", [
   "in_progress",
   "completed",
 ]);
+
+/** What a learner is sending on the Góp Ý page. */
+export const feedbackCategoryEnum = pgEnum("feedback_category", [
+  "suggestion",
+  "bug",
+  "content",
+  "review",
+  "other",
+]);
+
+/** How far the project owner has processed a piece of feedback. */
+export const feedbackStatusEnum = pgEnum("feedback_status", [
+  "new",
+  "reviewing",
+  "planned",
+  "resolved",
+  "declined",
+]);

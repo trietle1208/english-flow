@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { useRouter, usePathname } from "next/navigation";
 import { useTransition } from "react";
-import { GraduationCap, LogOut, Settings } from "lucide-react";
+import { GraduationCap, LogOut, MessageSquarePlus, Settings } from "lucide-react";
 import { toast } from "sonner";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
@@ -116,6 +116,15 @@ export function AppHeader({ user }: { user: CurrentUser }) {
           <Separator />
 
           <div className="mt-auto space-y-1 p-3">
+            <SheetClose asChild>
+              <Link
+                href="/feedback"
+                className="flex min-h-11 items-center gap-3 rounded-md px-3 text-sm text-muted-foreground outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+              >
+                <MessageSquarePlus className="size-5 shrink-0" aria-hidden="true" />
+                Góp Ý
+              </Link>
+            </SheetClose>
             <SheetClose asChild>
               <Link
                 href="/settings"

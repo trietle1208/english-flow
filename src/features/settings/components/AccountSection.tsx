@@ -1,8 +1,9 @@
 "use client";
 
 import { useState } from "react";
+import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { Loader2, LogOut } from "lucide-react";
+import { Loader2, LogOut, MessageSquarePlus } from "lucide-react";
 import { toast } from "sonner";
 import { SectionCard } from "@/components/shared/SectionCard";
 import { Button } from "@/components/ui/button";
@@ -28,22 +29,30 @@ export function AccountSection() {
   return (
     <SectionCard
       title="Account"
-      description="Sign out of EnglishFlow on this device."
+      description="Sign out of EnglishFlow on this device, or send product feedback."
     >
-      <Button
-        type="button"
-        variant="outline"
-        className="min-h-11 w-full sm:w-auto"
-        onClick={handleLogout}
-        disabled={pending}
-      >
-        {pending ? (
-          <Loader2 className="animate-spin" aria-hidden="true" />
-        ) : (
-          <LogOut aria-hidden="true" />
-        )}
-        Log out
-      </Button>
+      <div className="flex flex-col gap-3 sm:flex-row">
+        <Button asChild variant="outline" className="min-h-11 w-full sm:w-auto">
+          <Link href="/feedback">
+            <MessageSquarePlus aria-hidden="true" />
+            Góp Ý
+          </Link>
+        </Button>
+        <Button
+          type="button"
+          variant="outline"
+          className="min-h-11 w-full sm:w-auto"
+          onClick={handleLogout}
+          disabled={pending}
+        >
+          {pending ? (
+            <Loader2 className="animate-spin" aria-hidden="true" />
+          ) : (
+            <LogOut aria-hidden="true" />
+          )}
+          Log out
+        </Button>
+      </div>
     </SectionCard>
   );
 }

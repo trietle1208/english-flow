@@ -1,6 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { registerSchema } from "@/features/auth/schemas";
 import { parseLessonBlocks } from "@/features/lessons/schemas";
+import { submitFeedbackSchema } from "@/features/feedback/schemas";
 import { updateSettingsSchema } from "@/features/settings/schemas";
 
 describe("registerSchema", () => {
@@ -55,6 +56,51 @@ describe("updateSettingsSchema", () => {
       cefrLevel: null,
       dailyGoalMinutes: 15,
       preferredLearningTime: null,
+    });
+    expect(result.success).toBe(false);
+  });
+});
+
+describe("submitFeedbackSchema", () => {
+  const valid = {
+    category: "suggestion" as const,
+    rating: null,
+    title: "Quiz layout on mobile",
+    message: "The fill-blank input is hard to tap on a small phone.",
+    isPublic: false,
+  };
+
+  it("accepts a suggestion without a rating", () => {
+    expect(submitFeedbackSchema.safeParse(valid).success).toBe(true);
+  });
+
+  it("requires a rating when the category is review", () => {
+    const result = submitFeedbackSchema.safeParse({
+      ...valid,
+      category: "review",
+    });
+    expect(result.success).toBe(false);
+    if (!result.success) {
+      expect(result.error.issues[0]?.message).toBe(
+        "Hãy chọn số sao cho đánh giá.",
+      );
+    }
+  });
+
+  it("accepts a public review with stars", () => {
+    const result = submitFeedbackSchema.safeParse({
+      ...valid,
+      category: "review",
+      rating: 5,
+      isPublic: true,
+    });
+    expect(result.success).toBe(true);
+  });
+
+  it("rejects a short message", () => {
+    const result = submitFeedbackSchema.safeParse({
+      ...valid,
+      message: "too short",
     });
     expect(result.success).toBe(false);
   });

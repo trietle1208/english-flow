@@ -12,6 +12,7 @@ const PROTECTED_PATHS = [
   "/progress",
   "/settings",
   "/placement-test",
+  "/feedback",
 ];
 
 /**
@@ -60,5 +61,6 @@ export const config = {
     "/progress/:path*",
     "/settings/:path*",
     "/placement-test/:path*",
+    "/feedback/:path*",
   ],
 };
