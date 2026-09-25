@@ -71,6 +71,13 @@
       "when": 1789590000000,
       "tag": "0009_feedbacks",
       "breakpoints": true
+    },
+    {
+      "idx": 10,
+      "version": "7",
+      "when": 1789610000000,
+      "tag": "0010_speaking",
+      "breakpoints": true
     }
   ]
 }

@@ -13,6 +13,7 @@ export * from "./vocabulary";
 export * from "./quizzes";
 export * from "./grammar";
 export * from "./listening";
+export * from "./speaking";
 export * from "./progress";
 export * from "./placement-test";
 export * from "./feedback";
