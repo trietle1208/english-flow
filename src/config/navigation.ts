@@ -5,6 +5,7 @@ import {
   LayoutDashboard,
   LineChart,
   ListChecks,
+  Mic,
   SpellCheck,
   type LucideIcon,
 } from "lucide-react";
@@ -15,6 +16,7 @@ export type NavLabelKey =
   | "vocabulary"
   | "grammar"
   | "listening"
+  | "speaking"
   | "quiz"
   | "progress";
 
@@ -35,6 +37,7 @@ export const mainNav: NavItem[] = [
   { href: "/vocabulary", labelKey: "vocabulary", icon: BookMarked },
   { href: "/grammar", labelKey: "grammar", icon: SpellCheck },
   { href: "/listening", labelKey: "listening", icon: Headphones },
+  { href: "/speaking", labelKey: "speaking", icon: Mic },
   { href: "/quiz", labelKey: "quiz", icon: ListChecks },
   { href: "/progress", labelKey: "progress", icon: LineChart },
 ];

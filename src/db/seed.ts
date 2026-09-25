@@ -30,6 +30,7 @@ import {
   lessons,
   lessonVocabularies,
   listeningLessons,
+  speakingPrompts,
   placementTestQuestions,
   placementTests,
   quizAnswers,
@@ -47,6 +48,7 @@ import {
   grammarTopicsSeed,
 } from "@/db/seed-data/grammar";
 import { listeningLessonsSeed } from "@/db/seed-data/listening";
+import { speakingPromptsSeed } from "@/db/seed-data/speaking";
 import { placementTestQuestionsSeed, placementTestSeed } from "@/db/seed-data/placement-test";
 import { coursePracticeQuizzes, grammarCourseOnlyQuizzes, type QuizSeed } from "@/db/seed-data/quizzes";
 import { generatedVocabQuizzes } from "@/db/seed-data/vocab-quizzes-seed";
@@ -610,6 +612,38 @@ async function seedListeningLessons(
   return { listeningSlugToId, quizSlugToId };
 }
 
+/** Upserts original read-aloud prompts by slug. */
+async function seedSpeakingPrompts(): Promise<number> {
+  let count = 0;
+
+  for (const prompt of speakingPromptsSeed) {
+    await db
+      .insert(speakingPrompts)
+      .values({
+        slug: prompt.slug,
+        title: prompt.title,
+        promptText: prompt.promptText,
+        cefrLevel: prompt.cefrLevel,
+        difficulty: prompt.difficulty,
+        audioUrl: prompt.audioUrl ?? null,
+      })
+      .onConflictDoUpdate({
+        target: speakingPrompts.slug,
+        set: {
+          title: sql`excluded.title`,
+          promptText: sql`excluded.prompt_text`,
+          cefrLevel: sql`excluded.cefr_level`,
+          difficulty: sql`excluded.difficulty`,
+          audioUrl: sql`excluded.audio_url`,
+          updatedAt: new Date(),
+        },
+      });
+    count += 1;
+  }
+
+  return count;
+}
+
 /** Builds each lesson's AD-03 content blocks, validates them, and upserts the lesson + its `lesson_vocabularies` links. */
 async function seedLessons(
   courseSlugToId: Map<string, string>,
@@ -762,6 +796,20 @@ async function assertNoPlaceholderContent() {
     if (hit) {
       throw new Error(`Seed data looks like placeholder content near "${hit.word}" — see CLAUDE.md "No fake content".`);
     }
+
+    const speakingRows = await db
+      .select({ title: speakingPrompts.title })
+      .from(speakingPrompts)
+      .where(
+        sql`lower(${speakingPrompts.title}) like ${`%${needle}%`} or lower(${speakingPrompts.promptText}) like ${`%${needle}%`}`,
+      )
+      .limit(1);
+    const speakingHit = speakingRows[0];
+    if (speakingHit) {
+      throw new Error(
+        `Seed data looks like placeholder content near speaking prompt "${speakingHit.title}" — see CLAUDE.md "No fake content".`,
+      );
+    }
   }
 }
 
@@ -775,6 +823,7 @@ async function printSummary() {
     ["grammar_examples", grammarExamples],
     ["grammar_mistakes", grammarMistakes],
     ["listening_lessons", listeningLessons],
+    ["speaking_prompts", speakingPrompts],
     ["quizzes", quizzes],
     ["placement_tests", placementTests],
     ["placement_test_questions", placementTestQuestions],
@@ -823,6 +872,9 @@ async function main() {
 
   console.log("Seeding lessons...");
   await seedLessons(courseSlugToId, wordToVocabId, quizSlugToId, listeningSlugToId);
+
+  console.log("Seeding speaking prompts...");
+  await seedSpeakingPrompts();
 
   console.log("Seeding placement test...");
   await seedPlacementTest();
