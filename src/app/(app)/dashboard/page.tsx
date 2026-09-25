@@ -1,5 +1,6 @@
 import { Suspense } from "react";
 import type { Metadata } from "next";
+import { getTranslations } from "next-intl/server";
 import { isCefrLevel, type CefrLevel } from "@/config/cefr";
 import { ContinueLearningCard } from "@/features/dashboard/components/ContinueLearningCard";
 import { ContinueLearningEmpty } from "@/features/dashboard/components/ContinueLearningEmpty";
@@ -27,12 +28,13 @@ import {
   getStreakData,
   isBrandNewUser,
 } from "@/features/progress/queries";
-import { greetingForHour, hourInTimezone } from "@/features/progress/streak";
+import { hourInTimezone } from "@/features/progress/streak";
 import { requireUser } from "@/lib/session";
 
-export const metadata: Metadata = {
-  title: "Dashboard",
-};
+export async function generateMetadata(): Promise<Metadata> {
+  const t = await getTranslations("dashboard");
+  return { title: t("title") };
+}
 
 /**
  * Personal dashboard with real activity data (spec §9 / §42). Each block is
@@ -41,16 +43,12 @@ export const metadata: Metadata = {
 export default async function DashboardPage() {
   const user = await requireUser();
   const timezone = user.timezone || "Asia/Ho_Chi_Minh";
-  const greeting = greetingForHour(hourInTimezone(timezone));
-  const firstName = user.name?.trim().split(/\s+/)[0] || "there";
+  const hour = hourInTimezone(timezone);
+  const firstName = user.name?.trim().split(/\s+/)[0];
 
   return (
     <div className="flex w-full flex-col gap-8 px-4 py-8 sm:px-6 lg:px-8">
-      <DashboardGreeting
-        greeting={greeting}
-        firstName={firstName}
-        timezone={timezone}
-      />
+      <DashboardGreeting hour={hour} firstName={firstName} timezone={timezone} />
 
       <Suspense fallback={<DashboardOnboardingFallback />}>
         <DashboardBody
@@ -100,6 +98,7 @@ async function DashboardBody({
 
   const level: CefrLevel | null =
     typeof cefrLevel === "string" && isCefrLevel(cefrLevel) ? cefrLevel : null;
+  const t = await getTranslations("dashboard");
 
   return (
     <div className="flex flex-col gap-8">
@@ -134,11 +133,9 @@ async function DashboardBody({
               id="skill-overview-heading"
               className="text-base font-semibold tracking-tight"
             >
-              Skill Overview
+              {t("skillOverview")}
             </h2>
-            <p className="text-sm text-muted-foreground">
-              Progress across vocabulary, grammar, listening, and reading.
-            </p>
+            <p className="text-sm text-muted-foreground">{t("skillOverviewDescription")}</p>
           </div>
         </div>
         <Suspense fallback={<DashboardSkillsSkeleton />}>

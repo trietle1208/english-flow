@@ -1,23 +1,11 @@
 "use client";
 
 import type { KeyboardEvent } from "react";
+import { useTranslations } from "next-intl";
 import { AudioButton } from "@/components/shared/AudioButton";
 import { Badge } from "@/components/ui/badge";
 import { cn } from "@/lib/utils";
 import type { FlashcardItem } from "../types";
-
-const POS_LABEL: Record<FlashcardItem["partOfSpeech"], string> = {
-  noun: "noun",
-  verb: "verb",
-  adjective: "adjective",
-  adverb: "adverb",
-  pronoun: "pronoun",
-  preposition: "preposition",
-  conjunction: "conjunction",
-  interjection: "interjection",
-  phrase: "phrase",
-  phrasal_verb: "phrasal verb",
-};
 
 type FlashcardProps = {
   item: FlashcardItem;
@@ -30,6 +18,7 @@ type FlashcardProps = {
  * Flip target is a div (not a button) so AudioButton stays valid nested UI.
  */
 export function Flashcard({ item, flipped, onFlip }: FlashcardProps) {
+  const t = useTranslations("vocabulary");
   const example = item.exampleSentence.trim();
 
   function handleKeyDown(event: KeyboardEvent<HTMLDivElement>) {
@@ -55,7 +44,7 @@ export function Flashcard({ item, flipped, onFlip }: FlashcardProps) {
           onClick={onFlip}
           onKeyDown={handleKeyDown}
           aria-pressed={flipped}
-          aria-label={`Flashcard for ${item.word}. Activate to reveal meaning.`}
+          aria-label={t("flashcardRevealAria", { word: item.word })}
           className={cn(
             "absolute inset-0 flex flex-col items-center justify-center gap-4 rounded-xl border bg-card p-6 shadow-sm",
             "[backface-visibility:hidden]",
@@ -64,7 +53,7 @@ export function Flashcard({ item, flipped, onFlip }: FlashcardProps) {
           aria-hidden={flipped}
         >
           <Badge variant="outline" className="capitalize">
-            {POS_LABEL[item.partOfSpeech]}
+            {t(`pos.${item.partOfSpeech}`)}
           </Badge>
           <p className="text-center text-3xl font-semibold tracking-tight sm:text-4xl">
             {item.word}
@@ -77,7 +66,7 @@ export function Flashcard({ item, flipped, onFlip }: FlashcardProps) {
           >
             <AudioButton audioUrl={item.audioUrl} word={item.word} />
           </div>
-          <p className="text-xs text-muted-foreground">Tap to reveal meaning</p>
+          <p className="text-xs text-muted-foreground">{t("tapReveal")}</p>
         </div>
 
         {/* Back */}
@@ -87,7 +76,7 @@ export function Flashcard({ item, flipped, onFlip }: FlashcardProps) {
           onClick={onFlip}
           onKeyDown={handleKeyDown}
           aria-pressed={flipped}
-          aria-label={`Meaning of ${item.word}. Activate to hide.`}
+          aria-label={t("flashcardHideAria", { word: item.word })}
           className={cn(
             "absolute inset-0 flex flex-col items-center justify-center gap-4 rounded-xl border bg-card p-6 shadow-sm",
             "[backface-visibility:hidden] [transform:rotateY(180deg)]",
@@ -103,7 +92,7 @@ export function Flashcard({ item, flipped, onFlip }: FlashcardProps) {
               &ldquo;{example}&rdquo;
             </p>
           ) : null}
-          <p className="text-xs text-muted-foreground">Tap to hide</p>
+          <p className="text-xs text-muted-foreground">{t("tapHide")}</p>
         </div>
       </div>
     </div>

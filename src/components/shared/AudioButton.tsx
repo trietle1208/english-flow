@@ -1,6 +1,7 @@
 "use client";
 
 import { useCallback, useRef, useState } from "react";
+import { useTranslations } from "next-intl";
 import { Volume2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
@@ -20,6 +21,7 @@ type AudioButtonProps = {
  * Keyboard-reachable with an explicit `aria-label` (spec §31).
  */
 export function AudioButton({ audioUrl, word, className, onPlay }: AudioButtonProps) {
+  const t = useTranslations("lessons");
   const [playing, setPlaying] = useState(false);
   const audioRef = useRef<HTMLAudioElement | null>(null);
 
@@ -59,7 +61,7 @@ export function AudioButton({ audioUrl, word, className, onPlay }: AudioButtonPr
       size="icon"
       className={cn(playing && "border-primary text-primary", className)}
       onClick={play}
-      aria-label={`Play pronunciation of ${word}`}
+      aria-label={t("playPronunciation", { word })}
       aria-pressed={playing}
     >
       <Volume2 className="size-4" aria-hidden="true" />

@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { useTranslations } from "next-intl";
 import { ArrowLeft, PencilLine } from "lucide-react";
 import { EmptyState } from "@/components/shared/EmptyState";
 import { Button } from "@/components/ui/button";
@@ -27,17 +28,18 @@ export function GrammarPracticeRunner({
   rules,
   examples,
 }: GrammarPracticeRunnerProps) {
+  const t = useTranslations("grammar");
   const topicHref = `/grammar/${slug}`;
 
   if (!quiz || quiz.questions.length === 0) {
     return (
       <EmptyState
         icon={PencilLine}
-        title="Chưa có bài tập"
-        description={`Chủ điểm “${titleVi}” chưa có câu hỏi luyện tập.`}
+        title={t("noExercises")}
+        description={t("noPracticeQuestions", { title: titleVi })}
         action={
           <Button asChild variant="outline" className="min-h-11">
-            <Link href={topicHref}>Quay lại chủ điểm</Link>
+            <Link href={topicHref}>{t("backToTopic")}</Link>
           </Button>
         }
       />
@@ -63,7 +65,7 @@ export function GrammarPracticeRunner({
       <Button asChild variant="ghost" size="sm" className="min-h-11 -ml-2 gap-1.5 px-2">
         <Link href={topicHref}>
           <ArrowLeft className="size-4" aria-hidden="true" />
-          Quay lại {titleVi}
+          {t("backToTopic")} — {titleVi}
         </Link>
       </Button>
 
@@ -75,31 +77,7 @@ export function GrammarPracticeRunner({
         enableHeartbeat={false}
         redirectOnComplete={false}
         practiceWrongHint={{ relatedRule, sampleExample }}
-        labels={GRAMMAR_PRACTICE_LABELS}
       />
     </div>
   );
 }
-
-const GRAMMAR_PRACTICE_LABELS = {
-  checkAnswer: "Kiểm tra",
-  next: "Câu tiếp",
-  previous: "Câu trước",
-  finish: "Xem kết quả",
-  submit: "Nộp bài",
-  correct: "Đúng",
-  incorrect: "Sai",
-  correctAnswer: "Đáp án đúng: ",
-  selectAnswer: "Hãy chọn hoặc nhập đáp án trước.",
-  tip: "Mẹo: nhấn 1–4 để chọn, Enter để tiếp tục.",
-  checking: "Đang chấm…",
-  submitting: "Đang nộp…",
-  practiceCompleteTitle: "Hoàn thành bài luyện",
-  practiceTryAgain: "Làm lại",
-  noQuestions: "Chưa có câu hỏi.",
-  relatedRuleHeading: "Quy tắc liên quan",
-  sampleExampleHeading: "Ví dụ mẫu",
-  answerEveryQuestion: "Hãy trả lời hết các câu trước khi nộp.",
-  drillCompleteBody:
-    "Bài luyện này chưa ghi điểm Mastered — dùng Mini quiz trên trang chủ điểm khi muốn lưu tiến độ.",
-} as const;

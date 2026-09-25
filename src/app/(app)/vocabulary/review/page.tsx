@@ -1,15 +1,17 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
+import { getTranslations } from "next-intl/server";
 import { PageHeader } from "@/components/shared/PageHeader";
 import { Button } from "@/components/ui/button";
 import { FlashcardSession } from "@/features/vocabulary/components/FlashcardSession";
 import { getFlashcardDueInfo, listFlashcardSession } from "@/features/vocabulary/queries";
 import { requireUser } from "@/lib/session";
 
-export const metadata: Metadata = {
-  title: "Flashcards",
-};
+export async function generateMetadata(): Promise<Metadata> {
+  const t = await getTranslations("vocabulary");
+  return { title: t("flashcardsTitle") };
+}
 
 /**
  * Vocabulary flashcard study session (v2 light SRS). Due cards only —
@@ -17,6 +19,7 @@ export const metadata: Metadata = {
  */
 export default async function VocabularyReviewPage() {
   const user = await requireUser();
+  const t = await getTranslations("vocabulary");
   const [cards, dueInfo] = await Promise.all([
     listFlashcardSession(user.id),
     getFlashcardDueInfo(user.id),
@@ -26,13 +29,13 @@ export default async function VocabularyReviewPage() {
   return (
     <div className="flex w-full flex-col gap-8 px-4 py-8 sm:px-6 lg:px-8">
       <PageHeader
-        title="Flashcards"
-        description="Flip each card, then tap Again (due now) or Good (1 → 3 → 7 days). Up to 20 due words per round."
+        title={t("flashcardsTitle")}
+        description={t("flashcardsDescription")}
         actions={
           <Button asChild variant="outline" size="sm">
             <Link href="/vocabulary">
               <ArrowLeft className="size-4" aria-hidden="true" />
-              My Vocabulary
+              {t("title")}
             </Link>
           </Button>
         }

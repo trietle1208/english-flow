@@ -4,6 +4,7 @@ import { useCallback, useEffect, useRef, useState, type ReactNode } from "react"
 import { useRouter } from "next/navigation";
 import { AnimatePresence, motion, useReducedMotion } from "motion/react";
 import { BookMarked } from "lucide-react";
+import { useTranslations } from "next-intl";
 import { EmptyState } from "@/components/shared/EmptyState";
 import { Button } from "@/components/ui/button";
 import { useStudyHeartbeat } from "@/features/study-time/useStudyHeartbeat";
@@ -26,6 +27,7 @@ type RoundResult = "correct" | "incorrect" | "timeout";
  * Full-bleed arcade Match Play: EN prompt → 4 VI options, timer + streak.
  */
 export function ToeicMatchPlay({ deck }: ToeicMatchPlayProps) {
+  const t = useTranslations("vocabulary");
   const router = useRouter();
   const reduceMotion = useReducedMotion();
   const cards = deck.cards;
@@ -73,13 +75,13 @@ export function ToeicMatchPlay({ deck }: ToeicMatchPlayProps) {
 
   const requestExit = useCallback(() => {
     if (answeredCountRef.current > 0 && !finishedRef.current) {
-      const ok = window.confirm("Leave this round? Progress will be lost.");
+      const ok = window.confirm(t("leaveRound"));
       if (!ok) {
         return;
       }
     }
     router.push(catalogHref);
-  }, [catalogHref, router]);
+  }, [catalogHref, router, t]);
 
   const advance = useCallback(() => {
     clearAdvanceTimer();
@@ -216,11 +218,11 @@ export function ToeicMatchPlay({ deck }: ToeicMatchPlayProps) {
         <div className="mx-auto flex w-full max-w-md flex-col gap-4 px-4">
           <EmptyState
             icon={BookMarked}
-            title="Not enough words to play"
-            description="This topic needs more TOEIC entries for a match round. Try All topics or pick another topic."
+            title={t("notEnoughWords")}
+            description={t("notEnoughWordsDescription")}
           />
           <Button type="button" variant="outline" onClick={() => router.push(catalogHref)}>
-            Back to catalog
+            {t("backToCatalog")}
           </Button>
         </div>
       </FocusStage>
@@ -264,7 +266,7 @@ export function ToeicMatchPlay({ deck }: ToeicMatchPlayProps) {
         {deck.topic !== "all" ? (
           <p className="text-center text-xs text-muted-foreground">
             {toeicTopicLabel(deck.topic)}
-            {deck.widenedDistractors ? " · distractors from all topics" : ""}
+            {deck.widenedDistractors ? t("distractorsHint") : ""}
           </p>
         ) : null}
 
@@ -293,6 +295,8 @@ export function ToeicMatchPlay({ deck }: ToeicMatchPlayProps) {
 }
 
 function FocusStage({ children }: { children: ReactNode }) {
+  const t = useTranslations("vocabulary");
+
   return (
     <div
       className="fixed inset-0 z-[60] overflow-y-auto overscroll-contain"
@@ -302,7 +306,7 @@ function FocusStage({ children }: { children: ReactNode }) {
       }}
       role="dialog"
       aria-modal="true"
-      aria-label="TOEIC Match Play"
+      aria-label={t("matchPlay")}
     >
       {children}
     </div>

@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { getTranslations } from "next-intl/server";
 import { Check, Lock } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
@@ -14,14 +15,6 @@ const SKILL_CLASS: Record<Skill, string> = {
   speaking: "border-transparent bg-secondary text-secondary-foreground",
 };
 
-const SKILL_LABEL: Record<Skill, string> = {
-  vocabulary: "Vocabulary",
-  grammar: "Grammar",
-  listening: "Listening",
-  reading: "Reading",
-  speaking: "Speaking",
-};
-
 type LessonListItemProps = {
   lesson: CourseLessonItem;
 };
@@ -31,9 +24,12 @@ type LessonListItemProps = {
  * are distinguished by both icon and color (spec §11, §31) — locked rows
  * show a tooltip and do not navigate.
  */
-export function LessonListItem({ lesson }: LessonListItemProps) {
+export async function LessonListItem({ lesson }: LessonListItemProps) {
+  const t = await getTranslations("courses");
+  const tSkills = await getTranslations("skills");
+
   const number = formatLessonNumber(lesson.orderIndex);
-  const label = `${number} — ${lesson.title}`;
+  const label = t("lessonAria", { number, title: lesson.title });
 
   const rowClass = cn(
     "flex items-center gap-3 rounded-lg border px-3 py-3 transition-colors sm:gap-4 sm:px-4",
@@ -57,13 +53,13 @@ export function LessonListItem({ lesson }: LessonListItemProps) {
           </p>
           {lesson.status === "current" && (
             <Badge variant="default" className="shrink-0">
-              Current
+              {t("current")}
             </Badge>
           )}
         </div>
         <div className="flex flex-wrap items-center gap-2 text-xs text-muted-foreground">
           <Badge variant="outline" className={cn("capitalize", SKILL_CLASS[lesson.skill])}>
-            {SKILL_LABEL[lesson.skill]}
+            {tSkills(lesson.skill)}
           </Badge>
           <span>{formatDuration(lesson.estimatedMinutes)}</span>
         </div>
@@ -84,7 +80,7 @@ export function LessonListItem({ lesson }: LessonListItemProps) {
           </div>
         </TooltipTrigger>
         <TooltipContent side="top" className="max-w-xs">
-          Complete the previous lesson to unlock this one.
+          {t("unlockHint")}
         </TooltipContent>
       </Tooltip>
     );
@@ -97,12 +93,14 @@ export function LessonListItem({ lesson }: LessonListItemProps) {
   );
 }
 
-function StatusIcon({ status }: { status: CourseLessonItem["status"] }) {
+async function StatusIcon({ status }: { status: CourseLessonItem["status"] }) {
+  const t = await getTranslations("courses");
+
   if (status === "completed") {
     return (
       <span
         className="flex size-8 shrink-0 items-center justify-center rounded-full bg-success text-success-foreground"
-        aria-label="Completed"
+        aria-label={t("completed")}
       >
         <Check className="size-4" aria-hidden="true" />
       </span>
@@ -113,7 +111,7 @@ function StatusIcon({ status }: { status: CourseLessonItem["status"] }) {
     return (
       <span
         className="flex size-8 shrink-0 items-center justify-center rounded-full border-2 border-primary bg-background"
-        aria-label="Current lesson"
+        aria-label={t("currentLesson")}
       >
         <span className="size-2.5 rounded-full bg-primary" aria-hidden="true" />
       </span>
@@ -123,7 +121,7 @@ function StatusIcon({ status }: { status: CourseLessonItem["status"] }) {
   return (
     <span
       className="flex size-8 shrink-0 items-center justify-center rounded-full bg-muted text-muted-foreground"
-      aria-label="Locked"
+      aria-label={t("locked")}
     >
       <Lock className="size-3.5" aria-hidden="true" />
     </span>

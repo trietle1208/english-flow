@@ -1,4 +1,7 @@
+"use client";
+
 import Link from "next/link";
+import { useTranslations } from "next-intl";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import {
@@ -21,9 +24,19 @@ type QuizCatalogCardProps = {
 };
 
 export function QuizCatalogCard({ quiz }: QuizCatalogCardProps) {
-  const source = quizSourceLabel(quiz.slug);
+  const t = useTranslations("quiz");
+  const sourceKey = quizSourceLabel(quiz.slug);
+  const source =
+    sourceKey === "Practice set"
+      ? t("practiceSet")
+      : sourceKey === "Course"
+        ? t("course")
+        : null;
   const title = quizDisplayTitle(quiz.title, quiz.kind);
-  const description = quizDisplayDescription(quiz.description, quiz.title, quiz.kind);
+  const rawDescription = quizDisplayDescription(quiz.description, quiz.title, quiz.kind);
+  const description = /^Practice words in /.test(rawDescription)
+    ? t("practiceIn", { title: quizDisplayTitle(quiz.title, quiz.kind) })
+    : rawDescription;
 
   return (
     <Card className="flex flex-col">
@@ -44,14 +57,14 @@ export function QuizCatalogCard({ quiz }: QuizCatalogCardProps) {
       </CardHeader>
       <CardContent className="mt-auto">
         <p className="text-xs text-muted-foreground">
-          {quiz.questionCount} {quiz.questionCount === 1 ? "question" : "questions"}
+          {t("questionCount", { count: quiz.questionCount })}
           <span aria-hidden="true"> · </span>
-          Pass {quiz.passScore}%
+          {t("passScore", { score: quiz.passScore })}
         </p>
       </CardContent>
       <CardFooter>
         <Button asChild className="min-h-11 w-full">
-          <Link href={`/quiz/${quiz.id}`}>Start quiz</Link>
+          <Link href={`/quiz/${quiz.id}`}>{t("startQuiz")}</Link>
         </Button>
       </CardFooter>
     </Card>

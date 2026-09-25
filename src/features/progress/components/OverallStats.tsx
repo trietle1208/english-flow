@@ -5,6 +5,7 @@ import {
   Percent,
   Sparkles,
 } from "lucide-react";
+import { getTranslations } from "next-intl/server";
 import { StatCard } from "@/components/shared/StatCard";
 import { formatDuration } from "@/lib/format";
 import type { OverallStats } from "../types";
@@ -14,39 +15,40 @@ type OverallStatsProps = {
 };
 
 /** Aggregate counters for `/progress` (spec §21). */
-export function OverallStatsCards({ stats }: OverallStatsProps) {
+export async function OverallStatsCards({ stats }: OverallStatsProps) {
+  const t = await getTranslations("progress");
   const accuracy =
     stats.quizAccuracy === null ? "—" : `${stats.quizAccuracy}%`;
 
   return (
     <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
       <StatCard
-        label="Lessons completed"
+        label={t("lessonsCompleted")}
         value={stats.lessonsCompleted}
         icon={BookOpenCheck}
       />
       <StatCard
-        label="Learning time"
+        label={t("learningTime")}
         value={formatDuration(stats.learningMinutes)}
         icon={Clock}
       />
       <StatCard
-        label="Vocabulary saved"
+        label={t("vocabSaved")}
         value={stats.vocabularySaved}
         icon={BookMarked}
       />
       <StatCard
-        label="Vocabulary learned"
+        label={t("vocabLearned")}
         value={stats.vocabularyLearned}
         icon={Sparkles}
       />
       <StatCard
-        label="Quiz accuracy"
+        label={t("quizAccuracy")}
         value={accuracy}
         subtext={
           stats.quizAttempts === 0
-            ? "No quizzes yet"
-            : `${stats.quizAttempts} attempt${stats.quizAttempts === 1 ? "" : "s"}`
+            ? t("noQuizzes")
+            : t("attempts", { count: stats.quizAttempts })
         }
         icon={Percent}
       />

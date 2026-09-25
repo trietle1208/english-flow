@@ -1,27 +1,28 @@
 import type { Metadata } from "next";
+import { getTranslations } from "next-intl/server";
 import { PlacementTestSession } from "@/features/placement-test/components/PlacementTestSession";
 import { getPlacementTestForAttempt } from "@/features/placement-test/queries";
 import { isCefrLevel, type CefrLevel } from "@/config/cefr";
 import { requireUser } from "@/lib/session";
 
-export const metadata: Metadata = {
-  title: "Placement test",
-};
+export async function generateMetadata(): Promise<Metadata> {
+  const t = await getTranslations("placement");
+  return { title: t("title") };
+}
 
 /**
  * Optional CEFR placement test after registration (spec §8 / Phase 11).
  */
 export default async function PlacementTestPage() {
   const user = await requireUser();
+  const t = await getTranslations("placement");
   const test = await getPlacementTestForAttempt();
 
   if (!test) {
     return (
       <div className="mx-auto max-w-lg px-6 py-12 text-center">
-        <h1 className="text-xl font-semibold tracking-tight">Placement test unavailable</h1>
-        <p className="mt-2 text-sm text-muted-foreground">
-          The placement test hasn&apos;t been seeded yet. You can skip and browse courses.
-        </p>
+        <h1 className="text-xl font-semibold tracking-tight">{t("unavailable")}</h1>
+        <p className="mt-2 text-sm text-muted-foreground">{t("unavailableDescription")}</p>
       </div>
     );
   }

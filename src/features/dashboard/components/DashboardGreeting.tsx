@@ -1,10 +1,11 @@
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
+import { getLocale, getTranslations } from "next-intl/server";
 import { Button } from "@/components/ui/button";
 
 type DashboardGreetingProps = {
-  greeting: string;
-  firstName: string;
+  hour: number;
+  firstName: string | undefined;
   /** IANA timezone used for the date line (e.g. Asia/Ho_Chi_Minh). */
   timezone: string;
 };
@@ -14,12 +15,23 @@ type DashboardGreetingProps = {
  * Progress. Keeps PageHeader's role (title + description) without looking
  * like every other app page.
  */
-export function DashboardGreeting({
-  greeting,
+export async function DashboardGreeting({
+  hour,
   firstName,
   timezone,
 }: DashboardGreetingProps) {
-  const dateLabel = new Intl.DateTimeFormat("en-GB", {
+  const t = await getTranslations("dashboard");
+  const locale = await getLocale();
+
+  const greeting =
+    hour >= 5 && hour < 12
+      ? t("greetingMorning")
+      : hour >= 12 && hour < 18
+        ? t("greetingAfternoon")
+        : t("greetingEvening");
+  const name = firstName?.trim() || t("greetingFallback");
+
+  const dateLabel = new Intl.DateTimeFormat(locale, {
     weekday: "long",
     day: "numeric",
     month: "long",
@@ -47,16 +59,16 @@ export function DashboardGreeting({
             id="dashboard-greeting"
             className="text-balance text-3xl font-semibold tracking-tight text-foreground sm:text-4xl"
           >
-            {greeting}, {firstName}
+            {greeting}, {name}
           </h1>
           <p className="max-w-md text-sm text-muted-foreground sm:text-base">
-            Pick up where you left off and keep your streak going.
+            {t("greetingSubtitle")}
           </p>
         </div>
 
         <Button asChild variant="outline" className="w-fit gap-1.5 bg-card/70 backdrop-blur-sm">
           <Link href="/progress">
-            View progress
+            {t("viewProgress")}
             <ArrowUpRight className="size-4" aria-hidden="true" />
           </Link>
         </Button>

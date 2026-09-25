@@ -10,11 +10,12 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import { useTranslations } from "next-intl";
 
 const OPTIONS = [
-  { value: "light", label: "Light", icon: Sun },
-  { value: "dark", label: "Dark", icon: Moon },
-  { value: "system", label: "System", icon: Monitor },
+  { value: "light", labelKey: "light", icon: Sun },
+  { value: "dark", labelKey: "dark", icon: Moon },
+  { value: "system", labelKey: "system", icon: Monitor },
 ] as const;
 
 /**
@@ -22,6 +23,7 @@ const OPTIONS = [
  * `system` is a fixed palette class, not OS preference.
  */
 export function ThemeToggle() {
+  const t = useTranslations("theme");
   const { theme, setTheme } = useTheme();
   // Avoid a hydration mismatch: the resolved theme is only known client-side
   // after next-themes reads localStorage/system preference.
@@ -34,15 +36,15 @@ export function ThemeToggle() {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Button variant="ghost" size="icon" aria-label="Toggle theme">
+        <Button variant="ghost" size="icon" aria-label={t("toggle")}>
           {mounted ? <CurrentIcon /> : <Sun className="opacity-0" />}
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end">
-        {OPTIONS.map(({ value, label, icon: Icon }) => (
+        {OPTIONS.map(({ value, labelKey, icon: Icon }) => (
           <DropdownMenuItem key={value} onSelect={() => setTheme(value)}>
             <Icon />
-            {label}
+            {t(labelKey)}
             {mounted && theme === value && <span className="ml-auto text-xs">✓</span>}
           </DropdownMenuItem>
         ))}

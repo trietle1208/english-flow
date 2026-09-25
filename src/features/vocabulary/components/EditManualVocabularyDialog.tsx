@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Loader2 } from "lucide-react";
+import { useTranslations } from "next-intl";
 import { toast } from "sonner";
 import { Button } from "@/components/ui/button";
 import {
@@ -38,20 +39,17 @@ import {
 } from "../schemas";
 import type { SavedVocabularyItem } from "../types";
 
-const POS_OPTIONS: {
-  value: UpdateManualVocabularyInput["partOfSpeech"];
-  label: string;
-}[] = [
-  { value: "noun", label: "Noun" },
-  { value: "verb", label: "Verb" },
-  { value: "adjective", label: "Adjective" },
-  { value: "adverb", label: "Adverb" },
-  { value: "pronoun", label: "Pronoun" },
-  { value: "preposition", label: "Preposition" },
-  { value: "conjunction", label: "Conjunction" },
-  { value: "interjection", label: "Interjection" },
-  { value: "phrase", label: "Phrase" },
-  { value: "phrasal_verb", label: "Phrasal verb" },
+const POS_VALUES: UpdateManualVocabularyInput["partOfSpeech"][] = [
+  "noun",
+  "verb",
+  "adjective",
+  "adverb",
+  "pronoun",
+  "preposition",
+  "conjunction",
+  "interjection",
+  "phrase",
+  "phrasal_verb",
 ];
 
 type EditManualVocabularyDialogProps = {
@@ -68,6 +66,8 @@ export function EditManualVocabularyDialog({
   open,
   onOpenChange,
 }: EditManualVocabularyDialogProps) {
+  const t = useTranslations("vocabulary");
+  const tc = useTranslations("common");
   const router = useRouter();
   const [formError, setFormError] = useState<string | null>(null);
 
@@ -92,7 +92,7 @@ export function EditManualVocabularyDialog({
       return;
     }
 
-    toast.success("Word updated.");
+    toast.success(t("toastUpdated"));
     onOpenChange(false);
     router.refresh();
   }
@@ -101,10 +101,8 @@ export function EditManualVocabularyDialog({
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent className="max-h-[90vh] overflow-y-auto sm:max-w-md">
         <DialogHeader>
-          <DialogTitle>Edit word</DialogTitle>
-          <DialogDescription>
-            Update the word you added. Lesson vocabulary can’t be edited here.
-          </DialogDescription>
+          <DialogTitle>{t("editWord")}</DialogTitle>
+          <DialogDescription>{t("editWordDescription")}</DialogDescription>
         </DialogHeader>
 
         <Form {...form}>
@@ -123,7 +121,7 @@ export function EditManualVocabularyDialog({
               name="word"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>English word</FormLabel>
+                  <FormLabel>{t("englishWord")}</FormLabel>
                   <FormControl>
                     <Input autoComplete="off" {...field} />
                   </FormControl>
@@ -137,7 +135,7 @@ export function EditManualVocabularyDialog({
               name="meaning"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Meaning</FormLabel>
+                  <FormLabel>{t("meaning")}</FormLabel>
                   <FormControl>
                     <Input autoComplete="off" {...field} />
                   </FormControl>
@@ -151,17 +149,17 @@ export function EditManualVocabularyDialog({
               name="partOfSpeech"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Part of speech</FormLabel>
+                  <FormLabel>{t("partOfSpeech")}</FormLabel>
                   <Select onValueChange={field.onChange} value={field.value}>
                     <FormControl>
                       <SelectTrigger className="w-full">
-                        <SelectValue placeholder="Select part of speech" />
+                        <SelectValue placeholder={t("selectPos")} />
                       </SelectTrigger>
                     </FormControl>
                     <SelectContent>
-                      {POS_OPTIONS.map((option) => (
-                        <SelectItem key={option.value} value={option.value}>
-                          {option.label}
+                      {POS_VALUES.map((value) => (
+                        <SelectItem key={value} value={value}>
+                          {t(`pos.${value}`)}
                         </SelectItem>
                       ))}
                     </SelectContent>
@@ -176,7 +174,7 @@ export function EditManualVocabularyDialog({
               name="phonetic"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Phonetic (IPA)</FormLabel>
+                  <FormLabel>{t("phonetic")}</FormLabel>
                   <FormControl>
                     <Input autoComplete="off" {...field} />
                   </FormControl>
@@ -190,7 +188,7 @@ export function EditManualVocabularyDialog({
               name="pronunciation"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Pronunciation (optional)</FormLabel>
+                  <FormLabel>{t("pronunciation")}</FormLabel>
                   <FormControl>
                     <Input autoComplete="off" {...field} />
                   </FormControl>
@@ -204,7 +202,7 @@ export function EditManualVocabularyDialog({
               name="exampleSentence"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Example (optional)</FormLabel>
+                  <FormLabel>{t("exampleOptional")}</FormLabel>
                   <FormControl>
                     <Input autoComplete="off" {...field} />
                   </FormControl>
@@ -220,16 +218,16 @@ export function EditManualVocabularyDialog({
                 onClick={() => onOpenChange(false)}
                 disabled={form.formState.isSubmitting}
               >
-                Cancel
+                {tc("cancel")}
               </Button>
               <Button type="submit" disabled={form.formState.isSubmitting}>
                 {form.formState.isSubmitting ? (
                   <>
                     <Loader2 className="size-4 animate-spin" aria-hidden="true" />
-                    Saving…
+                    {tc("saving")}
                   </>
                 ) : (
-                  "Save changes"
+                  tc("saveChanges")
                 )}
               </Button>
             </DialogFooter>

@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
+import { getTranslations } from "next-intl/server";
 import { CheckCircle2, Clock } from "lucide-react";
 import { PageHeader } from "@/components/shared/PageHeader";
 import { SectionCard } from "@/components/shared/SectionCard";
@@ -17,18 +18,15 @@ type ListeningLessonPageProps = {
   params: Promise<{ lessonId: string }>;
 };
 
-const DIFFICULTY_LABEL = {
-  easy: "Easy",
-  medium: "Medium",
-  hard: "Hard",
-} as const;
-
 export async function generateMetadata({
   params,
 }: ListeningLessonPageProps): Promise<Metadata> {
   const { lessonId } = await params;
-  const title = await getListeningLessonTitle(lessonId);
-  return { title: title ?? "Listening lesson" };
+  const [title, t] = await Promise.all([
+    getListeningLessonTitle(lessonId),
+    getTranslations("listening"),
+  ]);
+  return { title: title ?? t("lessonFallback") };
 }
 
 /**
@@ -36,6 +34,7 @@ export async function generateMetadata({
  */
 export default async function ListeningLessonPage({ params }: ListeningLessonPageProps) {
   const user = await requireUser();
+  const t = await getTranslations("listening");
   const { lessonId } = await params;
   const lesson = await getListeningLessonDetail(lessonId, user.id);
 
@@ -48,7 +47,7 @@ export default async function ListeningLessonPage({ params }: ListeningLessonPag
       <div className="space-y-3">
         <PageHeader title={lesson.title} />
         <div className="flex flex-wrap items-center gap-2">
-          <Badge variant="secondary">{DIFFICULTY_LABEL[lesson.difficulty]}</Badge>
+          <Badge variant="secondary">{t(lesson.difficulty)}</Badge>
           <span className="inline-flex items-center gap-1 text-xs text-muted-foreground">
             <Clock className="size-3.5" aria-hidden="true" />
             {formatSecondsDuration(lesson.durationSeconds)}
@@ -56,7 +55,7 @@ export default async function ListeningLessonPage({ params }: ListeningLessonPag
           {lesson.isCompleted ? (
             <Badge variant="outline" className="gap-1 text-emerald-700 dark:text-emerald-400">
               <CheckCircle2 className="size-3.5" aria-hidden="true" />
-              Completed
+              {t("completed")}
             </Badge>
           ) : null}
         </div>
@@ -68,7 +67,7 @@ export default async function ListeningLessonPage({ params }: ListeningLessonPag
         transcript={lesson.transcript}
       >
         {lesson.quiz ? (
-          <SectionCard title="Comprehension questions" description={lesson.quiz.title}>
+          <SectionCard title={t("comprehension")} description={lesson.quiz.title}>
             <QuizRunner
               quiz={lesson.quiz}
               returnTo={`/listening/${lesson.id}`}
@@ -76,10 +75,8 @@ export default async function ListeningLessonPage({ params }: ListeningLessonPag
             />
           </SectionCard>
         ) : (
-          <SectionCard title="Comprehension questions">
-            <p className="text-sm text-muted-foreground">
-              Questions for this lesson are not available yet.
-            </p>
+          <SectionCard title={t("comprehension")}>
+            <p className="text-sm text-muted-foreground">{t("questionsUnavailable")}</p>
           </SectionCard>
         )}
       </ListeningStudySession>

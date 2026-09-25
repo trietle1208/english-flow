@@ -5,10 +5,12 @@ import { usePathname } from "next/navigation";
 import { GraduationCap } from "lucide-react";
 import { UserMenu } from "@/components/layout/UserMenu";
 import { ThemeToggle } from "@/components/theme/ThemeToggle";
+import { LanguageSwitcher } from "@/components/i18n/LanguageSwitcher";
 import { isNavItemActive, mainNav } from "@/config/navigation";
 import { siteConfig } from "@/config/site";
 import type { CurrentUser } from "@/lib/session";
 import { cn } from "@/lib/utils";
+import { useTranslations } from "next-intl";
 
 /**
  * Desktop (≥1024px) and tablet (768–1023px) navigation — spec §4. One
@@ -18,6 +20,7 @@ import { cn } from "@/lib/utils";
  */
 export function Sidebar({ user }: { user: CurrentUser }) {
   const pathname = usePathname();
+  const t = useTranslations("nav");
 
   return (
     <aside className="fixed inset-y-0 left-0 z-30 hidden w-[72px] flex-col border-r bg-sidebar text-sidebar-foreground md:flex lg:w-64">
@@ -26,10 +29,11 @@ export function Sidebar({ user }: { user: CurrentUser }) {
         <span className="hidden truncate text-base font-semibold lg:inline">{siteConfig.name}</span>
       </div>
 
-      <nav className="flex-1 space-y-1 overflow-y-auto px-3 py-4" aria-label="Main">
+      <nav className="flex-1 space-y-1 overflow-y-auto px-3 py-4" aria-label={t("main")}>
         {mainNav.map((item) => {
           const active = isNavItemActive(pathname, item.href);
           const Icon = item.icon;
+          const label = t(item.labelKey);
 
           // Native `title` on tablet (icon-only) instead of Radix Tooltip around
           // the Link — TooltipTrigger can swallow the first click / soft-nav.
@@ -38,8 +42,8 @@ export function Sidebar({ user }: { user: CurrentUser }) {
               key={item.href}
               href={item.href}
               prefetch={false}
-              title={item.label}
-              aria-label={item.label}
+              title={label}
+              aria-label={label}
               aria-current={active ? "page" : undefined}
               className={cn(
                 "relative flex min-h-11 items-center justify-center gap-3 rounded-md px-3 text-sm text-muted-foreground outline-none transition-colors hover:bg-sidebar-accent hover:text-sidebar-accent-foreground focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 lg:justify-start",
@@ -53,14 +57,17 @@ export function Sidebar({ user }: { user: CurrentUser }) {
                 />
               )}
               <Icon className="size-5 shrink-0" aria-hidden="true" />
-              <span className="hidden truncate lg:inline">{item.label}</span>
+              <span className="hidden truncate lg:inline">{label}</span>
             </Link>
           );
         })}
       </nav>
 
-      <div className="flex items-center gap-1 border-t p-2 lg:flex-row-reverse lg:justify-between">
-        <ThemeToggle />
+      <div className="flex flex-col gap-1 border-t p-2">
+        <div className="flex items-center justify-center gap-1 lg:justify-between">
+          <LanguageSwitcher />
+          <ThemeToggle />
+        </div>
         <UserMenu user={user} collapsed className="lg:hidden" />
         <UserMenu user={user} className="hidden lg:flex" />
       </div>

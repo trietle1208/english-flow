@@ -1,3 +1,7 @@
+"use client";
+
+import { useTranslations } from "next-intl";
+
 type MistakeItem = { mistake: string; correction: string };
 
 type CommonMistakesProps = {
@@ -9,10 +13,12 @@ type CommonMistakesProps = {
  * correction string from seed data).
  */
 export function CommonMistakes({ items }: CommonMistakesProps) {
+  const t = useTranslations("grammar");
+
   return (
     <section aria-labelledby="grammar-mistakes-heading" className="space-y-3">
       <h2 id="grammar-mistakes-heading" className="text-sm font-semibold tracking-tight">
-        Lỗi thường gặp
+        {t("commonMistakes")}
       </h2>
       <ul className="flex flex-col gap-3">
         {items.map((item, index) => {
@@ -26,7 +32,7 @@ export function CommonMistakes({ items }: CommonMistakesProps) {
                 <span className="mr-2" aria-hidden="true">
                   ❌
                 </span>
-                <span className="sr-only">Incorrect: </span>
+                <span className="sr-only">{t("incorrect")}</span>
                 <span className="text-destructive line-through decoration-destructive/60">
                   {item.mistake}
                 </span>
@@ -35,7 +41,7 @@ export function CommonMistakes({ items }: CommonMistakesProps) {
                 <span className="mr-2" aria-hidden="true">
                   ✅
                 </span>
-                <span className="sr-only">Correct: </span>
+                <span className="sr-only">{t("correct")}</span>
                 <span className="font-medium text-emerald-700 dark:text-emerald-400">
                   {correction}
                 </span>

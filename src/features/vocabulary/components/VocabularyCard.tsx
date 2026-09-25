@@ -2,6 +2,7 @@
 
 import { useEffect, useOptimistic, useState, useTransition } from "react";
 import { Check, Copy, Pencil, PenLine, Star, Trash2 } from "lucide-react";
+import { useTranslations } from "next-intl";
 import { toast } from "sonner";
 import { AudioButton } from "@/components/shared/AudioButton";
 import { Badge } from "@/components/ui/badge";
@@ -25,19 +26,6 @@ import {
 import type { SavedVocabularyItem } from "../types";
 import { EditManualVocabularyDialog } from "./EditManualVocabularyDialog";
 
-const POS_LABEL: Record<SavedVocabularyItem["partOfSpeech"], string> = {
-  noun: "noun",
-  verb: "verb",
-  adjective: "adjective",
-  adverb: "adverb",
-  pronoun: "pronoun",
-  preposition: "preposition",
-  conjunction: "conjunction",
-  interjection: "interjection",
-  phrase: "phrase",
-  phrasal_verb: "phrasal verb",
-};
-
 /** Examples longer than this open a modal instead of stretching the card. */
 const EXAMPLE_PREVIEW_MAX = 72;
 
@@ -51,6 +39,8 @@ type VocabularyCardProps = {
  * cell; long examples open in a modal.
  */
 export function VocabularyCard({ item }: VocabularyCardProps) {
+  const t = useTranslations("vocabulary");
+  const tc = useTranslations("common");
   const [confirmOpen, setConfirmOpen] = useState(false);
   const [exampleOpen, setExampleOpen] = useState(false);
   const [editOpen, setEditOpen] = useState(false);
@@ -90,7 +80,7 @@ export function VocabularyCard({ item }: VocabularyCardProps) {
         return;
       }
       setConfirmedLearned(next);
-      toast.success(next ? "Marked as learned." : "Marked as not learned.");
+      toast.success(next ? t("toastLearned") : t("toastNotLearned"));
     });
   }
 
@@ -104,7 +94,7 @@ export function VocabularyCard({ item }: VocabularyCardProps) {
         return;
       }
       setConfirmedPinned(next);
-      toast.success(next ? "Pinned." : "Unpinned.");
+      toast.success(next ? t("toastPinned") : t("toastUnpinned"));
     });
   }
 
@@ -116,7 +106,7 @@ export function VocabularyCard({ item }: VocabularyCardProps) {
         return;
       }
       setConfirmOpen(false);
-      toast.success("Removed from your vocabulary.");
+      toast.success(t("toastRemoved"));
     });
   }
 
@@ -129,9 +119,9 @@ export function VocabularyCard({ item }: VocabularyCardProps) {
     try {
       await navigator.clipboard.writeText(text);
       setCopied(true);
-      toast.success("Copied word and meaning.");
+      toast.success(t("toastCopied"));
     } catch {
-      toast.error("Couldn’t copy. Try again.");
+      toast.error(t("toastCopyFail"));
     }
   }
 
@@ -144,24 +134,24 @@ export function VocabularyCard({ item }: VocabularyCardProps) {
             {item.phonetic}
           </span>
           <Badge variant="outline" className="capitalize">
-            {POS_LABEL[item.partOfSpeech]}
+            {t(`pos.${item.partOfSpeech}`)}
           </Badge>
           {item.isManual && (
             <Badge variant="secondary" className="gap-1">
               <PenLine className="size-3" aria-hidden="true" />
-              Added by you
+              {t("addedByYou")}
             </Badge>
           )}
           {optimisticPinned && (
             <Badge variant="secondary" className="gap-1">
               <Star className="size-3 fill-current" aria-hidden="true" />
-              Pinned
+              {t("pinned")}
             </Badge>
           )}
           {optimisticLearned && (
             <Badge variant="secondary" className="gap-1">
               <Check className="size-3" aria-hidden="true" />
-              Learned
+              {t("learned")}
             </Badge>
           )}
         </div>
@@ -181,7 +171,7 @@ export function VocabularyCard({ item }: VocabularyCardProps) {
                   &ldquo;{example}&rdquo;
                 </p>
                 <span className="mt-0.5 inline-block text-xs font-medium text-primary">
-                  View full example
+                  {t("viewExample")}
                 </span>
               </button>
             ) : (
@@ -190,7 +180,9 @@ export function VocabularyCard({ item }: VocabularyCardProps) {
               </p>
             )
           ) : (
-            <p className="line-clamp-2 text-sm italic text-muted-foreground/60">No example yet</p>
+            <p className="line-clamp-2 text-sm italic text-muted-foreground/60">
+              {t("noExample")}
+            </p>
           )}
         </div>
       </div>
@@ -215,8 +207,8 @@ export function VocabularyCard({ item }: VocabularyCardProps) {
                 aria-pressed={optimisticLearned}
                 aria-label={
                   optimisticLearned
-                    ? `Mark ${item.word} as not learned`
-                    : `Mark ${item.word} as learned`
+                    ? t("markNotLearned", { word: item.word })
+                    : t("markLearned", { word: item.word })
                 }
               >
                 <Check
@@ -226,7 +218,9 @@ export function VocabularyCard({ item }: VocabularyCardProps) {
               </Button>
             </TooltipTrigger>
             <TooltipContent side="top">
-              {optimisticLearned ? "Mark as not learned" : "Mark as learned"}
+              {optimisticLearned
+                ? t("markNotLearned", { word: item.word })
+                : t("markLearned", { word: item.word })}
             </TooltipContent>
           </Tooltip>
         </div>
@@ -242,7 +236,11 @@ export function VocabularyCard({ item }: VocabularyCardProps) {
                 onClick={handleTogglePinned}
                 disabled={isPending}
                 aria-pressed={optimisticPinned}
-                aria-label={optimisticPinned ? `Unpin ${item.word}` : `Pin ${item.word}`}
+                aria-label={
+                  optimisticPinned
+                    ? t("unpinWord", { word: item.word })
+                    : t("pinWord", { word: item.word })
+                }
               >
                 <Star
                   className={cn(
@@ -254,7 +252,7 @@ export function VocabularyCard({ item }: VocabularyCardProps) {
               </Button>
             </TooltipTrigger>
             <TooltipContent side="top">
-              {optimisticPinned ? "Unpin" : "Pin"}
+              {optimisticPinned ? t("unpin") : t("pin")}
             </TooltipContent>
           </Tooltip>
 
@@ -266,7 +264,7 @@ export function VocabularyCard({ item }: VocabularyCardProps) {
                 size="icon"
                 className="size-8"
                 onClick={handleCopy}
-                aria-label={`Copy ${item.word} and meaning`}
+                aria-label={t("copyWord", { word: item.word })}
               >
                 {copied ? (
                   <Check className="size-4 text-primary" aria-hidden="true" />
@@ -275,7 +273,7 @@ export function VocabularyCard({ item }: VocabularyCardProps) {
                 )}
               </Button>
             </TooltipTrigger>
-            <TooltipContent side="top">{copied ? "Copied" : "Copy"}</TooltipContent>
+            <TooltipContent side="top">{copied ? t("copied") : t("copy")}</TooltipContent>
           </Tooltip>
 
           {item.isManual ? (
@@ -288,12 +286,12 @@ export function VocabularyCard({ item }: VocabularyCardProps) {
                   className="size-8"
                   onClick={() => setEditOpen(true)}
                   disabled={isPending}
-                  aria-label={`Edit ${item.word}`}
+                  aria-label={t("editWordAria", { word: item.word })}
                 >
                   <Pencil className="size-4" aria-hidden="true" />
                 </Button>
               </TooltipTrigger>
-              <TooltipContent side="top">Edit</TooltipContent>
+              <TooltipContent side="top">{t("edit")}</TooltipContent>
             </Tooltip>
           ) : null}
 
@@ -306,12 +304,12 @@ export function VocabularyCard({ item }: VocabularyCardProps) {
                 className="size-8 text-destructive hover:bg-destructive/10 hover:text-destructive"
                 onClick={() => setConfirmOpen(true)}
                 disabled={isPending}
-                aria-label={`Remove ${item.word}`}
+                aria-label={t("removeWordAria", { word: item.word })}
               >
                 <Trash2 className="size-4" aria-hidden="true" />
               </Button>
             </TooltipTrigger>
-            <TooltipContent side="top">Remove</TooltipContent>
+            <TooltipContent side="top">{tc("remove")}</TooltipContent>
           </Tooltip>
         </div>
       </div>
@@ -324,7 +322,7 @@ export function VocabularyCard({ item }: VocabularyCardProps) {
         <DialogContent className="sm:max-w-md">
           <DialogHeader>
             <DialogTitle>{item.word}</DialogTitle>
-            <DialogDescription className="sr-only">Full example sentence</DialogDescription>
+            <DialogDescription className="sr-only">{t("fullExample")}</DialogDescription>
           </DialogHeader>
           <div className="space-y-3">
             <p className="text-sm">{item.meaning}</p>
@@ -334,7 +332,7 @@ export function VocabularyCard({ item }: VocabularyCardProps) {
           </div>
           <DialogFooter>
             <Button type="button" variant="outline" onClick={() => setExampleOpen(false)}>
-              Close
+              {tc("close")}
             </Button>
           </DialogFooter>
         </DialogContent>
@@ -343,12 +341,9 @@ export function VocabularyCard({ item }: VocabularyCardProps) {
       <Dialog open={confirmOpen} onOpenChange={setConfirmOpen}>
         <DialogContent>
           <DialogHeader>
-            <DialogTitle>Remove “{item.word}”?</DialogTitle>
+            <DialogTitle>{t("removeTitle", { word: item.word })}</DialogTitle>
             <DialogDescription>
-              This removes the word from your personal vocabulary
-              {item.isManual
-                ? " and deletes the word you added."
-                : ". You can save it again later from a lesson."}
+              {item.isManual ? t("removeManual") : t("removeSaved")}
             </DialogDescription>
           </DialogHeader>
           <DialogFooter>
@@ -358,10 +353,10 @@ export function VocabularyCard({ item }: VocabularyCardProps) {
               onClick={() => setConfirmOpen(false)}
               disabled={isPending}
             >
-              Cancel
+              {tc("cancel")}
             </Button>
             <Button type="button" variant="destructive" onClick={handleRemove} disabled={isPending}>
-              Remove
+              {tc("remove")}
             </Button>
           </DialogFooter>
         </DialogContent>

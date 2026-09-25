@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { BookMarked } from "lucide-react";
+import { getLocale, getTranslations } from "next-intl/server";
 import { EmptyState } from "@/components/shared/EmptyState";
 import { Button } from "@/components/ui/button";
 import { VocabularyItem } from "@/features/vocabulary/components/VocabularyItem";
@@ -30,6 +31,10 @@ export async function ToeicVocabularyCatalog({
   topic,
   page,
 }: ToeicVocabularyCatalogProps) {
+  const t = await getTranslations("vocabulary");
+  const tc = await getTranslations("common");
+  const locale = await getLocale();
+
   const parsedPage = page ? Number.parseInt(page, 10) : 1;
   const topicFilter: ToeicTopicFilter =
     topic && isToeicTopicId(topic) ? topic : "all";
@@ -51,13 +56,13 @@ export async function ToeicVocabularyCatalog({
         icon={BookMarked}
         title={
           trimmedSearch || topicFilter !== "all"
-            ? "No matching TOEIC words"
-            : "TOEIC catalog is empty"
+            ? t("noMatchingToeic")
+            : t("toeicEmpty")
         }
         description={
           trimmedSearch || topicFilter !== "all"
-            ? "Try a different search or topic."
-            : "Run the database seed to load the curated TOEIC vocabulary list."
+            ? t("trySearchOrTopic")
+            : t("seedHint")
         }
       />
     );
@@ -72,14 +77,20 @@ export async function ToeicVocabularyCatalog({
     return qs ? `/vocabulary/toeic?${qs}` : "/vocabulary/toeic";
   }
 
+  const wordUnit =
+    locale === "vi" ? "từ" : total === 1 ? "word" : "words";
+  const summaryParts = [`${total} ${wordUnit}`];
+  if (topicFilter !== "all") {
+    summaryParts.push(toeicTopicLabel(topicFilter));
+  }
+  if (trimmedSearch) {
+    summaryParts.push(t("matchingSearch", { search: trimmedSearch }));
+  }
+  summaryParts.push(tc("pageOf", { page: currentPage, total: totalPages }));
+
   return (
     <div className="flex flex-col gap-6">
-      <p className="text-sm text-muted-foreground">
-        {total} word{total === 1 ? "" : "s"}
-        {topicFilter !== "all" ? ` · ${toeicTopicLabel(topicFilter)}` : ""}
-        {trimmedSearch ? ` matching “${trimmedSearch}”` : ""} · page {currentPage} of{" "}
-        {totalPages}
-      </p>
+      <p className="text-sm text-muted-foreground">{summaryParts.join(" · ")}</p>
 
       <div className="flex flex-col gap-8">
         {groups.map((group) => (
@@ -115,18 +126,18 @@ export async function ToeicVocabularyCatalog({
       {totalPages > 1 ? (
         <nav
           className="flex items-center justify-between gap-3"
-          aria-label="TOEIC vocabulary pages"
+          aria-label={t("toeicPages")}
         >
           {currentPage > 1 ? (
             <Button asChild variant="outline" size="sm">
-              <Link href={pageHref(currentPage - 1)}>Previous</Link>
+              <Link href={pageHref(currentPage - 1)}>{tc("previous")}</Link>
             </Button>
           ) : (
             <span />
           )}
           {currentPage < totalPages ? (
             <Button asChild variant="outline" size="sm">
-              <Link href={pageHref(currentPage + 1)}>Next</Link>
+              <Link href={pageHref(currentPage + 1)}>{tc("next")}</Link>
             </Button>
           ) : (
             <span />
@@ -135,7 +146,7 @@ export async function ToeicVocabularyCatalog({
       ) : null}
 
       <aside className="rounded-lg border bg-muted/40 p-4 text-xs leading-relaxed text-muted-foreground">
-        <p className="font-medium text-foreground">Source</p>
+        <p className="font-medium text-foreground">{t("source")}</p>
         <p className="mt-1">{TOEIC_TSL_ATTRIBUTION.attributionText}</p>
         <p className="mt-2 flex flex-wrap gap-x-2 gap-y-1">
           <a

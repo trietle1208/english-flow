@@ -1,4 +1,5 @@
 import { Flame } from "lucide-react";
+import { getTranslations } from "next-intl/server";
 import { SectionCard } from "@/components/shared/SectionCard";
 import { cn } from "@/lib/utils";
 import type { StreakData } from "../types";
@@ -8,13 +9,16 @@ type StreakCalendarProps = {
 };
 
 /** Current / longest streak + week calendar (spec §21). */
-export function StreakCalendar({ data }: StreakCalendarProps) {
+export async function StreakCalendar({ data }: StreakCalendarProps) {
+  const t = await getTranslations("progress");
+  const tDash = await getTranslations("dashboard");
+
   return (
-    <SectionCard title="Streak" description="Consistency over recent days.">
+    <SectionCard title={t("streak")} description={t("streakDescription")}>
       <div className="flex flex-col gap-6 sm:flex-row sm:items-start sm:justify-between">
         <div className="flex gap-8">
           <div>
-            <p className="text-sm text-muted-foreground">Current</p>
+            <p className="text-sm text-muted-foreground">{t("current")}</p>
             <p className="mt-1 flex items-center gap-1.5 text-2xl font-semibold tabular-nums">
               <Flame
                 className={cn(
@@ -27,7 +31,7 @@ export function StreakCalendar({ data }: StreakCalendarProps) {
             </p>
           </div>
           <div>
-            <p className="text-sm text-muted-foreground">Longest</p>
+            <p className="text-sm text-muted-foreground">{t("longest")}</p>
             <p className="mt-1 text-2xl font-semibold tabular-nums">
               {data.longestStreak}
             </p>
@@ -37,7 +41,7 @@ export function StreakCalendar({ data }: StreakCalendarProps) {
         <div
           className="flex flex-1 justify-between gap-1 sm:max-w-sm"
           role="list"
-          aria-label="Last 7 days of activity"
+          aria-label={tDash("last7Days")}
         >
           {data.week.map((day) => (
             <div
@@ -52,7 +56,15 @@ export function StreakCalendar({ data }: StreakCalendarProps) {
                     ? "bg-success text-success-foreground"
                     : "bg-muted text-muted-foreground",
                 )}
-                aria-label={`${day.label} ${day.date}: ${day.active ? `${day.minutes} min` : "no activity"}`}
+                aria-label={
+                  day.active
+                    ? tDash("dayAria", {
+                        label: day.label,
+                        date: day.date,
+                        minutes: day.minutes,
+                      })
+                    : tDash("dayAriaNone", { label: day.label, date: day.date })
+                }
               >
                 {day.label.slice(0, 1)}
               </span>

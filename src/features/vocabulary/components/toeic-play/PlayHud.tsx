@@ -2,6 +2,7 @@
 
 import { motion, useReducedMotion } from "motion/react";
 import { Flame, X } from "lucide-react";
+import { useTranslations } from "next-intl";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 
@@ -28,10 +29,12 @@ export function PlayHud({
   timerRatio,
   onExit,
 }: PlayHudProps) {
+  const t = useTranslations("vocabulary");
   const reduceMotion = useReducedMotion();
   const urgent = timerRatio <= 0.25 && timerRatio > 0;
   const circumference = 2 * Math.PI * 18;
   const dashOffset = circumference * (1 - Math.max(0, Math.min(1, timerRatio)));
+  const secondsLeft = Math.max(0, Math.ceil(timerRatio * (TOEIC_PLAY_TIMER_MS / 1000)));
 
   return (
     <div className="flex w-full items-start justify-between gap-3">
@@ -41,7 +44,7 @@ export function PlayHud({
         size="icon"
         className="size-11 shrink-0 rounded-full bg-background/60 backdrop-blur-sm"
         onClick={onExit}
-        aria-label="Exit practice"
+        aria-label={t("exitPractice")}
       >
         <X className="size-5" aria-hidden="true" />
       </Button>
@@ -49,7 +52,7 @@ export function PlayHud({
       <div className="flex min-w-0 flex-1 flex-col items-center gap-2">
         <div
           className="flex max-w-full flex-wrap justify-center gap-1"
-          aria-label={`Question ${index + 1} of ${total}`}
+          aria-label={t("questionOf", { n: index + 1, total })}
         >
           {Array.from({ length: total }, (_, i) => (
             <span
@@ -85,7 +88,7 @@ export function PlayHud({
 
         <div
           className="min-w-[3.5rem] rounded-full bg-background/60 px-2.5 py-1.5 text-center text-sm font-semibold tabular-nums backdrop-blur-sm"
-          aria-label={`Score ${score}`}
+          aria-label={t("scoreLabel", { score })}
         >
           {score}
         </div>
@@ -93,7 +96,7 @@ export function PlayHud({
         <div
           className={cn("relative size-11", urgent && !reduceMotion && "animate-pulse")}
           role="timer"
-          aria-label={`${Math.ceil(timerRatio * (TOEIC_PLAY_TIMER_MS / 1000))} seconds remaining`}
+          aria-label={t("secondsLeft", { count: secondsLeft })}
         >
           <svg className="size-11 -rotate-90" viewBox="0 0 40 40" aria-hidden="true">
             <circle
@@ -122,7 +125,7 @@ export function PlayHud({
             />
           </svg>
           <span className="absolute inset-0 flex items-center justify-center text-xs font-semibold tabular-nums">
-            {Math.max(0, Math.ceil(timerRatio * (TOEIC_PLAY_TIMER_MS / 1000)))}
+            {secondsLeft}
           </span>
         </div>
       </div>

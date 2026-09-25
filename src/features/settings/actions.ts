@@ -6,11 +6,15 @@ import { db } from "@/db";
 import { users } from "@/db/schema";
 import { logger } from "@/lib/logger";
 import { requireUser } from "@/lib/session";
+import { getTranslations } from "next-intl/server";
 import { updateSettingsSchema } from "./schemas";
 
 type ActionResult = { ok: true } | { ok: false; error: string };
 
-const GENERIC_ERROR = "Something went wrong. Please try again.";
+async function genericError(): Promise<string> {
+  const t = await getTranslations("common");
+  return t("genericError");
+}
 
 /**
  * Persist profile + learning preferences for the signed-in user only
@@ -22,7 +26,7 @@ export async function updateSettings(input: unknown): Promise<ActionResult> {
   if (!parsed.success) {
     return {
       ok: false,
-      error: parsed.error.issues[0]?.message ?? GENERIC_ERROR,
+      error: parsed.error.issues[0]?.message ?? (await genericError()),
     };
   }
 
@@ -49,6 +53,6 @@ export async function updateSettings(input: unknown): Promise<ActionResult> {
     return { ok: true };
   } catch (error) {
     logger.error("updateSettings failed", error);
-    return { ok: false, error: GENERIC_ERROR };
+    return { ok: false, error: await genericError() };
   }
 }

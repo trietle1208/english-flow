@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { Gamepad2 } from "lucide-react";
+import { useTranslations } from "next-intl";
 import { Button } from "@/components/ui/button";
 import {
   Dialog,
@@ -28,6 +29,8 @@ type ToeicPracticeLauncherProps = {
 export function ToeicPracticeLauncher({
   initialTopic = "all",
 }: ToeicPracticeLauncherProps) {
+  const t = useTranslations("vocabulary");
+  const tc = useTranslations("common");
   const router = useRouter();
   const [open, setOpen] = useState(false);
   const [topic, setTopic] = useState<ToeicTopicFilter>(initialTopic);
@@ -53,25 +56,23 @@ export function ToeicPracticeLauncher({
       <DialogTrigger asChild>
         <Button type="button">
           <Gamepad2 className="size-4" aria-hidden="true" />
-          Practice
+          {t("practice")}
         </Button>
       </DialogTrigger>
       <DialogContent className="sm:max-w-md">
         <DialogHeader>
-          <DialogTitle>Practice Match Play</DialogTitle>
-          <DialogDescription>
-            Choose a topic for this round — 10 words, EN → Vietnamese meanings.
-          </DialogDescription>
+          <DialogTitle>{t("practiceMatch")}</DialogTitle>
+          <DialogDescription>{t("practiceHint")}</DialogDescription>
         </DialogHeader>
 
         <div
           className="grid grid-cols-1 gap-2 sm:grid-cols-2"
           role="group"
-          aria-label="Practice topic"
+          aria-label={t("practiceTopic")}
         >
           <TopicOption
-            label="All topics"
-            hint="Mix from every category"
+            label={t("allTopics")}
+            hint={t("mixTopics")}
             active={topic === "all"}
             onClick={() => setTopic("all")}
           />
@@ -88,10 +89,10 @@ export function ToeicPracticeLauncher({
 
         <DialogFooter className="gap-2 sm:gap-0">
           <Button type="button" variant="outline" onClick={() => setOpen(false)}>
-            Cancel
+            {tc("cancel")}
           </Button>
           <Button type="button" onClick={start}>
-            Start round
+            {t("startRound")}
           </Button>
         </DialogFooter>
       </DialogContent>

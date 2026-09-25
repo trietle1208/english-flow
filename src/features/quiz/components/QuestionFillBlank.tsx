@@ -1,5 +1,6 @@
 "use client";
 
+import { useTranslations } from "next-intl";
 import { CheckCircle2, CircleX } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -27,20 +28,21 @@ export function QuestionFillBlank({
   disabled,
   onChange,
 }: QuestionFillBlankProps) {
+  const t = useTranslations("quiz");
   const inputId = `blank-${questionId}`;
 
   return (
     <div className="space-y-3">
       <p className="text-base font-medium leading-relaxed sm:text-lg">{prompt}</p>
       <div className="space-y-2">
-        <Label htmlFor={inputId}>Your answer</Label>
+        <Label htmlFor={inputId}>{t("yourAnswer")}</Label>
         <div className="relative max-w-md">
           <Input
             id={inputId}
             value={value}
             onChange={(event) => onChange(event.target.value)}
             disabled={disabled}
-            placeholder="Type your answer"
+            placeholder={t("typeAnswer")}
             autoComplete="off"
             aria-invalid={state === "incorrect" ? true : undefined}
             className={cn(

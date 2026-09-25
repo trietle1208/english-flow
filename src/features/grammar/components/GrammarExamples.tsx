@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { useTranslations } from "next-intl";
 import { Eye, EyeOff } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import type { GrammarExampleView } from "../types";
@@ -14,19 +15,18 @@ type GrammarExamplesProps = {
  * English examples with grammar/signal highlights + toggle for Vietnamese meaning.
  */
 export function GrammarExamples({ items }: GrammarExamplesProps) {
+  const t = useTranslations("grammar");
   const [showMeaning, setShowMeaning] = useState(true);
 
   if (items.length === 0) {
-    return (
-      <p className="text-sm text-muted-foreground">Chưa có ví dụ cho chủ điểm này.</p>
-    );
+    return <p className="text-sm text-muted-foreground">{t("noExamples")}</p>;
   }
 
   return (
     <section aria-labelledby="grammar-examples-heading" className="space-y-3">
       <div className="flex flex-wrap items-center justify-between gap-2">
         <h2 id="grammar-examples-heading" className="text-sm font-semibold tracking-tight">
-          Ví dụ
+          {t("examples")}
         </h2>
         <Button
           type="button"
@@ -39,12 +39,12 @@ export function GrammarExamples({ items }: GrammarExamplesProps) {
           {showMeaning ? (
             <>
               <EyeOff className="size-4" aria-hidden="true" />
-              Ẩn nghĩa
+              {t("hideMeaning")}
             </>
           ) : (
             <>
               <Eye className="size-4" aria-hidden="true" />
-              Hiện nghĩa
+              {t("showMeaning")}
             </>
           )}
         </Button>
@@ -61,7 +61,9 @@ export function GrammarExamples({ items }: GrammarExamplesProps) {
             {showMeaning ? (
               <p className="mt-1 text-sm text-muted-foreground">{item.sentenceVi}</p>
             ) : (
-              <p className="mt-1 text-sm italic text-muted-foreground/70">Nghĩa đã ẩn</p>
+              <p className="mt-1 text-sm italic text-muted-foreground/70">
+                {t("meaningHidden")}
+              </p>
             )}
             {item.attributionLabel ? (
               <p className="mt-2 text-xs text-muted-foreground/80">{item.attributionLabel}</p>

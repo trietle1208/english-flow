@@ -1,6 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
+import { useTranslations } from "next-intl";
 import { ChevronDown, ChevronUp } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
@@ -17,6 +18,7 @@ type TranscriptPanelProps = {
  * dialogue text (seed data today).
  */
 export function TranscriptPanel({ transcript, currentTime }: TranscriptPanelProps) {
+  const t = useTranslations("listening");
   const [open, setOpen] = useState(false);
   const cues = useMemo(() => parseTranscriptCues(transcript), [transcript]);
 
@@ -32,12 +34,12 @@ export function TranscriptPanel({ transcript, currentTime }: TranscriptPanelProp
         {open ? (
           <>
             <ChevronUp className="size-4" aria-hidden="true" />
-            Hide transcript
+            {t("hideTranscript")}
           </>
         ) : (
           <>
             <ChevronDown className="size-4" aria-hidden="true" />
-            Show transcript
+            {t("showTranscript")}
           </>
         )}
       </Button>

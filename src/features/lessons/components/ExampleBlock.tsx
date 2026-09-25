@@ -1,14 +1,18 @@
+import { getTranslations } from "next-intl/server";
+
 type ExampleItem = { en: string; vi: string };
 
 type ExampleBlockProps = {
   items: ExampleItem[];
 };
 
-export function ExampleBlock({ items }: ExampleBlockProps) {
+export async function ExampleBlock({ items }: ExampleBlockProps) {
+  const t = await getTranslations("lessons");
+
   return (
     <section aria-labelledby="lesson-examples-heading" className="space-y-3">
       <h2 id="lesson-examples-heading" className="text-sm font-semibold tracking-tight">
-        Examples
+        {t("examples")}
       </h2>
       <ul className="flex flex-col gap-3">
         {items.map((item, index) => (

@@ -1,8 +1,9 @@
 import Link from "next/link";
+import { getTranslations } from "next-intl/server";
 import { BookOpen } from "lucide-react";
 import { EmptyState } from "@/components/shared/EmptyState";
 import { Button } from "@/components/ui/button";
-import { CEFR_LEVEL_LABELS, isCefrLevel, type CefrLevel } from "@/config/cefr";
+import { isCefrLevel, type CefrLevel } from "@/config/cefr";
 import { listCourses } from "../queries";
 import { CourseCard } from "./CourseCard";
 
@@ -28,6 +29,10 @@ export async function CourseList({
   page,
   recommendedLevel,
 }: CourseListProps) {
+  const t = await getTranslations("courses");
+  const tCefr = await getTranslations("cefr");
+  const tCommon = await getTranslations("common");
+
   const parsedLevel = level && isCefrLevel(level) ? level : undefined;
   const parsedPage = page ? Number.parseInt(page, 10) : 1;
 
@@ -55,11 +60,11 @@ export async function CourseList({
     return (
       <EmptyState
         icon={BookOpen}
-        title="No courses match your filters."
-        description="Try a different search, level, or category."
+        title={t("emptyTitle")}
+        description={t("emptyDescription")}
         action={
           <Button asChild variant="outline">
-            <Link href="/courses">Clear filters</Link>
+            <Link href="/courses">{tCommon("clearFilters")}</Link>
           </Button>
         }
       />
@@ -71,16 +76,15 @@ export async function CourseList({
       {showRecommendation ? (
         <div className="rounded-lg border bg-muted/40 px-4 py-3 text-sm">
           <p>
-            Recommended for your level{" "}
-            <span className="font-medium">
-              {recommendedLevel} ({CEFR_LEVEL_LABELS[recommendedLevel]})
-            </span>
-            .{" "}
+            {t("recommendedFor", {
+              level: recommendedLevel,
+              label: tCefr(recommendedLevel),
+            })}{" "}
             <Link
               href={`/courses?level=${recommendedLevel}`}
               className="font-medium text-primary underline-offset-4 hover:underline"
             >
-              Show {recommendedLevel} courses only
+              {t("showLevelOnly", { level: recommendedLevel })}
             </Link>
           </p>
         </div>

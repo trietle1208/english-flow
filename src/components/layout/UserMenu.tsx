@@ -17,6 +17,7 @@ import {
 import { logoutAction } from "@/features/auth/actions";
 import type { CurrentUser } from "@/lib/session";
 import { cn } from "@/lib/utils";
+import { useTranslations } from "next-intl";
 
 type UserMenuProps = {
   user: CurrentUser;
@@ -42,6 +43,7 @@ function initials(name: string): string {
 export function UserMenu({ user, collapsed = false, className }: UserMenuProps) {
   const router = useRouter();
   const [isPending, startTransition] = useTransition();
+  const t = useTranslations("common");
 
   function handleLogout() {
     startTransition(async () => {
@@ -87,19 +89,19 @@ export function UserMenu({ user, collapsed = false, className }: UserMenuProps) 
         <DropdownMenuItem asChild>
           <Link href="/feedback">
             <MessageSquarePlus />
-            Góp Ý
+            {t("feedback")}
           </Link>
         </DropdownMenuItem>
         <DropdownMenuItem asChild>
           <Link href="/settings">
             <Settings />
-            Settings
+            {t("settings")}
           </Link>
         </DropdownMenuItem>
         <DropdownMenuSeparator />
         <DropdownMenuItem variant="destructive" disabled={isPending} onSelect={handleLogout}>
           <LogOut />
-          Logout
+          {t("logout")}
         </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>

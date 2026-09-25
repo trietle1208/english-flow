@@ -1,29 +1,35 @@
 import type { Metadata } from "next";
+import { getLocale, getTranslations } from "next-intl/server";
 import { Hero } from "@/features/marketing/components/Hero";
 import { Features } from "@/features/marketing/components/Features";
 import { HowItWorks } from "@/features/marketing/components/HowItWorks";
 import { FinalCTA } from "@/features/marketing/components/FinalCTA";
 import { siteConfig } from "@/config/site";
 
-const title = "EnglishFlow — Learn English with a system built around you.";
+export async function generateMetadata(): Promise<Metadata> {
+  const t = await getTranslations("meta");
+  const locale = await getLocale();
+  const title = t("landingTitle");
+  const description = t("description");
 
-export const metadata: Metadata = {
-  title,
-  description: siteConfig.description,
-  openGraph: {
+  return {
     title,
-    description: siteConfig.description,
-    url: siteConfig.url,
-    siteName: siteConfig.name,
-    type: "website",
-    locale: "en_US",
-  },
-  twitter: {
-    card: "summary",
-    title,
-    description: siteConfig.description,
-  },
-};
+    description,
+    openGraph: {
+      title,
+      description,
+      url: siteConfig.url,
+      siteName: siteConfig.name,
+      type: "website",
+      locale: locale === "vi" ? "vi_VN" : "en_US",
+    },
+    twitter: {
+      card: "summary",
+      title,
+      description,
+    },
+  };
+}
 
 /**
  * The public landing page — spec §6. Server Component all the way down; the

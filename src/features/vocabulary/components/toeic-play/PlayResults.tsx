@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { motion, useReducedMotion } from "motion/react";
 import { BookmarkPlus, Loader2, RotateCcw, Trophy } from "lucide-react";
+import { useTranslations } from "next-intl";
 import { toast } from "sonner";
 import { Button } from "@/components/ui/button";
 import { saveVocabulary } from "../../actions";
@@ -32,6 +33,8 @@ export function PlayResults({
   topic,
   catalogHref,
 }: PlayResultsProps) {
+  const t = useTranslations("vocabulary");
+  const tc = useTranslations("common");
   const router = useRouter();
   const reduceMotion = useReducedMotion();
   const [isPending, startTransition] = useTransition();
@@ -73,13 +76,13 @@ export function PlayResults({
 
       if (failCount === 0) {
         toast.success(
-          okCount === 1 ? "Saved 1 missed word." : `Saved ${okCount} missed words.`,
+          okCount === 1 ? t("toastSavedOne") : t("toastSavedMany", { count: okCount }),
         );
         router.refresh();
       } else if (okCount > 0) {
-        toast.error(`Saved ${okCount}, but ${failCount} failed. Please try again.`);
+        toast.error(t("toastPartial", { ok: okCount, fail: failCount }));
       } else {
-        toast.error("Something went wrong. Please try again.");
+        toast.error(tc("genericError"));
       }
     });
   }
@@ -98,20 +101,20 @@ export function PlayResults({
         >
           <Trophy className="size-7 text-primary" aria-hidden="true" />
         </div>
-        <h1 className="text-2xl font-semibold tracking-tight">Round complete</h1>
+        <h1 className="text-2xl font-semibold tracking-tight">{t("roundComplete")}</h1>
         <p className="text-sm text-muted-foreground">
-          {correctCount} of {total} correct · {accuracy}% accuracy
+          {t("roundSummary", { correct: correctCount, total, accuracy })}
         </p>
       </div>
 
       <dl className="grid grid-cols-2 gap-3">
-        <Stat label="Score" value={String(score)} />
-        <Stat label="Best streak" value={String(bestStreak)} />
+        <Stat label={t("score")} value={String(score)} />
+        <Stat label={t("bestStreak")} value={String(bestStreak)} />
       </dl>
 
       {missed.length > 0 ? (
         <div className="flex flex-col gap-3 rounded-2xl border border-border/70 bg-card/80 p-4">
-          <p className="text-sm font-medium">Missed words</p>
+          <p className="text-sm font-medium">{t("missedWords")}</p>
           <ul className="flex flex-col gap-2">
             {missed.map((card) => (
               <li key={card.id} className="flex flex-col gap-0.5 border-b border-border/50 pb-2 last:border-0 last:pb-0">
@@ -127,15 +130,15 @@ export function PlayResults({
               ) : (
                 <BookmarkPlus className="size-4" aria-hidden="true" />
               )}
-              Save missed ({unsavedMissed.length})
+              {t("saveMissed", { count: unsavedMissed.length })}
             </Button>
           ) : (
-            <p className="text-sm text-muted-foreground">All missed words are already saved.</p>
+            <p className="text-sm text-muted-foreground">{t("allMissedSaved")}</p>
           )}
         </div>
       ) : (
         <p className="rounded-2xl border border-success/30 bg-success/10 px-4 py-3 text-center text-sm text-foreground">
-          Perfect run — every meaning matched.
+          {t("perfectRun")}
         </p>
       )}
 
@@ -143,11 +146,11 @@ export function PlayResults({
         <Button asChild className="flex-1">
           <Link href={playAgainHref()}>
             <RotateCcw className="size-4" aria-hidden="true" />
-            Play again
+            {t("playAgain")}
           </Link>
         </Button>
         <Button asChild variant="outline" className="flex-1">
-          <Link href={catalogHref}>Back to catalog</Link>
+          <Link href={catalogHref}>{t("backToCatalog")}</Link>
         </Button>
       </div>
     </motion.div>

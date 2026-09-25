@@ -1,6 +1,7 @@
 "use client";
 
 import { useCallback, useEffect, useMemo, useRef, useState, useTransition } from "react";
+import { useTranslations } from "next-intl";
 import { Loader2 } from "lucide-react";
 import { toast } from "sonner";
 import { Button } from "@/components/ui/button";
@@ -29,6 +30,10 @@ type PlacementTestRunnerProps = {
  * going back to change answers before submit.
  */
 export function PlacementTestRunner({ test, onComplete }: PlacementTestRunnerProps) {
+  const t = useTranslations("placement");
+  const tQuiz = useTranslations("quiz");
+  const tCommon = useTranslations("common");
+  const tVocab = useTranslations("vocabulary");
   const [pending, startTransition] = useTransition();
   const [currentIndex, setCurrentIndex] = useState(0);
   const [answers, setAnswers] = useState<Record<string, DraftAnswer>>({});
@@ -99,7 +104,7 @@ export function PlacementTestRunner({ test, onComplete }: PlacementTestRunnerPro
   const doSubmit = useCallback(() => {
     const payload = buildPayload();
     if (!payload) {
-      toast.error("Please answer every question before submitting.");
+      toast.error(tQuiz("answerEvery"));
       // Jump to first unanswered.
       const firstMissing = questions.findIndex((q) => !answers[q.id]);
       if (firstMissing >= 0) {
@@ -122,11 +127,11 @@ export function PlacementTestRunner({ test, onComplete }: PlacementTestRunnerPro
 
       onComplete(response.data);
     });
-  }, [answers, buildPayload, onComplete, questions, startedAt, test.id]);
+  }, [answers, buildPayload, onComplete, questions, startedAt, tQuiz, test.id]);
 
   const goNext = useCallback(() => {
     if (!hasAnswer) {
-      toast.error("Select or type an answer first.");
+      toast.error(tQuiz("selectAnswer"));
       return;
     }
     if (isLast) {
@@ -134,7 +139,7 @@ export function PlacementTestRunner({ test, onComplete }: PlacementTestRunnerPro
       return;
     }
     setCurrentIndex((i) => Math.min(i + 1, total - 1));
-  }, [doSubmit, hasAnswer, isLast, total]);
+  }, [doSubmit, hasAnswer, isLast, tQuiz, total]);
 
   const goPrev = useCallback(() => {
     setCurrentIndex((i) => Math.max(0, i - 1));
@@ -181,7 +186,7 @@ export function PlacementTestRunner({ test, onComplete }: PlacementTestRunnerPro
   if (!question || total === 0) {
     return (
       <p className="text-sm text-muted-foreground">
-        This placement test has no questions yet.
+        {t("noQuestions")}
       </p>
     );
   }
@@ -191,11 +196,11 @@ export function PlacementTestRunner({ test, onComplete }: PlacementTestRunnerPro
       <div className="space-y-2">
         <div className="flex flex-wrap items-center justify-between gap-2 text-sm">
           <p className="font-medium tabular-nums text-muted-foreground">
-            Question {currentIndex + 1} of {total}
+            {tVocab("questionOf", { n: currentIndex + 1, total })}
           </p>
           <p className="text-xs text-muted-foreground">Level focus: {question.level}</p>
         </div>
-        <Progress value={percent} aria-label={`Progress: ${percent}%`} />
+        <Progress value={percent} aria-label={t("progressAria", { percent })} />
       </div>
 
       <div className="space-y-4">
@@ -203,12 +208,12 @@ export function PlacementTestRunner({ test, onComplete }: PlacementTestRunnerPro
 
         {question.type === "fill_blank" ? (
           <div className="space-y-2">
-            <Label htmlFor={`placement-blank-${question.id}`}>Your answer</Label>
+            <Label htmlFor={`placement-blank-${question.id}`}>{t("yourAnswer")}</Label>
             <Input
               id={`placement-blank-${question.id}`}
               value={draft?.kind === "text" ? draft.text : ""}
               onChange={(event) => setText(event.target.value)}
-              placeholder="Type your answer"
+              placeholder={t("typeAnswer")}
               autoComplete="off"
               className="max-w-md"
               disabled={pending}
@@ -216,7 +221,7 @@ export function PlacementTestRunner({ test, onComplete }: PlacementTestRunnerPro
           </div>
         ) : (
           <fieldset className="space-y-2" disabled={pending}>
-            <legend className="sr-only">Answer options</legend>
+            <legend className="sr-only">{t("answerOptions")}</legend>
             {question.options.map((option) => {
               const selected =
                 draft?.kind === "choice" && draft.optionIndex === option.index;
@@ -254,7 +259,7 @@ export function PlacementTestRunner({ test, onComplete }: PlacementTestRunnerPro
 
       <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
         <p className="text-xs text-muted-foreground">
-          You can go back and change answers before submitting.
+          {t("canGoBack")}
         </p>
         <div className="flex gap-2">
           <Button
@@ -264,7 +269,7 @@ export function PlacementTestRunner({ test, onComplete }: PlacementTestRunnerPro
             disabled={currentIndex === 0 || pending}
             onClick={goPrev}
           >
-            Previous
+            {tCommon("previous")}
           </Button>
           <Button
             type="button"
@@ -275,12 +280,12 @@ export function PlacementTestRunner({ test, onComplete }: PlacementTestRunnerPro
             {pending ? (
               <>
                 <Loader2 className="size-4 animate-spin" aria-hidden="true" />
-                Submitting…
+                {tQuiz("submitting")}
               </>
             ) : isLast ? (
-              "Submit"
+              t("submit")
             ) : (
-              "Next"
+              tCommon("next")
             )}
           </Button>
         </div>

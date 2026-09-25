@@ -1,12 +1,15 @@
+"use client";
+
+import { useTranslations } from "next-intl";
 import { MessageSquarePlus } from "lucide-react";
 import { EmptyState } from "@/components/shared/EmptyState";
 import { SectionCard } from "@/components/shared/SectionCard";
 import { Badge } from "@/components/ui/badge";
+import type { FeedbackStatus } from "@/features/feedback/constants";
 import {
-  FEEDBACK_CATEGORY_LABELS,
-  FEEDBACK_STATUS_LABELS,
-  type FeedbackStatus,
-} from "@/features/feedback/constants";
+  feedbackCategoryMessageKey,
+  feedbackStatusMessageKey,
+} from "@/features/feedback/i18n-keys";
 import { formatFeedbackDate } from "@/features/feedback/format";
 import type { FeedbackItem } from "@/features/feedback/types";
 import { RatingStars } from "./RatingStars";
@@ -26,18 +29,17 @@ type FeedbackListProps = {
   items: FeedbackItem[];
 };
 
-/** The signed-in user's own Góp Ý history. */
+/** The signed-in user's own feedback history. */
 export function FeedbackList({ items }: FeedbackListProps) {
+  const t = useTranslations("feedback");
+
   return (
-    <SectionCard
-      title="Góp ý của bạn"
-      description="Trạng thái cập nhật khi mình đã đọc và xử lý."
-    >
+    <SectionCard title={t("yourFeedback")} description={t("statusHint")}>
       {items.length === 0 ? (
         <EmptyState
           icon={MessageSquarePlus}
-          title="Chưa có góp ý nào"
-          description="Gửi góp ý đầu tiên ở form bên cạnh — bug, ý tưởng, hoặc một đánh giá ngắn."
+          title={t("emptyTitle")}
+          description={t("emptyDescription")}
           className="py-10"
         />
       ) : (
@@ -51,13 +53,13 @@ export function FeedbackList({ items }: FeedbackListProps) {
                 <div className="min-w-0 space-y-1">
                   <p className="font-medium leading-snug">{item.title}</p>
                   <p className="text-xs text-muted-foreground">
-                    {FEEDBACK_CATEGORY_LABELS[item.category]} ·{" "}
+                    {t(feedbackCategoryMessageKey(item.category))} ·{" "}
                     {formatFeedbackDate(item.createdAt)}
-                    {item.isPublic ? " · Công khai" : ""}
+                    {item.isPublic ? t("publicBadge") : ""}
                   </p>
                 </div>
                 <Badge variant={STATUS_VARIANT[item.status]}>
-                  {FEEDBACK_STATUS_LABELS[item.status]}
+                  {t(feedbackStatusMessageKey(item.status))}
                 </Badge>
               </div>
               {item.rating != null && (

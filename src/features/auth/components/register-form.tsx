@@ -20,10 +20,12 @@ import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip
 import { registerAction } from "@/features/auth/actions";
 import { registerSchema, type RegisterInput } from "@/features/auth/schemas";
 import { GoogleIcon } from "@/features/auth/components/google-icon";
+import { useTranslations } from "next-intl";
 
 export function RegisterForm() {
   const router = useRouter();
   const [formError, setFormError] = useState<string | null>(null);
+  const t = useTranslations("auth");
 
   const form = useForm<RegisterInput>({
     resolver: zodResolver(registerSchema),
@@ -39,7 +41,7 @@ export function RegisterForm() {
       return;
     }
 
-    toast.success("Account created — let's find your level.");
+    toast.success(t("accountCreated"));
     router.push("/placement-test");
   }
 
@@ -60,9 +62,9 @@ export function RegisterForm() {
           name="name"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Name</FormLabel>
+              <FormLabel>{t("name")}</FormLabel>
               <FormControl>
-                <Input placeholder="Jane Doe" autoComplete="name" {...field} />
+                <Input placeholder={t("namePlaceholder")} autoComplete="name" {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -74,11 +76,11 @@ export function RegisterForm() {
           name="email"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Email</FormLabel>
+              <FormLabel>{t("email")}</FormLabel>
               <FormControl>
                 <Input
                   type="email"
-                  placeholder="jane@example.com"
+                  placeholder={t("emailPlaceholder")}
                   autoComplete="email"
                   {...field}
                 />
@@ -93,11 +95,11 @@ export function RegisterForm() {
           name="password"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Password</FormLabel>
+              <FormLabel>{t("password")}</FormLabel>
               <FormControl>
                 <Input
                   type="password"
-                  placeholder="At least 8 characters, with a letter and a number"
+                  placeholder={t("passwordPlaceholder")}
                   autoComplete="new-password"
                   {...field}
                 />
@@ -112,7 +114,7 @@ export function RegisterForm() {
           name="confirmPassword"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Confirm password</FormLabel>
+              <FormLabel>{t("confirmPassword")}</FormLabel>
               <FormControl>
                 <Input type="password" autoComplete="new-password" {...field} />
               </FormControl>
@@ -123,7 +125,7 @@ export function RegisterForm() {
 
         <Button type="submit" className="w-full" disabled={form.formState.isSubmitting}>
           {form.formState.isSubmitting && <Loader2 className="animate-spin" />}
-          Create Account
+          {t("createAccountButton")}
         </Button>
 
         <Tooltip>
@@ -131,11 +133,11 @@ export function RegisterForm() {
             <span tabIndex={0} className="block w-full">
               <Button type="button" variant="outline" className="w-full" disabled>
                 <GoogleIcon />
-                Continue with Google
+                {t("continueGoogle")}
               </Button>
             </span>
           </TooltipTrigger>
-          <TooltipContent>Coming soon</TooltipContent>
+          <TooltipContent>{t("comingSoon")}</TooltipContent>
         </Tooltip>
       </form>
     </Form>

@@ -9,24 +9,34 @@ import {
   type LucideIcon,
 } from "lucide-react";
 
+export type NavLabelKey =
+  | "dashboard"
+  | "courses"
+  | "vocabulary"
+  | "grammar"
+  | "listening"
+  | "quiz"
+  | "progress";
+
 export type NavItem = {
   href: string;
-  label: string;
+  labelKey: NavLabelKey;
   icon: LucideIcon;
 };
 
 /**
  * Desktop sidebar (full list) and the mobile drawer — spec §4 "Main
- * Navigation" desktop sidebar list, in order.
+ * Navigation" desktop sidebar list, in order. Labels come from `nav.*`
+ * in the i18n catalogs.
  */
 export const mainNav: NavItem[] = [
-  { href: "/dashboard", label: "Dashboard", icon: LayoutDashboard },
-  { href: "/courses", label: "Courses", icon: BookOpen },
-  { href: "/vocabulary", label: "Vocabulary", icon: BookMarked },
-  { href: "/grammar", label: "Grammar", icon: SpellCheck },
-  { href: "/listening", label: "Listening", icon: Headphones },
-  { href: "/quiz", label: "Quiz", icon: ListChecks },
-  { href: "/progress", label: "Progress", icon: LineChart },
+  { href: "/dashboard", labelKey: "dashboard", icon: LayoutDashboard },
+  { href: "/courses", labelKey: "courses", icon: BookOpen },
+  { href: "/vocabulary", labelKey: "vocabulary", icon: BookMarked },
+  { href: "/grammar", labelKey: "grammar", icon: SpellCheck },
+  { href: "/listening", labelKey: "listening", icon: Headphones },
+  { href: "/quiz", labelKey: "quiz", icon: ListChecks },
+  { href: "/progress", labelKey: "progress", icon: LineChart },
 ];
 
 /**

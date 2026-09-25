@@ -1,6 +1,7 @@
 "use client";
 
 import { Bar, BarChart, CartesianGrid, XAxis, YAxis } from "recharts";
+import { useTranslations } from "next-intl";
 import { SectionCard } from "@/components/shared/SectionCard";
 import {
   ChartContainer,
@@ -9,27 +10,28 @@ import {
   type ChartConfig,
 } from "@/components/ui/chart";
 
-const chartConfig = {
-  minutes: { label: "Minutes", color: "var(--primary)" },
-} satisfies ChartConfig;
-
 type WeeklyActivityChartProps = {
   days: { date: string; label: string; minutes: number }[];
 };
 
 /** Last 7 days of study minutes (spec §21) with a data table for a11y. */
 export function WeeklyActivityChart({ days }: WeeklyActivityChartProps) {
-  const aria = days.map((d) => `${d.label} ${d.date}: ${d.minutes} minutes`).join(". ");
+  const t = useTranslations("progress");
+
+  const chartConfig = {
+    minutes: { label: t("minutes"), color: "var(--primary)" },
+  } satisfies ChartConfig;
+
+  const aria = days
+    .map((d) => t("weeklyAria", { label: d.label, date: d.date, minutes: d.minutes }))
+    .join(". ");
 
   return (
-    <SectionCard
-      title="Weekly Activity"
-      description="Study minutes over the last 7 days."
-    >
+    <SectionCard title={t("weeklyActivity")} description={t("weeklyActivityDescription")}>
       <ChartContainer
         config={chartConfig}
         className="aspect-[2/1] w-full"
-        aria-label={`Weekly activity. ${aria}`}
+        aria-label={`${t("weeklyActivity")}. ${aria}`}
       >
         <BarChart data={days} accessibilityLayer>
           <CartesianGrid vertical={false} />
@@ -41,11 +43,11 @@ export function WeeklyActivityChart({ days }: WeeklyActivityChartProps) {
       </ChartContainer>
 
       <table className="sr-only">
-        <caption>Weekly study minutes</caption>
+        <caption>{t("weeklyTable")}</caption>
         <thead>
           <tr>
-            <th>Date</th>
-            <th>Minutes</th>
+            <th>{t("date")}</th>
+            <th>{t("minutes")}</th>
           </tr>
         </thead>
         <tbody>

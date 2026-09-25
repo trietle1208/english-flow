@@ -1,4 +1,7 @@
+"use client";
+
 import Link from "next/link";
+import { useTranslations } from "next-intl";
 import { SpellCheck } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -11,8 +14,7 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
-import { CEFR_LEVEL_LABELS } from "@/config/cefr";
-import { GRAMMAR_CATEGORY_LABELS } from "../categories";
+import { GRAMMAR_CATEGORY_I18N_KEY } from "../categories";
 import type { GrammarTopicListItem } from "../types";
 import { GrammarProgressBadge } from "./GrammarProgressBadge";
 
@@ -24,21 +26,25 @@ type GrammarTopicCardProps = {
  * Catalog card: title VI lớn, title EN nhỏ, CEFR + progress (Prompt 3).
  */
 export function GrammarTopicCard({ topic }: GrammarTopicCardProps) {
+  const t = useTranslations("grammar");
+  const tCefr = useTranslations("cefr");
   const href = `/grammar/${topic.slug}`;
   const ctaLabel =
     topic.status === "not_started"
-      ? "Học ngay"
+      ? t("learnNow")
       : topic.status === "weak"
-        ? "Luyện lại"
-        : "Ôn tập";
+        ? t("practiceAgain")
+        : t("review");
   const progressValue = topic.bestScore ?? 0;
 
   return (
     <Card className="flex flex-col">
       <CardHeader className="space-y-3">
         <div className="flex flex-wrap items-center gap-2">
-          <Badge variant="secondary">{CEFR_LEVEL_LABELS[topic.level]}</Badge>
-          <Badge variant="outline">{GRAMMAR_CATEGORY_LABELS[topic.category]}</Badge>
+          <Badge variant="secondary">{tCefr(topic.level)}</Badge>
+          <Badge variant="outline">
+            {t(`categories.${GRAMMAR_CATEGORY_I18N_KEY[topic.category]}`)}
+          </Badge>
           <GrammarProgressBadge
             status={topic.status}
             bestScore={topic.bestScore}
@@ -59,15 +65,18 @@ export function GrammarTopicCard({ topic }: GrammarTopicCardProps) {
         {topic.status !== "not_started" ? (
           <div className="space-y-1.5">
             <div className="flex items-center justify-between text-xs text-muted-foreground">
-              <span>Tiến độ</span>
+              <span>{t("progress")}</span>
               <span>{progressValue}%</span>
             </div>
-            <Progress value={progressValue} aria-label={`Tiến độ ${progressValue}%`} />
+            <Progress
+              value={progressValue}
+              aria-label={t("progressAria", { percent: progressValue })}
+            />
           </div>
         ) : (
           <p className="inline-flex items-center gap-1.5 text-xs text-muted-foreground">
             <SpellCheck className="size-3.5" aria-hidden="true" />
-            Lý thuyết, ví dụ & bài tập
+            {t("theoryExamplesExercises")}
           </p>
         )}
       </CardContent>

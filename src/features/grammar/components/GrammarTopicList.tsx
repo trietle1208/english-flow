@@ -1,6 +1,7 @@
+import { getTranslations } from "next-intl/server";
 import { SpellCheck } from "lucide-react";
 import { EmptyState } from "@/components/shared/EmptyState";
-import { CEFR_LEVELS, CEFR_LEVEL_LABELS, type CefrLevel } from "@/config/cefr";
+import { CEFR_LEVELS, type CefrLevel } from "@/config/cefr";
 import { listGrammarTopics } from "../queries";
 import type { GrammarListFilters } from "../types";
 import { GrammarTopicCard } from "./GrammarTopicCard";
@@ -17,6 +18,8 @@ export async function GrammarTopicList({
   userId,
   filters = {},
 }: GrammarTopicListProps) {
+  const t = await getTranslations("grammar");
+  const tCefr = await getTranslations("cefr");
   const topics = await listGrammarTopics(userId, filters);
   const hasActiveFilters = Boolean(
     filters.search?.trim() ||
@@ -29,11 +32,9 @@ export async function GrammarTopicList({
     return (
       <EmptyState
         icon={SpellCheck}
-        title={hasActiveFilters ? "Không có chủ điểm khớp bộ lọc" : "Chưa có chủ điểm ngữ pháp"}
+        title={hasActiveFilters ? t("emptyFilters") : t("emptyAll")}
         description={
-          hasActiveFilters
-            ? "Thử xóa tìm kiếm, trình độ, nhóm hoặc trạng thái."
-            : "Chủ điểm ngữ pháp sẽ hiện sau khi seed nội dung."
+          hasActiveFilters ? t("emptyFiltersDescription") : t("emptyAllDescription")
         }
       />
     );
@@ -60,7 +61,7 @@ export async function GrammarTopicList({
               id={`grammar-level-${level}`}
               className="text-sm font-semibold tracking-tight text-muted-foreground"
             >
-              {CEFR_LEVEL_LABELS[level]}
+              {tCefr(level)}
             </h2>
             <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
               {group.map((topic) => (

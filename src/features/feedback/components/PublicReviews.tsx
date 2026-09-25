@@ -1,7 +1,10 @@
+"use client";
+
+import { useTranslations } from "next-intl";
 import { MessageCircle } from "lucide-react";
 import { EmptyState } from "@/components/shared/EmptyState";
 import { SectionCard } from "@/components/shared/SectionCard";
-import { FEEDBACK_CATEGORY_LABELS } from "@/features/feedback/constants";
+import { feedbackCategoryMessageKey } from "@/features/feedback/i18n-keys";
 import { formatFeedbackDate } from "@/features/feedback/format";
 import type { PublicReview } from "@/features/feedback/types";
 import { RatingStars } from "./RatingStars";
@@ -12,16 +15,15 @@ type PublicReviewsProps = {
 
 /** Shared reviews — names only, never emails. */
 export function PublicReviews({ items }: PublicReviewsProps) {
+  const t = useTranslations("feedback");
+
   return (
-    <SectionCard
-      title="Đánh giá từ học viên"
-      description="Những góp ý mà người học chọn chia sẻ công khai."
-    >
+    <SectionCard title={t("publicReviews")} description={t("publicReviewsDescription")}>
       {items.length === 0 ? (
         <EmptyState
           icon={MessageCircle}
-          title="Chưa có đánh giá công khai"
-          description="Đánh dấu “Chia sẻ công khai” khi gửi để học viên khác cũng thấy."
+          title={t("emptyPublic")}
+          description={t("emptyPublicDescription")}
           className="py-10"
         />
       ) : (
@@ -42,7 +44,7 @@ export function PublicReviews({ items }: PublicReviewsProps) {
                 {item.message}
               </p>
               <p className="mt-2 text-xs text-muted-foreground">
-                {FEEDBACK_CATEGORY_LABELS[item.category]} ·{" "}
+                {t(feedbackCategoryMessageKey(item.category))} ·{" "}
                 {formatFeedbackDate(item.createdAt)}
               </p>
             </li>

@@ -1,27 +1,36 @@
+"use client";
+
 import Link from "next/link";
+import { useTranslations } from "next-intl";
 import { cn } from "@/lib/utils";
-import {
-  QUIZ_CATALOG_KIND_LABELS,
-  QUIZ_CATALOG_KINDS,
-  type QuizCatalogKind,
-} from "../catalog";
+import { QUIZ_CATALOG_KINDS, type QuizCatalogKind } from "../catalog";
 
 type QuizCatalogFiltersProps = {
   activeKind: QuizCatalogKind | "all";
   counts: Record<QuizCatalogKind | "all", number>;
 };
 
+const KIND_LABEL_KEYS: Record<QuizCatalogKind, "kindVocabulary" | "kindToeic" | "kindGrammar" | "kindListening"> = {
+  vocabulary: "kindVocabulary",
+  toeic: "kindToeic",
+  grammar: "kindGrammar",
+  listening: "kindListening",
+};
+
 export function QuizCatalogFilters({ activeKind, counts }: QuizCatalogFiltersProps) {
+  const t = useTranslations("quiz");
+  const tCommon = useTranslations("common");
+
   const items: { kind: QuizCatalogKind | "all"; label: string }[] = [
-    { kind: "all", label: "All" },
+    { kind: "all", label: tCommon("all") },
     ...QUIZ_CATALOG_KINDS.map((kind) => ({
       kind,
-      label: QUIZ_CATALOG_KIND_LABELS[kind],
+      label: t(KIND_LABEL_KEYS[kind]),
     })),
   ];
 
   return (
-    <nav aria-label="Filter quizzes by skill" className="flex flex-wrap gap-2">
+    <nav aria-label={t("filterAria")} className="flex flex-wrap gap-2">
       {items.map((item) => {
         const count = counts[item.kind];
         if (item.kind !== "all" && count === 0) {

@@ -2,6 +2,7 @@
 
 import { useCallback, useEffect, useMemo, useRef, useState, useTransition } from "react";
 import { useRouter } from "next/navigation";
+import { useTranslations } from "next-intl";
 import { Loader2 } from "lucide-react";
 import { toast } from "sonner";
 import { Button } from "@/components/ui/button";
@@ -17,6 +18,7 @@ import type { AnswerVisualState } from "./QuestionMultipleChoice";
 import { QuestionFillBlank } from "./QuestionFillBlank";
 import { QuestionMultipleChoice } from "./QuestionMultipleChoice";
 import { QuestionTrueFalse } from "./QuestionTrueFalse";
+import { formatTimeSpent } from "@/lib/format";
 import { QuizProgressBar } from "./QuizProgressBar";
 
 type DraftAnswer =
@@ -91,29 +93,6 @@ export type QuizRunnerLabels = {
   drillCompleteBody: string;
 };
 
-const DEFAULT_LABELS: QuizRunnerLabels = {
-  checkAnswer: "Check answer",
-  next: "Next",
-  previous: "Previous",
-  finish: "Finish drill",
-  submit: "Submit quiz",
-  correct: "Correct",
-  incorrect: "Incorrect",
-  correctAnswer: "Correct answer: ",
-  selectAnswer: "Select or type an answer first.",
-  tip: "Tip: press 1–4 to choose an option, Enter to continue.",
-  checking: "Checking…",
-  submitting: "Submitting…",
-  practiceCompleteTitle: "Drill complete",
-  practiceTryAgain: "Try drills again",
-  noQuestions: "This quiz has no questions yet.",
-  relatedRuleHeading: "Related rule",
-  sampleExampleHeading: "Sample example",
-  answerEveryQuestion: "Please answer every question before submitting.",
-  drillCompleteBody:
-    "This warm-up does not change your Mastered score — take the mini quiz when you are ready.",
-};
-
 function storageKey(quizId: string, practiceMode: boolean) {
   return practiceMode
     ? `englishflow:quiz-practice-draft:${quizId}`
@@ -181,9 +160,37 @@ export function QuizRunner({
 }: QuizRunnerProps) {
   useStudyHeartbeat(enableHeartbeat && !practiceMode);
 
+  const t = useTranslations("quiz");
+  const tCommon = useTranslations("common");
+
+  const defaultLabels = useMemo<QuizRunnerLabels>(
+    () => ({
+      checkAnswer: t("checkAnswer"),
+      next: tCommon("next"),
+      previous: tCommon("previous"),
+      finish: t("finishDrill"),
+      submit: t("submitQuiz"),
+      correct: t("correct"),
+      incorrect: t("incorrect"),
+      correctAnswer: t("correctAnswer"),
+      selectAnswer: t("selectAnswer"),
+      tip: t("tip"),
+      checking: t("checking"),
+      submitting: t("submitting"),
+      practiceCompleteTitle: t("drillComplete"),
+      practiceTryAgain: t("tryDrillsAgain"),
+      noQuestions: t("noQuestions"),
+      relatedRuleHeading: t("relatedRule"),
+      sampleExampleHeading: t("sampleExample"),
+      answerEveryQuestion: t("answerEvery"),
+      drillCompleteBody: t("drillCompleteBody"),
+    }),
+    [t, tCommon],
+  );
+
   const labels = useMemo(
-    () => ({ ...DEFAULT_LABELS, ...labelsProp }),
-    [labelsProp],
+    () => ({ ...defaultLabels, ...labelsProp }),
+    [defaultLabels, labelsProp],
   );
   const router = useRouter();
   const [pending, startTransition] = useTransition();
@@ -459,7 +466,7 @@ export function QuizRunner({
       return true;
     } catch {
       // Keep the draft answer so the learner can retry after a network blip.
-      toast.error("Network error. Your answer is saved — please try again.");
+      toast.error(t("networkError"));
       return false;
     } finally {
       setGrading(false);
@@ -473,6 +480,7 @@ export function QuizRunner({
     practiceMode,
     question,
     quiz.id,
+    t,
   ]);
 
   const goNext = useCallback(async () => {
@@ -570,11 +578,6 @@ export function QuizRunner({
   }
 
   if (practiceMode && practiceDone) {
-    const minutes = Math.floor(practiceSummary.elapsedSeconds / 60);
-    const seconds = practiceSummary.elapsedSeconds % 60;
-    const timeLabel =
-      minutes > 0 ? `${minutes} phút ${seconds} giây` : `${seconds} giây`;
-
     return (
       <div className={cn("space-y-4", className)}>
         <div
@@ -583,8 +586,11 @@ export function QuizRunner({
         >
           <p className="font-medium">{labels.practiceCompleteTitle}</p>
           <p className="mt-1 text-muted-foreground">
-            Bạn đúng {practiceSummary.correct}/{practiceSummary.total} câu · Thời gian:{" "}
-            {timeLabel}.
+            {t("questionsCorrect", {
+              correct: practiceSummary.correct,
+              total: practiceSummary.total,
+            })}{" "}
+            · {t("timeSpent")}: {formatTimeSpent(practiceSummary.elapsedSeconds)}
           </p>
           <p className="mt-1 text-muted-foreground">{labels.drillCompleteBody}</p>
         </div>

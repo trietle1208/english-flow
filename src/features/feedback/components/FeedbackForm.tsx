@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import { useTranslations } from "next-intl";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Loader2 } from "lucide-react";
@@ -28,10 +29,8 @@ import {
 } from "@/components/ui/select";
 import { Textarea } from "@/components/ui/textarea";
 import { submitFeedback } from "@/features/feedback/actions";
-import {
-  FEEDBACK_CATEGORIES,
-  FEEDBACK_CATEGORY_LABELS,
-} from "@/features/feedback/constants";
+import { FEEDBACK_CATEGORIES } from "@/features/feedback/constants";
+import { feedbackCategoryMessageKey } from "@/features/feedback/i18n-keys";
 import {
   submitFeedbackSchema,
   type SubmitFeedbackInput,
@@ -50,6 +49,7 @@ const DEFAULT_VALUES: SubmitFeedbackInput = {
  * Submit a review or suggestion. Client Zod matches the Server Action.
  */
 export function FeedbackForm() {
+  const t = useTranslations("feedback");
   const router = useRouter();
   const [formError, setFormError] = useState<string | null>(null);
 
@@ -68,16 +68,13 @@ export function FeedbackForm() {
       return;
     }
 
-    toast.success("Cảm ơn bạn — góp ý đã được gửi.");
+    toast.success(t("toastSent"));
     form.reset(DEFAULT_VALUES);
     router.refresh();
   }
 
   return (
-    <SectionCard
-      title="Gửi góp ý"
-      description="Bug, ý tưởng, lỗi nội dung, hoặc một đánh giá ngắn về EnglishFlow."
-    >
+    <SectionCard title={t("sendTitle")} description={t("sendDescription")}>
       <Form {...form}>
         <form
           onSubmit={form.handleSubmit(onSubmit)}
@@ -98,7 +95,7 @@ export function FeedbackForm() {
             name="category"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Loại</FormLabel>
+                <FormLabel>{t("type")}</FormLabel>
                 <Select value={field.value} onValueChange={field.onChange}>
                   <FormControl>
                     <SelectTrigger className="min-h-11 w-full">
@@ -108,7 +105,7 @@ export function FeedbackForm() {
                   <SelectContent>
                     {FEEDBACK_CATEGORIES.map((category) => (
                       <SelectItem key={category} value={category}>
-                        {FEEDBACK_CATEGORY_LABELS[category]}
+                        {t(feedbackCategoryMessageKey(category))}
                       </SelectItem>
                     ))}
                   </SelectContent>
@@ -123,13 +120,11 @@ export function FeedbackForm() {
             name="rating"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Đánh giá</FormLabel>
+                <FormLabel>{t("rating")}</FormLabel>
                 <FormControl>
                   <RatingStars value={field.value} onChange={field.onChange} />
                 </FormControl>
-                <FormDescription>
-                  Bắt buộc nếu bạn chọn Đánh giá. Tùy chọn cho các loại khác.
-                </FormDescription>
+                <FormDescription>{t("ratingHint")}</FormDescription>
                 <FormMessage />
               </FormItem>
             )}
@@ -140,12 +135,12 @@ export function FeedbackForm() {
             name="title"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Tiêu đề</FormLabel>
+                <FormLabel>{t("subject")}</FormLabel>
                 <FormControl>
                   <Input
                     className="min-h-11"
                     maxLength={120}
-                    placeholder="Ví dụ: Quiz fill-blank khó đọc trên điện thoại"
+                    placeholder={t("subjectPlaceholder")}
                     {...field}
                   />
                 </FormControl>
@@ -159,12 +154,12 @@ export function FeedbackForm() {
             name="message"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Nội dung</FormLabel>
+                <FormLabel>{t("body")}</FormLabel>
                 <FormControl>
                   <Textarea
                     className="min-h-32"
                     maxLength={2000}
-                    placeholder="Mô tả những gì bạn thấy, những gì bạn mong đợi, hoặc ý tưởng cải thiện."
+                    placeholder={t("bodyPlaceholder")}
                     {...field}
                   />
                 </FormControl>
@@ -187,12 +182,9 @@ export function FeedbackForm() {
                 </FormControl>
                 <div className="space-y-1">
                   <FormLabel className="font-medium leading-snug">
-                    Chia sẻ công khai
+                    {t("sharePublic")}
                   </FormLabel>
-                  <FormDescription>
-                    Học viên khác sẽ thấy tiêu đề, nội dung và tên của bạn — không
-                    phải email.
-                  </FormDescription>
+                  <FormDescription>{t("sharePublicHint")}</FormDescription>
                 </div>
               </FormItem>
             )}
@@ -207,7 +199,7 @@ export function FeedbackForm() {
               {form.formState.isSubmitting && (
                 <Loader2 className="animate-spin" aria-hidden="true" />
               )}
-              Gửi góp ý
+              {t("submit")}
             </Button>
           </div>
         </form>

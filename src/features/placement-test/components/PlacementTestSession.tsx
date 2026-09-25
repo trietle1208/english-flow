@@ -2,8 +2,9 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import { useTranslations } from "next-intl";
 import { Button } from "@/components/ui/button";
-import { CEFR_LEVEL_LABELS, type CefrLevel } from "@/config/cefr";
+import type { CefrLevel } from "@/config/cefr";
 import type { PlacementSubmitResult, PlacementTestForAttempt } from "../types";
 import { PlacementResult } from "./PlacementResult";
 import { PlacementTestRunner } from "./PlacementTestRunner";
@@ -22,6 +23,8 @@ export function PlacementTestSession({
   test,
   previousLevel,
 }: PlacementTestSessionProps) {
+  const t = useTranslations("placement");
+  const tCefr = useTranslations("cefr");
   const [phase, setPhase] = useState<"intro" | "running" | "done">("intro");
   const [result, setResult] = useState<PlacementSubmitResult | null>(null);
 
@@ -54,20 +57,24 @@ export function PlacementTestSession({
     );
   }
 
+  const previousLevelLabel = previousLevel ? tCefr(previousLevel) : null;
+
   return (
     <div className="mx-auto flex w-full max-w-lg flex-col gap-6">
       <div className="space-y-2 text-center sm:text-left">
-        <h1 className="text-2xl font-semibold tracking-tight">Find your level</h1>
+        <h1 className="text-2xl font-semibold tracking-tight">{t("findLevel")}</h1>
         <p className="text-sm text-muted-foreground">
-          {test.description} About {test.questionCount} questions — take your time.
-          You can skip and set a level later in Settings.
+          {t("intro", {
+            description: test.description,
+            count: test.questionCount,
+          })}
         </p>
-        {previousLevel ? (
+        {previousLevel && previousLevelLabel ? (
           <p className="text-sm">
-            Current level on your profile:{" "}
-            <span className="font-medium">
-              {previousLevel} ({CEFR_LEVEL_LABELS[previousLevel]})
-            </span>
+            {t("currentLevel", {
+              level: previousLevel,
+              label: previousLevelLabel,
+            })}
           </p>
         ) : null}
       </div>
@@ -78,10 +85,10 @@ export function PlacementTestSession({
           className="min-h-11"
           onClick={() => setPhase("running")}
         >
-          {previousLevel ? "Retake placement test" : "Start placement test"}
+          {previousLevel ? t("retake") : t("start")}
         </Button>
         <Button asChild variant="outline" className="min-h-11">
-          <Link href="/dashboard">Skip for now</Link>
+          <Link href="/dashboard">{t("skip")}</Link>
         </Button>
       </div>
     </div>

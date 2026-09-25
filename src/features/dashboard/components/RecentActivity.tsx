@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { BookMarked, CheckCircle2, ClipboardList } from "lucide-react";
+import { getLocale, getTranslations } from "next-intl/server";
 import { SectionCard } from "@/components/shared/SectionCard";
 import { EmptyState } from "@/components/shared/EmptyState";
 import { cn } from "@/lib/utils";
@@ -9,12 +10,12 @@ type RecentActivityProps = {
   items: RecentActivityItem[];
 };
 
-function relativeTime(iso: string): string {
+function relativeTime(iso: string, locale: string): string {
   const then = new Date(iso).getTime();
   const now = Date.now();
   const diffSec = Math.round((then - now) / 1000);
   const abs = Math.abs(diffSec);
-  const rtf = new Intl.RelativeTimeFormat("en", { numeric: "auto" });
+  const rtf = new Intl.RelativeTimeFormat(locale, { numeric: "auto" });
 
   if (abs < 60) return rtf.format(diffSec, "second");
   const diffMin = Math.round(diffSec / 60);
@@ -41,19 +42,22 @@ const KIND_META = {
 } as const;
 
 /** Merged feed: completed lessons, quiz results, saved words (spec §9). */
-export function RecentActivity({ items }: RecentActivityProps) {
+export async function RecentActivity({ items }: RecentActivityProps) {
+  const t = await getTranslations("dashboard");
+  const locale = await getLocale();
+
   return (
     <SectionCard
-      title="Recent Activity"
-      description="Your latest learning actions."
+      title={t("recentActivity")}
+      description={t("recentActivityDescription")}
       className="h-full"
       contentClassName="pt-2"
     >
       {items.length === 0 ? (
         <EmptyState
           icon={ClipboardList}
-          title="No activity yet"
-          description="Complete a lesson, save a word, or take a quiz to see it here."
+          title={t("noActivityYet")}
+          description={t("noActivityDescription")}
           className="py-10"
         />
       ) : (
@@ -63,10 +67,10 @@ export function RecentActivity({ items }: RecentActivityProps) {
             const Icon = meta.Icon;
             const label =
               item.kind === "lesson"
-                ? `Completed lesson: ${item.title}`
+                ? t("completedLesson", { title: item.title })
                 : item.kind === "quiz"
-                  ? `Quiz “${item.title}” — ${item.score}%`
-                  : `Saved word: ${item.title}`;
+                  ? t("quizScore", { title: item.title, score: item.score })
+                  : t("savedWord", { title: item.title });
 
             return (
               <li key={`${item.kind}-${item.id}`}>
@@ -84,7 +88,7 @@ export function RecentActivity({ items }: RecentActivityProps) {
                   </span>
                   <div className="min-w-0 flex-1">
                     <p className="truncate text-sm font-medium">{label}</p>
-                    <p className="text-xs text-muted-foreground">{relativeTime(item.at)}</p>
+                    <p className="text-xs text-muted-foreground">{relativeTime(item.at, locale)}</p>
                   </div>
                 </Link>
               </li>

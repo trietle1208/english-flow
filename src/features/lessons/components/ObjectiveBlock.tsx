@@ -1,10 +1,13 @@
+import { getTranslations } from "next-intl/server";
 import { Target } from "lucide-react";
 
 type ObjectiveBlockProps = {
   text: string;
 };
 
-export function ObjectiveBlock({ text }: ObjectiveBlockProps) {
+export async function ObjectiveBlock({ text }: ObjectiveBlockProps) {
+  const t = await getTranslations("lessons");
+
   return (
     <section
       aria-labelledby="lesson-objective-heading"
@@ -16,7 +19,7 @@ export function ObjectiveBlock({ text }: ObjectiveBlockProps) {
         </span>
         <div className="space-y-1">
           <h2 id="lesson-objective-heading" className="text-sm font-semibold tracking-tight">
-            Learning objective
+            {t("objective")}
           </h2>
           <p className="text-sm leading-relaxed sm:text-base">{text}</p>
         </div>

@@ -2,6 +2,7 @@ import { Suspense } from "react";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
+import { getTranslations } from "next-intl/server";
 import { PageHeader } from "@/components/shared/PageHeader";
 import { Button } from "@/components/ui/button";
 import { requireUser } from "@/lib/session";
@@ -11,9 +12,10 @@ import { ToeicVocabularyCatalog } from "@/features/vocabulary/components/ToeicVo
 import { ToeicVocabularySearch } from "@/features/vocabulary/components/ToeicVocabularySearch";
 import type { ToeicTopicFilter } from "@/features/vocabulary/types";
 
-export const metadata: Metadata = {
-  title: "Từ vựng TOEIC",
-};
+export async function generateMetadata(): Promise<Metadata> {
+  const t = await getTranslations("vocabulary");
+  return { title: t("toeicTitle") };
+}
 
 type ToeicVocabularyPageProps = {
   searchParams: Promise<{
@@ -29,6 +31,7 @@ type ToeicVocabularyPageProps = {
  */
 export default async function ToeicVocabularyPage({ searchParams }: ToeicVocabularyPageProps) {
   const user = await requireUser();
+  const t = await getTranslations("vocabulary");
   const params = await searchParams;
 
   const suspenseKey = `${params.search ?? ""}|${params.topic ?? "all"}|${params.page ?? "1"}`;
@@ -38,15 +41,15 @@ export default async function ToeicVocabularyPage({ searchParams }: ToeicVocabul
   return (
     <div className="flex w-full flex-col gap-8 px-4 py-8 sm:px-6 lg:px-8">
       <PageHeader
-        title="Từ vựng TOEIC"
-        description="Curated business English lemmas for TOEIC study — browse by topic and save into My Vocabulary."
+        title={t("toeicTitle")}
+        description={t("toeicDescription")}
         actions={
           <div className="flex flex-wrap items-center gap-2">
             <ToeicPracticeLauncher initialTopic={initialPlayTopic} />
             <Button asChild variant="outline">
               <Link href="/vocabulary">
                 <ArrowLeft className="size-4" aria-hidden="true" />
-                My Vocabulary
+                {t("title")}
               </Link>
             </Button>
           </div>

@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
+import { getTranslations } from "next-intl/server";
 import { PageHeader } from "@/components/shared/PageHeader";
 import { GrammarPracticeRunner } from "@/features/grammar/components/GrammarPracticeRunner";
 import {
@@ -16,8 +17,13 @@ export async function generateMetadata({
   params,
 }: GrammarPracticePageProps): Promise<Metadata> {
   const { slug } = await params;
-  const title = await getGrammarTopicTitle(slug);
-  return { title: title ? `Luyện tập — ${title}` : "Luyện tập ngữ pháp" };
+  const [title, t] = await Promise.all([
+    getGrammarTopicTitle(slug),
+    getTranslations("grammar"),
+  ]);
+  return {
+    title: title ? t("practiceMeta", { title }) : t("practiceFallback"),
+  };
 }
 
 /**
@@ -25,6 +31,7 @@ export async function generateMetadata({
  */
 export default async function GrammarPracticePage({ params }: GrammarPracticePageProps) {
   const user = await requireUser();
+  const t = await getTranslations("grammar");
   const { slug } = await params;
   const topic = await getGrammarTopicDetailByParam(slug, user.id);
 
@@ -35,7 +42,7 @@ export default async function GrammarPracticePage({ params }: GrammarPracticePag
   return (
     <div className="flex w-full flex-col gap-6 px-4 py-8 sm:px-6 lg:px-8">
       <PageHeader
-        title={`Luyện tập: ${topic.titleVi}`}
+        title={t("practiceTitle", { title: topic.titleVi })}
         description={topic.titleEn}
       />
       <GrammarPracticeRunner

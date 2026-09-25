@@ -1,7 +1,8 @@
 "use client";
 
-import { useEffect, useState, useTransition } from "react";
+import { useEffect, useMemo, useState, useTransition } from "react";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import { useTranslations } from "next-intl";
 import { Search, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -13,9 +14,9 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { CEFR_LEVELS, CEFR_LEVEL_LABELS } from "@/config/cefr";
+import { CEFR_LEVELS } from "@/config/cefr";
 import {
-  GRAMMAR_CATEGORY_LABELS,
+  GRAMMAR_CATEGORY_I18N_KEY,
   GRAMMAR_TOPIC_CATEGORIES,
 } from "../categories";
 import type { GrammarStatusFilter } from "../types";
@@ -23,22 +24,28 @@ import type { GrammarStatusFilter } from "../types";
 const SEARCH_DEBOUNCE_MS = 300;
 const ALL_VALUE = "__all__";
 
-const STATUS_OPTIONS: { value: GrammarStatusFilter; label: string }[] = [
-  { value: "all", label: "Mọi trạng thái" },
-  { value: "not_started", label: "Chưa học" },
-  { value: "weak", label: "Yếu" },
-  { value: "practiced", label: "Đã luyện" },
-  { value: "mastered", label: "Thành thạo" },
-];
-
 /**
  * Search + CEFR + category + status → URL searchParams (list stays RSC).
  */
 export function GrammarFilters() {
+  const t = useTranslations("grammar");
+  const tCefr = useTranslations("cefr");
+  const tCommon = useTranslations("common");
   const router = useRouter();
   const pathname = usePathname();
   const searchParams = useSearchParams();
   const [isPending, startTransition] = useTransition();
+
+  const statusOptions = useMemo(
+    (): { value: GrammarStatusFilter; label: string }[] => [
+      { value: "all", label: t("allStatuses") },
+      { value: "not_started", label: t("statusNew") },
+      { value: "weak", label: t("statusWeak") },
+      { value: "practiced", label: t("statusPracticed") },
+      { value: "mastered", label: t("statusMastered") },
+    ],
+    [t],
+  );
 
   const urlSearch = searchParams.get("search") ?? "";
   const urlLevel = searchParams.get("level") ?? "";
@@ -91,7 +98,7 @@ export function GrammarFilters() {
     });
   }
 
-  const activeStatus = STATUS_OPTIONS.some((opt) => opt.value === urlStatus)
+  const activeStatus = statusOptions.some((opt) => opt.value === urlStatus)
     ? urlStatus
     : "all";
   const hasFilters = Boolean(
@@ -108,7 +115,7 @@ export function GrammarFilters() {
     >
       <div className="relative min-w-0 flex-1 sm:max-w-sm">
         <Label htmlFor="grammar-search" className="sr-only">
-          Tìm chủ điểm ngữ pháp
+          {t("search")}
         </Label>
         <Search
           className="pointer-events-none absolute left-3 top-1/2 size-4 -translate-y-1/2 text-muted-foreground"
@@ -117,7 +124,7 @@ export function GrammarFilters() {
         <Input
           id="grammar-search"
           type="search"
-          placeholder="Tìm chủ điểm..."
+          placeholder={t("searchPlaceholder")}
           value={search}
           onChange={(event) => setSearch(event.target.value)}
           className="min-h-11 pl-9"
@@ -127,7 +134,7 @@ export function GrammarFilters() {
 
       <div className="flex flex-col gap-1.5">
         <Label htmlFor="grammar-level" className="sr-only">
-          Lọc theo trình độ CEFR
+          {t("filterLevel")}
         </Label>
         <Select
           value={urlLevel || ALL_VALUE}
@@ -138,13 +145,13 @@ export function GrammarFilters() {
           }
         >
           <SelectTrigger id="grammar-level" className="min-h-11 w-full sm:w-[160px]">
-            <SelectValue placeholder="Mọi trình độ" />
+            <SelectValue placeholder={t("allLevels")} />
           </SelectTrigger>
           <SelectContent>
-            <SelectItem value={ALL_VALUE}>Mọi trình độ</SelectItem>
+            <SelectItem value={ALL_VALUE}>{t("allLevels")}</SelectItem>
             {CEFR_LEVELS.map((level) => (
               <SelectItem key={level} value={level}>
-                {CEFR_LEVEL_LABELS[level]}
+                {tCefr(level)}
               </SelectItem>
             ))}
           </SelectContent>
@@ -153,7 +160,7 @@ export function GrammarFilters() {
 
       <div className="flex flex-col gap-1.5">
         <Label htmlFor="grammar-category" className="sr-only">
-          Lọc theo nhóm
+          {t("filterGroup")}
         </Label>
         <Select
           value={urlCategory || ALL_VALUE}
@@ -164,13 +171,13 @@ export function GrammarFilters() {
           }
         >
           <SelectTrigger id="grammar-category" className="min-h-11 w-full sm:w-[180px]">
-            <SelectValue placeholder="Mọi nhóm" />
+            <SelectValue placeholder={t("allGroups")} />
           </SelectTrigger>
           <SelectContent>
-            <SelectItem value={ALL_VALUE}>Mọi nhóm</SelectItem>
+            <SelectItem value={ALL_VALUE}>{t("allGroups")}</SelectItem>
             {GRAMMAR_TOPIC_CATEGORIES.map((category) => (
               <SelectItem key={category} value={category}>
-                {GRAMMAR_CATEGORY_LABELS[category]}
+                {t(`categories.${GRAMMAR_CATEGORY_I18N_KEY[category]}`)}
               </SelectItem>
             ))}
           </SelectContent>
@@ -179,7 +186,7 @@ export function GrammarFilters() {
 
       <div className="flex flex-col gap-1.5">
         <Label htmlFor="grammar-status" className="sr-only">
-          Lọc theo tiến độ
+          {t("filterProgress")}
         </Label>
         <Select
           value={activeStatus}
@@ -190,10 +197,10 @@ export function GrammarFilters() {
           }
         >
           <SelectTrigger id="grammar-status" className="min-h-11 w-full sm:w-[160px]">
-            <SelectValue placeholder="Mọi trạng thái" />
+            <SelectValue placeholder={t("allStatuses")} />
           </SelectTrigger>
           <SelectContent>
-            {STATUS_OPTIONS.map((option) => (
+            {statusOptions.map((option) => (
               <SelectItem key={option.value} value={option.value}>
                 {option.label}
               </SelectItem>
@@ -216,7 +223,7 @@ export function GrammarFilters() {
           }}
         >
           <X className="size-4" aria-hidden="true" />
-          Xóa bộ lọc
+          {tCommon("clearFilters")}
         </Button>
       ) : null}
     </div>

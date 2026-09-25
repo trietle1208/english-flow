@@ -26,11 +26,10 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { CEFR_LEVEL_LABELS, CEFR_LEVELS } from "@/config/cefr";
+import { CEFR_LEVELS } from "@/config/cefr";
 import { updateSettings } from "@/features/settings/actions";
 import {
   DAILY_GOAL_OPTIONS,
-  PREFERRED_LEARNING_TIME_LABELS,
   PREFERRED_LEARNING_TIMES,
 } from "@/features/settings/constants";
 import {
@@ -38,6 +37,7 @@ import {
   type UpdateSettingsInput,
 } from "@/features/settings/schemas";
 import type { SettingsUser } from "@/features/settings/types";
+import { useTranslations } from "next-intl";
 
 const NONE_VALUE = "__none__";
 
@@ -52,6 +52,9 @@ type SettingsFormProps = {
 export function SettingsForm({ user }: SettingsFormProps) {
   const router = useRouter();
   const [formError, setFormError] = useState<string | null>(null);
+  const t = useTranslations("settings");
+  const tCommon = useTranslations("common");
+  const tCefr = useTranslations("cefr");
 
   const form = useForm<UpdateSettingsInput>({
     resolver: zodResolver(updateSettingsSchema),
@@ -73,7 +76,7 @@ export function SettingsForm({ user }: SettingsFormProps) {
       return;
     }
 
-    toast.success("Settings saved.");
+    toast.success(t("saved"));
     router.refresh();
   }
 
@@ -94,8 +97,8 @@ export function SettingsForm({ user }: SettingsFormProps) {
         )}
 
         <SectionCard
-          title="Profile"
-          description="How your name appears across EnglishFlow."
+          title={t("profile")}
+          description={t("profileDescription")}
         >
           <div className="grid gap-4 sm:grid-cols-2">
             <FormField
@@ -103,7 +106,7 @@ export function SettingsForm({ user }: SettingsFormProps) {
               name="name"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Name</FormLabel>
+                  <FormLabel>{t("name")}</FormLabel>
                   <FormControl>
                     <Input
                       autoComplete="name"
@@ -117,7 +120,7 @@ export function SettingsForm({ user }: SettingsFormProps) {
             />
 
             <div className="space-y-2">
-              <FormLabel htmlFor="settings-email">Email</FormLabel>
+              <FormLabel htmlFor="settings-email">{t("email")}</FormLabel>
               <Input
                 id="settings-email"
                 type="email"
@@ -131,16 +134,15 @@ export function SettingsForm({ user }: SettingsFormProps) {
                 id="settings-email-hint"
                 className="text-xs text-muted-foreground"
               >
-                Email changes are not available in Phase 1. Contact support if
-                you need to update it.
+                {t("emailHint")}
               </p>
             </div>
           </div>
         </SectionCard>
 
         <SectionCard
-          title="Learning"
-          description="Level, daily goal, and when you usually study."
+          title={t("learning")}
+          description={t("learningDescription")}
         >
           <div className="grid gap-4 sm:grid-cols-2">
             <FormField
@@ -148,7 +150,7 @@ export function SettingsForm({ user }: SettingsFormProps) {
               name="cefrLevel"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Current level</FormLabel>
+                  <FormLabel>{t("currentLevel")}</FormLabel>
                   <Select
                     value={field.value ?? NONE_VALUE}
                     onValueChange={(value) =>
@@ -157,14 +159,14 @@ export function SettingsForm({ user }: SettingsFormProps) {
                   >
                     <FormControl>
                       <SelectTrigger className="min-h-11 w-full">
-                        <SelectValue placeholder="Not set" />
+                        <SelectValue placeholder={tCommon("notSet")} />
                       </SelectTrigger>
                     </FormControl>
                     <SelectContent>
-                      <SelectItem value={NONE_VALUE}>Not set</SelectItem>
+                      <SelectItem value={NONE_VALUE}>{tCommon("notSet")}</SelectItem>
                       {CEFR_LEVELS.map((level) => (
                         <SelectItem key={level} value={level}>
-                          {CEFR_LEVEL_LABELS[level]}
+                          {tCefr(level)}
                         </SelectItem>
                       ))}
                     </SelectContent>
@@ -175,10 +177,10 @@ export function SettingsForm({ user }: SettingsFormProps) {
                       className="font-medium text-foreground underline-offset-4 hover:underline"
                     >
                       {user.cefrLevel
-                        ? "Retake placement test"
-                        : "Take placement test"}
+                        ? t("retakePlacement")
+                        : t("takePlacement")}
                     </Link>{" "}
-                    to estimate your level automatically.
+                    {t("placementHint")}
                   </FormDescription>
                   <FormMessage />
                 </FormItem>
@@ -190,7 +192,7 @@ export function SettingsForm({ user }: SettingsFormProps) {
               name="dailyGoalMinutes"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Daily learning goal</FormLabel>
+                  <FormLabel>{t("dailyGoal")}</FormLabel>
                   <Select
                     value={String(field.value)}
                     onValueChange={(value) =>
@@ -205,13 +207,13 @@ export function SettingsForm({ user }: SettingsFormProps) {
                     <SelectContent>
                       {DAILY_GOAL_OPTIONS.map((minutes) => (
                         <SelectItem key={minutes} value={String(minutes)}>
-                          {minutes} minutes
+                          {tCommon("minutes", { count: minutes })}
                         </SelectItem>
                       ))}
                     </SelectContent>
                   </Select>
                   <FormDescription>
-                    Shown on your dashboard as today&apos;s target.
+                    {t("dailyGoalHint")}
                   </FormDescription>
                   <FormMessage />
                 </FormItem>
@@ -223,7 +225,7 @@ export function SettingsForm({ user }: SettingsFormProps) {
               name="preferredLearningTime"
               render={({ field }) => (
                 <FormItem className="sm:col-span-2">
-                  <FormLabel>Preferred learning time</FormLabel>
+                  <FormLabel>{t("preferredTime")}</FormLabel>
                   <Select
                     value={field.value ?? NONE_VALUE}
                     onValueChange={(value) =>
@@ -232,14 +234,14 @@ export function SettingsForm({ user }: SettingsFormProps) {
                   >
                     <FormControl>
                       <SelectTrigger className="min-h-11 w-full sm:max-w-sm">
-                        <SelectValue placeholder="Not set" />
+                        <SelectValue placeholder={tCommon("notSet")} />
                       </SelectTrigger>
                     </FormControl>
                     <SelectContent>
-                      <SelectItem value={NONE_VALUE}>Not set</SelectItem>
+                      <SelectItem value={NONE_VALUE}>{tCommon("notSet")}</SelectItem>
                       {PREFERRED_LEARNING_TIMES.map((slot) => (
                         <SelectItem key={slot} value={slot}>
-                          {PREFERRED_LEARNING_TIME_LABELS[slot]}
+                          {t(slot)}
                         </SelectItem>
                       ))}
                     </SelectContent>
@@ -260,7 +262,7 @@ export function SettingsForm({ user }: SettingsFormProps) {
             {form.formState.isSubmitting && (
               <Loader2 className="animate-spin" aria-hidden="true" />
             )}
-            Save changes
+            {tCommon("saveChanges")}
           </Button>
         </div>
       </form>

@@ -1,19 +1,20 @@
 import Link from "next/link";
 import { GraduationCap, Github } from "lucide-react";
+import { getTranslations } from "next-intl/server";
 import { siteConfig } from "@/config/site";
 
 /** spec §6 "Footer gọn": logo, year, GitHub/README links — nothing else. */
-export function Footer() {
+export async function Footer() {
   const year = new Date().getFullYear();
+  const t = await getTranslations("marketing");
+  const tCommon = await getTranslations("common");
 
   return (
     <footer className="border-t">
       <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-4 px-4 py-8 text-sm text-muted-foreground sm:flex-row sm:px-6 lg:px-8">
         <div className="flex items-center gap-2">
           <GraduationCap className="size-5 text-primary" aria-hidden="true" />
-          <span>
-            {siteConfig.name} © {year}
-          </span>
+          <span>{t("copyright", { name: siteConfig.name, year })}</span>
         </div>
 
         <div className="flex items-center gap-4">
@@ -21,7 +22,7 @@ export function Footer() {
             href="/feedback"
             className="outline-none transition-colors hover:text-foreground focus-visible:text-foreground"
           >
-            Góp Ý
+            {tCommon("feedback")}
           </Link>
           <a
             href={siteConfig.githubUrl}

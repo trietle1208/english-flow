@@ -1,6 +1,7 @@
 import { Suspense } from "react";
 import type { Metadata } from "next";
 import dynamic from "next/dynamic";
+import { getTranslations } from "next-intl/server";
 import { PageHeader } from "@/components/shared/PageHeader";
 import { Skeleton } from "@/components/ui/skeleton";
 import { AchievementList } from "@/features/progress/components/AchievementList";
@@ -35,9 +36,10 @@ const WeeklyActivityChart = dynamic(
   { loading: () => <ChartSkeleton /> },
 );
 
-export const metadata: Metadata = {
-  title: "Progress",
-};
+export async function generateMetadata(): Promise<Metadata> {
+  const t = await getTranslations("progress");
+  return { title: t("title") };
+}
 
 /**
  * Learning analytics: overall stats, skill/weekly charts, streak, achievements
@@ -46,13 +48,11 @@ export const metadata: Metadata = {
 export default async function ProgressPage() {
   const user = await requireUser();
   const timezone = user.timezone || "Asia/Ho_Chi_Minh";
+  const t = await getTranslations("progress");
 
   return (
     <div className="flex w-full flex-col gap-8 px-4 py-8 sm:px-6 lg:px-8">
-      <PageHeader
-        title="Progress"
-        description="Your streak, skill performance and activity over time."
-      />
+      <PageHeader title={t("title")} description={t("description")} />
 
       <Suspense fallback={<StatsSkeleton />}>
         <OverallSection userId={user.id} />

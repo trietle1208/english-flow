@@ -20,10 +20,12 @@ import {
 } from "@/components/ui/form";
 import { loginAction } from "@/features/auth/actions";
 import { loginSchema, type LoginInput } from "@/features/auth/schemas";
+import { useTranslations } from "next-intl";
 
 export function LoginForm() {
   const router = useRouter();
   const [formError, setFormError] = useState<string | null>(null);
+  const t = useTranslations("auth");
 
   const form = useForm<LoginInput>({
     resolver: zodResolver(loginSchema),
@@ -39,7 +41,7 @@ export function LoginForm() {
       return;
     }
 
-    toast.success("Welcome back!");
+    toast.success(t("welcomeBack"));
     router.push("/dashboard");
   }
 
@@ -60,11 +62,11 @@ export function LoginForm() {
           name="email"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Email</FormLabel>
+              <FormLabel>{t("email")}</FormLabel>
               <FormControl>
                 <Input
                   type="email"
-                  placeholder="jane@example.com"
+                  placeholder={t("emailPlaceholder")}
                   autoComplete="email"
                   {...field}
                 />
@@ -80,9 +82,9 @@ export function LoginForm() {
           render={({ field }) => (
             <FormItem>
               <div className="flex items-center justify-between">
-                <FormLabel>Password</FormLabel>
+                <FormLabel>{t("password")}</FormLabel>
                 <Link href="/forgot-password" className="text-sm text-muted-foreground underline-offset-4 hover:underline">
-                  Forgot password?
+                  {t("forgotPassword")}
                 </Link>
               </div>
               <FormControl>
@@ -101,20 +103,20 @@ export function LoginForm() {
               <FormControl>
                 <Checkbox checked={field.value} onCheckedChange={field.onChange} />
               </FormControl>
-              <FormLabel className="font-normal">Remember me</FormLabel>
+              <FormLabel className="font-normal">{t("rememberMe")}</FormLabel>
             </FormItem>
           )}
         />
 
         <Button type="submit" className="w-full" disabled={form.formState.isSubmitting}>
           {form.formState.isSubmitting && <Loader2 className="animate-spin" />}
-          Sign In
+          {t("signIn")}
         </Button>
 
         <p className="text-center text-sm text-muted-foreground">
-          Don&apos;t have an account?{" "}
+          {t("noAccount")}{" "}
           <Link href="/register" className="font-medium text-foreground underline-offset-4 hover:underline">
-            Create account
+            {t("createAccount")}
           </Link>
         </p>
       </form>

@@ -8,11 +8,14 @@ import { toast } from "sonner";
 import { SectionCard } from "@/components/shared/SectionCard";
 import { Button } from "@/components/ui/button";
 import { logoutAction } from "@/features/auth/actions";
+import { useTranslations } from "next-intl";
 
 /** Account actions for Settings (spec §22) — logout ends the DB session. */
 export function AccountSection() {
   const router = useRouter();
   const [pending, setPending] = useState(false);
+  const t = useTranslations("settings");
+  const tCommon = useTranslations("common");
 
   async function handleLogout() {
     setPending(true);
@@ -28,14 +31,14 @@ export function AccountSection() {
 
   return (
     <SectionCard
-      title="Account"
-      description="Sign out of EnglishFlow on this device, or send product feedback."
+      title={t("account")}
+      description={t("accountDescription")}
     >
       <div className="flex flex-col gap-3 sm:flex-row">
         <Button asChild variant="outline" className="min-h-11 w-full sm:w-auto">
           <Link href="/feedback">
             <MessageSquarePlus aria-hidden="true" />
-            Góp Ý
+            {tCommon("feedback")}
           </Link>
         </Button>
         <Button
@@ -50,7 +53,7 @@ export function AccountSection() {
           ) : (
             <LogOut aria-hidden="true" />
           )}
-          Log out
+          {tCommon("logout")}
         </Button>
       </div>
     </SectionCard>

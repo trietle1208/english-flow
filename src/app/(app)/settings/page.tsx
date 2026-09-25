@@ -8,16 +8,19 @@ import {
 } from "@/features/settings/constants";
 import type { SettingsUser } from "@/features/settings/types";
 import { requireUser } from "@/lib/session";
+import { getTranslations } from "next-intl/server";
 
-export const metadata: Metadata = {
-  title: "Settings",
-};
+export async function generateMetadata(): Promise<Metadata> {
+  const t = await getTranslations("settings");
+  return { title: t("title") };
+}
 
 /**
  * Settings — profile, learning prefs, appearance, logout (spec §22).
  */
 export default async function SettingsPage() {
   const user = await requireUser();
+  const t = await getTranslations("settings");
 
   const rawGoal = user.dailyGoalMinutes ?? 20;
   const settingsUser: SettingsUser = {
@@ -38,8 +41,8 @@ export default async function SettingsPage() {
   return (
     <div className="flex w-full flex-col gap-8 px-4 py-8 sm:px-6 lg:px-8">
       <PageHeader
-        title="Settings"
-        description="Update your profile, learning goals, and how EnglishFlow looks."
+        title={t("title")}
+        description={t("description")}
       />
       <SettingsPageContent user={settingsUser} />
     </div>

@@ -4,11 +4,15 @@ import { headers } from "next/headers";
 import { APIError } from "better-auth";
 import { auth } from "@/lib/auth";
 import { logger } from "@/lib/logger";
+import { getTranslations } from "next-intl/server";
 import { loginSchema, registerSchema } from "./schemas";
 
 type ActionResult = { ok: true } | { ok: false; error: string };
 
-const GENERIC_ERROR = "Something went wrong. Please try again.";
+async function genericError(): Promise<string> {
+  const t = await getTranslations("common");
+  return t("genericError");
+}
 
 /**
  * Registers a new user and signs them in (better-auth issues the session
@@ -22,7 +26,7 @@ const GENERIC_ERROR = "Something went wrong. Please try again.";
 export async function registerAction(input: unknown): Promise<ActionResult> {
   const parsed = registerSchema.safeParse(input);
   if (!parsed.success) {
-    return { ok: false, error: parsed.error.issues[0]?.message ?? GENERIC_ERROR };
+    return { ok: false, error: parsed.error.issues[0]?.message ?? (await genericError()) };
   }
 
   const { name, email, password } = parsed.data;
@@ -41,10 +45,11 @@ export async function registerAction(input: unknown): Promise<ActionResult> {
     // another code path throws the shorter code.
     const duplicateEmailCodes = ["USER_ALREADY_EXISTS", "USER_ALREADY_EXISTS_USE_ANOTHER_EMAIL"];
     if (error instanceof APIError && duplicateEmailCodes.includes(error.body?.code ?? "")) {
-      return { ok: false, error: "An account with this email already exists." };
+      const t = await getTranslations("auth");
+      return { ok: false, error: t("duplicateEmail") };
     }
     logger.error("registerAction failed", error);
-    return { ok: false, error: GENERIC_ERROR };
+    return { ok: false, error: await genericError() };
   }
 }
 
@@ -52,7 +57,7 @@ export async function registerAction(input: unknown): Promise<ActionResult> {
 export async function loginAction(input: unknown): Promise<ActionResult> {
   const parsed = loginSchema.safeParse(input);
   if (!parsed.success) {
-    return { ok: false, error: parsed.error.issues[0]?.message ?? GENERIC_ERROR };
+    return { ok: false, error: parsed.error.issues[0]?.message ?? (await genericError()) };
   }
 
   const { email, password, rememberMe } = parsed.data;
@@ -66,10 +71,11 @@ export async function loginAction(input: unknown): Promise<ActionResult> {
   } catch (error) {
     // Deliberately generic — never reveal whether the email exists (spec §34).
     if (error instanceof APIError) {
-      return { ok: false, error: "Email or password is incorrect." };
+      const t = await getTranslations("auth");
+      return { ok: false, error: t("invalidCredentials") };
     }
     logger.error("loginAction failed", error);
-    return { ok: false, error: GENERIC_ERROR };
+    return { ok: false, error: await genericError() };
   }
 }
 
@@ -80,6 +86,6 @@ export async function logoutAction(): Promise<ActionResult> {
     return { ok: true };
   } catch (error) {
     logger.error("logoutAction failed", error);
-    return { ok: false, error: GENERIC_ERROR };
+    return { ok: false, error: await genericError() };
   }
 }

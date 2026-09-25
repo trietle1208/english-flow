@@ -1,10 +1,11 @@
 import Link from "next/link";
+import { getTranslations } from "next-intl/server";
 import { Clock, BookOpen } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
-import { CEFR_LEVEL_LABELS } from "@/config/cefr";
+import type { CefrLevel } from "@/config/cefr";
 import { formatDuration } from "@/lib/format";
 import { cn } from "@/lib/utils";
 import type { CourseListItem } from "../types";
@@ -27,10 +28,18 @@ type CourseCardProps = {
  * One course on `/courses`: title, CEFR badge, lesson count, duration,
  * progress bar, and Start / Continue CTA (spec §10).
  */
-export function CourseCard({ course }: CourseCardProps) {
+export async function CourseCard({ course }: CourseCardProps) {
+  const t = await getTranslations("courses");
+  const tCefr = await getTranslations("cefr");
+  const tCommon = await getTranslations("common");
+
   const isComplete =
     course.lessonCount > 0 && course.completedLessons >= course.lessonCount;
-  const ctaLabel = isComplete ? "Review" : course.completedLessons > 0 ? "Continue" : "Start";
+  const ctaLabel = isComplete
+    ? tCommon("review")
+    : course.completedLessons > 0
+      ? t("continue")
+      : tCommon("start");
   const ctaHref =
     !isComplete && course.continueLessonId
       ? `/lessons/${course.continueLessonId}`
@@ -44,7 +53,7 @@ export function CourseCard({ course }: CourseCardProps) {
       />
       <CardHeader className="space-y-3">
         <div className="flex flex-wrap items-center gap-2">
-          <Badge variant="secondary">{CEFR_LEVEL_LABELS[course.level]}</Badge>
+          <Badge variant="secondary">{tCefr(course.level as CefrLevel)}</Badge>
           <Badge variant="outline">{course.category}</Badge>
         </div>
         <div className="space-y-1.5">
@@ -60,7 +69,7 @@ export function CourseCard({ course }: CourseCardProps) {
         <div className="flex flex-wrap items-center gap-3 text-xs text-muted-foreground">
           <span className="inline-flex items-center gap-1">
             <BookOpen className="size-3.5" aria-hidden="true" />
-            {course.lessonCount} {course.lessonCount === 1 ? "lesson" : "lessons"}
+            {t("lessonCount", { count: course.lessonCount })}
           </span>
           <span className="inline-flex items-center gap-1">
             <Clock className="size-3.5" aria-hidden="true" />
@@ -69,14 +78,17 @@ export function CourseCard({ course }: CourseCardProps) {
         </div>
         <div className="space-y-1.5">
           <div className="flex items-center justify-between text-xs">
-            <span className="text-muted-foreground">Progress</span>
+            <span className="text-muted-foreground">{t("progress")}</span>
             <span className="font-medium tabular-nums">
-              {course.completedLessons}/{course.lessonCount}
+              {t("progressCount", {
+                completed: course.completedLessons,
+                total: course.lessonCount,
+              })}
             </span>
           </div>
           <Progress
             value={course.progressPercent}
-            aria-label={`${course.progressPercent}% complete`}
+            aria-label={t("percentCompleteShort", { percent: course.progressPercent })}
           />
         </div>
       </CardContent>

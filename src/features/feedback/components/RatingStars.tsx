@@ -1,5 +1,6 @@
 "use client";
 
+import { useTranslations } from "next-intl";
 import { Star } from "lucide-react";
 import { cn } from "@/lib/utils";
 
@@ -19,6 +20,7 @@ export function RatingStars({
   readOnly = false,
   size = "md",
 }: RatingStarsProps) {
+  const t = useTranslations("feedback");
   const stars = [1, 2, 3, 4, 5] as const;
   const iconClass = size === "sm" ? "size-4" : "size-5";
   const filledCount = value ?? 0;
@@ -27,7 +29,9 @@ export function RatingStars({
     return (
       <div
         className="flex items-center gap-0.5"
-        aria-label={value ? `${value} out of 5 stars` : "No rating"}
+        aria-label={
+          value ? t("starsOutOf", { count: value }) : t("noRating")
+        }
       >
         {stars.map((n) => (
           <Star
@@ -46,7 +50,7 @@ export function RatingStars({
   }
 
   return (
-    <div role="radiogroup" aria-label="Rating" className="flex items-center gap-0.5">
+    <div role="radiogroup" aria-label={t("rating")} className="flex items-center gap-0.5">
       {stars.map((n) => {
         const selected = value === n;
         const filled = n <= filledCount;
@@ -56,7 +60,7 @@ export function RatingStars({
             type="button"
             role="radio"
             aria-checked={selected}
-            aria-label={`${n} star${n === 1 ? "" : "s"}`}
+            aria-label={t("starCount", { count: n })}
             className="rounded-md p-1.5 outline-none transition-colors hover:bg-accent focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
             onClick={() => onChange?.(n)}
           >

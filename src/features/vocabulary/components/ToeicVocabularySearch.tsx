@@ -3,6 +3,7 @@
 import { useEffect, useState, useTransition } from "react";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { Search } from "lucide-react";
+import { useTranslations } from "next-intl";
 import { Input } from "@/components/ui/input";
 import { cn } from "@/lib/utils";
 import { TOEIC_TOPICS } from "@/db/seed-data/toeic-vocabulary";
@@ -15,6 +16,7 @@ const DEBOUNCE_MS = 300;
  * Syncs `?search=` / `?topic=` and resets page.
  */
 export function ToeicVocabularySearch() {
+  const t = useTranslations("vocabulary");
   const router = useRouter();
   const pathname = usePathname();
   const searchParams = useSearchParams();
@@ -76,19 +78,19 @@ export function ToeicVocabularySearch() {
           type="search"
           value={value}
           onChange={(event) => setValue(event.target.value)}
-          placeholder="Search TOEIC words…"
+          placeholder={t("searchToeic")}
           className="pl-9"
-          aria-label="Search TOEIC vocabulary"
+          aria-label={t("searchToeicAria")}
         />
       </div>
 
       <div
         className="flex flex-wrap gap-2"
         role="group"
-        aria-label="Filter by topic"
+        aria-label={t("filterTopic")}
       >
         <TopicChip
-          label="All topics"
+          label={t("allTopics")}
           active={urlTopic === "all"}
           onClick={() => setTopic("all")}
         />

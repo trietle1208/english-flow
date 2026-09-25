@@ -1,6 +1,7 @@
 "use client";
 
 import { motion, useReducedMotion } from "motion/react";
+import { useTranslations } from "next-intl";
 import { AudioButton } from "@/components/shared/AudioButton";
 import type { ToeicPlayCard } from "../../types";
 
@@ -13,6 +14,7 @@ type PlayPromptProps = {
  * Large EN lemma prompt with IPA, audio, and floating score feedback.
  */
 export function PlayPrompt({ card, floatPoints }: PlayPromptProps) {
+  const t = useTranslations("vocabulary");
   const reduceMotion = useReducedMotion();
   const ipa = card.phonetic.trim() || card.pronunciation.trim();
 
@@ -25,7 +27,7 @@ export function PlayPrompt({ card, floatPoints }: PlayPromptProps) {
         transition={{ type: "spring", stiffness: 380, damping: 28 }}
         className="flex flex-col items-center gap-3 rounded-2xl border border-border/60 bg-card/90 px-6 py-8 text-center shadow-md backdrop-blur-sm"
       >
-        <p className="text-xs font-medium text-muted-foreground">What does this mean?</p>
+        <p className="text-xs font-medium text-muted-foreground">{t("whatDoesThisMean")}</p>
         <p className="text-3xl font-semibold tracking-tight text-foreground sm:text-4xl">
           {card.word}
         </p>

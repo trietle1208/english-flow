@@ -3,6 +3,7 @@
 import { useRouter } from "next/navigation";
 import { useState, useTransition } from "react";
 import Link from "next/link";
+import { useTranslations } from "next-intl";
 import { ArrowLeft, ArrowRight, Check } from "lucide-react";
 import { toast } from "sonner";
 import { Button } from "@/components/ui/button";
@@ -26,6 +27,8 @@ export function LessonFooterNav({
   nextLessonId,
   isCompleted,
 }: LessonFooterNavProps) {
+  const t = useTranslations("lessons");
+  const tCommon = useTranslations("common");
   const router = useRouter();
   const [pending, startTransition] = useTransition();
   const [completed, setCompleted] = useState(isCompleted);
@@ -38,7 +41,7 @@ export function LessonFooterNav({
         return;
       }
       setCompleted(true);
-      toast.success("Lesson marked as complete.");
+      toast.success(t("markedComplete"));
       router.refresh();
     });
   };
@@ -50,27 +53,27 @@ export function LessonFooterNav({
           <Button asChild variant="outline" className="w-full sm:w-auto">
             <Link href={`/lessons/${previousLessonId}`}>
               <ArrowLeft className="size-4" aria-hidden="true" />
-              Previous lesson
+              {t("previous")}
             </Link>
           </Button>
         ) : (
           <Button variant="outline" disabled className="w-full sm:w-auto">
             <ArrowLeft className="size-4" aria-hidden="true" />
-            Previous lesson
+            {t("previous")}
           </Button>
         )}
 
         {nextLessonId ? (
           <Button asChild variant="outline" className="w-full sm:w-auto">
             <Link href={`/lessons/${nextLessonId}`}>
-              Next lesson
+              {t("next")}
               <ArrowRight className="size-4" aria-hidden="true" />
             </Link>
           </Button>
         ) : (
           <Button asChild variant="outline" className="w-full sm:w-auto">
             <Link href={`/courses/${courseId}`}>
-              Back to course
+              {t("backToCourse")}
               <ArrowRight className="size-4" aria-hidden="true" />
             </Link>
           </Button>
@@ -84,7 +87,7 @@ export function LessonFooterNav({
         className="w-full sm:w-auto sm:self-end"
       >
         <Check className="size-4" aria-hidden="true" />
-        {completed ? "Completed" : pending ? "Saving…" : "Mark as complete"}
+        {completed ? t("completed") : pending ? tCommon("saving") : t("markComplete")}
       </Button>
     </footer>
   );

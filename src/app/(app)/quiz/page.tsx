@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { getTranslations } from "next-intl/server";
 import { PageHeader } from "@/components/shared/PageHeader";
 import { isQuizCatalogKind } from "@/features/quiz/catalog";
 import { QuizCatalog } from "@/features/quiz/components/QuizCatalog";
@@ -6,9 +7,10 @@ import { QuizCatalogFilters } from "@/features/quiz/components/QuizCatalogFilter
 import { listQuizzes } from "@/features/quiz/queries";
 import { requireUser } from "@/lib/session";
 
-export const metadata: Metadata = {
-  title: "Quiz",
-};
+export async function generateMetadata(): Promise<Metadata> {
+  const t = await getTranslations("quiz");
+  return { title: t("title") };
+}
 
 type QuizIndexPageProps = {
   searchParams: Promise<{ kind?: string }>;
@@ -20,6 +22,7 @@ type QuizIndexPageProps = {
  */
 export default async function QuizIndexPage({ searchParams }: QuizIndexPageProps) {
   await requireUser();
+  const t = await getTranslations("quiz");
   const params = await searchParams;
   const kind =
     typeof params.kind === "string" && isQuizCatalogKind(params.kind)
@@ -40,8 +43,8 @@ export default async function QuizIndexPage({ searchParams }: QuizIndexPageProps
   return (
     <div className="flex w-full flex-col gap-8 px-4 py-8 sm:px-6 lg:px-8">
       <PageHeader
-        title="Quiz"
-        description={`${counts.all} quizzes grouped by skill — vocabulary, TOEIC, grammar, and listening.`}
+        title={t("title")}
+        description={t("description", { count: counts.all })}
       />
 
       <QuizCatalogFilters activeKind={kind} counts={counts} />

@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { notFound, redirect } from "next/navigation";
+import { getTranslations } from "next-intl/server";
 import { startLessonProgress } from "@/features/lessons/actions";
 import { LessonBlockRenderer } from "@/features/lessons/components/LessonBlockRenderer";
 import { LessonFooterNav } from "@/features/lessons/components/LessonFooterNav";
@@ -18,7 +19,8 @@ export async function generateMetadata({ params }: LessonPageProps): Promise<Met
   const title = await getLessonTitle(lessonId);
 
   if (!title) {
-    return { title: "Lesson not found" };
+    const t = await getTranslations("lessons");
+    return { title: t("notFound") };
   }
 
   return { title };

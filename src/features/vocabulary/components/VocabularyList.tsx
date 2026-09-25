@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { BookMarked, SearchX } from "lucide-react";
+import { getTranslations } from "next-intl/server";
 import { EmptyState } from "@/components/shared/EmptyState";
 import { Button } from "@/components/ui/button";
 import { listUserVocabularies, VOCABULARY_PAGE_SIZE } from "../queries";
@@ -33,6 +34,9 @@ export async function VocabularyList({
   sort,
   page,
 }: VocabularyListProps) {
+  const t = await getTranslations("vocabulary");
+  const tc = await getTranslations("common");
+
   const parsedFilter = parseFilter(filter);
   const parsedPos = parsePos(pos);
   const parsedSort = parseSort(sort);
@@ -58,11 +62,11 @@ export async function VocabularyList({
       return (
         <EmptyState
           icon={BookMarked}
-          title="No pinned words yet."
-          description="Pin words you want to prioritize — they'll show up here and float to the top of Recently added."
+          title={t("emptyPinned")}
+          description={t("emptyPinnedDescription")}
           action={
             <Button asChild variant="outline">
-              <Link href="/vocabulary">Show all vocabulary</Link>
+              <Link href="/vocabulary">{t("showAll")}</Link>
             </Button>
           }
         />
@@ -73,11 +77,11 @@ export async function VocabularyList({
       return (
         <EmptyState
           icon={BookMarked}
-          title="You haven't added any words yourself yet."
-          description="Use the + button to add a word you learned outside lessons."
+          title={t("emptyManual")}
+          description={t("emptyManualDescription")}
           action={
             <Button asChild variant="outline">
-              <Link href="/vocabulary">Show all vocabulary</Link>
+              <Link href="/vocabulary">{t("showAll")}</Link>
             </Button>
           }
         />
@@ -88,11 +92,11 @@ export async function VocabularyList({
       return (
         <EmptyState
           icon={SearchX}
-          title="No vocabulary matches your filters."
-          description="Try a different word, meaning, part of speech, or clear the filters."
+          title={t("emptyFilters")}
+          description={t("emptyFiltersDescription")}
           action={
             <Button asChild variant="outline">
-              <Link href="/vocabulary">Clear filters</Link>
+              <Link href="/vocabulary">{tc("clearFilters")}</Link>
             </Button>
           }
         />
@@ -102,11 +106,11 @@ export async function VocabularyList({
     return (
       <EmptyState
         icon={BookMarked}
-        title="You haven't saved any vocabulary yet."
-        description="Save words from lessons or add your own with the + button."
+        title={t("emptyAll")}
+        description={t("emptyAllDescription")}
         action={
           <Button asChild>
-            <Link href="/courses">Explore Lessons</Link>
+            <Link href="/courses">{t("exploreLessons")}</Link>
           </Button>
         }
       />
@@ -128,12 +132,12 @@ export async function VocabularyList({
       {totalPages > 1 && (
         <nav
           className="flex items-center justify-between gap-3"
-          aria-label="Vocabulary pagination"
+          aria-label={t("pagination")}
         >
           <p className="text-sm text-muted-foreground">
-            Page {currentPage} of {totalPages}
+            {tc("pageOf", { page: currentPage, total: totalPages })}
             <span className="sr-only">
-              ({total} words, {VOCABULARY_PAGE_SIZE} per page)
+              {tc("wordsPerPage", { total, pageSize: VOCABULARY_PAGE_SIZE })}
             </span>
           </p>
           <div className="flex gap-2">
@@ -148,12 +152,12 @@ export async function VocabularyList({
                     page: currentPage - 1,
                   })}
                 >
-                  Previous
+                  {tc("previous")}
                 </Link>
               </Button>
             ) : (
               <Button variant="outline" size="sm" disabled>
-                Previous
+                {tc("previous")}
               </Button>
             )}
             {currentPage < totalPages ? (
@@ -167,12 +171,12 @@ export async function VocabularyList({
                     page: currentPage + 1,
                   })}
                 >
-                  Next
+                  {tc("next")}
                 </Link>
               </Button>
             ) : (
               <Button variant="outline" size="sm" disabled>
-                Next
+                {tc("next")}
               </Button>
             )}
           </div>

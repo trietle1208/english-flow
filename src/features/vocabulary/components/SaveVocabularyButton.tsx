@@ -2,6 +2,7 @@
 
 import { useEffect, useOptimistic, useState, useTransition } from "react";
 import { Star } from "lucide-react";
+import { useTranslations } from "next-intl";
 import { toast } from "sonner";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
@@ -24,6 +25,7 @@ export function SaveVocabularyButton({
   isSaved,
   className,
 }: SaveVocabularyButtonProps) {
+  const t = useTranslations("vocabulary");
   const [confirmedSaved, setConfirmedSaved] = useState(isSaved);
   const [optimisticSaved, setOptimisticSaved] = useOptimistic(confirmedSaved);
   const [isPending, startTransition] = useTransition();
@@ -48,9 +50,7 @@ export function SaveVocabularyButton({
       }
 
       setConfirmedSaved(nextSaved);
-      toast.success(
-        nextSaved ? "Vocabulary saved." : "Removed from your vocabulary.",
-      );
+      toast.success(nextSaved ? t("toastSaved") : t("toastRemoved"));
     });
   }
 
@@ -63,13 +63,13 @@ export function SaveVocabularyButton({
       onClick={handleClick}
       disabled={isPending}
       aria-pressed={optimisticSaved}
-      aria-label={optimisticSaved ? "Remove from vocabulary" : "Save vocabulary"}
+      aria-label={optimisticSaved ? t("removeFromList") : t("saveVocab")}
     >
       <Star
         className={cn("size-4", optimisticSaved && "fill-current")}
         aria-hidden="true"
       />
-      {optimisticSaved ? "Saved" : "Save"}
+      {optimisticSaved ? t("saved") : t("save")}
     </Button>
   );
 }

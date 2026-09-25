@@ -1,3 +1,4 @@
+import { getTranslations } from "next-intl/server";
 import { Headphones } from "lucide-react";
 
 type AudioBlockProps = {
@@ -9,7 +10,9 @@ type AudioBlockProps = {
  * Listening block stub — full player lands in Phase 10. Keeps AD-03 `audio`
  * blocks visible instead of silently dropping them.
  */
-export function AudioBlock({ listeningLessonId, title }: AudioBlockProps) {
+export async function AudioBlock({ listeningLessonId, title }: AudioBlockProps) {
+  const t = await getTranslations("lessons");
+
   return (
     <section
       aria-labelledby="lesson-audio-heading"
@@ -21,14 +24,11 @@ export function AudioBlock({ listeningLessonId, title }: AudioBlockProps) {
         </span>
         <div className="space-y-1">
           <h2 id="lesson-audio-heading" className="text-sm font-semibold tracking-tight">
-            Listening practice
+            {t("listeningPractice")}
           </h2>
-          <p className="text-sm font-medium">{title ?? "Audio lesson"}</p>
-          <p className="text-sm text-muted-foreground">
-            The full listening player arrives in Phase 10. Continue with the rest of this
-            lesson for now.
-          </p>
-          <p className="sr-only">Listening lesson id {listeningLessonId}</p>
+          <p className="text-sm font-medium">{title ?? t("audioLesson")}</p>
+          <p className="text-sm text-muted-foreground">{t("audioPlaceholder")}</p>
+          <p className="sr-only">{t("listeningId", { id: listeningLessonId })}</p>
         </div>
       </div>
     </section>

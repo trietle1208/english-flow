@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
+import { getTranslations } from "next-intl/server";
 import { PageHeader } from "@/components/shared/PageHeader";
 import { QuizRunner } from "@/features/quiz/components/QuizRunner";
 import { getQuizForAttempt, getQuizTitle } from "@/features/quiz/queries";
@@ -12,8 +13,8 @@ type QuizPageProps = {
 
 export async function generateMetadata({ params }: QuizPageProps): Promise<Metadata> {
   const { quizId } = await params;
-  const title = await getQuizTitle(quizId);
-  return { title: title ?? "Quiz" };
+  const [title, t] = await Promise.all([getQuizTitle(quizId), getTranslations("quiz")]);
+  return { title: title ?? t("fallback") };
 }
 
 /**

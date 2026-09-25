@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Loader2, Plus } from "lucide-react";
+import { useTranslations } from "next-intl";
 import { toast } from "sonner";
 import { Button } from "@/components/ui/button";
 import {
@@ -37,17 +38,17 @@ import {
   type CreateManualVocabularyInput,
 } from "../schemas";
 
-const POS_OPTIONS: { value: CreateManualVocabularyInput["partOfSpeech"]; label: string }[] = [
-  { value: "noun", label: "Noun" },
-  { value: "verb", label: "Verb" },
-  { value: "adjective", label: "Adjective" },
-  { value: "adverb", label: "Adverb" },
-  { value: "pronoun", label: "Pronoun" },
-  { value: "preposition", label: "Preposition" },
-  { value: "conjunction", label: "Conjunction" },
-  { value: "interjection", label: "Interjection" },
-  { value: "phrase", label: "Phrase" },
-  { value: "phrasal_verb", label: "Phrasal verb" },
+const POS_VALUES: CreateManualVocabularyInput["partOfSpeech"][] = [
+  "noun",
+  "verb",
+  "adjective",
+  "adverb",
+  "pronoun",
+  "preposition",
+  "conjunction",
+  "interjection",
+  "phrase",
+  "phrasal_verb",
 ];
 
 /**
@@ -55,6 +56,8 @@ const POS_OPTIONS: { value: CreateManualVocabularyInput["partOfSpeech"]; label: 
  * to add a learner-owned vocabulary word without leaving the current page.
  */
 export function AddVocabularyFab() {
+  const t = useTranslations("vocabulary");
+  const tc = useTranslations("common");
   const router = useRouter();
   const [open, setOpen] = useState(false);
   const [formError, setFormError] = useState<string | null>(null);
@@ -88,7 +91,7 @@ export function AddVocabularyFab() {
       return;
     }
 
-    toast.success(`Added “${values.word.trim()}” to your vocabulary.`);
+    toast.success(t("toastAdded", { word: values.word.trim() }));
     handleOpenChange(false);
     router.refresh();
   }
@@ -99,7 +102,7 @@ export function AddVocabularyFab() {
         type="button"
         size="icon"
         className="fixed bottom-20 right-4 z-50 size-14 rounded-full shadow-lg md:bottom-6 md:right-6"
-        aria-label="Add vocabulary word"
+        aria-label={t("addWordAria")}
         onClick={() => setOpen(true)}
       >
         <Plus className="size-6" aria-hidden="true" />
@@ -108,10 +111,8 @@ export function AddVocabularyFab() {
       <Dialog open={open} onOpenChange={handleOpenChange}>
         <DialogContent className="max-h-[90vh] overflow-y-auto sm:max-w-md">
           <DialogHeader>
-            <DialogTitle>Add a word</DialogTitle>
-            <DialogDescription>
-              Save a word you learned yourself — it stays on your vocabulary list.
-            </DialogDescription>
+            <DialogTitle>{t("addWord")}</DialogTitle>
+            <DialogDescription>{t("addWordDescription")}</DialogDescription>
           </DialogHeader>
 
           <Form {...form}>
@@ -130,9 +131,13 @@ export function AddVocabularyFab() {
                 name="word"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>English word</FormLabel>
+                    <FormLabel>{t("englishWord")}</FormLabel>
                     <FormControl>
-                      <Input placeholder="e.g. improve" autoComplete="off" {...field} />
+                      <Input
+                        placeholder={t("englishPlaceholder")}
+                        autoComplete="off"
+                        {...field}
+                      />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -144,9 +149,9 @@ export function AddVocabularyFab() {
                 name="meaning"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Meaning</FormLabel>
+                    <FormLabel>{t("meaning")}</FormLabel>
                     <FormControl>
-                      <Input placeholder="e.g. cải thiện" autoComplete="off" {...field} />
+                      <Input placeholder={t("meaningPlaceholder")} autoComplete="off" {...field} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -158,17 +163,17 @@ export function AddVocabularyFab() {
                 name="partOfSpeech"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Part of speech</FormLabel>
+                    <FormLabel>{t("partOfSpeech")}</FormLabel>
                     <Select onValueChange={field.onChange} value={field.value}>
                       <FormControl>
                         <SelectTrigger className="w-full">
-                          <SelectValue placeholder="Select part of speech" />
+                          <SelectValue placeholder={t("selectPos")} />
                         </SelectTrigger>
                       </FormControl>
                       <SelectContent>
-                        {POS_OPTIONS.map((option) => (
-                          <SelectItem key={option.value} value={option.value}>
-                            {option.label}
+                        {POS_VALUES.map((value) => (
+                          <SelectItem key={value} value={value}>
+                            {t(`pos.${value}`)}
                           </SelectItem>
                         ))}
                       </SelectContent>
@@ -183,9 +188,9 @@ export function AddVocabularyFab() {
                 name="phonetic"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Phonetic (IPA)</FormLabel>
+                    <FormLabel>{t("phonetic")}</FormLabel>
                     <FormControl>
-                      <Input placeholder="e.g. /ɪmˈpruːv/" autoComplete="off" {...field} />
+                      <Input placeholder={t("phoneticPlaceholder")} autoComplete="off" {...field} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -197,9 +202,13 @@ export function AddVocabularyFab() {
                 name="pronunciation"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Pronunciation (optional)</FormLabel>
+                    <FormLabel>{t("pronunciation")}</FormLabel>
                     <FormControl>
-                      <Input placeholder="e.g. im-PROOV" autoComplete="off" {...field} />
+                      <Input
+                        placeholder={t("pronunciationPlaceholder")}
+                        autoComplete="off"
+                        {...field}
+                      />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -211,10 +220,10 @@ export function AddVocabularyFab() {
                 name="exampleSentence"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Example (optional)</FormLabel>
+                    <FormLabel>{t("exampleOptional")}</FormLabel>
                     <FormControl>
                       <Input
-                        placeholder="e.g. I want to improve my English."
+                        placeholder={t("examplePlaceholder")}
                         autoComplete="off"
                         {...field}
                       />
@@ -231,16 +240,16 @@ export function AddVocabularyFab() {
                   onClick={() => handleOpenChange(false)}
                   disabled={form.formState.isSubmitting}
                 >
-                  Cancel
+                  {tc("cancel")}
                 </Button>
                 <Button type="submit" disabled={form.formState.isSubmitting}>
                   {form.formState.isSubmitting ? (
                     <>
                       <Loader2 className="size-4 animate-spin" aria-hidden="true" />
-                      Saving…
+                      {tc("saving")}
                     </>
                   ) : (
-                    "Save word"
+                    t("saveWord")
                   )}
                 </Button>
               </DialogFooter>

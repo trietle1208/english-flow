@@ -1,5 +1,6 @@
 "use client";
 
+import { useTranslations } from "next-intl";
 import { CheckCircle2, CircleX } from "lucide-react";
 import { cn } from "@/lib/utils";
 import type { QuizAttemptAnswerSnapshot } from "../types";
@@ -15,14 +16,13 @@ type ReviewMistakesProps = {
  * (read from `quiz_attempts.answers` jsonb — spec §20).
  */
 export function ReviewMistakes({ answers, mistakesOnly = true }: ReviewMistakesProps) {
+  const t = useTranslations("quiz");
   const items = mistakesOnly ? answers.filter((a) => !a.isCorrect) : answers;
 
   if (items.length === 0) {
     return (
       <p className="text-sm text-muted-foreground">
-        {mistakesOnly
-          ? "No mistakes to review — you got everything right."
-          : "No answers to review."}
+        {mistakesOnly ? t("noMistakes") : t("noAnswers")}
       </p>
     );
   }
@@ -53,10 +53,10 @@ export function ReviewMistakes({ answers, mistakesOnly = true }: ReviewMistakesP
             )}
             <div className="min-w-0 space-y-2">
               <p className="text-sm font-medium">
-                {index + 1}. {item.prompt || "Question"}
+                {index + 1}. {item.prompt || t("question")}
               </p>
               <p className="text-sm">
-                <span className="text-muted-foreground">Your answer: </span>
+                <span className="text-muted-foreground">{t("yourAnswerLabel")}</span>
                 <span
                   className={cn(
                     "rounded px-1.5 py-0.5 font-medium",
@@ -70,7 +70,7 @@ export function ReviewMistakes({ answers, mistakesOnly = true }: ReviewMistakesP
               </p>
               {!item.isCorrect ? (
                 <p className="text-sm">
-                  <span className="text-muted-foreground">Correct answer: </span>
+                  <span className="text-muted-foreground">{t("correctAnswerLabel")}</span>
                   <span className="rounded bg-emerald-500/15 px-1.5 py-0.5 font-medium text-emerald-700 dark:text-emerald-400">
                     {item.correctAnswerLabel || "—"}
                   </span>

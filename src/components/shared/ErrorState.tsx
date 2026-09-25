@@ -1,4 +1,7 @@
+"use client";
+
 import { AlertTriangle } from "lucide-react";
+import { useTranslations } from "next-intl";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 
@@ -16,9 +19,12 @@ type ErrorStateProps = {
  */
 export function ErrorState({
   reset,
-  title = "Something went wrong. Please try again.",
+  title,
   className,
 }: ErrorStateProps) {
+  const t = useTranslations("common");
+  const resolvedTitle = title ?? t("genericError");
+
   return (
     <div
       className={cn(
@@ -29,10 +35,10 @@ export function ErrorState({
       <div className="flex size-12 items-center justify-center rounded-full bg-destructive/10">
         <AlertTriangle className="size-6 text-destructive" aria-hidden="true" />
       </div>
-      <p className="max-w-sm text-sm font-medium">{title}</p>
+      <p className="max-w-sm text-sm font-medium">{resolvedTitle}</p>
       {reset && (
         <Button onClick={reset} variant="outline">
-          Retry
+          {t("retry")}
         </Button>
       )}
     </div>

@@ -1,3 +1,6 @@
+"use client";
+
+import { useTranslations } from "next-intl";
 import { AlertTriangle, CheckCircle2, CircleDashed, Medal } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import type { GrammarProgressStatus } from "../types";
@@ -5,28 +8,28 @@ import type { GrammarProgressStatus } from "../types";
 const STATUS_UI: Record<
   GrammarProgressStatus,
   {
-    label: string;
+    labelKey: "statusNew" | "statusWeak" | "statusPracticed" | "statusMastered";
     icon: typeof CheckCircle2;
     className: string;
   }
 > = {
   not_started: {
-    label: "Chưa học",
+    labelKey: "statusNew",
     icon: CircleDashed,
     className: "text-muted-foreground",
   },
   weak: {
-    label: "Yếu",
+    labelKey: "statusWeak",
     icon: AlertTriangle,
     className: "border-amber-500/40 text-amber-800 dark:text-amber-300",
   },
   practiced: {
-    label: "Đã luyện",
+    labelKey: "statusPracticed",
     icon: CheckCircle2,
     className: "text-emerald-700 dark:text-emerald-400",
   },
   mastered: {
-    label: "Thành thạo",
+    labelKey: "statusMastered",
     icon: Medal,
     className: "border-sky-500/40 text-sky-800 dark:text-sky-300",
   },
@@ -48,26 +51,29 @@ export function GrammarProgressBadge({
   bestScore,
   hideNotStarted = false,
 }: GrammarProgressBadgeProps) {
+  const t = useTranslations("grammar");
+
   if (hideNotStarted && status === "not_started") {
     return null;
   }
 
   const ui = STATUS_UI[status];
   const Icon = ui.icon;
+  const label = t(ui.labelKey);
   const scoreSuffix =
-    typeof bestScore === "number" ? ` · tốt nhất ${bestScore}%` : "";
+    typeof bestScore === "number" ? t("bestScore", { score: bestScore }) : "";
 
   return (
     <Badge
       variant="outline"
       className={`gap-1 ${ui.className}`}
-      title={scoreSuffix ? `${ui.label}${scoreSuffix}` : ui.label}
+      title={scoreSuffix ? `${label}${scoreSuffix}` : label}
     >
       <Icon className="size-3.5" aria-hidden="true" />
       <span>
-        {ui.label}
+        {label}
         {typeof bestScore === "number" ? (
-          <span className="sr-only">{` điểm tốt nhất ${bestScore} phần trăm`}</span>
+          <span className="sr-only">{t("bestScoreAria", { score: bestScore })}</span>
         ) : null}
       </span>
     </Badge>

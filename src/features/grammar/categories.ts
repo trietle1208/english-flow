@@ -3,14 +3,17 @@ import {
   type GrammarTopicCategory,
 } from "@/db/schema/grammar";
 
-/** Vietnamese labels for topic category filter / badges (Prompt 3). */
-export const GRAMMAR_CATEGORY_LABELS: Record<GrammarTopicCategory, string> = {
-  verb_tenses: "Thì động từ",
-  articles: "Mạo từ",
-  clauses: "Mệnh đề",
-  modals: "Động từ khuyết thiếu",
-  prepositions: "Giới từ",
-  other: "Khác",
+/** Keys under `grammar.categories.*` in locale messages. */
+export const GRAMMAR_CATEGORY_I18N_KEY: Record<
+  GrammarTopicCategory,
+  "tenses" | "articles" | "clauses" | "modals" | "prepositions" | "other"
+> = {
+  verb_tenses: "tenses",
+  articles: "articles",
+  clauses: "clauses",
+  modals: "modals",
+  prepositions: "prepositions",
+  other: "other",
 };
 
 export function isGrammarTopicCategory(

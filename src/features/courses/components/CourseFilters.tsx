@@ -2,6 +2,7 @@
 
 import { useEffect, useState, useTransition } from "react";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import { useTranslations } from "next-intl";
 import { Search, X } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -13,7 +14,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { CEFR_LEVELS, CEFR_LEVEL_LABELS, type CefrLevel } from "@/config/cefr";
+import { CEFR_LEVELS, type CefrLevel } from "@/config/cefr";
 
 const SEARCH_DEBOUNCE_MS = 300;
 const ALL_VALUE = "__all__";
@@ -28,6 +29,9 @@ type CourseFiltersProps = {
  * Debounces only the search box; the course list stays a Server Component.
  */
 export function CourseFilters({ categories }: CourseFiltersProps) {
+  const t = useTranslations("courses");
+  const tCommon = useTranslations("common");
+  const tCefr = useTranslations("cefr");
   const router = useRouter();
   const pathname = usePathname();
   const searchParams = useSearchParams();
@@ -95,7 +99,7 @@ export function CourseFilters({ categories }: CourseFiltersProps) {
     >
       <div className="relative min-w-0 flex-1 sm:max-w-sm">
         <Label htmlFor="course-search" className="sr-only">
-          Search courses
+          {t("search")}
         </Label>
         <Search
           className="pointer-events-none absolute left-3 top-1/2 size-4 -translate-y-1/2 text-muted-foreground"
@@ -104,7 +108,7 @@ export function CourseFilters({ categories }: CourseFiltersProps) {
         <Input
           id="course-search"
           type="search"
-          placeholder="Search courses…"
+          placeholder={t("searchPlaceholder")}
           value={search}
           onChange={(event) => setSearch(event.target.value)}
           className="pl-9"
@@ -114,7 +118,7 @@ export function CourseFilters({ categories }: CourseFiltersProps) {
 
       <div className="flex flex-col gap-1.5">
         <Label htmlFor="course-level" className="sr-only">
-          Level
+          {t("level")}
         </Label>
         <Select
           value={urlLevel || ALL_VALUE}
@@ -126,13 +130,13 @@ export function CourseFilters({ categories }: CourseFiltersProps) {
           }
         >
           <SelectTrigger id="course-level" className="w-full sm:w-[220px]">
-            <SelectValue placeholder="All levels" />
+            <SelectValue placeholder={t("allLevels")} />
           </SelectTrigger>
           <SelectContent>
-            <SelectItem value={ALL_VALUE}>All levels</SelectItem>
+            <SelectItem value={ALL_VALUE}>{t("allLevels")}</SelectItem>
             {CEFR_LEVELS.map((level) => (
               <SelectItem key={level} value={level}>
-                {CEFR_LEVEL_LABELS[level as CefrLevel]}
+                {tCefr(level as CefrLevel)}
               </SelectItem>
             ))}
           </SelectContent>
@@ -141,7 +145,7 @@ export function CourseFilters({ categories }: CourseFiltersProps) {
 
       <div className="flex flex-col gap-1.5">
         <Label htmlFor="course-category" className="sr-only">
-          Category
+          {t("category")}
         </Label>
         <Select
           value={urlCategory || ALL_VALUE}
@@ -153,10 +157,10 @@ export function CourseFilters({ categories }: CourseFiltersProps) {
           }
         >
           <SelectTrigger id="course-category" className="w-full sm:w-[200px]">
-            <SelectValue placeholder="All categories" />
+            <SelectValue placeholder={t("allCategories")} />
           </SelectTrigger>
           <SelectContent>
-            <SelectItem value={ALL_VALUE}>All categories</SelectItem>
+            <SelectItem value={ALL_VALUE}>{t("allCategories")}</SelectItem>
             {categories.map((category) => (
               <SelectItem key={category} value={category}>
                 {category}
@@ -180,7 +184,7 @@ export function CourseFilters({ categories }: CourseFiltersProps) {
           }}
         >
           <X className="size-4" aria-hidden="true" />
-          Clear filters
+          {tCommon("clearFilters")}
         </Button>
       )}
     </div>

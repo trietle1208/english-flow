@@ -1,13 +1,15 @@
 import type { Metadata } from "next";
+import { getTranslations } from "next-intl/server";
 import { requireUser } from "@/lib/session";
 import { isToeicTopicId } from "@/db/seed-data/toeic-vocabulary";
 import { ToeicMatchPlay } from "@/features/vocabulary/components/toeic-play/ToeicMatchPlay";
 import { listToeicPlayDeck } from "@/features/vocabulary/queries";
 import type { ToeicTopicFilter } from "@/features/vocabulary/types";
 
-export const metadata: Metadata = {
-  title: "TOEIC Match Play",
-};
+export async function generateMetadata(): Promise<Metadata> {
+  const t = await getTranslations("vocabulary");
+  return { title: t("toeicPlayMeta") };
+}
 
 /** Fresh random deck on every visit / Play again. */
 export const dynamic = "force-dynamic";

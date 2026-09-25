@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
+import { getTranslations } from "next-intl/server";
 import { PageHeader } from "@/components/shared/PageHeader";
 import { Badge } from "@/components/ui/badge";
-import { CEFR_LEVEL_LABELS } from "@/config/cefr";
 import { GrammarProgressBadge } from "@/features/grammar/components/GrammarProgressBadge";
 import { GrammarTopicContent } from "@/features/grammar/components/GrammarTopicContent";
 import {
@@ -19,8 +19,11 @@ export async function generateMetadata({
   params,
 }: GrammarTopicPageProps): Promise<Metadata> {
   const { slug } = await params;
-  const title = await getGrammarTopicTitle(slug);
-  return { title: title ?? "Chủ điểm ngữ pháp" };
+  const [title, t] = await Promise.all([
+    getGrammarTopicTitle(slug),
+    getTranslations("grammar"),
+  ]);
+  return { title: title ?? t("topicFallback") };
 }
 
 /**
@@ -36,13 +39,15 @@ export default async function GrammarTopicPage({ params }: GrammarTopicPageProps
     notFound();
   }
 
+  const tCefr = await getTranslations("cefr");
+
   return (
     <div className="flex w-full flex-col gap-8 px-4 py-8 sm:px-6 lg:px-8">
       <div className="space-y-3">
         <PageHeader title={topic.titleVi} description={topic.summary} />
         <p className="text-sm text-muted-foreground">{topic.titleEn}</p>
         <div className="flex flex-wrap items-center gap-2">
-          <Badge variant="secondary">{CEFR_LEVEL_LABELS[topic.level]}</Badge>
+          <Badge variant="secondary">{tCefr(topic.level)}</Badge>
           <GrammarProgressBadge status={topic.status} bestScore={topic.bestScore} />
         </div>
       </div>

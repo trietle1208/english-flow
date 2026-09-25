@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
+import { getTranslations } from "next-intl/server";
 import { QuizResultSummary } from "@/features/quiz/components/QuizResultSummary";
 import { ReviewMistakes } from "@/features/quiz/components/ReviewMistakes";
 import { getQuizAttemptForOwner, getQuizTitle } from "@/features/quiz/queries";
@@ -12,8 +13,10 @@ type QuizResultPageProps = {
 
 export async function generateMetadata({ params }: QuizResultPageProps): Promise<Metadata> {
   const { quizId } = await params;
-  const title = await getQuizTitle(quizId);
-  return { title: title ? `${title} — Result` : "Quiz result" };
+  const [title, t] = await Promise.all([getQuizTitle(quizId), getTranslations("quiz")]);
+  return {
+    title: title ? t("resultMeta", { title }) : t("resultFallback"),
+  };
 }
 
 /**
@@ -35,6 +38,7 @@ export default async function QuizResultPage({ params, searchParams }: QuizResul
 
   const continueHref =
     from && from.startsWith("/") && !from.startsWith("//") ? from : "/courses";
+  const t = await getTranslations("quiz");
 
   return (
     <div className="flex w-full flex-col gap-8 px-4 py-8 sm:px-6 lg:px-8">
@@ -50,7 +54,7 @@ export default async function QuizResultPage({ params, searchParams }: QuizResul
         continueHref={continueHref}
       >
         <section id="review-mistakes" className="space-y-4 scroll-mt-8 pt-4">
-          <h2 className="text-base font-semibold tracking-tight">Review Mistakes</h2>
+          <h2 className="text-base font-semibold tracking-tight">{t("reviewMistakes")}</h2>
           <ReviewMistakes answers={detail.answers} />
         </section>
       </QuizResultSummary>

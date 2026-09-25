@@ -1,5 +1,6 @@
 import { BookOpen, Ear, Languages, PencilLine } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
+import { getTranslations } from "next-intl/server";
 import { Card, CardContent } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
 import { ProgressRing } from "@/components/shared/ProgressRing";
@@ -9,7 +10,6 @@ import type { ProgressSkill, SkillOverviewItem } from "@/features/progress/types
 const SKILL_META: Record<
   ProgressSkill,
   {
-    label: string;
     icon: LucideIcon;
     colorClass: string;
     barClass: string;
@@ -18,7 +18,6 @@ const SKILL_META: Record<
   }
 > = {
   vocabulary: {
-    label: "Vocabulary",
     icon: BookOpen,
     colorClass: "text-skill-vocabulary",
     barClass: "[&_[data-slot=progress-indicator]]:bg-skill-vocabulary",
@@ -26,7 +25,6 @@ const SKILL_META: Record<
     iconWrapClass: "bg-skill-vocabulary/10 text-skill-vocabulary",
   },
   grammar: {
-    label: "Grammar",
     icon: PencilLine,
     colorClass: "text-skill-grammar",
     barClass: "[&_[data-slot=progress-indicator]]:bg-skill-grammar",
@@ -34,7 +32,6 @@ const SKILL_META: Record<
     iconWrapClass: "bg-skill-grammar/10 text-skill-grammar",
   },
   listening: {
-    label: "Listening",
     icon: Ear,
     colorClass: "text-skill-listening",
     barClass: "[&_[data-slot=progress-indicator]]:bg-skill-listening",
@@ -42,7 +39,6 @@ const SKILL_META: Record<
     iconWrapClass: "bg-skill-listening/10 text-skill-listening",
   },
   reading: {
-    label: "Reading",
     icon: Languages,
     colorClass: "text-skill-reading",
     barClass: "[&_[data-slot=progress-indicator]]:bg-skill-reading",
@@ -56,23 +52,27 @@ type SkillOverviewProps = {
 };
 
 /** Four skill cards with % + bar + completed count (spec §9). */
-export function SkillOverview({ skills }: SkillOverviewProps) {
+export async function SkillOverview({ skills }: SkillOverviewProps) {
+  const tSkills = await getTranslations("skills");
+  const t = await getTranslations("dashboard");
+
   return (
     <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
       {skills.map((item) => {
         const meta = SKILL_META[item.skill];
         const Icon = meta.icon;
+        const label = tSkills(item.skill);
         const subtext =
           item.total === 0
-            ? "No lessons yet"
-            : `${item.completed} of ${item.total} completed`;
+            ? t("noLessonsYet")
+            : t("ofCompleted", { completed: item.completed, total: item.total });
 
         return (
           <Card key={item.skill} className={cn("overflow-hidden", meta.washClass)}>
             <CardContent className="space-y-4 p-5">
               <div className="flex items-center justify-between gap-3">
                 <div className="space-y-0.5">
-                  <p className="text-sm font-medium">{meta.label}</p>
+                  <p className="text-sm font-medium">{label}</p>
                   <p className="text-xs text-muted-foreground">{subtext}</p>
                 </div>
                 <span
@@ -90,7 +90,7 @@ export function SkillOverview({ skills }: SkillOverviewProps) {
                   value={item.percent}
                   size={56}
                   strokeWidth={5}
-                  label={`${meta.label} ${item.percent}%`}
+                  label={t("skillPercent", { label, percent: item.percent })}
                   colorClassName={meta.colorClass}
                 />
                 <div className="min-w-0 flex-1 space-y-2">
@@ -101,7 +101,7 @@ export function SkillOverview({ skills }: SkillOverviewProps) {
                   <Progress
                     value={item.percent}
                     className={cn("h-1.5", meta.barClass)}
-                    aria-label={`${meta.label} progress`}
+                    aria-label={t("skillProgress", { label })}
                   />
                 </div>
               </div>

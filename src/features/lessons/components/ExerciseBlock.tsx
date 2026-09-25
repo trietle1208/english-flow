@@ -1,3 +1,4 @@
+import { getTranslations } from "next-intl/server";
 import { getQuizForAttempt } from "@/features/quiz/queries";
 import { QuizRunner } from "@/features/quiz/components/QuizRunner";
 
@@ -11,6 +12,7 @@ type ExerciseBlockProps = {
  * Inline lesson exercise — same QuizRunner as grammar / listening / standalone.
  */
 export async function ExerciseBlock({ quizId, returnTo }: ExerciseBlockProps) {
+  const t = await getTranslations("lessons");
   const quiz = await getQuizForAttempt(quizId);
 
   if (!quiz) {
@@ -20,11 +22,9 @@ export async function ExerciseBlock({ quizId, returnTo }: ExerciseBlockProps) {
         className="space-y-3 rounded-lg border border-dashed bg-muted/30 p-4 sm:p-5"
       >
         <h2 id="lesson-exercise-heading" className="text-sm font-semibold tracking-tight">
-          Practice exercise
+          {t("exercise")}
         </h2>
-        <p className="text-sm text-muted-foreground">
-          This exercise isn&apos;t available yet.
-        </p>
+        <p className="text-sm text-muted-foreground">{t("exerciseUnavailable")}</p>
       </section>
     );
   }
@@ -35,7 +35,7 @@ export async function ExerciseBlock({ quizId, returnTo }: ExerciseBlockProps) {
       className="space-y-4 rounded-lg border bg-card p-4 sm:p-5"
     >
       <h2 id="lesson-exercise-heading" className="sr-only">
-        Practice exercise
+        {t("exercise")}
       </h2>
       <QuizRunner
         quiz={quiz}

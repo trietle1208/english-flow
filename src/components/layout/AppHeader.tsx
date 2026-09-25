@@ -16,12 +16,14 @@ import {
   SheetTrigger,
 } from "@/components/ui/sheet";
 import { Separator } from "@/components/ui/separator";
+import { LanguageSwitcher } from "@/components/i18n/LanguageSwitcher";
 import { ThemeToggle } from "@/components/theme/ThemeToggle";
 import { isNavItemActive, mainNav, mobileBottomNav } from "@/config/navigation";
 import { siteConfig } from "@/config/site";
 import { logoutAction } from "@/features/auth/actions";
 import type { CurrentUser } from "@/lib/session";
 import { cn } from "@/lib/utils";
+import { useTranslations } from "next-intl";
 
 const mobileBottomHrefs = new Set(mobileBottomNav.map((item) => item.href));
 /** Nav items not already reachable from the bottom tab bar. */
@@ -45,6 +47,8 @@ export function AppHeader({ user }: { user: CurrentUser }) {
   const pathname = usePathname();
   const router = useRouter();
   const [isPending, startTransition] = useTransition();
+  const t = useTranslations("nav");
+  const tCommon = useTranslations("common");
 
   function handleLogout() {
     startTransition(async () => {
@@ -67,7 +71,7 @@ export function AppHeader({ user }: { user: CurrentUser }) {
 
       <Sheet>
         <SheetTrigger asChild>
-          <Button variant="ghost" size="icon" className="rounded-full" aria-label="Open menu">
+          <Button variant="ghost" size="icon" className="rounded-full" aria-label={t("openMenu")}>
             <Avatar className="size-8">
               <AvatarImage src={user.image ?? undefined} alt="" />
               <AvatarFallback>{initials(user.name)}</AvatarFallback>
@@ -76,7 +80,7 @@ export function AppHeader({ user }: { user: CurrentUser }) {
         </SheetTrigger>
         <SheetContent side="right" className="flex w-72 flex-col p-0">
           <SheetHeader className="border-b p-4 text-left">
-            <SheetTitle className="sr-only">Menu</SheetTitle>
+            <SheetTitle className="sr-only">{t("menu")}</SheetTitle>
             <div className="flex items-center gap-3">
               <Avatar className="size-10">
                 <AvatarImage src={user.image ?? undefined} alt="" />
@@ -90,7 +94,7 @@ export function AppHeader({ user }: { user: CurrentUser }) {
           </SheetHeader>
 
           {drawerOnlyNav.length > 0 && (
-            <nav className="space-y-1 p-3" aria-label="More">
+            <nav className="space-y-1 p-3" aria-label={t("more")}>
               {drawerOnlyNav.map((item) => {
                 const active = isNavItemActive(pathname, item.href);
                 const Icon = item.icon;
@@ -105,7 +109,7 @@ export function AppHeader({ user }: { user: CurrentUser }) {
                       )}
                     >
                       <Icon className="size-5 shrink-0" aria-hidden="true" />
-                      {item.label}
+                      {t(item.labelKey)}
                     </Link>
                   </SheetClose>
                 );
@@ -122,7 +126,7 @@ export function AppHeader({ user }: { user: CurrentUser }) {
                 className="flex min-h-11 items-center gap-3 rounded-md px-3 text-sm text-muted-foreground outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
               >
                 <MessageSquarePlus className="size-5 shrink-0" aria-hidden="true" />
-                Góp Ý
+                {tCommon("feedback")}
               </Link>
             </SheetClose>
             <SheetClose asChild>
@@ -131,11 +135,15 @@ export function AppHeader({ user }: { user: CurrentUser }) {
                 className="flex min-h-11 items-center gap-3 rounded-md px-3 text-sm text-muted-foreground outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
               >
                 <Settings className="size-5 shrink-0" aria-hidden="true" />
-                Settings
+                {tCommon("settings")}
               </Link>
             </SheetClose>
             <div className="flex min-h-11 items-center justify-between rounded-md px-3 text-sm text-muted-foreground">
-              Theme
+              {tCommon("language")}
+              <LanguageSwitcher />
+            </div>
+            <div className="flex min-h-11 items-center justify-between rounded-md px-3 text-sm text-muted-foreground">
+              {tCommon("theme")}
               <ThemeToggle />
             </div>
             <button
@@ -145,7 +153,7 @@ export function AppHeader({ user }: { user: CurrentUser }) {
               className="flex min-h-11 w-full items-center gap-3 rounded-md px-3 text-left text-sm text-destructive outline-none transition-colors hover:bg-destructive/10 focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50"
             >
               <LogOut className="size-5 shrink-0" aria-hidden="true" />
-              Logout
+              {tCommon("logout")}
             </button>
           </div>
         </SheetContent>

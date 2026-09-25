@@ -1,5 +1,6 @@
 import { Suspense } from "react";
 import type { Metadata } from "next";
+import { getTranslations } from "next-intl/server";
 import { PageHeader } from "@/components/shared/PageHeader";
 import { isCefrLevel, type CefrLevel } from "@/config/cefr";
 import { requireUser } from "@/lib/session";
@@ -8,9 +9,10 @@ import { CourseList } from "@/features/courses/components/CourseList";
 import { CoursesGridSkeleton } from "@/features/courses/components/CoursesGridSkeleton";
 import { listCourseCategories } from "@/features/courses/queries";
 
-export const metadata: Metadata = {
-  title: "Courses",
-};
+export async function generateMetadata(): Promise<Metadata> {
+  const t = await getTranslations("courses");
+  return { title: t("title") };
+}
 
 type CoursesPageProps = {
   searchParams: Promise<{
@@ -28,6 +30,7 @@ type CoursesPageProps = {
  * Phase 11: recommends courses matching `users.cefr_level` from placement.
  */
 export default async function CoursesPage({ searchParams }: CoursesPageProps) {
+  const t = await getTranslations("courses");
   const user = await requireUser();
   const params = await searchParams;
   const categories = await listCourseCategories();
@@ -46,10 +49,7 @@ export default async function CoursesPage({ searchParams }: CoursesPageProps) {
 
   return (
     <div className="flex w-full flex-col gap-8 px-4 py-8 sm:px-6 lg:px-8">
-      <PageHeader
-        title="Courses"
-        description="Browse courses by CEFR level and pick up where you left off."
-      />
+      <PageHeader title={t("title")} description={t("description")} />
 
       <Suspense
         fallback={

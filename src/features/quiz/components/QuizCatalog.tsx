@@ -1,10 +1,9 @@
+"use client";
+
+import { useTranslations } from "next-intl";
 import { ListChecks } from "lucide-react";
 import { EmptyState } from "@/components/shared/EmptyState";
-import {
-  QUIZ_CATALOG_KIND_BLURBS,
-  QUIZ_CATALOG_KIND_LABELS,
-  groupQuizzesByKind,
-} from "../catalog";
+import { groupQuizzesByKind } from "../catalog";
 import type { QuizCatalogKind, QuizListItem } from "../types";
 import { QuizCatalogCard } from "./QuizCatalogCard";
 
@@ -13,17 +12,29 @@ type QuizCatalogProps = {
   filtered: boolean;
 };
 
+const KIND_LABEL_KEYS: Record<QuizCatalogKind, "kindVocabulary" | "kindToeic" | "kindGrammar" | "kindListening"> = {
+  vocabulary: "kindVocabulary",
+  toeic: "kindToeic",
+  grammar: "kindGrammar",
+  listening: "kindListening",
+};
+
+const KIND_BLURB_KEYS: Record<QuizCatalogKind, "blurbVocabulary" | "blurbToeic" | "blurbGrammar" | "blurbListening"> = {
+  vocabulary: "blurbVocabulary",
+  toeic: "blurbToeic",
+  grammar: "blurbGrammar",
+  listening: "blurbListening",
+};
+
 export function QuizCatalog({ quizzes, filtered }: QuizCatalogProps) {
+  const t = useTranslations("quiz");
+
   if (quizzes.length === 0) {
     return (
       <EmptyState
         icon={ListChecks}
-        title={filtered ? "No quizzes in this group" : "No quizzes yet"}
-        description={
-          filtered
-            ? "Try another skill filter, or clear it to see the full catalog."
-            : "Quizzes appear here once content is seeded."
-        }
+        title={filtered ? t("emptyFilter") : t("emptyAll")}
+        description={filtered ? t("emptyFilterDescription") : t("emptyAllDescription")}
       />
     );
   }
@@ -46,6 +57,8 @@ function QuizCatalogSection({
   kind: QuizCatalogKind;
   items: QuizListItem[];
 }) {
+  const t = useTranslations("quiz");
+
   return (
     <section aria-labelledby={`quiz-kind-${kind}`} className="space-y-4">
       <div className="space-y-1">
@@ -53,10 +66,10 @@ function QuizCatalogSection({
           id={`quiz-kind-${kind}`}
           className="text-sm font-semibold tracking-tight text-muted-foreground"
         >
-          {QUIZ_CATALOG_KIND_LABELS[kind]}
+          {t(KIND_LABEL_KEYS[kind])}
           <span className="font-normal"> · {items.length}</span>
         </h2>
-        <p className="text-sm text-muted-foreground">{QUIZ_CATALOG_KIND_BLURBS[kind]}</p>
+        <p className="text-sm text-muted-foreground">{t(KIND_BLURB_KEYS[kind])}</p>
       </div>
       <ul className="grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
         {items.map((quiz) => (

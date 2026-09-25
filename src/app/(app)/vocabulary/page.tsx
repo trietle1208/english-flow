@@ -2,6 +2,7 @@ import { Suspense } from "react";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { Briefcase, Layers } from "lucide-react";
+import { getTranslations } from "next-intl/server";
 import { PageHeader } from "@/components/shared/PageHeader";
 import { Button } from "@/components/ui/button";
 import { requireUser } from "@/lib/session";
@@ -9,12 +10,13 @@ import { VocabularyFilters } from "@/features/vocabulary/components/VocabularyFi
 import { VocabularyGridSkeleton } from "@/features/vocabulary/components/VocabularyGridSkeleton";
 import { VocabularyList } from "@/features/vocabulary/components/VocabularyList";
 import { VocabularyStats } from "@/features/vocabulary/components/VocabularyStats";
-import { formatReviewDueLabel } from "@/features/vocabulary/schedule";
+import { translateReviewDueLabel } from "@/features/vocabulary/translateReviewDue";
 import { getFlashcardDueInfo, getVocabularyStats } from "@/features/vocabulary/queries";
 
-export const metadata: Metadata = {
-  title: "My Vocabulary",
-};
+export async function generateMetadata(): Promise<Metadata> {
+  const t = await getTranslations("vocabulary");
+  return { title: t("title") };
+}
 
 type VocabularyPageProps = {
   searchParams: Promise<{
@@ -32,6 +34,7 @@ type VocabularyPageProps = {
  */
 export default async function VocabularyPage({ searchParams }: VocabularyPageProps) {
   const user = await requireUser();
+  const t = await getTranslations("vocabulary");
   const params = await searchParams;
   const [stats, dueInfo] = await Promise.all([
     getVocabularyStats(user.id),
@@ -51,7 +54,7 @@ export default async function VocabularyPage({ searchParams }: VocabularyPagePro
       <Button asChild>
         <Link href="/vocabulary/review">
           <Layers className="size-4" aria-hidden="true" />
-          Study flashcards ({dueInfo.dueCount} due)
+          {t("studyFlashcards", { count: dueInfo.dueCount })}
         </Link>
       </Button>
     ) : (
@@ -59,8 +62,10 @@ export default async function VocabularyPage({ searchParams }: VocabularyPagePro
         <Link href="/vocabulary/review">
           <Layers className="size-4" aria-hidden="true" />
           {dueInfo.nextReviewAt
-            ? `Caught up · ${formatReviewDueLabel(dueInfo.nextReviewAt)}`
-            : "Caught up"}
+            ? t("caughtUpDue", {
+                label: translateReviewDueLabel(dueInfo.nextReviewAt, t),
+              })
+            : t("caughtUp")}
         </Link>
       </Button>
     );
@@ -70,7 +75,7 @@ export default async function VocabularyPage({ searchParams }: VocabularyPagePro
       <Button asChild variant="outline">
         <Link href="/vocabulary/toeic">
           <Briefcase className="size-4" aria-hidden="true" />
-          Từ vựng TOEIC
+          {t("toeic")}
         </Link>
       </Button>
       {flashcardAction}
@@ -80,8 +85,8 @@ export default async function VocabularyPage({ searchParams }: VocabularyPagePro
   return (
     <div className="flex w-full flex-col gap-8 px-4 py-8 sm:px-6 lg:px-8">
       <PageHeader
-        title="My Vocabulary"
-        description="Words you've saved from lessons or added yourself — search, filter, and mark as learned."
+        title={t("title")}
+        description={t("description")}
         actions={headerActions}
       />
 

@@ -2,6 +2,7 @@
 
 import { motion, useReducedMotion } from "motion/react";
 import { CheckCircle2, CircleX } from "lucide-react";
+import { useTranslations } from "next-intl";
 import { cn } from "@/lib/utils";
 import type { ToeicPlayOption } from "../../types";
 
@@ -27,10 +28,11 @@ export function PlayOptions({
   optionState,
   onSelect,
 }: PlayOptionsProps) {
+  const t = useTranslations("vocabulary");
   const reduceMotion = useReducedMotion();
 
   return (
-    <ul className="flex w-full flex-col gap-2.5" role="listbox" aria-label="Meanings">
+    <ul className="flex w-full flex-col gap-2.5" role="listbox" aria-label={t("meanings")}>
       {options.map((option, index) => {
         const state = optionState(option.id);
         const isWrongShake = state === "incorrect" && !reduceMotion;

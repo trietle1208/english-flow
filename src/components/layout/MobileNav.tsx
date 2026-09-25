@@ -4,6 +4,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { isNavItemActive, mobileBottomNav } from "@/config/navigation";
 import { cn } from "@/lib/utils";
+import { useTranslations } from "next-intl";
 
 /**
  * Fixed bottom tab bar, mobile only (<768px) — spec §4 "Maintain easy
@@ -13,10 +14,11 @@ import { cn } from "@/lib/utils";
  */
 export function MobileNav() {
   const pathname = usePathname();
+  const t = useTranslations("nav");
 
   return (
     <nav
-      aria-label="Main"
+      aria-label={t("main")}
       className="fixed inset-x-0 bottom-0 z-30 flex h-16 border-t bg-background pb-[env(safe-area-inset-bottom)] md:hidden"
     >
       {mobileBottomNav.map((item) => {
@@ -35,7 +37,7 @@ export function MobileNav() {
             )}
           >
             <Icon className={cn("size-5", active && "text-primary")} aria-hidden="true" />
-            {item.label}
+            {t(item.labelKey)}
           </Link>
         );
       })}

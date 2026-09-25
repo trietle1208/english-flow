@@ -1,5 +1,6 @@
 import { Suspense } from "react";
 import type { Metadata } from "next";
+import { getTranslations } from "next-intl/server";
 import { PageHeader } from "@/components/shared/PageHeader";
 import { isCefrLevel } from "@/config/cefr";
 import { isGrammarTopicCategory } from "@/features/grammar/categories";
@@ -13,9 +14,10 @@ import {
 } from "@/features/grammar/types";
 import { requireUser } from "@/lib/session";
 
-export const metadata: Metadata = {
-  title: "Ngữ pháp",
-};
+export async function generateMetadata(): Promise<Metadata> {
+  const t = await getTranslations("grammar");
+  return { title: t("title") };
+}
 
 type GrammarPageProps = {
   searchParams: Promise<{
@@ -31,6 +33,7 @@ type GrammarPageProps = {
  */
 export default async function GrammarPage({ searchParams }: GrammarPageProps) {
   const user = await requireUser();
+  const t = await getTranslations("grammar");
   const params = await searchParams;
 
   const filters: GrammarListFilters = {
@@ -58,10 +61,7 @@ export default async function GrammarPage({ searchParams }: GrammarPageProps) {
 
   return (
     <div className="flex w-full flex-col gap-8 px-4 py-8 sm:px-6 lg:px-8">
-      <PageHeader
-        title="Ngữ pháp"
-        description="Học quy tắc, xem ví dụ và luyện tập từng câu — tiến độ lưu theo từng chủ điểm."
-      />
+      <PageHeader title={t("title")} description={t("description")} />
 
       <Suspense
         fallback={

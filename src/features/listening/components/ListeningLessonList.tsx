@@ -1,3 +1,4 @@
+import { getTranslations } from "next-intl/server";
 import { Headphones } from "lucide-react";
 import { EmptyState } from "@/components/shared/EmptyState";
 import { listListeningLessons } from "../queries";
@@ -8,14 +9,15 @@ type ListeningLessonListProps = {
 };
 
 export async function ListeningLessonList({ userId }: ListeningLessonListProps) {
+  const t = await getTranslations("listening");
   const lessons = await listListeningLessons(userId);
 
   if (lessons.length === 0) {
     return (
       <EmptyState
         icon={Headphones}
-        title="No listening lessons yet"
-        description="Listening practice will appear here once content is seeded."
+        title={t("emptyTitle")}
+        description={t("emptyDescription")}
       />
     );
   }

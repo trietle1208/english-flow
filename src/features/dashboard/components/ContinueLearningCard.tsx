@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { ArrowRight, Clock, PlayCircle } from "lucide-react";
+import { getTranslations } from "next-intl/server";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
@@ -7,14 +8,6 @@ import { Progress } from "@/components/ui/progress";
 import { formatDuration, formatLessonNumber } from "@/lib/format";
 import { cn } from "@/lib/utils";
 import type { ContinueLearningData } from "@/features/progress/types";
-
-const SKILL_LABEL: Record<ContinueLearningData["skill"], string> = {
-  vocabulary: "Vocabulary",
-  grammar: "Grammar",
-  listening: "Listening",
-  reading: "Reading",
-  speaking: "Speaking",
-};
 
 const SKILL_ACCENT: Record<ContinueLearningData["skill"], string> = {
   vocabulary: "from-skill-vocabulary/15 via-card to-card border-skill-vocabulary/25",
@@ -37,7 +30,11 @@ type ContinueLearningCardProps = {
 };
 
 /** Large Continue card pointing at the in-progress (or next) lesson (spec §9). */
-export function ContinueLearningCard({ data }: ContinueLearningCardProps) {
+export async function ContinueLearningCard({ data }: ContinueLearningCardProps) {
+  const t = await getTranslations("dashboard");
+  const tSkills = await getTranslations("skills");
+  const tCommon = await getTranslations("common");
+
   return (
     <Card
       className={cn(
@@ -49,16 +46,19 @@ export function ContinueLearningCard({ data }: ContinueLearningCardProps) {
         <div className="flex items-start justify-between gap-4">
           <div className="space-y-3">
             <p className="text-sm font-medium text-muted-foreground">
-              Continue learning
+              {t("continueLearning")}
             </p>
             <div className="space-y-1.5">
               <p className="text-sm text-muted-foreground">{data.courseTitle}</p>
               <h2 className="text-balance text-2xl font-semibold tracking-tight sm:text-[1.7rem]">
-                Lesson {formatLessonNumber(data.lessonNumber - 1)} — {data.lessonTitle}
+                {t("lessonNumberTitle", {
+                  number: formatLessonNumber(data.lessonNumber - 1),
+                  title: data.lessonTitle,
+                })}
               </h2>
             </div>
             <div className="flex flex-wrap items-center gap-2">
-              <Badge variant="secondary">{SKILL_LABEL[data.skill]}</Badge>
+              <Badge variant="secondary">{tSkills(data.skill)}</Badge>
               <span className="inline-flex items-center gap-1 text-xs text-muted-foreground">
                 <Clock className="size-3.5" aria-hidden="true" />
                 {formatDuration(data.estimatedMinutes)}
@@ -79,19 +79,19 @@ export function ContinueLearningCard({ data }: ContinueLearningCardProps) {
 
         <div className="space-y-2">
           <div className="flex items-center justify-between text-xs">
-            <span className="text-muted-foreground">Lesson progress</span>
+            <span className="text-muted-foreground">{t("lessonProgress")}</span>
             <span className="font-medium tabular-nums">{data.progressPercent}%</span>
           </div>
           <Progress
             value={data.progressPercent}
             className="h-2.5"
-            aria-label={`Lesson ${data.progressPercent}% complete`}
+            aria-label={t("lessonPercentComplete", { percent: data.progressPercent })}
           />
         </div>
 
         <Button asChild size="lg" className="w-full gap-2 sm:w-fit">
           <Link href={`/lessons/${data.lessonId}`}>
-            Continue
+            {tCommon("continue")}
             <ArrowRight className="size-4" aria-hidden="true" />
           </Link>
         </Button>

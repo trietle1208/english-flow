@@ -9,6 +9,7 @@ import {
   type KeyboardEvent,
   type PointerEvent as ReactPointerEvent,
 } from "react";
+import { useTranslations } from "next-intl";
 import {
   Pause,
   Play,
@@ -40,6 +41,7 @@ export function AudioPlayer({
   onTimeUpdate,
   className,
 }: AudioPlayerProps) {
+  const t = useTranslations("listening");
   const audioRef = useRef<HTMLAudioElement | null>(null);
   const seekTrackRef = useRef<HTMLDivElement | null>(null);
   const labelId = useId();
@@ -222,7 +224,7 @@ export function AudioPlayer({
             size="lg"
             className="min-h-12 min-w-12 shrink-0"
             onClick={togglePlay}
-            aria-label={isPlaying ? "Pause" : "Play"}
+            aria-label={isPlaying ? t("pause") : t("play")}
           >
             {isPlaying ? (
               <Pause className="size-5" aria-hidden="true" />
@@ -236,11 +238,14 @@ export function AudioPlayer({
               ref={seekTrackRef}
               role="slider"
               tabIndex={0}
-              aria-label="Seek"
+              aria-label={t("seek")}
               aria-valuemin={0}
               aria-valuemax={Math.round(duration) || 0}
               aria-valuenow={Math.round(currentTime)}
-              aria-valuetext={`${formatClockTime(currentTime)} of ${formatClockTime(duration)}`}
+              aria-valuetext={t("timeOf", {
+                current: formatClockTime(currentTime),
+                duration: formatClockTime(duration),
+              })}
               onPointerDown={onSeekPointerDown}
               onPointerMove={onSeekPointerMove}
               onPointerUp={onSeekPointerUp}
@@ -289,12 +294,12 @@ export function AudioPlayer({
               size="icon"
               className="min-h-11 min-w-11"
               onClick={() => setMuted((m) => !m)}
-              aria-label={muted || volume === 0 ? "Unmute" : "Mute"}
+              aria-label={muted || volume === 0 ? t("unmute") : t("mute")}
             >
               <VolumeIcon className="size-4" aria-hidden="true" />
             </Button>
             <label className="sr-only" htmlFor={`${labelId}-volume`}>
-              Volume
+              {t("volume")}
             </label>
             <input
               id={`${labelId}-volume`}
@@ -308,12 +313,16 @@ export function AudioPlayer({
                 setVolume(next);
                 setMuted(next === 0);
               }}
-              aria-label="Volume"
+              aria-label={t("volume")}
               className="h-2 w-24 max-w-full cursor-pointer accent-primary sm:w-32"
             />
           </div>
 
-          <div className="flex flex-wrap items-center gap-1.5" role="group" aria-label="Playback speed">
+          <div
+            className="flex flex-wrap items-center gap-1.5"
+            role="group"
+            aria-label={t("playbackSpeed")}
+          >
             {SPEEDS.map((value) => (
               <Button
                 key={value}
@@ -321,7 +330,7 @@ export function AudioPlayer({
                 size="sm"
                 variant={speed === value ? "default" : "outline"}
                 className="min-h-10 min-w-14"
-                aria-label={`Playback speed ${value} times`}
+                aria-label={t("speedTimes", { value })}
                 aria-pressed={speed === value}
                 onClick={() => setSpeed(value)}
               >
