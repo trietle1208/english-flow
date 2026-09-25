@@ -1,0 +1,2 @@
+# JSON data / i18n / lockfiles / config — skip from the code graph
+*.json
