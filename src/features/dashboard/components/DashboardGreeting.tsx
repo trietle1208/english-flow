@@ -57,7 +57,7 @@ export async function DashboardGreeting({
           <p className="text-sm text-muted-foreground">{dateLabel}</p>
           <h1
             id="dashboard-greeting"
-            className="text-balance text-3xl font-semibold tracking-tight text-foreground sm:text-4xl"
+            className="text-balance text-2xl font-semibold tracking-tight text-foreground sm:text-3xl lg:text-4xl"
           >
             {greeting}, {name}
           </h1>

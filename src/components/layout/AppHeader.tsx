@@ -63,7 +63,7 @@ export function AppHeader({ user }: { user: CurrentUser }) {
   }
 
   return (
-    <header className="sticky top-0 z-30 flex h-14 items-center justify-between border-b bg-background/95 px-4 backdrop-blur md:hidden">
+    <header className="sticky top-0 z-30 flex h-14 items-center justify-between border-b bg-background/95 px-4 pt-[env(safe-area-inset-top)] backdrop-blur md:hidden">
       <Link href="/dashboard" className="flex items-center gap-2 font-semibold">
         <GraduationCap className="size-6 text-primary" aria-hidden="true" />
         {siteConfig.name}

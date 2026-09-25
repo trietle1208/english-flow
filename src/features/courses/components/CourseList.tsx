@@ -75,7 +75,7 @@ export async function CourseList({
     <div className="flex flex-col gap-6">
       {showRecommendation ? (
         <div className="rounded-lg border bg-muted/40 px-4 py-3 text-sm">
-          <p>
+          <p className="text-pretty leading-relaxed">
             {t("recommendedFor", {
               level: recommendedLevel,
               label: tCefr(recommendedLevel),

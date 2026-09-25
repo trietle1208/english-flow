@@ -6,12 +6,14 @@ export async function HowItWorks() {
   const t = await getTranslations("marketing");
 
   return (
-    <section id="how-it-works" className="mx-auto max-w-7xl px-4 py-16 sm:px-6 md:py-24 lg:px-8">
+    <section id="how-it-works" className="mx-auto max-w-7xl px-4 py-12 sm:px-6 md:py-24 lg:px-8">
       <div className="mx-auto max-w-2xl text-center">
-        <h2 className="text-2xl font-semibold tracking-tight sm:text-3xl">{t("howItWorks")}</h2>
+        <h2 className="text-balance text-2xl font-semibold tracking-tight sm:text-3xl">
+          {t("howItWorks")}
+        </h2>
       </div>
 
-      <ol className="mt-12 grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-4">
+      <ol className="mt-8 grid grid-cols-1 gap-6 sm:mt-12 sm:grid-cols-2 sm:gap-8 lg:grid-cols-4">
         {STEP_KEYS.map((step) => (
           <li key={step} className="flex flex-col items-start gap-3">
             <span

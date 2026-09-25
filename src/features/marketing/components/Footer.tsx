@@ -11,7 +11,7 @@ export async function Footer() {
 
   return (
     <footer className="border-t">
-      <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-4 px-4 py-8 text-sm text-muted-foreground sm:flex-row sm:px-6 lg:px-8">
+      <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-4 px-4 py-6 text-center text-sm text-muted-foreground sm:flex-row sm:py-8 sm:text-left sm:px-6 lg:px-8">
         <div className="flex items-center gap-2">
           <GraduationCap className="size-5 text-primary" aria-hidden="true" />
           <span>{t("copyright", { name: siteConfig.name, year })}</span>

@@ -30,16 +30,16 @@ export function GrammarTopicTabs({ topic }: GrammarTopicTabsProps) {
   return (
     <Tabs defaultValue="theory" className="gap-6">
       <TabsList className="grid h-auto w-full grid-cols-3 gap-1 sm:w-fit sm:grid-cols-none">
-        <TabsTrigger value="theory" className="min-h-11 gap-1.5 px-3">
-          <BookOpen className="size-4" aria-hidden="true" />
+        <TabsTrigger value="theory" className="min-h-11 gap-1.5 px-2 text-xs sm:px-3 sm:text-sm">
+          <BookOpen className="hidden size-4 sm:block" aria-hidden="true" />
           {t("tabTheory")}
         </TabsTrigger>
-        <TabsTrigger value="examples" className="min-h-11 gap-1.5 px-3">
-          <ListChecks className="size-4" aria-hidden="true" />
+        <TabsTrigger value="examples" className="min-h-11 gap-1.5 px-2 text-xs sm:px-3 sm:text-sm">
+          <ListChecks className="hidden size-4 sm:block" aria-hidden="true" />
           {t("tabExamples")}
         </TabsTrigger>
-        <TabsTrigger value="exercises" className="min-h-11 gap-1.5 px-3">
-          <PencilLine className="size-4" aria-hidden="true" />
+        <TabsTrigger value="exercises" className="min-h-11 gap-1.5 px-2 text-xs sm:px-3 sm:text-sm">
+          <PencilLine className="hidden size-4 sm:block" aria-hidden="true" />
           {t("tabExercises")}
         </TabsTrigger>
       </TabsList>

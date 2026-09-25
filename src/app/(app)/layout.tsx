@@ -14,8 +14,8 @@ import { AddVocabularyFab } from "@/features/vocabulary/components/AddVocabulary
  * Layout: a fixed `Sidebar` from 768px up (icon-only until 1024px, then
  * icon+label), matched by `md:pl-[72px] lg:pl-64` on `<main>`. Below 768px
  * the sidebar is hidden in favor of `AppHeader` (compact header + drawer)
- * and a fixed `MobileNav` bottom tab bar, with `pb-16` on `<main>` so
- * content never sits under it.
+ * and a fixed `MobileNav` bottom tab bar, with extra bottom padding on
+ * `<main>` so content clears both the tab bar and the vocabulary FAB.
  */
 export default async function AppLayout({ children }: { children: ReactNode }) {
   const user = await requireUser();
@@ -24,7 +24,9 @@ export default async function AppLayout({ children }: { children: ReactNode }) {
     <div className="min-h-screen">
       <Sidebar user={user} />
       <AppHeader user={user} />
-      <main className="min-h-screen pb-16 md:pb-0 md:pl-[72px] lg:pl-64">{children}</main>
+      <main className="min-h-screen pb-[calc(7.5rem+env(safe-area-inset-bottom))] md:pb-0 md:pl-[72px] lg:pl-64">
+        {children}
+      </main>
       <MobileNav />
       <AddVocabularyFab />
     </div>

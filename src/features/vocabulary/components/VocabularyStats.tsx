@@ -12,7 +12,7 @@ export async function VocabularyStats({ stats }: VocabularyStatsProps) {
   const t = await getTranslations("vocabulary");
 
   return (
-    <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
+    <div className="grid grid-cols-2 gap-3 sm:gap-4 lg:grid-cols-3 xl:grid-cols-5">
       <StatCard label={t("totalSaved")} value={stats.totalSaved} icon={BookMarked} />
       <StatCard label={t("learned")} value={stats.learned} icon={CheckCircle2} />
       <StatCard label={t("notLearned")} value={stats.notLearned} icon={Circle} />

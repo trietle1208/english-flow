@@ -47,7 +47,7 @@ export default async function DashboardPage() {
   const firstName = user.name?.trim().split(/\s+/)[0];
 
   return (
-    <div className="flex w-full flex-col gap-8 px-4 py-8 sm:px-6 lg:px-8">
+    <div className="flex w-full flex-col gap-6 px-4 py-6 sm:gap-8 sm:px-6 sm:py-8 lg:px-8">
       <DashboardGreeting hour={hour} firstName={firstName} timezone={timezone} />
 
       <Suspense fallback={<DashboardOnboardingFallback />}>

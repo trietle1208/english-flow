@@ -32,12 +32,12 @@ export function MobileNav() {
             prefetch={false}
             aria-current={active ? "page" : undefined}
             className={cn(
-              "flex flex-1 flex-col items-center justify-center gap-1 text-xs text-muted-foreground outline-none transition-colors focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-inset",
+              "flex min-w-0 flex-1 flex-col items-center justify-center gap-1 px-1 text-xs text-muted-foreground outline-none transition-colors focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-inset",
               active && "font-semibold text-foreground",
             )}
           >
-            <Icon className={cn("size-5", active && "text-primary")} aria-hidden="true" />
-            {t(item.labelKey)}
+            <Icon className={cn("size-5 shrink-0", active && "text-primary")} aria-hidden="true" />
+            <span className="max-w-full truncate leading-tight">{t(item.labelKey)}</span>
           </Link>
         );
       })}

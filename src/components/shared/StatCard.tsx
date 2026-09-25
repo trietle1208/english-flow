@@ -21,10 +21,10 @@ type StatCardProps = {
 export function StatCard({ label, value, subtext, icon: Icon, progress, className }: StatCardProps) {
   return (
     <Card className={className}>
-      <CardContent className="flex flex-col gap-2 p-6">
-        <div className="flex items-center justify-between">
-          <p className="text-sm text-muted-foreground">{label}</p>
-          {Icon && <Icon className="size-4 text-muted-foreground" aria-hidden="true" />}
+      <CardContent className="flex flex-col gap-2 p-4 sm:p-6">
+        <div className="flex items-start justify-between gap-2">
+          <p className="min-w-0 text-sm leading-snug text-muted-foreground">{label}</p>
+          {Icon && <Icon className="size-4 shrink-0 text-muted-foreground" aria-hidden="true" />}
         </div>
         <p className="text-2xl font-semibold tracking-tight">{value}</p>
         {subtext && <p className="text-xs text-muted-foreground">{subtext}</p>}

@@ -51,14 +51,14 @@ export default async function VocabularyPage({ searchParams }: VocabularyPagePro
 
   const flashcardAction =
     dueInfo.totalSaved === 0 ? null : dueInfo.dueCount > 0 ? (
-      <Button asChild>
+      <Button asChild className="w-full sm:w-auto">
         <Link href="/vocabulary/review">
           <Layers className="size-4" aria-hidden="true" />
           {t("studyFlashcards", { count: dueInfo.dueCount })}
         </Link>
       </Button>
     ) : (
-      <Button asChild variant="outline">
+      <Button asChild variant="outline" className="w-full sm:w-auto">
         <Link href="/vocabulary/review">
           <Layers className="size-4" aria-hidden="true" />
           {dueInfo.nextReviewAt
@@ -71,8 +71,8 @@ export default async function VocabularyPage({ searchParams }: VocabularyPagePro
     );
 
   const headerActions = (
-    <div className="flex flex-wrap items-center gap-2">
-      <Button asChild variant="outline">
+    <div className="flex w-full flex-col gap-2 sm:w-auto sm:flex-row sm:flex-wrap sm:items-center">
+      <Button asChild variant="outline" className="w-full sm:w-auto">
         <Link href="/vocabulary/toeic">
           <Briefcase className="size-4" aria-hidden="true" />
           {t("toeic")}
