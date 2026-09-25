@@ -19,6 +19,8 @@ Các quyết định kỹ thuật cần chốt **trước khi code**, vì thay �
 
 **Hệ quả**: bảng `user`, `session`, `account`, `verification` do better-auth sinh ra; bảng `users` nghiệp vụ trong spec §23 sẽ **map trực tiếp vào bảng `user`** của better-auth (thêm cột custom: `cefr_level`, `daily_goal_minutes`, `preferred_learning_time`, `onboarded_at`) thay vì tạo bảng thứ hai.
 
+**Cập nhật 2026-09-25 — session cookie cache**: bật `session.cookieCache` (5 phút) để `requireUser()` không phải query `sessions` + `users` ở mỗi request. Cookie được ký bằng `BETTER_AUTH_SECRET` nên client không giả mạo được. Đánh đổi: (1) session bị xoá trong DB vẫn dùng được tối đa 5 phút nếu ai đó giữ cả hai cookie (đăng xuất vẫn xoá cookie ở trình duyệt ngay); (2) cache chứa luôn user row → Server Action nào update bảng `users` phải gọi `refreshSessionCache()` (`src/lib/session.ts`) ngay sau đó, như `updateSettings` và `submitPlacementTest`.
+
 ---
 
 ## AD-02 — ID strategy: UUID v7 (`uuidv7`) sinh phía app

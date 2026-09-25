@@ -6,5 +6,6 @@ if [ ! -x node_modules/.bin/next ]; then
   echo "Installing dependencies into container volume..."
   npm ci
 fi
-# Turbopack: first-route compile is seconds, not 30–40s (webpack in Docker).
-exec npm run dev -- -H 0.0.0.0 --turbopack
+# `npm run dev` already passes --turbopack: first-route compile is seconds,
+# not 30–40s (webpack in Docker).
+exec npm run dev -- -H 0.0.0.0

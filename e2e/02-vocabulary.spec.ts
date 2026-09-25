@@ -20,13 +20,13 @@ test.describe("4–6. Vocabulary", () => {
 
     await page.goto("/vocabulary");
     await expect(page.getByRole("heading", { name: "My Vocabulary" })).toBeVisible();
-    await expect(page.getByRole("button", { name: "Mark as learned" }).first()).toBeVisible({
-      timeout: 20_000,
-    });
-    await page.getByRole("button", { name: "Mark as learned" }).first().click();
-    await expect(page.getByRole("button", { name: "Learned" }).first()).toBeVisible({
-      timeout: 10_000,
-    });
+    // Card buttons are labelled per word ("Mark wake up as learned").
+    const markLearned = page.getByRole("button", { name: /^Mark .+ as learned$/ }).first();
+    await expect(markLearned).toBeVisible({ timeout: 20_000 });
+    await markLearned.click();
+    await expect(
+      page.getByRole("button", { name: /^Mark .+ as not learned$/ }).first(),
+    ).toBeVisible({ timeout: 10_000 });
 
     await page.getByRole("button", { name: "Remove" }).first().click();
     const dialog = page.getByRole("dialog");

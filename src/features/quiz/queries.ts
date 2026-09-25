@@ -1,4 +1,4 @@
-import { and, asc, count, eq, inArray, isNotNull } from "drizzle-orm";
+import { and, asc, count, eq, isNotNull } from "drizzle-orm";
 import { db } from "@/db";
 import {
   grammarTopics,
@@ -19,52 +19,55 @@ import type {
 /**
  * Load a quiz for the runner UI. Correctness flags are intentionally omitted
  * — scoring happens server-side (spec §34 / after_submit).
+ *
+ * All three reads key off `quizId` (answers via a join on their question), so
+ * they run as one parallel batch instead of quiz → questions → answers.
  */
 export async function getQuizForAttempt(quizId: string): Promise<QuizForAttempt | null> {
-  const [quiz] = await db
-    .select({
-      id: quizzes.id,
-      title: quizzes.title,
-      description: quizzes.description,
-      passScore: quizzes.passScore,
-      revealMode: quizzes.revealMode,
-      timeLimitSeconds: quizzes.timeLimitSeconds,
-    })
-    .from(quizzes)
-    .where(eq(quizzes.id, quizId))
-    .limit(1);
+  const [[quiz], questions, answerRows] = await Promise.all([
+    db
+      .select({
+        id: quizzes.id,
+        title: quizzes.title,
+        description: quizzes.description,
+        passScore: quizzes.passScore,
+        revealMode: quizzes.revealMode,
+        timeLimitSeconds: quizzes.timeLimitSeconds,
+      })
+      .from(quizzes)
+      .where(eq(quizzes.id, quizId))
+      .limit(1),
+    db
+      .select({
+        id: quizQuestions.id,
+        orderIndex: quizQuestions.orderIndex,
+        type: quizQuestions.type,
+        prompt: quizQuestions.prompt,
+        points: quizQuestions.points,
+      })
+      .from(quizQuestions)
+      .where(eq(quizQuestions.quizId, quizId))
+      .orderBy(asc(quizQuestions.orderIndex)),
+    db
+      .select({
+        id: quizAnswers.id,
+        questionId: quizAnswers.questionId,
+        orderIndex: quizAnswers.orderIndex,
+        content: quizAnswers.content,
+      })
+      .from(quizAnswers)
+      .innerJoin(quizQuestions, eq(quizQuestions.id, quizAnswers.questionId))
+      .where(eq(quizQuestions.quizId, quizId))
+      .orderBy(asc(quizAnswers.orderIndex)),
+  ]);
 
   if (!quiz) {
     return null;
   }
 
-  const questions = await db
-    .select({
-      id: quizQuestions.id,
-      orderIndex: quizQuestions.orderIndex,
-      type: quizQuestions.type,
-      prompt: quizQuestions.prompt,
-      points: quizQuestions.points,
-    })
-    .from(quizQuestions)
-    .where(eq(quizQuestions.quizId, quizId))
-    .orderBy(asc(quizQuestions.orderIndex));
-
   if (questions.length === 0) {
     return { ...quiz, questions: [] };
   }
-
-  const questionIds = questions.map((q) => q.id);
-  const answerRows = await db
-    .select({
-      id: quizAnswers.id,
-      questionId: quizAnswers.questionId,
-      orderIndex: quizAnswers.orderIndex,
-      content: quizAnswers.content,
-    })
-    .from(quizAnswers)
-    .where(inArray(quizAnswers.questionId, questionIds))
-    .orderBy(asc(quizAnswers.orderIndex));
 
   const answersByQuestion = new Map<string, { id: string; content: string }[]>();
   for (const row of answerRows) {

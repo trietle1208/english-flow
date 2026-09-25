@@ -546,7 +546,15 @@ export async function searchGrammarTopics(
   const like = `%${q}%`;
 
   try {
-    const result = await db.execute(sql`
+    const { rows } = await db.execute<{
+      id: string;
+      slug: string;
+      title_en: string;
+      title_vi: string;
+      level: GrammarTopicListItem["level"];
+      summary_vi: string;
+      rank: number;
+    }>(sql`
       SELECT
         t.id,
         t.slug,
@@ -585,15 +593,7 @@ export async function searchGrammarTopics(
       LIMIT ${query.limit}
     `);
 
-    const list = (result as unknown as Array<{
-      id: string;
-      slug: string;
-      title_en: string;
-      title_vi: string;
-      level: GrammarTopicListItem["level"];
-      summary_vi: string;
-      rank: number;
-    }>).map((row) => ({
+    const list = rows.map((row) => ({
       id: row.id,
       slug: row.slug,
       titleEn: row.title_en,

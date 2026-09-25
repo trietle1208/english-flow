@@ -68,6 +68,22 @@ export const auth = betterAuth({
       verify: ({ hash, password }) => verifyPassword({ hash, password }),
     },
   },
+  session: {
+    // Every page render starts with `requireUser()`; without this, that's a
+    // `sessions` query followed by a `users` query on every request. The
+    // cache is a short-lived cookie signed with `BETTER_AUTH_SECRET`, so the
+    // client can't forge it, but it has two trade-offs:
+    //  - a session revoked in the DB stays usable for up to `maxAge`
+    //    (sign-out still clears both cookies in the browser immediately);
+    //  - it carries the user row, so a Server Action that updates `users`
+    //    must call `refreshSessionCache()` (`src/lib/session.ts`) afterwards.
+    // Server Components can't set cookies, so the cache is (re)written on
+    // sign-in and by Server Actions (which all call `requireUser()`).
+    cookieCache: {
+      enabled: true,
+      maxAge: 5 * 60,
+    },
+  },
   user: {
     // The business columns bolted onto `users` in Phase 03 (AD-01). None are
     // settable through the auth API itself (`input: false`) — they're read

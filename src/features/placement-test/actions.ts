@@ -16,7 +16,7 @@ import {
   scoreToCefrLevel,
 } from "@/features/quiz/engine";
 import { generateId } from "@/lib/id";
-import { requireUser } from "@/lib/session";
+import { refreshSessionCache, requireUser } from "@/lib/session";
 import { logger } from "@/lib/logger";
 import { submitPlacementTestSchema } from "./schemas";
 import type {
@@ -165,6 +165,7 @@ export async function submitPlacementTest(
         updatedAt: completedAt,
       })
       .where(eq(users.id, user.id));
+    await refreshSessionCache();
 
     revalidatePath("/placement-test");
     revalidatePath("/courses");

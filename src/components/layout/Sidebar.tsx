@@ -37,11 +37,12 @@ export function Sidebar({ user }: { user: CurrentUser }) {
 
           // Native `title` on tablet (icon-only) instead of Radix Tooltip around
           // the Link — TooltipTrigger can swallow the first click / soft-nav.
+          // Default prefetch stays on: it fetches each route's `loading.tsx`
+          // shell ahead of time so a click paints the skeleton immediately.
           return (
             <Link
               key={item.href}
               href={item.href}
-              prefetch={false}
               title={label}
               aria-label={label}
               aria-current={active ? "page" : undefined}

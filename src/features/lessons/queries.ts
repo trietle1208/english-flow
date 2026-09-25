@@ -2,6 +2,7 @@ import { and, asc, eq, inArray } from "drizzle-orm";
 import { db } from "@/db";
 import { courses, lessons, listeningLessons, userProgress, vocabularies } from "@/db/schema";
 import { getLessonAccess } from "@/features/courses/queries";
+import { getSavedVocabularyIds } from "@/features/vocabulary/queries";
 import { parseLessonBlocks } from "./schemas";
 import type { LessonDetail, VocabularySummary } from "./types";
 
@@ -58,7 +59,9 @@ export async function getLessonDetail(
     ),
   ];
 
-  const [vocabRows, listeningRows, siblings] = await Promise.all([
+  // Everything below depends only on the lesson row, so it goes out in one
+  // parallel batch (incl. the learner's saved-word state for Save buttons).
+  const [vocabRows, listeningRows, siblings, savedVocabularyIds] = await Promise.all([
     vocabularyIds.length > 0
       ? db
           .select({
@@ -85,6 +88,7 @@ export async function getLessonDetail(
       .from(lessons)
       .where(eq(lessons.courseId, row.courseId))
       .orderBy(asc(lessons.orderIndex)),
+    getSavedVocabularyIds(userId, vocabularyIds),
   ]);
 
   const vocabulariesById: Record<string, VocabularySummary> = {};
@@ -117,6 +121,7 @@ export async function getLessonDetail(
     courseTitle: row.courseTitle,
     blocks,
     vocabulariesById,
+    savedVocabularyIds,
     listeningTitlesById,
     previousLessonId,
     nextLessonId,

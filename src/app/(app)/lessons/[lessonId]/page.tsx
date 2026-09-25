@@ -1,13 +1,13 @@
 import type { Metadata } from "next";
 import { notFound, redirect } from "next/navigation";
 import { getTranslations } from "next-intl/server";
-import { startLessonProgress } from "@/features/lessons/actions";
 import { LessonBlockRenderer } from "@/features/lessons/components/LessonBlockRenderer";
 import { LessonFooterNav } from "@/features/lessons/components/LessonFooterNav";
 import { LessonHeader } from "@/features/lessons/components/LessonHeader";
 import { LessonStudySession } from "@/features/lessons/components/LessonStudySession";
+import { markLessonInProgress } from "@/features/lessons/progress";
 import { getLessonAccess, getLessonDetail, getLessonTitle } from "@/features/lessons/queries";
-import { getSavedVocabularyIds } from "@/features/vocabulary/queries";
+import { logger } from "@/lib/logger";
 import { requireUser } from "@/lib/session";
 
 type LessonPageProps = {
@@ -43,17 +43,18 @@ export default async function LessonPage({ params }: LessonPageProps) {
     redirect(`/courses/${access.courseId}`);
   }
 
-  await startLessonProgress(lessonId);
-
-  const lesson = await getLessonDetail(lessonId, user.id);
+  // Independent after the gate: marking `in_progress` never touches a
+  // `completed` row, so it can't change the `isCompleted` read below. A
+  // failed progress write must not break the page — log it and render.
+  const [lesson] = await Promise.all([
+    getLessonDetail(lessonId, user.id),
+    markLessonInProgress(user.id, lessonId).catch((error: unknown) => {
+      logger.error("markLessonInProgress failed:", error);
+    }),
+  ]);
   if (!lesson) {
     notFound();
   }
-
-  const savedVocabularyIds = await getSavedVocabularyIds(
-    user.id,
-    Object.keys(lesson.vocabulariesById),
-  );
 
   const isCompleted = lesson.progressStatus === "completed";
 
@@ -72,7 +73,7 @@ export default async function LessonPage({ params }: LessonPageProps) {
           blocks={lesson.blocks}
           vocabulariesById={lesson.vocabulariesById}
           listeningTitlesById={lesson.listeningTitlesById}
-          savedVocabularyIds={savedVocabularyIds}
+          savedVocabularyIds={lesson.savedVocabularyIds}
           lessonPath={`/lessons/${lesson.id}`}
         />
       </LessonStudySession>

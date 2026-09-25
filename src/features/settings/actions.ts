@@ -5,7 +5,7 @@ import { revalidatePath } from "next/cache";
 import { db } from "@/db";
 import { users } from "@/db/schema";
 import { logger } from "@/lib/logger";
-import { requireUser } from "@/lib/session";
+import { refreshSessionCache, requireUser } from "@/lib/session";
 import { getTranslations } from "next-intl/server";
 import { updateSettingsSchema } from "./schemas";
 
@@ -44,6 +44,7 @@ export async function updateSettings(input: unknown): Promise<ActionResult> {
         updatedAt: new Date(),
       })
       .where(eq(users.id, user.id));
+    await refreshSessionCache();
 
     revalidatePath("/settings");
     revalidatePath("/dashboard");

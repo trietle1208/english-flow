@@ -1,4 +1,5 @@
 import { and, asc, count, eq, ilike, or, sql } from "drizzle-orm";
+import { alias } from "drizzle-orm/pg-core";
 import { db } from "@/db";
 import { courses, lessons, userProgress } from "@/db/schema";
 import type { CefrLevel } from "@/config/cefr";
@@ -191,6 +192,10 @@ export async function getCourseTitle(courseId: string): Promise<string | null> {
  * open when lesson `n-1` is completed; lesson 1 (`orderIndex === 0`) is
  * always open. Used by `/lessons/[lessonId]` so a locked URL cannot be
  * forced open from the address bar.
+ *
+ * One query: the previous lesson (unique on `course_id, order_index`) and
+ * the learner's progress on it are left-joined onto the requested lesson, so
+ * the gate costs a single DB round trip instead of two sequential ones.
  */
 export async function getLessonAccess(
   lessonId: string,
@@ -200,14 +205,27 @@ export async function getLessonAccess(
   | { kind: "locked"; courseId: string; title: string }
   | { kind: "allowed"; courseId: string; title: string }
 > {
+  const previousLesson = alias(lessons, "previous_lesson");
+
   const [lesson] = await db
     .select({
-      id: lessons.id,
       title: lessons.title,
       courseId: lessons.courseId,
       orderIndex: lessons.orderIndex,
+      previousStatus: userProgress.status,
     })
     .from(lessons)
+    .leftJoin(
+      previousLesson,
+      and(
+        eq(previousLesson.courseId, lessons.courseId),
+        eq(previousLesson.orderIndex, sql`${lessons.orderIndex} - 1`),
+      ),
+    )
+    .leftJoin(
+      userProgress,
+      and(eq(userProgress.lessonId, previousLesson.id), eq(userProgress.userId, userId)),
+    )
     .where(eq(lessons.id, lessonId))
     .limit(1);
 
@@ -215,25 +233,7 @@ export async function getLessonAccess(
     return { kind: "not_found" };
   }
 
-  if (lesson.orderIndex === 0) {
-    return { kind: "allowed", courseId: lesson.courseId, title: lesson.title };
-  }
-
-  const [previous] = await db
-    .select({
-      status: userProgress.status,
-    })
-    .from(lessons)
-    .leftJoin(
-      userProgress,
-      and(eq(userProgress.lessonId, lessons.id), eq(userProgress.userId, userId)),
-    )
-    .where(
-      and(eq(lessons.courseId, lesson.courseId), eq(lessons.orderIndex, lesson.orderIndex - 1)),
-    )
-    .limit(1);
-
-  if (previous?.status === "completed") {
+  if (lesson.orderIndex === 0 || lesson.previousStatus === "completed") {
     return { kind: "allowed", courseId: lesson.courseId, title: lesson.title };
   }
 

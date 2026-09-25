@@ -31,6 +31,8 @@ export type LessonDetail = {
   courseTitle: string;
   blocks: LessonBlock[];
   vocabulariesById: Record<string, VocabularySummary>;
+  /** Which of `vocabulariesById` the learner has already saved. */
+  savedVocabularyIds: Set<string>;
   listeningTitlesById: Record<string, string>;
   previousLessonId: string | null;
   nextLessonId: string | null;
